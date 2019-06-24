@@ -17,6 +17,13 @@
 </head>
 <c:set var="root" value="<%=request.getContextPath()%>"/>
 <body>
-<a href="${root}/main.do" class="logo">오늘의집</a>
+<div class="menu-bar">
+<a href="/main.do"><span class="logo">오늘의집</span></a>
+<span class="menu">
+<a href="#community">커뮤니티</a>
+<a href="store">스토어</a>
+<a href="#expert">전문가</a>
+</span>
+</div>
 </body>
 </html>

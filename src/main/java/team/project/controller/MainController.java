@@ -1,0 +1,15 @@
+package team.project.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class MainController {
+
+	@RequestMapping("/main.do")
+	public String mainGo()
+	{
+		return "main.tiles";//tiles name 반환
+	}
+	
+}

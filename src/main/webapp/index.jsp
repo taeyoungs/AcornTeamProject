@@ -16,6 +16,6 @@
 	<title>Welcome</title>
 </head> 
 <body>
-	<c:redirect url="main.do"/>d
+	<c:redirect url="main.do"/>dhhh
 </body>
 </html>

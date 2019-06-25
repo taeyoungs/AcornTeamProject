@@ -15,6 +15,6 @@
 </head>
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 <body>
-MAIN View
+MAIN View!
 </body>
 </html>

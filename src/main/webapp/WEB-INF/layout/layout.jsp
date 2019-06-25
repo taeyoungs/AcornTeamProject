@@ -29,6 +29,7 @@
 		font-family: 'Russo One';
 		font-size: 15px;
 		position: relative;
+		display: flex;
 	}
 	#leftmenu {
 		border: 0;

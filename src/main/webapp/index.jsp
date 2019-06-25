@@ -17,5 +17,6 @@
 </head> 
 <body>
 	<c:redirect url="main.do"/>
+	d
 </body>
 </html>

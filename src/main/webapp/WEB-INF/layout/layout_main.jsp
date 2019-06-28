@@ -9,44 +9,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="js/top/topjs.js"></script>
-<link rel="stylesheet" type="text/css" href="css/top/topstyle.css">
 <style type="text/css">
-	#top {
-		width: 100%;
-		height: auto;
-	}
 	#main {
-		position: absolute;
-		top: 160px;
 		width: 100%;
 		height: 550px;
-		font-size: 20pt;
-		font-family: 'Nanum Gothic';
-		font-weight: bold;
-	}
-	#bottom {
-		position: absolute;
-		text-align: center;
-		font-size: 30pt;
-		width: 100%;
-		top: 1200px;
-		font-family: 'Russo One'
-	}
-	a {
-		text-decoration: none;
 	}
 </style>
 </head>
 <body>
-<div id="top" class="layout">
-	<tiles:insertAttribute name="top"/>
-</div>
 <div id="main" class="layout">
 	<tiles:insertAttribute name="main"/>
-</div>
-<div id="bottom" class="layout">
-	<tiles:insertAttribute name="bottom"/>
 </div>
 </body>
 </html>

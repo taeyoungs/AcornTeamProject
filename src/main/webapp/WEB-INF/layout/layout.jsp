@@ -30,7 +30,7 @@
 		text-align: center;
 		font-size: 30pt;
 		width: 100%;
-		top: 1200px;
+		top: 1800px;
 		font-family: 'Russo One'
 	}
 	a {

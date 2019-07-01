@@ -2,34 +2,31 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <script type="text/javascript" src="../js/main.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
 <c:set var="root" value="<%=request.getContextPath() %>" />
 <body>
-<!-- Main Image -->
-<a href="#" class="main_header">
-	<div class="main_header_image-wrap">
-		<div class="main_header_image">
-			<img src="../image/main_image.jpg">
-		</div>
-	</div>
-	<div class="main_header_content-wrap">
-		<div class="main_header_more">보러가기</div>
-	</div>
-</a>
-
+<style>
+.row{float: left; margin-right: 10px}
+.row2{float: right;}
+</style>
+<div class="main_wrapper">
 <!-- Banner -->
 	<div id="wrapper">
-		<div id="slider-wrap">
+		<div class="row">
+			<!-- Main Image -->
+			<a href="#" class="main_header">
+				<div class="main_header_image-wrap">
+					<div class="main_header_image">
+						<img src="../image/main_image.jpg">
+					</div>
+				</div>
+				<div class="main_header_content-wrap">
+					<div class="main_header_more">보러가기</div>
+				</div>
+			</a>
+		</div>
+		<div id="slider-wrap" class="row2">
 			<ul id="slider">
 				<li data-color="#1abc9c">
 					<div>
@@ -72,43 +69,46 @@
 	</div>
 
 <!-- Category dimensions-->
-<section class="main_category_container">
-	<ul class="main_category_wrap">
-		<li class="main_category_icon">
+<section class="main_category_wrapper">
+	<div class="main_category_container">
+	<ul class="main_category_list">
+		<li class="main_category_item">
 			<a class="main_category_icon_link">
 			<div class="main_category_icon_img"><img src="../image/cart.png"></div>
 			<div class="main_category_icon_title">쇼핑하기</div>
 			</a>
 		</li>
-		<li class="main_category_icon">
+		<li class="main_category_item">
 			<a class="main_category_icon_link">
 			<div class="main_category_icon_img"><img src="../image/dimensions.png"></div>
 			<div class="main_category_icon_title">평수별집구경</div>
 			</a>
 		</li>
-		<li class="main_category_icon">
+		<li class="main_category_item">
 			<a class="main_category_icon_link">
 			<div class="main_category_icon_img"><img src="../image/sofa.png"></div>
 			<div class="main_category_icon_title">공간별사진</div>
 			</a>
 		</li>
-		<li class="main_category_icon">
+		<li class="main_category_item">
 			<a class="main_category_icon_link">
 			<div class="main_category_icon_img"><img src="../image/teacher.png"></div>
 			<div class="main_category_icon_title">전문가와상담</div>
 			</a>
 		</li>
-		<li class="main_category_icon">
+		<li class="main_category_item">
 			<a class="main_category_icon_link">
 			<div class="main_category_icon_img"><img src="../image/question.png"></div>
 			<div class="main_category_icon_title">질문과답변</div>
 			</a>
 		</li>
 	</ul>
+	</div>
 </section>
 <br>
 <!-- 오늘의 스토리-->
-<section class="main_zip_cantainer">
+<section class="main_zip_wrap">
+	<div class="main_zip_cantainer">
 	<header class="main_zip_header">
 		<h2 class="main_zip_header-content">오늘의 스토리</h2>
 	</header>
@@ -140,6 +140,7 @@
 			</a>
 		</li>
 	</ul>
+	</div>
 </section>
 
 
@@ -149,6 +150,5 @@
 	<h2 class="main_photo_header-content">오늘의 인기사진</h2>
 </header>
 </section>
-
+</div>
 </body>
-</html>

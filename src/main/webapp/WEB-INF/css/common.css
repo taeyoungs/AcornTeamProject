@@ -6,9 +6,11 @@
 .footer_content_wrapper{width: 1136px;margin: auto;}
 .footer_cs_wrapper{}
 .footer_cs{margin-bottom: 30px;color: #757575;font-size: 12px;}
-
+.footer_cs strong{margin: 10px 0 5px 0px;display: inline-block;}
 .footer_customer_center{font-size: 15px;color: #424242;}
 .footer_customer_center_tel{font-size: 35px;margin: 10px 0 5px;color: #424242;}
+
+
 
 .footer_outbound{}
 

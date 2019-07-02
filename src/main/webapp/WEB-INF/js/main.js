@@ -110,13 +110,13 @@ var deal_sliderWidth;
 
 $(document).ready(function(){
 	deal_totalSlides = $('#main_recommends_slider_wrap ul li').length;
-	deal_sliderWidth = $('#main_recommends_slider_wrap').width(); 
+	deal_sliderWidth = $('#main_recommends_slider_wrap ul li').width()+10; 
  
 	/*****************
      BUILD THE SLIDER
     *****************/
     //set width to be 'x' times the number of slides
-    $('#main_recommends_slider_wrap ul#main_recommends_slider').width(deal_sliderWidth*deal_totalSlides);
+    $('#main_recommends_slider_wrap ul#main_recommends_product_list').width(deal_sliderWidth*deal_totalSlides);
     
     //next slide    
     $('#recommends_next').click(function(){
@@ -132,24 +132,13 @@ $(document).ready(function(){
     /*************************
      //*> OPTIONAL SETTINGS
     ************************/
-    //automatic slider
-    //var autoSlider = setInterval(slideRight, slideInterval);
-    
-    //for each slide 
-    $.each($('#main_recommends_slider_wrap ul li'), function() { 
-       //create a pagination
-       var deal_li = document.createElement('li.main_recommends_product_items');
-       $('#recommends_pagination-wrap ul').append(deal_li);    
-    });
-    
     //pagination
     deal_pagination();
     
     $('#main_recommends_slider_wrap').hover(
     		function(){ $(this).addClass('active');}, 
     		function(){ $(this).removeClass('active');}
-    	    );
-    
+    );
     
 });//DOCUMENT READY
     
@@ -161,7 +150,7 @@ $(document).ready(function(){
 function deal_slideLeft(){
     deal_pos--;
     if(deal_pos==-1){ deal_pos = deal_totalSlides-1; }
-    $('#main_recommends_slider_wrap ul#main_recommends_slider').css('left', -(deal_sliderWidth*deal_pos));    
+    $('#main_recommends_slider_wrap ul#main_recommends_product_list').css('left', -(deal_sliderWidth*deal_pos));    
     
     //*> optional
     deal_pagination();
@@ -174,7 +163,7 @@ function deal_slideLeft(){
 function deal_slideRight(){
     deal_pos++;
     if(deal_pos==deal_totalSlides){ deal_pos = 0; }
-    $('#main_recommends_slider_wrap ul#main_recommends_slider').css('left', -(deal_sliderWidth*deal_pos)); 
+    $('#main_recommends_slider_wrap ul#main_recommends_product_list').css('left', -(deal_sliderWidth*deal_pos)); 
     
     //*> optional 
     deal_pagination();
@@ -188,6 +177,17 @@ function deal_slideRight(){
 function deal_pagination(){
     $('#recommends_pagination-wrap ul li').removeClass('active');
     $('#recommends_pagination-wrap ul li:eq('+deal_pos+')').addClass('active');
+    if (deal_pos == 0) {
+    	$('#recommends_previous').hide();
+    } else {
+    	$('#recommends_previous').show();
+    }
+	
+    if (deal_pos == (deal_totalSlides - 6)) {
+    	$('#recommends_next').hide();
+    } else {
+    	$('#recommends_next').show();
+    }
 }
    
    

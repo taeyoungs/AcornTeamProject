@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link rel="stylesheet" type="text/css" href="css/main.css">
-<script type="text/javascript" src="../js/main.js"></script>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="root" value="<%=request.getContextPath() %>" />
+<link rel="stylesheet" type="text/css" href="${root}/css/main.css">
+<script type="text/javascript" src="${root}/js/main.js"></script>
 <body>
 <div class="main_wrapper">
 <!-- Main Image & Banner -->
@@ -320,22 +319,21 @@
 						</a>
 					</div>
 				</li>
+			</ul>		
+		<div id="recommends_pagination-wrap">
+			<ul>
 			</ul>
-
-			<!--controls-->
-			<div class="recommends_btns" id="recommends_next">
-				<i class="fa fa-arrow-right"></i>
-			</div>
-			<div class="recommends_btns" id="recommends_previous">
-				<i class="fa fa-arrow-left"></i>
-			</div>
-			<div id="recommends_pagination-wrap">
-				<ul>
-				</ul>
-			</div>
-			<!--controls-->
 		</div>
-
+		</div>
+		<!--BUTTONS -->
+		<div class="recommends_btns_wrapper">
+			<div class="recommends_btns next" id="recommends_next">
+				<span>></span>
+			</div>
+			<div class="recommends_btns previous" id="recommends_previous">
+				<span><</span>
+			</div>
+		</div>
 	</div>
 </section>
 

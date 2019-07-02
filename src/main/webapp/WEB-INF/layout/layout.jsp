@@ -13,6 +13,7 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="js/top/topjs.js"></script>
 <link rel="stylesheet" type="text/css" href="css/top/topstyle.css">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <style type="text/css">
 	#top {
 		width: 100%;
@@ -29,11 +30,9 @@
 	}
 	#bottom {
 		position: absolute;
-		text-align: center;
-		font-size: 30pt;
 		width: 100%;
-		top: 1800px;
-		font-family: 'Russo One'
+		top: 2700px;
+		font-family: 'Nanum Gothic';
 	}
 	a {
 		text-decoration: none;

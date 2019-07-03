@@ -75,3 +75,4 @@ public class PhotoController {
 		return "/2/photo/detail";
 	}
 }
+

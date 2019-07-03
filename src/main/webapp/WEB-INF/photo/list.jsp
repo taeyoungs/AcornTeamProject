@@ -1,13 +1,96 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>     
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<link rel="stylesheet" href="/css/photo/photo_list.css">
+<meta name="viewport" content="width=device-width, user-scalable=no"/>
 </head>
+<c:set var="root" value="<%=request.getContextPath() %>"/>
 <body>
-∆˜≈‰ ∏ﬁ¿Œ∆‰¿Ã¡ˆ
-<button type="button" onclick="location.href='photowrite.do'">ªÁ¡¯µÓ∑œ</button>
+	<main id="root" role="main">
+		<div class="container card-feed">
+			<div class="sticky-container card-feed__filter-container" style="position: sticky; top: 0px;">
+				<div class="sticky-child card-feed__filter-wrap" style="position: sticky;">
+					<div class="filter card-feed__filter">
+						<div class="filter-bar">
+							<div class="filter-bar_control-list">
+								<ul class="filter-bar__control-list__left">
+									<li class="filter-bar__control-list__item">
+										<div class="drop-down panel-drop-down filter-bar-control">
+											<button class="button button--color-gray-4 button--size-50 button--shape-4 filter-bar-control__button">Ï†ïÎ†¨
+											<img class="icon" src="${root }/image/down-arrow.png"></button>
+										</div>
+									</li>
+									<li class="filter-bar__control-list__item">
+										<div class="drop-down panel-drop-down filter-bar-control">
+											<button class="button button--color-gray-4 button--size-50 button--shape-4 filter-bar-control__button">Ï£ºÍ±∞ÌòïÌÉú
+											<img class="icon" src="${root }/image/down-arrow.png"></button>
+										</div>
+									</li>
+									<li class="filter-bar__control-list__item">
+										<div class="drop-down panel-drop-down filter-bar-control">
+											<button class="button button--color-gray-4 button--size-50 button--shape-4 filter-bar-control__button">ÌèâÏàò
+											<img class="icon" src="${root }/image/down-arrow.png"></button>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<ul class="filter-bar_tag-list"></ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<c:forEach var="pvo" items="${list}">
+			<div class="virtualized-list card-feed__content row" style="padding-top: 0px;">
+				<div class="card-feed__item-wrap col-12 col-md-4 col-lg-3">
+					<div class="card-feed_item">
+						<article class="card-item">
+							<div class="card-item-writer">
+								<address class="card-item-writer_content">
+									<div class="card-item-writer_header">
+										<div class="card-item-writer_link">
+											<img class="card-item-writer_image" src="">
+											<span class="card-item-writer_name">Î∞ïÏ§ÄÏö∞</span>
+										</div>
+									</div>
+									<p class="card-item-writer_introduction">ÌÖåÏä§Ìä∏
+								</address>
+							</div>
+							<div class="card-item_content">
+								<div class="card-item-image">
+									<img class="image" src="${root }/image/room1.png" onclick="location.href='photodetail.do?num=${pvo.photo_seq_no }'">
+									<span class="card-item-image_view-count">
+										Ï°∞ÌöåÏàò ${pvo.photo_hits }
+									</span>
+								</div>
+								<aside class="card-item-action-list">
+									<div class="card-item-action-list__action">
+										<img src="${root }/image/heart.png" width="24" height="24">
+										<span class="count">${pvo.photo_good }</span>
+									</div>
+									<div class="card-item-action-list__action">
+										<img src="${root }/image/comment.png" width="24" height="24">
+										<span class="count"></span>
+									</div>
+								</aside>
+								<div class="expandable-text card-item-description card-item__description">
+									<div class="card-item-description__content">
+										${pvo.photo_content }
+									</div>
+								</div>
+							</div>
+						</article>
+					</div>
+				</div>
+			</div>
+			</c:forEach>
+		</div>
+	</main>
 </body>
 </html>

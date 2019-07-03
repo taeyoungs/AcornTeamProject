@@ -17,16 +17,13 @@
 	<mvc:resources location="/WEB-INF/image/" mapping="/image/**"/>
 	
     <mvc:annotation-driven />
-    <context:component-scan base-package="team.project.*"/>
+    <context:component-scan base-package="com.team.zip.*"/>
 
 	<!-- Resolver가 mvc-config가 아닌 tiles 파일에서 실행된다. -->
-<!-- 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-	        Example: a logical view name of 'showMessage' is mapped to '/WEB-INF/jsp/showMessage.jsp'
-	        <property name="prefix" value="/WEB-INF/view/"/>
-	        <property name="suffix" value=".jsp"/>
-	</bean> -->
-	
+ 	
 	<!-- definitions -> TilesConfigurer가 가지고 있는 멤버 변수 -->
+	
+	
 	<!-- property를 통해 멤버 변수에 값 집어넣기 -> setter Method  -->
 	<bean id="tilesConfigure" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
@@ -41,6 +38,7 @@
 		</property>
 	</bean>
 	
+	
 	<!-- ViewResolver가 Tiles로 가도록 설정 -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass">
@@ -49,5 +47,7 @@
 			</value>
 		</property>
 	</bean>
+	
+	
 
 </beans>

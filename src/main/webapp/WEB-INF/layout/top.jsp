@@ -95,6 +95,5 @@
             </div>
         </nav>
     </div>
-    <div style="position: absolute; top: 1200px;">스크롤끝</div>
 </body>
 </html>

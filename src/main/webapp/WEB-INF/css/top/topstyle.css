@@ -75,17 +75,13 @@ div.title>a {
 	padding: 25px 15px;
 	color: #424242;
 	cursor: pointer;
+	font-size: 18px;
 }
-
 li.navi-menu_primary {
 	margin-right: 25px;
 	position: relative;
+	font-size: 18px;
 }
-/*
-        div {
-            border: 1px solid black;
-        }
-*/
 .navi-primary-wrap {
 	height: auto;
 }
@@ -199,8 +195,7 @@ span.navi-search_box_icon_blur {
 	transition: .1s background, .1s color;
 	margin: 0 1.5px -6px;
 }
-
-.navi-primary_cart-btn {
+.navi-primary_button {
 	position: relative;
 	padding: 7px;
 	box-sizing: border-box;
@@ -213,11 +208,22 @@ span.navi-search_box_icon_blur {
 	margin: 0 1.5px -6px;
 	border-radius: 100%;
 }
-
 .navi-primary_user {
-	font-size: 10pt;
 	position: relative;
+}
+.navi-primary_user.unlogged {
 	top: 8px;
+}
+.navi-primary_user_unlogged {
+	font-size: 0;
+    margin-left: 1.5px;
+    margin-bottom: 3px;
+}
+.navi-primary_user_unlogged a {
+    display: inline-block;
+    color: #757575;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .navi-primary_user_unlogged_login::after {
@@ -250,7 +256,9 @@ span.navi-search_box_icon_blur {
 	margin: 0 8px 0 -12px;
 	flex: 1 0 auto;
 }
-
+.navi-secondary_menu>ul>li>a {
+	font-size: 15px;
+}
 .navi-secondary_menu>ul {
 	display: flex;
 	justify-content: flex-start;
@@ -305,4 +313,47 @@ span.navi-search_box_icon_blur {
 	position: fixed;
 	bottom: auto;
 	top: 30px;
+}
+.navi-primary_user_header {
+	cursor: pointer;
+}
+.navi-primary_user_header>img.navi-primary_user-image {
+	width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    border: 2px solid transparent;
+    margin-right: 3px;
+    transition: .1s border;
+}
+.navi-primary_user-btn {
+	width: 8px;
+	height: 6px;
+	position: relative;
+	top: -15px;
+	left: -5px;
+}
+.navi-primary_user_list {
+	position: absolute;
+    z-index: 1010;
+    top: 100%;
+    right: 0;
+    width: 140px;
+    margin-top: 20px;
+    padding: 12.5px 10px;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.3);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-20px);
+    transform-origin: 50% 0;
+    transition: visibility 0s ease 0.1s, opacity 0.1s, transform 0.1s;
+}
+.navi-primary_user_list>.navi-user-menu li>a {
+	display: block;
+    padding: 7.5px 10px;
+    font-size: 15px;
+    border-radius: 2px;
+    color: #424242;
+    font-weight: normal;
 }

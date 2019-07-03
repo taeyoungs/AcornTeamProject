@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	<insert id="memberInsert" parameterType="mvo">
+		insert into member values (member_no.nextval, #{member_id}, #{member_pw}, #{member_nickname}, #{member_domain})
+	</insert>
+	<select id="getIdDomain" resultType="mvo">
+		select member_id, member_domain from member
+	</select>
+	<select id="getMemberList" resultType="mvo">
+		select * from member
+	</select>
+	<select id="getMember" parameterType="int" resultType="mvo">
+		select * from member where member_no = #{memberNo}
+	</select>
+	<select id="getMemberNo" parameterType="HashMap" resultType="int">
+		select member_no from member where member_id = #{email} and member_domain = #{domain}
+	</select>
+</mapper>

@@ -3,8 +3,8 @@ package com.team.zip.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.team.zip.model.P_ReplyDAO;
-import com.team.zip.model.P_ReplyVO;
+import com.team.zip.model.photo.P_ReplyDAO;
+import com.team.zip.model.photo.P_ReplyVO;
 
 @Service
 public class P_ReplyService {

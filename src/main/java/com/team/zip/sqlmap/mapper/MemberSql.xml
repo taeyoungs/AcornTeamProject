@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 	<insert id="memberInsert" parameterType="mvo">
-		insert into member values (member_no.nextval, #{member_id}, #{member_pw}, #{member_nickname}, #{member_domain})
+		insert into member (member_no, member_id, member_pw, member_nickname, member_domain)
+		            values (member_no.nextval, #{member_id}, #{member_pw}, #{member_nickname}, #{member_domain})
 	</insert>
 	<select id="getIdDomain" resultType="mvo">
 		select member_id, member_domain from member

@@ -8,9 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="js/top/topjs.js"></script>
 <link rel="stylesheet" type="text/css" href="css/top/topstyle.css">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <style type="text/css">
 	#top {
 		width: 100%;
@@ -27,11 +30,9 @@
 	}
 	#bottom {
 		position: absolute;
-		text-align: center;
-		font-size: 30pt;
 		width: 100%;
-		top: 1200px;
-		font-family: 'Russo One'
+		top: 2700px;
+		font-family: 'Nanum Gothic';
 	}
 	a {
 		text-decoration: none;

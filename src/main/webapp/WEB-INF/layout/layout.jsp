@@ -9,8 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="js/top/topjs.js"></script>
-<link rel="stylesheet" type="text/css" href="css/top/topstyle.css">
+<c:set var="root" value="<%=request.getContextPath() %>"/>
 <style type="text/css">
 	#top {
 		width: 100%;

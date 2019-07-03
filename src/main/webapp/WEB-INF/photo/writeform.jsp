@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<link rel="stylesheet" href="/css/photo_write.css">
+<link rel="stylesheet" href="/css/photo/photo_write.css">
 <link rel="shortcut icon" href="#">
 </head>
 <c:set var="root" value="<%=request.getContextPath() %>"/>
@@ -23,15 +23,15 @@
 				<div class="select-input Photo-Write-Form_Metadata_entry">
 					<select class="form-control">
 						<option selected value="">평수</option>
-						<option value="0">10평 미만</option>
-						<option value="1">20평 미만</option>
+						<option value="10">10평 이하</option>
+						<option value="20">20평 이하</option>
 					</select>
 				</div>
 				<div class="select-input Photo-Write-Form_Metadata_entry">
 					<select class="form-control">
 						<option selected value="">주거형태</option>
-						<option value="0">원룸</option>
-						<option value="1">투룸</option>
+						<option value="원룸">원룸</option>
+						<option value="투룸">투룸</option>
 					</select>
 				</div>
 			</div>
@@ -55,7 +55,7 @@
 										</span>
 									</button>
 								</div>
-								<div class="Photo-Write-Form_photo-item_content">
+								<div class="Phot o-Write-Form_photo-item_content">
 									<div class="Photo-Write-Form_photo-item_content_row">
 										<div class="input group select-input">
 											<select class="form-control">
@@ -87,7 +87,7 @@
 			</section>
 			<div class="sticky-container Photo-Write-Form_footer_wrap" style="height:70px;">
 				<div class="sticky-child Photo-Write-Form_footer" style="position: fixed; right:0px; bottom:0px;">
-					<button class="button button-color-blue Photo-Write-Form_footer_submit">올리기</button>
+					<button class="button button-color-blue Photo-Write-Form_footer_submit" type="submit">올리기</button>
 				</div>
 			</div>
 		</form>

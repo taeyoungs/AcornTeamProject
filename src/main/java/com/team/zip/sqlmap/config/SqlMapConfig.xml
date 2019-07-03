@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.team.zip.model.photo.PhotoVO" alias="pvo"/>
+		<typeAlias type="com.team.zip.model.photo.P_ReplyVO" alias="rvo"/>
+		<typeAlias type="com.team.zip.model.photo.CombineVO" alias="cvo"/>
+		<typeAlias type="com.team.zip.model.member.MemberVO" alias="mvo"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="com/team/zip/sqlmap/mapper/PhotoSql.xml"/>
+		<mapper resource="com/team/zip/sqlmap/mapper/MemberSql.xml"/>
+	</mappers>
+</configuration>

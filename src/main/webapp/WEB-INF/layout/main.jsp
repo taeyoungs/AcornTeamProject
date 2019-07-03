@@ -4,6 +4,7 @@
 <c:set var="root" value="<%=request.getContextPath() %>" />
 <link rel="stylesheet" type="text/css" href="${root}/css/main.css">
 <script type="text/javascript" src="${root}/js/main.js"></script>
+<c:set var="root" value="<%=request.getContextPath()%>"/>
 <body>
 <div class="main_wrapper">
 <!-- Main Image & Banner -->
@@ -13,7 +14,7 @@
 			<a href="#" class="main_header">
 				<div class="main_header_image-wrap">
 					<div class="main_header_image">
-						<img src="../image/main_image.jpg">
+						<img src="${root}/image/main_image.jpg">
 					</div>
 				</div>
 				<div class="main_header_content-wrap">
@@ -29,7 +30,7 @@
 						<h3>Slide #1</h3>
 						<span>Sub-title #1</span>
 					</div> 
-					<img src="../image/placehold01.jpg">
+					<img src="${root}/image/placehold01.jpg">
 				</li>
 
 				<li data-color="#3498db">
@@ -37,7 +38,7 @@
 						<h3>Slide #2</h3>
 						<span>Sub-title #2</span>
 					</div> 
-					<img src="../image/placehold02.jpg">
+					<img src="${root}/image/placehold02.jpg">
 				</li>
 
 				<li data-color="#9b59b6">
@@ -45,7 +46,7 @@
 						<h3>Slide #3</h3>
 						<span>Sub-title #3</span>
 					</div> 
-					<img src="../image/placehold03.jpg">
+					<img src="${root}/image/placehold03.jpg">
 				</li>
 			</ul>
 
@@ -70,31 +71,31 @@
 	<ul class="main_category_list">
 		<li class="main_category_item">
 			<a class="main_category_icon_link">
-			<div class="main_category_icon_img"><img src="../image/cart.png"></div>
+			<div class="main_category_icon_img"><img src="${root}/image/cart.png"></div>
 			<div class="main_category_icon_title">쇼핑하기</div>
 			</a>
 		</li>
 		<li class="main_category_item">
 			<a class="main_category_icon_link">
-			<div class="main_category_icon_img"><img src="../image/dimensions.png"></div>
+			<div class="main_category_icon_img"><img src="${root}/image/dimensions.png"></div>
 			<div class="main_category_icon_title">평수별집구경</div>
 			</a>
 		</li>
 		<li class="main_category_item">
 			<a class="main_category_icon_link">
-			<div class="main_category_icon_img"><img src="../image/sofa.png"></div>
+			<div class="main_category_icon_img"><img src="${root}/image/sofa.png"></div>
 			<div class="main_category_icon_title">공간별사진</div>
 			</a>
 		</li>
 		<li class="main_category_item">
 			<a class="main_category_icon_link">
-			<div class="main_category_icon_img"><img src="../image/teacher.png"></div>
+			<div class="main_category_icon_img"><img src="${root}/image/teacher.png"></div>
 			<div class="main_category_icon_title">전문가와상담</div>
 			</a>
 		</li>
 		<li class="main_category_item">
 			<a class="main_category_icon_link">
-			<div class="main_category_icon_img"><img src="../image/question.png"></div>
+			<div class="main_category_icon_img"><img src="${root}/image/question.png"></div>
 			<div class="main_category_icon_title">질문과답변</div>
 			</a>
 		</li>
@@ -243,7 +244,7 @@
 					<div class="main_recommends_pruduct_wrap">
 						<a class="main_recommends_product_item">
 							<div class="img-wrap-square">
-								<img src="../image/deal01.jpg"></div>
+								<img src="${root}/image/deal01.jpg"></div>
 							<div class="img-wrap-info">not yet
 							</div>					
 						</a>
@@ -253,7 +254,7 @@
 					<div class="main_recommends_pruduct_wrap">
 						<a class="main_recommends_product_item">
 							<div class="img-wrap-square">
-								<img src="../image/deal02.jpg"></div>
+								<img src="${root}/image/deal02.jpg"></div>
 							<div class="img-wrap-info">not yet
 							</div>					
 						</a>
@@ -263,7 +264,7 @@
 					<div class="main_recommends_pruduct_wrap">
 						<a class="main_recommends_product_item">
 							<div class="img-wrap-square">
-								<img src="../image/deal03.jpg"></div>
+								<img src="${root}/image/deal03.jpg"></div>
 							<div class="img-wrap-info">not yet
 							</div>					
 						</a>
@@ -273,7 +274,7 @@
 					<div class="main_recommends_pruduct_wrap">
 						<a class="main_recommends_product_item">
 							<div class="img-wrap-square">
-								<img src="../image/deal04.jpg"></div>
+								<img src="${root}/image/deal04.jpg"></div>
 							<div class="img-wrap-info">not yet
 							</div>					
 						</a>
@@ -283,7 +284,7 @@
 					<div class="main_recommends_pruduct_wrap">
 						<a class="main_recommends_product_item">
 							<div class="img-wrap-square">
-								<img src="../image/deal05.jpg"></div>
+								<img src="${root}/image/deal05.jpg"></div>
 							<div class="img-wrap-info">not yet
 							</div>					
 						</a>
@@ -293,7 +294,7 @@
 					<div class="main_recommends_pruduct_wrap">
 						<a class="main_recommends_product_item">
 							<div class="img-wrap-square">
-								<img src="../image/deal06.jpg"></div>
+								<img src="${root}/image/deal06.jpg"></div>
 							<div class="img-wrap-info">not yet
 							</div>					
 						</a>
@@ -303,7 +304,7 @@
 					<div class="main_recommends_pruduct_wrap">
 						<a class="main_recommends_product_item">
 							<div class="img-wrap-square">
-								<img src="../image/deal07.jpg"></div>
+								<img src="${root}/image/deal07.jpg"></div>
 							<div class="img-wrap-info">not yet
 							</div>					
 						</a>
@@ -313,7 +314,7 @@
 					<div class="main_recommends_pruduct_wrap">
 						<a class="main_recommends_product_item">
 							<div class="img-wrap-square">
-								<img src="../image/deal08.jpg"></div>
+								<img src="${root}/image/deal08.jpg"></div>
 							<div class="img-wrap-info">not yet
 							</div>					
 						</a>

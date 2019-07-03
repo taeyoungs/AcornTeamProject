@@ -1,4 +1,4 @@
-package com.team.zip.model;
+package com.team.zip.model.photo;
 
 import java.sql.Timestamp;
 

@@ -8,6 +8,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<c:set var="root" value="<%=request.getContextPath()%>"/>
+<script type="text/javascript" src="${root}/js/top/topjs.js"></script>
+<link rel="stylesheet" type="text/css" href="${root}/css/top/topstyle.css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -16,7 +19,7 @@
             <div class="navi-primary_container sticky-content">
                 <div class="navi-primary">
                     <a class="navi-primary_logo" href="/">
-                        <img src="image/logo.png">
+                        <img src="${root}/image/logo.png">
                     </a>
                     <div class="navi-primary_menu open">
                         <ul class="navi-menu">
@@ -47,7 +50,7 @@
                                        <span class="icon"></span>
                                    </button>
                                    <span class="navi-search_box_icon_blur">
-                                       <img src="image/search.png" width="20">
+                                       <img src="${root}/image/search.png" width="20">
                                    </span>
                                    <input type="text" placeholder="검색" size="1" class="navi-search_box_input">
                                    <span class="navi-search_box_bg"></span>
@@ -56,19 +59,53 @@
                     </div>
                     <div class="navi-primary_action">
                         <button class="navi-primary_search-sm-btn" style="display: none;">
-                            <img src="image/search.png" width="20">
+                            <img src="${root}/image/search.png" width="20">
                         </button>
                         <a href="#" class="navi-primary_write-btn">
                             	글쓰기
                         </a>
-                        <a href="#" class="navi-primary_cart-btn">
-                            <img src="image/cart gray.png" width="20">
+                        <a href="#" class="navi-primary_cart-btn navi-primary_button">
+                            <img src="${root}/image/cart gray.png" width="20">
                         </a>
+                        <c:if test="${sessionScope.loginok eq 'login'}">
+                        	<a href="" class="navi-primary_notification-btn navi-primary_button">
+                        		<img src="${root}/image/notification gray.png" width="20">
+                        	</a>
+                        </c:if>
                     </div>
-                    <div class="navi-primary_user">
-                        <a href="#" class="navi-primary_user_unlogged_login">로그인</a>
-                        <a href="#" class="navi-primary_user_unlogged_register">회원가입</a>
-                    </div>
+                   <c:if test="${sessionScope.loginok eq 'login'}">
+                    	<div class="navi-primary_user logged">
+	                    	<div class="navi-primary_user_header">
+ 	                    		<c:if test="${mvo.member_image ne null}">
+	                    			<img src="${root}/image/${mvo.member_image}" class="navi-primary_user-image">
+	                    		</c:if>
+	                    		<c:if test="${mvo.member_image eq null}">
+	                    			<img src="${root}/image/user.png" class="navi-primary_user-image">
+	                    		</c:if>
+	                    		<img src="${root}/image/button.png" class="navi-primary_user-btn">
+	                    	</div>
+	                    	<div class="navi-primary_user_list">
+	                    		<ul class="navi-user-menu">
+	                    			<li><a href="">마이홈</a></li>
+	                    			<li><a href="member/logout">로그아웃</a></li>
+	                    		</ul>
+	                    	</div>
+                    	</div>
+                    </c:if>
+                    <c:if test="${sessionScope.loginok ne 'login'}">
+                    	<div class="navi-primary_user unlogged">
+	                    	<div class="navi-primary_user_unlogged">
+	                    		<a href="${root}/member/gotoSignin" class="navi-primary_user_unlogged_login">로그인</a>
+	                        	<a href="${root}/member/gotoSignup" class="navi-primary_user_unlogged_register">회원가입</a>
+	                    	</div>
+                    	</div>
+                    </c:if>
+                    <!-- <div class="navi-primary_user unlogged">
+	                    <div class="navi-primary_user_unlogged">
+	                    	<a href="member/gotoSignin" class="navi-primary_user_unlogged_login">로그인</a>
+	                        <a href="member/gotoSignup" class="navi-primary_user_unlogged_register">회원가입</a>
+	                    </div>
+                    </div> -->
                 </div>
             </div>
         </nav>
@@ -78,10 +115,10 @@
                     <div class="navi-secondary_menu">
                         <ul style="white-space: nowrap;">
                             <li class="navi-menu_primary_secondary active">
-                                <a href="#">홈</a>    
+                                <a href="../main.do">홈</a>    
                             </li>
                             <li class="navi-menu_primary_secondary">
-                                <a href="#">사진</a> 
+                                <a href="${root}/photo/photolist.do">사진</a> 
                             </li>
                             <li class="navi-menu_primary_secondary">
                                 <a href="#">집들이</a> 
@@ -95,5 +132,6 @@
             </div>
         </nav>
     </div>
+    <div style="position: absolute; top: 1200px;">스크롤끝</div>
 </body>
 </html>

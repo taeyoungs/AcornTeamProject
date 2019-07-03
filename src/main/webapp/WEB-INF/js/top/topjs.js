@@ -14,13 +14,72 @@ $(function(){
         $(this).css({
             "background-color": "#35C5F0"
         });
-        $(this).children("img").attr("src", "image/cart white.png");
+        $(this).children("img").attr("src", "/image/cart white.png");
     }, function(){
         $(this).css({
             "background-color": "transparent",
             "border": "none"
         });
-        $(this).children("img").attr("src", "image/cart gray.png");
+        $(this).children("img").attr("src", "/image/cart gray.png");
+    });
+    $(".navi-primary_notification-btn").hover(function(){
+        $(this).css({
+            "background-color": "#35C5F0"
+        });
+        $(this).children("img").attr("src", "/image/notification white.png");
+    }, function(){
+        $(this).css({
+            "background-color": "transparent",
+            "border": "none"
+        });
+        $(this).children("img").attr("src", "/image/notification gray.png");
+    });
+    $(".navi-primary_user_header").hover(function(){
+        $(this).find("img:eq(0)").css({
+            "border-color": "#35C5F0"
+        });
+        $(this).find("img.navi-primary_user-btn").attr("src", "/image/button hover.png");
+    }, function(){
+        $(this).find("img:eq(0)").css({
+            "border-color": "transparent"
+        });
+        $(this).find("img.navi-primary_user-btn").attr("src", "/image/button.png");
+    });
+    // 로그인 후 유저 메뉴 클릭시 이벤트
+    $(".navi-primary_user").click(function(){
+    	$(this).find(".navi-primary_user_list").css({
+    		"visibility": "visible",
+    		"opacity": "1",
+    		"transform": "none",
+    		"transition": "opacity 0.1s, transform 0.1s"
+    	});
+    });
+    // 유저 메뉴 숨기는 이벤트 (메뉴 외에 다른 영역 클릭)
+    $(document).mouseup(function(e){
+    	var container = $(".navi-primary_user");
+    	
+    	if(container.has(e.target).length == 0) {
+    		container.find(".navi-primary_user_list").css({
+    			"visibility": "hidden",
+        		"opacity": "0",
+        		"transform": "translateY(-20px)",
+        		"transition": "visibility 0s ease 0.1s, opacity 0.1s, transform 0.1s"
+    		});
+    	}
+    });
+    // 유저 메뉴 hover 이벤트 (어디에 마우스가 위치해있는지 확인하는 이벤트)
+    $("ul.navi-user-menu li").hover(function(){
+    	$(this).find("a").css({
+    		"color": "white",
+    		"background-color": "#35C5F0",
+    		"font-weight": "bold"
+    	});
+    }, function(){
+    	$(this).find("a").css({
+    		"color": "#424242",
+    		"background-color": "transparent",
+    		"font-weight": "normal"
+    	});
     });
     $("ul.navi-menu li").hover(function(){
         $(this).siblings().removeClass("active");

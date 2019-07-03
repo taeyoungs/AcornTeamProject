@@ -1,0 +1,196 @@
+ 		html {
+            background-color: #fafafa;
+        }
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Nanum Gothic';
+        }
+        .sign-in-form-warp {
+            display: flex;
+            -webkit-box-direction: normal;
+            -webkit-box-orient: vertical;
+            -webkit-box-flex: 1;
+            -webkit-box-pack: center;
+            flex-direction: column;
+            flex: 1 0 auto;
+            justify-content: center;
+        }
+        .sign-in-form {
+            width: 100%;
+            max-width: 360px;
+            padding: 40px 30px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+        .sign-in-form_header {
+            display: block;
+            margin: 0 0 30px;
+        }
+        .sign-in-form_header_link {
+            display: block;
+            text-align: center;
+        }
+        a {
+            text-decoration: none;
+        }
+        .sign-in-form-footer>a:hover, .sign-in-form_action_entry:hover{
+            padding-bottom: 0px;
+            border-bottom: 1px solid black;
+        }
+        a, button, [role=button], input[type=button], input[type=submit], input[type=reset] {
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        .icon-page-login {
+            width: 146px;
+        }
+        .form-control {
+            transition: .2s border-color, .2s box-shadow, .2s background-color;
+            display: block;
+            box-sizing: border-box;
+            height: 40px;
+            width: 100%;
+            padding: 0 15px;
+            line-height: 40px;
+            border-radius: 4px;
+            border: solid 1px #dbdbdb;
+            background-color: white;
+            color: #424242;
+            font-size: 12px;
+            flex: 1 0 auto;
+        }
+        .sign-in-form_form_input {
+            display: block;
+            width: 100%;
+            height: 50px;
+            margin: 0;
+            font-size: 15px;
+            line-height: 50px;
+            color: black;
+        }
+        .sign-in-form_form_input:focus {
+        	position: relative;
+        	z-index: 1;
+        }
+        .sign-in-form_form_email {
+            border-radius: 4px 4px 0 0;
+        }
+        .sign-in-form_form_pw .form-control {
+            border-radius: 0 0 4px 4px;
+        }
+        .sign-in-form_form_input::placeholder {
+            color: black;
+            font-family: 'Nanum Gothic';
+        }
+        .sign-in-form_form_pw {
+            position: relative;
+            margin: -1px 0 0;
+        }
+        .btn-priority {
+            background-color: #35C5F0;
+            border-color: #35C5F0;
+            color: white;
+        }
+        .btn {
+            box-sizing: border-box;
+            display: inline-block;
+            padding: 0;
+            border-width: 1px;
+            border-style: solid;
+            text-align: center;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: .2s ease;
+        }
+        .sign-in-form_form_submit {
+            display: block;
+            width: 100%;
+            height: 50px;
+            margin: 20px 0;
+            padding: 13px 15px;
+            font-size: 17px;
+            line-height: 1.41;
+            font-family: 'Nanum Gothic';
+        }
+        .sign-in-form_action {
+            margin: 20px 0;
+            text-align: center;
+            color: #424242;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .sign-in-form_action_entry {
+            display: inline-block;
+            padding: 3px 5px;
+            margin: -3px 10px;
+            color: black;
+        }
+        .sign-in-form_sns {
+            display: block;
+            margin: 30px 0;
+        }
+        .sign-in-form_sns_title {
+            margin: 15px 0;
+            color: #757575;
+            font-size: 12px;
+            font-weight: normal;
+            line-height: 1.33;
+            text-align: center;
+        }
+        .sign-in-form_sns_list {
+            text-align: center;
+            font-size: 0;
+        }
+        .sign-in-form_sns_button {
+            width: 48px;
+            height: 48px;
+            margin: 0 10px;
+        }
+        .sign-in-form_line {
+            margin: 30px 0 0;
+            padding: 30px 0 0;
+            border-top: 1px solid #dbdbdb;
+        }
+        footer {
+            box-sizing: border-box;
+            position: relative;
+            display: block;
+        }
+        .sign-in-form-footer {
+            -webkit-box-flex: 0;
+            flex: 0 0 auto;
+            margin: -5px 0 25px;
+            text-align: center;
+            color: #757575;
+            font-size: 10px;
+            line-height: 20px;
+        }
+        .focus-visible:focus {
+            outline: none;
+            border-color: rgba(130, 224, 250, 0.5);
+            box-shadow: 0 0 0 2px rgba(130, 224, 250, 0.5);
+        }
+        #flash_messages {
+        	width: 400px;
+        	top: 50px;
+        	position: fixed;
+        	left: 50%;
+        	transform: translateX(-50%);
+        	z-index: 200000;
+        	font-size: 14px;
+        }
+        #flash_messages>#flash_alert {
+        	background-color: #ff7d7d;
+        	border-color: #ff4a4a;
+        	color: #970000;
+        	opacity: 0.95;
+        }
+        #flash_messages .flash_message {
+        	border: 1px solid transparent;
+        	border-radius: 5px;
+        	padding: 20px;
+        	margin-top: 10px;
+        }

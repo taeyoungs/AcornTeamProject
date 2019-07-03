@@ -1,0 +1,178 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            flex-flow: column;
+            font-family: 'Nanum Gothic';
+            font-size: 15px;
+        }
+        header, foorter, main {
+            box-sizing: border-box;
+            position: relative;
+            display: block;
+        }
+        main {
+            margin-bottom: 60px;
+            margin-top: 60px;
+        }
+        #simplified-gnb {
+            flex: 0 0 auto;
+            box-sizing: border-box;
+            height: 70px;
+            position: relative;
+            display: block;
+        }
+        .simplified-gnb_container {
+            position: relative;
+            height: 100%;
+        }
+        .container {
+            margin-right: auto;
+            margin-left: auto;
+            box-sizing: border-box;
+            width: 1136px;
+            max-width: 100%;
+            box-sizing: border-box;
+            min-height: 1px;
+        }
+        .simplified-gnb_logo {
+            position: absolute;
+            bottom: -10px;
+        }
+        #signup-form_wrap {
+            width: 360px;
+        }
+        .signup-form_title {
+            margin-bottom: 30px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .signup-form {
+            position: relative;
+        }
+        .signup-form_social_title {
+            margin: 15px 0;
+            color: #757575;
+            font-size: 12px;
+            font-weight: normal;
+            line-height: 1.33;
+            text-align: center;
+            font-weight: bold;
+        }
+        .signup-form_social_button {
+            width: 48px;
+            height: 48px;
+            margin: 0 10px;
+        }
+        .signup-form_divider {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            border: none;
+            border-top: 1px solid #ededed;
+        }
+        .error {
+            margin-top: 10px;
+        }
+        .form-group .error {
+        	color: #F77;
+        }
+        .form-group.error>.form-label {
+        	color: #F77;
+        }
+        .form-group {
+            margin-bottom: 30px;
+        }
+        .form-group>.input-group {
+            display: flex;
+        }
+        .form-group>.form-label {
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .form-label {
+            margin-bottom: 15px;
+            display: block;
+        }
+        .focus-visible:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(130, 224, 250, 0.5);
+        }
+        .form-group>.input-group>.form-control {
+            flex: 1 1 auto;
+        }
+        .input-group .form-control {
+            width: 0;
+        }
+        .form-control {
+            transition: .2s border-color, .2s box-shadow, .2s background-color;
+            display: block;
+            box-sizing: border-box;
+            height: 40px;
+            width: 100%;
+            padding: 0 15px;
+            line-height: 40px;
+            border-radius: 4px;
+            border: solid 1px #dbdbdb;
+            background-color: white;
+            color: #424242;
+            font-size: 14px;
+        }
+        .form-separator {
+            line-height: 40px;
+            text-align: center;
+        }
+        .signup-form_email_email-at-mark {
+            width: 22px;
+            font-size: 15px;
+        }
+        .caption {
+            font-size: 13px;
+            color: #757575;
+            flex-basis: 100%;
+            margin-bottom: 15px;
+        }
+        .line-height-normal {
+            line-height: 1.38;
+        }
+        #btn-submit-signup {
+            width: 100%;
+            margin-bottom: 30px;
+            cursor: pointer;
+        }
+        .btn-priority {
+            background-color: #35C5F0;
+            border-color: #35C5F0;
+            color: white;
+        }
+        .btn {
+            transition: .2s ease;
+            box-sizing: border-box;
+            display: inline-block;
+            padding: 0;
+            border-width: 1px;
+            border-style: solid;
+            text-align: center;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .btn-lg {
+            line-height: 1;
+            height: 70px;
+            padding: 26px 0;
+            font-size: 18px;
+        }
+        #has-account {
+            text-align: center;
+        }
+        .form-group.error .form-control {
+        	border-color: #F77;
+        } 
+        .form-group.error .form-control.focus-visible:focus {
+        	outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 119, 119, 0.5);
+        }
+        p.error {
+        	font-size: 13px;
+        }

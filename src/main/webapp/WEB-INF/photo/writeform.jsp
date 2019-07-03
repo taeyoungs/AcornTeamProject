@@ -8,10 +8,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<link rel="stylesheet" href="/css/photo/photo_write.css">
+<c:set var="root" value="<%=request.getContextPath() %>"/>
+<link rel="stylesheet" href="${root}/css/photo/photo_write.css">
 <link rel="shortcut icon" href="#">
 </head>
-<c:set var="root" value="<%=request.getContextPath() %>"/>
 <body>
 	<div class="PhotoWriteForm">
 		<div class="PhotoWriteForm-logo-wrap">

@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.team.zip.model.CombineVO;
-import com.team.zip.model.MemberVO;
-import com.team.zip.model.P_ReplyVO;
-import com.team.zip.model.PhotoVO;
+import com.team.zip.model.member.MemberVO;
+import com.team.zip.model.photo.CombineVO;
+import com.team.zip.model.photo.P_ReplyVO;
+import com.team.zip.model.photo.PhotoVO;
 import com.team.zip.service.CombineService;
 import com.team.zip.service.MemberService;
 import com.team.zip.service.P_ReplyService;

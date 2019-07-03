@@ -9,7 +9,8 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/photo/photo_detail.css">
+<c:set var="root" value="<%=request.getContextPath()%>"/>
+<link rel="stylesheet" href="${root}/css/photo/photo_detail.css">
 <link rel="shortcut icon" href="#">
 </head>
 <c:set var="root" value="<%=request.getContextPath() %>"/>

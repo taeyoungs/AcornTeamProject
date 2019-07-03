@@ -1,4 +1,4 @@
-package com.team.zip.model;
+package com.team.zip.model.photo;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;

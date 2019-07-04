@@ -1,8 +1,8 @@
-package com.team.zip.model.photo;
+package com.team.zip.model.vo;
 
 import java.sql.Timestamp;
 
-public class P_ReplyVO {
+public class PhotoReplyVO {
 	
 	private int p_reply_seq_no;
 	private int member_no;

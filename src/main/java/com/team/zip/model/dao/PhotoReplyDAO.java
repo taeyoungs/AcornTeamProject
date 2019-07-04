@@ -1,12 +1,14 @@
-package com.team.zip.model.photo;
+package com.team.zip.model.dao;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import com.team.zip.model.vo.PhotoReplyVO;
+
 @Repository
-public class P_ReplyDAO extends SqlSessionDaoSupport{
+public class PhotoReplyDAO extends SqlSessionDaoSupport{
 	
-	public P_ReplyVO getData(int num) {
+	public PhotoReplyVO getData(int num) {
 		return getSqlSession().selectOne("photo.getReplyData", num);
 	}
 	

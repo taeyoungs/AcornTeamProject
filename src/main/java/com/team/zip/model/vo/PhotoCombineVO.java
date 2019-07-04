@@ -1,8 +1,8 @@
-package com.team.zip.model.photo;
+package com.team.zip.model.vo;
 
 import java.sql.Timestamp;
 
-public class CombineVO {
+public class PhotoCombineVO {
 	
 	private String p_reply_content;
 	private String member_nickname;

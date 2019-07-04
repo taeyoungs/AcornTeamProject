@@ -1,4 +1,4 @@
-package com.team.zip.model.member;
+package com.team.zip.model.vo;
 
 public class MemberVO {
 	private int member_no;

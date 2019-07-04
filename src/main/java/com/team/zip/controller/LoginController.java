@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.team.zip.model.member.MemberVO;
+import com.team.zip.model.vo.MemberVO;
 import com.team.zip.service.KakaoAPI;
 import com.team.zip.service.MemberService;
 

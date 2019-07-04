@@ -1,4 +1,4 @@
-package com.team.zip.model.member;
+package com.team.zip.model.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,7 +8,7 @@ import java.util.Map;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
-import com.team.zip.model.member.MemberVO;
+import com.team.zip.model.vo.MemberVO;
 
 @Repository
 public class MemberDAO extends SqlSessionDaoSupport {

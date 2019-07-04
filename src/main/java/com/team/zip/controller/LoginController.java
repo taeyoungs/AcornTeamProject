@@ -71,11 +71,7 @@ public class LoginController {
 	// 회원가입시 데이터 저장 후 메인으로 이동
 	@RequestMapping(value="/member/signup", method=RequestMethod.POST)
 	public String signup(@ModelAttribute MemberVO mvo) {
-		
-		System.out.println(mvo.getMember_id());
-		System.out.println(mvo.getMember_pw());
-		System.out.println(mvo.getMember_nickname());
-		System.out.println(mvo.getMember_domain());
+
 		mservice.insertMember(mvo);
 		
 		return "redirect:/main.do";

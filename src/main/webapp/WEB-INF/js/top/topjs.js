@@ -81,6 +81,7 @@ $(function(){
     		"font-weight": "normal"
     	});
     });
+    // 상단 메뉴 hover 이벤트 때 active랑 current 클래스 지정
     $("ul.navi-menu li").hover(function(){
         $(this).siblings().removeClass("active");
         $(this).addClass("active"); 
@@ -96,6 +97,8 @@ $(function(){
         $(this).addClass("active");
         $(".navi-primary_menu").addClass("open");
     });
+    
+    // 스크롤 움직였을 때 상단메뉴 fixed
     $(window).scroll(function(){
         var height = $(this).scrollTop();
         if(height == 0) {
@@ -116,7 +119,20 @@ $(function(){
             $(".navi-secondary-wrap").css("height", "51px");
         }
     });
+    // 스크롤 움직인 후 상단메뉴 hover -> 세컨더리 메뉴 노출 여부
     $(".navi-primary_container").hover(function(){
+        $(".navi-secondary_container").addClass("open");
+        $(".navi-primary_menu").addClass("open");
+        $(".navi-secondary_container.float").css({
+            "top": "81px"
+        });
+    }, function(){
+        $(".navi-secondary_container.float").css({
+            "top": "30px"
+        });
+    });
+    // 스크롤 움직인 후 상단메뉴 hover -> 세컨더리 메뉴 노출 여부
+    $("div.navi-secondary").hover(function(){
         $(".navi-secondary_container").addClass("open");
         $(".navi-primary_menu").addClass("open");
         $(".navi-secondary_container.float").css({

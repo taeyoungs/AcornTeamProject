@@ -13,6 +13,8 @@ public class PhotoService {
 	
 	@Autowired
 	private PhotoDAO dao;
+	@Autowired
+	private MemberDAO mdao;
 	
 	public List<PhotoVO> getList(){
 		return dao.getList();
@@ -25,5 +27,5 @@ public class PhotoService {
 	public void photoUpdateReadcount(int num) {
 		dao.photoUpdateReadcount(num);
 	}
-
+	
 }

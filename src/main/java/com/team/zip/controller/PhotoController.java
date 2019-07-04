@@ -38,8 +38,10 @@ public class PhotoController {
 	public ModelAndView photo() {
 		ModelAndView model = new ModelAndView();
 		List<PhotoVO> list = service.getList();
+		List<MemberVO> mlist = mservice.getMemberList();
 		
 		model.addObject("list",list);
+		model.addObject("mlist",mlist);
 		model.setViewName("/2/photo/list");
 		return model;
 	}

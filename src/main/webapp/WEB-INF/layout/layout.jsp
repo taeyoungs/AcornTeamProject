@@ -22,7 +22,6 @@
 		position: absolute;
 		top: 160px;
 		width: 100%;
-		height: 550px;
 		font-size: 20pt;
 		font-family: 'Nanum Gothic';
 		font-weight: bold;

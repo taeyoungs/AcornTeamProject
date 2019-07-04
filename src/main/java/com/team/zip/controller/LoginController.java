@@ -73,7 +73,6 @@ public class LoginController {
 	public String signup(@ModelAttribute MemberVO mvo) {
 
 		mservice.insertMember(mvo);
-		
 		return "redirect:/main.do";
 	}
 	

@@ -4,7 +4,6 @@
 <c:set var="root" value="<%=request.getContextPath() %>" />
 <link rel="stylesheet" type="text/css" href="${root}/css/main.css">
 <script type="text/javascript" src="${root}/js/main.js"></script>
-<c:set var="root" value="<%=request.getContextPath()%>"/>
 <body>
 <div class="main_wrapper">
 <!-- Main Image & Banner -->

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+"-//mybatis.org//DTD Mapper3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+	<insert id="boardInsert" parameterType="bvo">
+		insert into board values (seq_no.nextval,
+		#{board_title},#{board_content},1,
+		sysdate,1,#{board_image})
+	</insert>
+	<select id="boardPagingList" parameterType="HashMap" resultType="bvo">
+	   <![CDATA[
+	   	select a.* from (select ROWNUM as RNUM,
+		b.* from (select * from board order by board_seq_no desc)b )a 
+		where a.RNUM>=#{start} and a.RNUM<=#{end}
+		 ]]>		
+	</select>
+	<select id="boardTotalCount" resultType="int">
+		select count(*) from board
+	</select>
+	<!-- <update id="boardChuUpdate" parameterType="int">
+		update board set chu=chu+1 where num=#{num}
+	</update>
+	<select id="boardSelectChu" parameterType="int" resultType="int">
+		select chu from board where num=#{num}
+	</select>
+	<delete id="boardDelete" parameterType="int">
+		delete from board where num=#{num}
+	</delete> -->
+	
+	<select id="boardSelectByNum" parameterType="int" resultType="bvo">
+		select * from board where board_seq_no=#{board_seq_no}
+	</select>
+	<!-- <update id="boardUpdate" parameterType="Map">
+		update board set content=#{content} where num=#{num}
+	</update> -->
+</mapper>

@@ -20,5 +20,6 @@ public class PhotoDAO extends SqlSessionDaoSupport {
 		getSqlSession().update("photoUpdateReadcount", num);
 	}
 	
+	
 
 }

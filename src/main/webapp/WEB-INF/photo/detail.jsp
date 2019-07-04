@@ -82,7 +82,7 @@
 								<article class="comment-feed__item">
 									<p class="comment-feed__item__content">
 										<a class="comment-feed__item__content__author">
-											<img class="comment-feed__item__content__author__image" src="">
+											<img class="comment-feed__item__content__author__image" src="${root }/image/${cvo.member_image}">
 											<span class="comment-feed__item__content__author__name">${cvo.member_nickname }</span>
 										</a>
 										<span class="comment-feed__item__content__content">${cvo.p_reply_content }</span>

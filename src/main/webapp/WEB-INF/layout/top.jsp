@@ -18,7 +18,7 @@
         <nav class="navi-primary-wrap sticky-top">
             <div class="navi-primary_container sticky-content">
                 <div class="navi-primary">
-                    <a class="navi-primary_logo" href="/">
+                    <a class="navi-primary_logo" href="${root }/main.do">
                         <img src="${root}/image/logo.png">
                     </a>
                     <div class="navi-primary_menu open">
@@ -132,6 +132,5 @@
             </div>
         </nav>
     </div>
-    <div style="position: absolute; top: 1200px;">스크롤끝</div>
 </body>
 </html>

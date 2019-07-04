@@ -6,9 +6,16 @@ public class PhotoCombineVO {
 	
 	private String p_reply_content;
 	private String member_nickname;
+	private String member_image;
 	private Timestamp reg_date;
 	
 	
+	public String getMember_image() {
+		return member_image;
+	}
+	public void setMember_image(String member_image) {
+		this.member_image = member_image;
+	}
 	public String getP_reply_content() {
 		return p_reply_content;
 	}

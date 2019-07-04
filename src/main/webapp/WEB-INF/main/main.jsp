@@ -151,7 +151,18 @@
 		
 		<div class="main_photo_list_wrap">
 			<ul class="main_photo_list">
+				<c:forEach var="photo" items="${photoList}">
 				<li class="main_photo_items">
+					<article class="main_photo_item_card">
+						<a class="main_photo_item_link">
+							<div class="main_photo_item">
+								<img src="${photo.photoImage}">
+							</div>					
+						</a>
+					</article>
+				</li>
+				</c:forEach>
+				<!-- <li class="main_photo_items">
 					<article class="main_photo_item_card">
 						<a class="main_photo_item_link">
 							<div class="main_photo_item">
@@ -213,16 +224,7 @@
 							</div>					
 						</a>
 					</article>
-				</li>
-				<li class="main_photo_items">
-					<article class="main_photo_item_card">
-						<a class="main_photo_item_link">
-							<div class="main_photo_item">
-								<img src="">
-							</div>					
-						</a>
-					</article>
-				</li>
+				</li> -->
 			</ul>
 		</div>
 	</div>

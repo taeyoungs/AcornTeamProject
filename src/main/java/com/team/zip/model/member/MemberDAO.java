@@ -53,5 +53,6 @@ public class MemberDAO extends SqlSessionDaoSupport {
 	public MemberVO getData(int num) {
 	      return getSqlSession().selectOne("photo.getMemberData", num);
 	}
+	
 
 }

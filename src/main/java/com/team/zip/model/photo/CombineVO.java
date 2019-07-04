@@ -6,6 +6,7 @@ public class CombineVO {
 	
 	private String p_reply_content;
 	private String member_nickname;
+	private String member_image;
 	private Timestamp reg_date;
 	
 	
@@ -20,6 +21,12 @@ public class CombineVO {
 	}
 	public void setMember_nickname(String member_nickname) {
 		this.member_nickname = member_nickname;
+	}
+	public String getMember_image() {
+		return member_image;
+	}
+	public void setMember_image(String member_image) {
+		this.member_image = member_image;
 	}
 	public Timestamp getReg_date() {
 		return reg_date;

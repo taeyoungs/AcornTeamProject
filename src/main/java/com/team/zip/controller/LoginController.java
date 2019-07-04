@@ -29,6 +29,7 @@ public class LoginController {
 	@Autowired
 	private MemberService mservice;
 	
+	
 	// 회원가입 폼으로 이동
 	@RequestMapping(value="/member/gotoSignup")
 	public String gotoSignup(Model model) {
@@ -71,9 +72,13 @@ public class LoginController {
 	@RequestMapping(value="/member/signup", method=RequestMethod.POST)
 	public String signup(@ModelAttribute MemberVO mvo) {
 		
-//		mservice.insertMember(mvo);
+		System.out.println(mvo.getMember_id());
+		System.out.println(mvo.getMember_pw());
+		System.out.println(mvo.getMember_nickname());
+		System.out.println(mvo.getMember_domain());
+		mservice.insertMember(mvo);
 		
-		return "redirect:./main.do";
+		return "redirect:/main.do";
 	}
 	
 	// 로그인 폼으로 이동
@@ -101,11 +106,11 @@ public class LoginController {
 		
 		for (MemberVO mvo : mList) {
 			String fullEmail = mvo.getMember_id()+"@"+mvo.getMember_domain();
-//			System.out.println(pw);
-//			System.out.println(mvo.getMember_pw());
-//			fullEmail = fullEmail.trim();
-//			System.out.println("fullEmail : "+fullEmail);
-//			System.out.println("email : "+email);
+			System.out.println(pw);
+			System.out.println(mvo.getMember_pw());
+			fullEmail = fullEmail.trim();
+			System.out.println("fullEmail : "+fullEmail);
+			System.out.println("email : "+email);
 			System.out.println(fullEmail.equals(email));
 			System.out.println(pw.equals(mvo.getMember_pw()));
 			if(fullEmail.equals(email) && pw.equals(mvo.getMember_pw())) {
@@ -151,7 +156,7 @@ public class LoginController {
 		String access_Token = kakao.getAccessToken(code);
 		HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
 //	    System.out.println("controller access_token : " + access_Token);
-		System.out.println("login Controller : " + userInfo);
+//		System.out.println("login Controller : " + userInfo);
 		
 		 //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
 	    if (userInfo.get("email") != null) {

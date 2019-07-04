@@ -14,7 +14,7 @@
 		select * from member where member_no in (select member_no from photo where photo_seq_no=#{num})
 	</select>
 	<select id="getReplyData" resultType="cvo" parameterType="int">
-		select r.p_reply_content, r.reg_date, m.member_nickname from p_reply r, member m, photo p where p.member_no = m.member_no and p.photo_seq_no=#{num}
+		select r.p_reply_content, r.reg_date, m.member_nickname, m.member_image from p_reply r, member m, photo p where p.member_no = m.member_no and p.photo_seq_no=#{num}
 	</select>
 	<select id="getReplyCount" resultType="int" parameterType="int">
 		select count(*) from p_reply where member_no in (select member_no from photo where photo_seq_no=#{num})

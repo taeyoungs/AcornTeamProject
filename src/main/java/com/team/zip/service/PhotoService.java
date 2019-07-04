@@ -5,10 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.team.zip.model.member.MemberDAO;
-import com.team.zip.model.member.MemberVO;
-import com.team.zip.model.photo.PhotoDAO;
-import com.team.zip.model.photo.PhotoVO;
+import com.team.zip.model.dao.PhotoDAO;
+import com.team.zip.model.vo.PhotoVO;
 
 @Service
 public class PhotoService {

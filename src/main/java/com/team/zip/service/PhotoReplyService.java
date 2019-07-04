@@ -3,16 +3,16 @@ package com.team.zip.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.team.zip.model.photo.P_ReplyDAO;
-import com.team.zip.model.photo.P_ReplyVO;
+import com.team.zip.model.dao.PhotoReplyDAO;
+import com.team.zip.model.vo.PhotoReplyVO;
 
 @Service
-public class P_ReplyService {
+public class PhotoReplyService {
 	
 	@Autowired
-	private P_ReplyDAO dao;
+	private PhotoReplyDAO dao;
 	
-	public P_ReplyVO getData(int num) {
+	public PhotoReplyVO getData(int num) {
 		return dao.getData(num);
 	}
 	

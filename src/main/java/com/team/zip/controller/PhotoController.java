@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.team.zip.model.member.MemberVO;
-import com.team.zip.model.photo.CombineVO;
-import com.team.zip.model.photo.P_ReplyVO;
-import com.team.zip.model.photo.PhotoVO;
+import com.team.zip.model.vo.MemberVO;
+import com.team.zip.model.vo.PhotoCombineVO;
+import com.team.zip.model.vo.PhotoReplyVO;
+import com.team.zip.model.vo.PhotoVO;
 import com.team.zip.service.CombineService;
 import com.team.zip.service.MemberService;
-import com.team.zip.service.P_ReplyService;
+import com.team.zip.service.PhotoReplyService;
 import com.team.zip.service.PhotoService;
 
 @Controller
@@ -30,7 +30,7 @@ public class PhotoController {
 	@Autowired
 	private MemberService mservice;
 	@Autowired
-	private P_ReplyService rservice;
+	private PhotoReplyService rservice;
 	@Autowired
 	private CombineService cservice;
 	
@@ -68,7 +68,7 @@ public class PhotoController {
 		//데이터 가져오기
 		PhotoVO pvo = service.getData(num);
 		MemberVO mvo = mservice.getData(num);
-		CombineVO cvo = cservice.getData(num);
+		PhotoCombineVO cvo = cservice.getData(num);
 		
 		model.addAttribute("pvo", pvo);
 		model.addAttribute("mvo", mvo);

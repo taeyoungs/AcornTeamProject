@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.team.zip.model.member.MemberDAO;
-import com.team.zip.model.member.MemberVO;
+import com.team.zip.model.dao.MemberDAO;
+import com.team.zip.model.vo.MemberVO;
 
 @Service
 public class MemberService {

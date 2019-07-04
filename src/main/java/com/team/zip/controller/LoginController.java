@@ -71,9 +71,9 @@ public class LoginController {
 	@RequestMapping(value="/member/signup", method=RequestMethod.POST)
 	public String signup(@ModelAttribute MemberVO mvo) {
 		
-//		mservice.insertMember(mvo);
+		mservice.insertMember(mvo);
 		
-		return "redirect:./main.do";
+		return "redirect:/main.do";
 	}
 	
 	// 로그인 폼으로 이동

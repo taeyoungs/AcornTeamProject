@@ -17,14 +17,13 @@ public class MainController {
 	MemberService mservice;
 
 	@RequestMapping("/main.do")
-	public String mainGo(HttpSession session, Model model)
+	public String mainGo(HttpSession session)
 	{
 		if(session.getAttribute("member_no") != null) {
 			int memberNo = (Integer)session.getAttribute("member_no");
-			System.out.println(memberNo);
 			MemberVO mvo = mservice.getMember(memberNo);
-			System.out.println(mvo.getMember_image());
-			model.addAttribute("mvo", mvo);
+			
+			session.setAttribute("mvo", mvo);
 		}
 	
 		return "main.tiles";//tiles name 반환

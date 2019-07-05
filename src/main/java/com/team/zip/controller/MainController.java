@@ -31,6 +31,7 @@ public class MainController {
 			MemberVO mvo = mservice.getMember(memberNo);
 			
 			session.setAttribute("mvo", mvo);
+			session.setMaxInactiveInterval(10800);
 		}
 		
 		List<MainCommunityVO> photoList = mainService.selectPhotoList();
@@ -38,13 +39,13 @@ public class MainController {
 		System.out.println("photoListSize = " + photoList.size());
 		
 		for (int i=0; i<photoList.size(); i++) {
-			System.out.println("i="+i);
+//			System.out.println("i="+i);
 			MainCommunityVO vo = photoList.get(i);
 			if (vo == null) {
-				System.out.println("vo is null!");
+//				System.out.println("vo is null!");
 				continue;
 			} else {
-				System.out.println("photoImage="+vo.getPhotoImage());
+//				System.out.println("photoImage="+vo.getPhotoImage());
 			}
 				
 		}

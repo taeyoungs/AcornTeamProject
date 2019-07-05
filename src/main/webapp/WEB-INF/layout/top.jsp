@@ -16,7 +16,7 @@
 <body>
     <div id="navi" class="navi-top-banner">
         <nav class="navi-primary-wrap sticky-top">
-            <div class="navi-primary_container sticky-content">
+            <div class="navi-primary_container sticky-content" data-offset="0">
                 <div class="navi-primary">
                     <a class="navi-primary_logo" href="${root }/main.do">
                         <img src="${root}/image/logo.png">
@@ -61,7 +61,7 @@
                         <button class="navi-primary_search-sm-btn navi-primary_button button-sm">
                             <img src="${root}/image/search.png" width="20">
                         </button>
-                        <a href="#" class="navi-primary_write-btn">
+                        <a href="${root}/write" class="navi-primary_write-btn">
                             	글쓰기
                         </a>
                         <a href="#" class="navi-primary_cart-btn navi-primary_button">
@@ -76,10 +76,10 @@
                    <c:if test="${sessionScope.loginok eq 'login'}">
                     	<div class="navi-primary_user logged">
 	                    	<div class="navi-primary_user_header">
- 	                    		<c:if test="${mvo.member_image ne null}">
-	                    			<img src="${root}/image/${mvo.member_image}" class="navi-primary_user-image">
+ 	                    		<c:if test="${sessionScope.mvo.member_image ne null}">
+	                    			<img src="${root}/image/${sessionScope.mvo.member_image}" class="navi-primary_user-image">
 	                    		</c:if>
-	                    		<c:if test="${mvo.member_image eq null}">
+	                    		<c:if test="${sessionScope.mvo.member_image eq null}">
 	                    			<img src="${root}/image/user.png" class="navi-primary_user-image">
 	                    		</c:if>
 	                    		<img src="${root}/image/button.png" class="navi-primary_user-btn">
@@ -104,7 +104,7 @@
             </div>
         </nav>
         <nav class="navi-secondary-wrap sticky-top">
-            <div class="navi-secondary_container sticky-content open">
+            <div class="navi-secondary_container sticky-content open" data-offset="0">
                 <div class="navi-secondary">
                     <div class="navi-secondary_menu">
                         <ul style="white-space: nowrap;">

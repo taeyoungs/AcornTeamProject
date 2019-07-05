@@ -62,7 +62,7 @@
 									<div class="card-item-writer_header">
 										<div class="card-item-writer_link">
 											<c:choose>
-											<c:when test="${null eq mvo.member_image }">
+											<c:when test="${mvo.member_image eq null}">
 											<img class="card-item-writer_image" src="${root }/image/user.png">
 											</c:when>
 											<c:otherwise>

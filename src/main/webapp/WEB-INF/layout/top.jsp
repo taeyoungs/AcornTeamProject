@@ -114,7 +114,7 @@
                             <li class="navi-menu_primary_secondary">
                                 <a href="${root}/photo/photolist.do">사진</a> 
                             </li>
-                            <li class="navi-menu_primary_secondary">
+                            <li class="navi-menu_primary_secondary"> 
                                 <a href="#">집들이</a> 
                             </li>
                             <li class="navi-menu_primary_secondary">

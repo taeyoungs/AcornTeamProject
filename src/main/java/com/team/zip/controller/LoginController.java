@@ -1,3 +1,4 @@
+
 package com.team.zip.controller;
 
 import java.util.ArrayList;
@@ -101,13 +102,7 @@ public class LoginController {
 		
 		for (MemberVO mvo : mList) {
 			String fullEmail = mvo.getMember_id()+"@"+mvo.getMember_domain();
-			System.out.println(pw);
-			System.out.println(mvo.getMember_pw());
 			fullEmail = fullEmail.trim();
-			System.out.println("fullEmail : "+fullEmail);
-			System.out.println("email : "+email);
-			System.out.println(fullEmail.equals(email));
-			System.out.println(pw.equals(mvo.getMember_pw()));
 			if(fullEmail.equals(email) && pw.equals(mvo.getMember_pw())) {
 				// 이메일이랑 비밀번호가 일치하는 경우
 				// 세션에 로그인 정보 저장하고 반복문 탈출

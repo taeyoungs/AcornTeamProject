@@ -58,7 +58,7 @@
                            </form>
                     </div>
                     <div class="navi-primary_action">
-                        <button class="navi-primary_search-sm-btn" style="display: none;">
+                        <button class="navi-primary_search-sm-btn navi-primary_button button-sm">
                             <img src="${root}/image/search.png" width="20">
                         </button>
                         <a href="#" class="navi-primary_write-btn">
@@ -100,12 +100,6 @@
 	                    	</div>
                     	</div>
                     </c:if>
-                    <!-- <div class="navi-primary_user unlogged">
-	                    <div class="navi-primary_user_unlogged">
-	                    	<a href="member/gotoSignin" class="navi-primary_user_unlogged_login">로그인</a>
-	                        <a href="member/gotoSignup" class="navi-primary_user_unlogged_register">회원가입</a>
-	                    </div>
-                    </div> -->
                 </div>
             </div>
         </nav>

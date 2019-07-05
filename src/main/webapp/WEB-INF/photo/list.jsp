@@ -61,7 +61,14 @@
 								<address class="card-item-writer_content">
 									<div class="card-item-writer_header">
 										<div class="card-item-writer_link">
-											<img class="card-item-writer_image" src="${root }/image/${mvo.member_image }">
+											<c:choose>
+											<c:when test="${null eq mvo.member_image }">
+											<img class="card-item-writer_image" src="${root }/image/user.png">
+											</c:when>
+											<c:otherwise>
+											<img class="card-item-writer_image" src="${root }/image/${mvo.member_image}">
+											</c:otherwise>
+											</c:choose>
 											<span class="card-item-writer_name">${mvo.member_nickname }</span>
 										</div>
 									</div>

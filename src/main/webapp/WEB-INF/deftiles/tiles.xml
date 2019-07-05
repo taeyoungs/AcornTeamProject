@@ -4,28 +4,28 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
+	<!-- template [S] -->
 	<definition name="mainLayout" template="/WEB-INF/layout/layout.jsp">
 		<put-attribute name="top" value="/WEB-INF/layout/top.jsp"/>
 		<put-attribute name="bottom" value="/WEB-INF/layout/bottom.jsp"/>
 		<put-attribute name="main" value="/WEB-INF/main/main.jsp"/>
 	</definition>
-	<definition name="main.tiles" extends="mainLayout">
-		<put-attribute name="main" value="/WEB-INF/main/main.jsp"/>
-	</definition>
-	
-	<!-- macro -->
-	<definition name="/*/*" extends="mainLayout">
-		<put-attribute name="main" value="/WEB-INF/{1}/{2}.jsp"/>
-	</definition>
-	
 	<!-- 예외 처리 -->
 	<definition name="mainLayout2" template="/WEB-INF/layout/layout_main.jsp">
 		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
 	</definition>
-	
 	<definition name="mainLayout3" template="/WEB-INF/layout/layout_maintop.jsp">
 		<put-attribute name="top" value="/WEB-INF/layout/top.jsp"/>
 		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+	</definition>
+	<!-- template [E] -->
+	
+	<definition name="main.tiles" extends="mainLayout">
+		<put-attribute name="main" value="/WEB-INF/main/main.jsp"/>
+	</definition>
+	<!-- macro -->
+	<definition name="/*/*" extends="mainLayout">
+		<put-attribute name="main" value="/WEB-INF/{1}/{2}.jsp"/>
 	</definition>
 	
 	<definition name="/1/*/*" extends="mainLayout2">

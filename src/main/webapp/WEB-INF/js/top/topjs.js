@@ -119,6 +119,7 @@ $(function(){
             $(".navi-secondary-wrap").css("height", "51px");
         }
     });
+    
     // 스크롤 움직인 후 상단메뉴 hover -> 세컨더리 메뉴 노출 여부
     $(".navi-primary_container").hover(function(){
         $(".navi-secondary_container").addClass("open");
@@ -142,8 +143,13 @@ $(function(){
         $(".navi-secondary_container.float").css({
             "top": "30px"
         });
+        
+        if($(window).scrollTop() != 0) {
+        	$(".navi-primary_menu").removeClass("open");
+        }
     });
-// 상세 메뉴 라인
+    
+    // 상세 메뉴 라인
     $(".navi-secondary_menu>ul li").hover(function(){
         $(this).children("a").css("color", "#35C5F0");
     }, function(){

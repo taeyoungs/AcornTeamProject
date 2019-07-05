@@ -7,12 +7,16 @@
 		<typeAlias type="com.team.zip.model.vo.PhotoReplyVO" alias="rvo"/>
 		<typeAlias type="com.team.zip.model.vo.PhotoCombineVO" alias="cvo"/>
 		<typeAlias type="com.team.zip.model.vo.MemberVO" alias="mvo"/>
+    
 		<typeAlias type="com.team.zip.model.vo.MainCommunityVO" alias="mainCommunityVO"/>
 		<typeAlias type="com.team.zip.model.vo.MainStoreVO" alias="mainStoreVO"/>
+		<typeAlias type="com.team.zip.model.vo.BoardVO" alias="bvo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="com/team/zip/sqlmap/mapper/PhotoSql.xml"/>
 		<mapper resource="com/team/zip/sqlmap/mapper/MemberSql.xml"/>
 		<mapper resource="com/team/zip/sqlmap/mapper/MainSql.xml"/>
+		<mapper resource="com/team/zip/sqlmap/mapper/BoardSql.xml"/>
+
 	</mappers>
 </configuration>

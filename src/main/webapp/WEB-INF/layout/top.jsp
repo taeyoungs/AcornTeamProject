@@ -124,7 +124,7 @@
                                 <a href="#">집들이</a> 
                             </li>
                             <li class="navi-menu_primary_secondary">
-                                <a href="#">질문과답변</a> 
+                                <a href="${root}/board/list.do">질문과답변</a> 
                             </li>
                         </ul>
                     </div>

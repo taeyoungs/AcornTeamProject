@@ -222,68 +222,66 @@
 				</div>
 			</div>
 		</section>
-<c:forEach var="vo" items="${list}">
-		<section id="questions-list" class="container">
-			<a class="questions-item__link"
-				href="/questions/11684?affect_id=0&amp;affect_type=QuestionIndex&amp;query=">
-				<article class="questions-item">
-					<div class="questions-item__image">
-						<div class="image-wrap square">
-							<c:if test="${vo.board_image!='board_image'}">
-  								<c:forTokens var="myimg" items="${vo.board_image}" delims=",">
-  									<a href="../save/${myimg}" target="_new">
-  									<img src="../save/${myimg}" style="max-width: 100px;"
-  										 class="img-thumbnail"></a>
-  								</c:forTokens>
-  							</c:if>
+		<c:forEach var="vo" items="${list}">
+			<section id="questions-list" class="container">
+				<a class="questions-item__link"
+					href="view.do">
+						<div class="questions-item__image">
+							<div class="image-wrap square">
+								<c:if test="${vo.board_image!='board_image'}">
+									<c:forTokens var="myimg" items="${vo.board_image}" delims=",">
+										<img src="../save/${myimg}" style="max-width: 100px;"
+											class="img-thumbnail">
+									</c:forTokens>
+								</c:if>
+							</div>
 						</div>
-					</div>
-					<h1 class="questions-item__title text-heading-5 bold text-black">${vo.board_title}</h1>
-					<p class="questions-item__content text-caption-1">${vo.board_content}</p>
-					<footer class="questions-item__footer">
-						<span class="questions-item__footer__author"> <span
-							class="questions-item__footer__author__image"> <img
-								src="https://image.ohou.se/image/central_crop/bucketplace-v2-development/uploads-users-profile_images1558534283_eTD3li.jpeg/80/80"
-								onerror="this.src='https://bucketplace-v2-development.s3.amazonaws.com/uploads/default_images/avatar.png'">
-						</span> <span
-							class="questions-item__footer__author__content text-caption-1">저예유</span>
-						</span> <span class="questions-item__footer__meta text-caption-1">
-							<time datetime="2019-07-04T11:12:38+09:00"
-								class="questions-item__footer__date text-gray"> 3시간 전 </time> <span
-							class="questions-item__footer__comments text-gray"> 답글 <span
-								class="questions-item__footer__comments__content active">
-									6 </span>
-						</span> <span class="questions-item__footer__views text-gray"> 조회
-								<span class="questions-item__footer__views__content">31</span>
-						</span>
-						</span>
-						<ul class="questions-item__footer__tags keyword-list">
-							<li
-								class="keyword-item questions-item__footer__tags__tag
+						<h1 class="questions-item__title text-heading-5 bold text-black">${vo.board_title}</h1>
+						<p class="questions-item__content text-caption-1">${vo.board_content}</p>
+						<footer class="questions-item__footer">
+							<span class="questions-item__footer__author"> <span
+								class="questions-item__footer__author__image"> <img
+									src="https://image.ohou.se/image/central_crop/bucketplace-v2-development/uploads-users-profile_images-1562307995_lLddF7bt4f.jpeg/80/80"
+									onerror="this.src='https://bucketplace-v2-development.s3.amazonaws.com/uploads/default_images/avatar.png'">
+							</span> <span
+								class="questions-item__footer__author__content text-caption-1">현아315</span>
+							</span> <span class="questions-item__footer__meta text-caption-1">
+								<time datetime="2019-07-05T16:15:18+09:00"
+									class="questions-item__footer__date text-gray"> 1시간 전 </time> <span
+								class="questions-item__footer__comments text-gray"> 답글 <span
+									class="questions-item__footer__comments__content active">
+										4 </span>
+							</span> <span class="questions-item__footer__views text-gray"> 조회
+									<span class="questions-item__footer__views__content">13</span>
+							</span>
+							</span>
+							<ul class="questions-item__footer__tags keyword-list">
+								<li
+									class="keyword-item questions-item__footer__tags__tag
                   "
-								role="button">샷시/창호</li>
-							<li
-								class="keyword-item questions-item__footer__tags__tag
+									role="button">셀프인테리어</li>
+								<li
+									class="keyword-item questions-item__footer__tags__tag
                   "
-								role="button">필름</li>
-							<li
-								class="keyword-item questions-item__footer__tags__tag
+									role="button">가구배치/이동</li>
+								<li
+									class="keyword-item questions-item__footer__tags__tag
                   "
-								role="button">블라인드</li>
-							<li
-								class="keyword-item questions-item__footer__tags__tag
+									role="button">침대</li>
+								<li
+									class="keyword-item questions-item__footer__tags__tag
                   "
-								role="button">원룸</li>
-							<li
-								class="keyword-item questions-item__footer__tags__tag
+									role="button">단독주택</li>
+								<li
+									class="keyword-item questions-item__footer__tags__tag
                   "
-								role="button">10평대</li>
-						</ul>
-					</footer>
-				</article>
-			</a>
-		</section>
-</c:forEach>
+									role="button">10평미만</li>
+							</ul>
+						</footer>
+					</article>
+				</a>
+			</section>
+		</c:forEach>
 		<div id="questions-paginator">
 			<nav class="paginator" data-total="1899" data-current="1">
 				<ul>

@@ -94,6 +94,12 @@ public class BoardController {
 	{
 		return "/board/boardform";
 	}
+	
+	@RequestMapping("/board/view.do")
+	public String view()
+	{
+		return "/board/boardview";
+	}
 
 	@RequestMapping(value="/board/write.do",method=RequestMethod.POST)
 	public String read(
@@ -119,7 +125,7 @@ public class BoardController {
 			}
 		}
 
-		//dto 에 이미지 이름들 저장
+		//vo 에 이미지 이름들 저장
 		vo.setBoard_image(board_image);
 		//db에 저장
 		service.boardInsert(vo);

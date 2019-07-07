@@ -47,6 +47,37 @@ input, textarea, select, button{
 	min-height: 1px;
 }
 
+.row{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	-moz-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+	margin-right: -5px;
+	margin-left: -5px;
+}
+
+.col-12{
+	position: relative;
+	width: 100%;
+	min-height: 1px;
+	box-sizing: border-box;
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 100%;
+	-moz-box-flex: 0;
+	-moz-flex: 0 0 100%;
+	-ms-flex: 0 0 100%;
+	flex: 0 0 100%;
+	max-width: 100%;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
 .card-feed{
 	position: relative;	
 }
@@ -261,6 +292,7 @@ input, textarea, select, button{
 	padding-bottom: 77.6%;
 	background-color: #ededed;
 	overflow: hidden;
+	border-radius: 6px;
 }
 
 .card-item-image .image{
@@ -320,39 +352,116 @@ input, textarea, select, button{
 	font-size: 12px;
 }
 
+@media only screen and (min-width: 375px){
+	.row{
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -moz-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-flex-wrap: wrap;
+		-moz-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		box-sizing: border-box;
+		margin-right: -5px;
+		margin-left: -5px;
+	}
+}
+
+@media only screen and (min-width: 768px){
+	.row{
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -moz-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-flex-wrap: wrap;
+		-moz-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		box-sizing: border-box;
+		margin-right: -7.5px;
+		margin-left: -7.5px;
+	}
+	
+	.col-md-4{
+		position: relative;
+		width: 100%;
+		min-height: 1px;
+		box-sizing: border-box;
+		-webkit-box-flex: 0;
+		-webkit-flex: 0 0 33.3333333333%;
+		-moz-box-flex: 0;
+		-moz-flex: 0 0 33.3333333333%;
+		-ms-flex: 0 0 33.3333333333%;
+		flex: 0 0 33.3333333333%;
+		max-width: 33.3333333333%;
+		padding-right: 5px;
+		padding-left: 5px;
+	}
+}
+
 @media only screen and (min-width: 1024px){
 	.row{
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -moz-flex;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-flex-wrap: wrap;
-	-moz-flex-wrap: wrap;
-	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
-	box-sizing: border-box;
-	margin-right: -7.5px;
-	margin-left: -7.5px;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -moz-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-flex-wrap: wrap;
+		-moz-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		box-sizing: border-box;
+		margin-right: -7.5px;
+		margin-left: -7.5px;
 	}
 	
 	.col-lg-3{
-	position: relative;
-	width: 100%;
-	min-height: 1px;
-	box-sizing: border-box;
-	-webkit-box-flex: 0;
-	-webkit-flex: 0 0 25%;
-	-moz-box-flex: 0;
-	-moz-flex: 0 0 25%;
-	-ms-flex: 0 0 25%;
-	flex: 0 0 25%;
-	max-width: 25%;
-	padding-right: 5px;
-	padding-left: 5px;
+		position: relative;
+		width: 100%;
+		min-height: 1px;
+		box-sizing: border-box;
+		-webkit-box-flex: 0;
+		-webkit-flex: 0 0 25%;
+		-moz-box-flex: 0;
+		-moz-flex: 0 0 25%;
+		-ms-flex: 0 0 25%;
+		flex: 0 0 25%;
+		max-width: 25%;
+		padding-right: 5px;
+		padding-left: 5px;
+	}
+	
+	.photolist-drop-down-menu{
+		position: absolute;
+	    z-index: 1010;
+	    top: 265px;
+	    left: 140px;
+	    width: 140px;
+	    margin-top: 20px;
+	    padding: 12.5px 10px;
+	    border-radius: 4px;
+	    background-color: white;
+	    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.3);
+	    visibility: hidden;
+	    opacity: 0;
+	    transform: translateX(-50%);
+	    transition: visibility 0s ease 0.1s, opacity 0.1s, transform 0.1s;
+	}
+
+	.photolist-drop-down-menu> .photolist-dropdown-menu-item li>a{
+		display: block;
+	    padding: 7.5px 10px;
+	    font-size: 15px;
+	    border-radius: 2px;
+	    color: #424242;
+	    font-weight: normal;
 	}
 }
 
 .card-item{
 	padding-bottom: 40px;
 }
+

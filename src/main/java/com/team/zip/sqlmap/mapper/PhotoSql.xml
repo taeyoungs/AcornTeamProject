@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="photo">
 	<select id="photoDataList" resultType="pvo">
-		select * from photo
+		select * from photo order by photo_seq_no
 	</select>
 	<select id="photoDetail" resultType="pvo" parameterType="int">
 		select * from photo where photo_seq_no=#{num}

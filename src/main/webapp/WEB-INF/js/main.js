@@ -1,3 +1,7 @@
+
+/*************************************************************
+					MAIN BANNER SLIDER SETTINGS
+*************************************************************/
 //current position
 var pos = 0;
 //number of slides
@@ -49,7 +53,7 @@ $(document).ready(function(){
       function(){ $(this).removeClass('active'); autoSlider = setInterval(slideRight, slideInterval); }
     );
     
-	$('.main_header_image img').hover(
+	$('.main_header').hover(
 		function(){
 			$('.main_header_more').addClass('active');
 		},
@@ -59,48 +63,56 @@ $(document).ready(function(){
     );
     
 });//DOCUMENT READY
-    
 
 
-/***********
- SLIDE LEFT
-************/
-function slideLeft(){
-    pos--;
-    if(pos==-1){ pos = totalSlides-1; }
-    $('#slider-wrap ul#slider').css('left', -(sliderWidth*pos));    
-    
-    //*> optional
-    pagination();
-}
+	/***********
+	 SLIDE LEFT
+	************/
+	function slideLeft(){
+	    pos--;
+	    if(pos==-1){ pos = totalSlides-1; }
+	    $('#slider-wrap ul#slider').css('left', -(sliderWidth*pos));    
+	    
+	    //*> optional
+	    pagination();
+	}
 
-
-/************
- SLIDE RIGHT
-*************/
-function slideRight(){
-    pos++;
-    if(pos==totalSlides){ pos = 0; }
-    $('#slider-wrap ul#slider').css('left', -(sliderWidth*pos)); 
-    
-    //*> optional 
-    pagination();
-}
-
-
-/************************
- //*> OPTIONAL SETTINGS
-************************/
-
-function pagination(){
-    $('#pagination-wrap ul li').removeClass('active');
-    $('#pagination-wrap ul li:eq('+pos+')').addClass('active');
-}
-     
-
-/************************
-//*> 오늘의딜 SLIDER SETTINGS
-************************/
+	/************
+	 SLIDE RIGHT
+	*************/
+	function slideRight(){
+	    pos++;
+	    if(pos==totalSlides){ pos = 0; }
+	    $('#slider-wrap ul#slider').css('left', -(sliderWidth*pos)); 
+	    
+	    //*> optional 
+	    pagination();
+	}
+	
+	/************************
+	 //*> OPTIONAL SETTINGS
+	************************/
+	function pagination(){
+    	$('#pagination-wrap ul li').removeClass('active');
+    	$('#pagination-wrap ul li:eq('+pos+')').addClass('active');
+	}
+	
+/*************************************************************
+					오늘의 스토리 SETTINGS
+*************************************************************/
+$('.main_zip_content_link').hover(
+	function(){ $(this).find('.main_zip_content_title').addClass('active'); }, 
+	function(){ $(this).find('.main_zip_content_title').removeClass('active'); }
+);
+		    
+//$('.main_zip_image-wrap img').hover(
+//	function(){$('.main_zip_content_title').addClass('active');},
+//	function(){$('.main_zip_content_title').removeClass('active');}
+//);
+			
+/*************************************************************
+					오늘의딜 SLIDER SETTINGS
+*************************************************************/
 //current position
 var deal_pos = 0;
 //number of slides
@@ -141,53 +153,55 @@ $(document).ready(function(){
     );
     
 });//DOCUMENT READY
-    
 
-
-/***********
- SLIDE LEFT
-************/
-function deal_slideLeft(){
-    deal_pos--;
-    if(deal_pos==-1){ deal_pos = deal_totalSlides-1; }
-    $('#main_recommends_slider_wrap ul#main_recommends_product_list').css('left', -(deal_sliderWidth*deal_pos));    
-    
-    //*> optional
-    deal_pagination();
-}
-
-
-/************
- SLIDE RIGHT
-*************/
-function deal_slideRight(){
-    deal_pos++;
-    if(deal_pos==deal_totalSlides){ deal_pos = 0; }
-    $('#main_recommends_slider_wrap ul#main_recommends_product_list').css('left', -(deal_sliderWidth*deal_pos)); 
-    
-    //*> optional 
-    deal_pagination();
-}
-
-
-/************************
- //*> OPTIONAL SETTINGS
-************************/
-
-function deal_pagination(){
-    $('#recommends_pagination-wrap ul li').removeClass('active');
-    $('#recommends_pagination-wrap ul li:eq('+deal_pos+')').addClass('active');
-    if (deal_pos == 0) {
-    	$('#recommends_previous').hide();
-    } else {
-    	$('#recommends_previous').show();
-    }
 	
-    if (deal_pos == (deal_totalSlides - 6)) {
-    	$('#recommends_next').hide();
-    } else {
-    	$('#recommends_next').show();
-    }
-}
+	/***********
+	 SLIDE LEFT
+	************/
+	function deal_slideLeft(){
+	    deal_pos--;
+	    if(deal_pos==-1){ deal_pos = deal_totalSlides-1; }
+	    $('#main_recommends_slider_wrap ul#main_recommends_product_list').css('left', -(deal_sliderWidth*deal_pos));    
+	    
+	    //*> optional
+	    deal_pagination();
+	}
+	
+	/************
+	 SLIDE RIGHT
+	*************/
+	function deal_slideRight(){
+	    deal_pos++;
+	    if(deal_pos==deal_totalSlides){ deal_pos = 0; }
+	    $('#main_recommends_slider_wrap ul#main_recommends_product_list').css('left', -(deal_sliderWidth*deal_pos)); 
+	    
+	    //*> optional 
+	    deal_pagination();
+	}
+	
+	
+	/************************
+	 //*> OPTIONAL SETTINGS
+	************************/
+	
+	function deal_pagination(){
+	    $('#recommends_pagination-wrap ul li').removeClass('active');
+	    $('#recommends_pagination-wrap ul li:eq('+deal_pos+')').addClass('active');
+	    if (deal_pos == 0) {
+	    	$('#recommends_previous').hide();
+	    } else {
+	    	$('#recommends_previous').show();
+	    }
+		
+	    if (deal_pos == (deal_totalSlides - 6)) {
+	    	$('#recommends_next').hide();
+	    } else {
+	    	$('#recommends_next').show();
+	    }
+	}
    
+
+/*************************************************************
+					오늘의 인기사진 RANK
+*************************************************************/
    

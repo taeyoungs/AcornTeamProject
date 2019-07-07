@@ -7,6 +7,29 @@ public class MainCommunityVO {
 	private String memberNickname;
 	private String memberImage;
 	
+	private String zipSeqNo;
+	private String zipTitle;
+	private String zipImage;
+	
+	
+	public String getZipSeqNo() {
+		return zipSeqNo;
+	}
+	public void setZipSeqNo(String zipSeqNo) {
+		this.zipSeqNo = zipSeqNo;
+	}
+	public String getZipTitle() {
+		return zipTitle;
+	}
+	public void setZipTitle(String zipTitle) {
+		this.zipTitle = zipTitle;
+	}
+	public String getZipImage() {
+		return zipImage;
+	}
+	public void setZipImage(String zipImage) {
+		this.zipImage = zipImage;
+	}
 	public String getPhotoSeqNo() {
 		return photoSeqNo;
 	}

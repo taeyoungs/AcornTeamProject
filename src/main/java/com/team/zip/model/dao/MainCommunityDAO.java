@@ -16,4 +16,10 @@ public class MainCommunityDAO extends SqlSessionDaoSupport {
 		list = getSqlSession().selectList("MainSql.selectPhotoList");
 		return list;
 	}
+	
+	public List<MainCommunityVO> selectZipList() {
+		List<MainCommunityVO> zipList = new ArrayList<MainCommunityVO>();
+		zipList = getSqlSession().selectList("MainSql.selectZipList"); 
+		return zipList;
+	}
 }

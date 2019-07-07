@@ -5,8 +5,8 @@ import java.sql.Timestamp;
 public class PhotoCombineVO {
 	
 	private String p_reply_content;
-	private String member_nickname;
 	private String member_image;
+	private String member_nickname;
 	private Timestamp reg_date;
 	
 	
@@ -22,6 +22,7 @@ public class PhotoCombineVO {
 	public void setP_reply_content(String p_reply_content) {
 		this.p_reply_content = p_reply_content;
 	}
+	
 	public String getMember_nickname() {
 		return member_nickname;
 	}

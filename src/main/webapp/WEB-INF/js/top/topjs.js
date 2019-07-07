@@ -14,36 +14,36 @@ $(function(){
         $(this).css({
             "background-color": "#35C5F0"
         });
-        $(this).children("img").attr("src", "/image/cart white.png");
+        $(this).children("img").attr("src", "/image/common/cart white.png");
     }, function(){
         $(this).css({
             "background-color": "transparent",
             "border": "none"
         });
-        $(this).children("img").attr("src", "/image/cart gray.png");
+        $(this).children("img").attr("src", "/image/common/cart gray.png");
     });
     $(".navi-primary_notification-btn").hover(function(){
         $(this).css({
             "background-color": "#35C5F0"
         });
-        $(this).children("img").attr("src", "/image/notification white.png");
+        $(this).children("img").attr("src", "/image/common/notification white.png");
     }, function(){
         $(this).css({
             "background-color": "transparent",
             "border": "none"
         });
-        $(this).children("img").attr("src", "/image/notification gray.png");
+        $(this).children("img").attr("src", "/image/common/notification gray.png");
     });
     $(".navi-primary_user_header").hover(function(){
         $(this).find("img:eq(0)").css({
             "border-color": "#35C5F0"
         });
-        $(this).find("img.navi-primary_user-btn").attr("src", "/image/button hover.png");
+        $(this).find("img.navi-primary_user-btn").attr("src", "/image/common/button hover.png");
     }, function(){
         $(this).find("img:eq(0)").css({
             "border-color": "transparent"
         });
-        $(this).find("img.navi-primary_user-btn").attr("src", "/image/button.png");
+        $(this).find("img.navi-primary_user-btn").attr("src", "/image/common/button.png");
     });
     // 로그인 후 유저 메뉴 클릭시 이벤트
     $(".navi-primary_user").click(function(){
@@ -119,6 +119,7 @@ $(function(){
             $(".navi-secondary-wrap").css("height", "51px");
         }
     });
+    
     // 스크롤 움직인 후 상단메뉴 hover -> 세컨더리 메뉴 노출 여부
     $(".navi-primary_container").hover(function(){
         $(".navi-secondary_container").addClass("open");
@@ -142,8 +143,13 @@ $(function(){
         $(".navi-secondary_container.float").css({
             "top": "30px"
         });
+        
+        if($(window).scrollTop() != 0) {
+        	$(".navi-primary_menu").removeClass("open");
+        }
     });
-// 상세 메뉴 라인
+    
+    // 상세 메뉴 라인
     $(".navi-secondary_menu>ul li").hover(function(){
         $(this).children("a").css("color", "#35C5F0");
     }, function(){

@@ -24,7 +24,26 @@
 		</div>
 		
 		<div class="footer_outbound">
-		
+			<a class="footer_outbound_list" href="https://www.youtube.com/watch?v=w5BMWo1u5Ag">
+				<span class="footer_outbound_b1">
+					<img src="/image/common/youtube.png">
+				</span>			
+			</a>
+			<a class="footer_outbound_list" href="https://www.instagram.com/parksso1/">
+				<span class="footer_outbound_b2">
+					<img src="/image/common/instagram.png">
+				</span>				
+			</a>
+			<a class="footer_outbound_list" href="https://www.facebook.com/sowon7912">
+				<span class="footer_outbound_b3">
+					<img src="/image/common/facebook.png">
+				</span>			
+			</a>
+			<a class="footer_outbound_list" href="https://github.com/sowon7912/AcornTeamProject">
+				<span class="footer_outbound_b4">
+					<img src="/image/common/github.png">
+				</span>				
+			</a>
 		</div>
 		
 		<div class="short_cuts">

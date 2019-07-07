@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <c:set var="root" value="<%=request.getContextPath() %>"/>
+<script type="text/javascript" src="${root}/js/photo/photolist.js"></script>
 <link rel="stylesheet" href="${root}/css/photo/photo_list.css">
 <meta name="viewport" content="width=device-width, user-scalable=no"/>
 </head>
@@ -26,21 +27,37 @@
 										<div class="drop-down panel-drop-down filter-bar-control">
 											<button class="button button--color-gray-4 button--size-50 button--shape-4 filter-bar-control__button">정렬
 											<img class="icon" src="${root }/image/down-arrow.png"></button>
-											<ul class="dropdown-menu">
-												<li class=""><a href="#">인기순</a></li>
-											</ul>
+											<div class="photolist-drop-down-menu">
+												<ul class="photolist-dropdown-menu-list">
+													<li class="photolist-dropdown-menu-item"><a href="#">인기순</a></li>
+													<li class="photolist-dropdown-menu-item"><a href="#">최신순</a></li>
+												</ul>
+											</div>
 										</div>
 									</li>
 									<li class="filter-bar__control-list__item">
 										<div class="drop-down panel-drop-down filter-bar-control">
 											<button class="button button--color-gray-4 button--size-50 button--shape-4 filter-bar-control__button">주거형태
 											<img class="icon" src="${root }/image/down-arrow.png"></button>
+											<div class="photolist-drop-down-menu">
+												<ul class="photolist-dropdown-menu-list">
+													<li class="photolist-dropdown-menu-item"><a href="#">원룸</a></li>
+													<li class="photolist-dropdown-menu-item"><a href="#">투룸</a></li>
+												</ul>
+											</div>
+											
 										</div>
 									</li>
 									<li class="filter-bar__control-list__item">
 										<div class="drop-down panel-drop-down filter-bar-control">
 											<button class="button button--color-gray-4 button--size-50 button--shape-4 filter-bar-control__button">평수
 											<img class="icon" src="${root }/image/down-arrow.png"></button>
+											<div class="photolist-drop-down-menu">
+												<ul class="photolist-dropdown-menu-list">
+													<li class="photolist-dropdown-menu-item"><a href="#">10평미만</a></li>
+													<li class="photolist-dropdown-menu-item"><a href="#">20평미만</a></li>
+												</ul>
+											</div>
 										</div>
 									</li>
 								</ul>
@@ -50,8 +67,8 @@
 					</div>
 				</div>
 			</div>
-			<c:forEach var="pvo" items="${list}">
 			<div class="virtualized-list card-feed__content row" style="padding-top: 0px;">
+			<c:forEach var="pvo" items="${list}">
 				<div class="card-feed__item-wrap col-12 col-md-4 col-lg-3">
 					<div class="card-feed_item">
 						<article class="card-item">
@@ -103,8 +120,8 @@
 						</article>
 					</div>
 				</div>
+				</c:forEach>
 			</div>
-			</c:forEach>
 		</div>
 	</main>
 </body>

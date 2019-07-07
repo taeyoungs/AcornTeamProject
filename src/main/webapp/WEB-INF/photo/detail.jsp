@@ -33,7 +33,7 @@
 							<img src="${root }/image/room1.png">
 						</div>
 						<figcaption>
-							${pvo.photo_content }
+							<p>${pvo.photo_content }</p>
 						</figcaption>
 					</figure>
 					<ul class="keyword">

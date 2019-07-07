@@ -36,7 +36,7 @@ public class MainController {
 		
 		List<MainCommunityVO> photoList = mainService.selectPhotoList();
 		
-		System.out.println("photoListSize = " + photoList.size());
+//		System.out.println("photoListSize = " + photoList.size());
 		
 		for (int i=0; i<photoList.size(); i++) {
 //			System.out.println("i="+i);

@@ -206,12 +206,6 @@
 					</article>
 				</li>
 				</c:forEach>
-								<img src="${photo.photoImage}">
-							</div>					
-						</a>
-					</article>
-				</li>
-  </c:forEach>
 			</ul>
 		</div>
 	</div>

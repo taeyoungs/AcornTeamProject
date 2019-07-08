@@ -116,7 +116,7 @@
 			</a>
 		</li>
 		<li class="main_category_item">
-			<a class="main_category_icon_link" href="#">
+			<a class="main_category_icon_link" href="board/list.do">
 				<div class="main_category_icon_img"><img src="${root}/image/common/question.png"></div>
 				<div class="main_category_icon_title">질문과답변</div>
 			</a>
@@ -206,12 +206,6 @@
 					</article>
 				</li>
 				</c:forEach>
-								<img src="${photo.photoImage}">
-							</div>					
-						</a>
-					</article>
-				</li>
-  </c:forEach>
 			</ul>
 		</div>
 	</div>

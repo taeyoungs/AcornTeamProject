@@ -30,7 +30,7 @@
 					<figure>
 						<div class="card-img card">
 							<div class="card-img__bg" style="padding-top: 65%"></div>
-							<img src="${root }/image/room1.png">
+							<img src="${root }/image/common/room1.png">
 						</div>
 						<figcaption>
 							<p>${pvo.photo_content }</p>
@@ -68,7 +68,7 @@
 									<img src="${root}/image/${mvo.member_image}">
 								</c:if>
 								<c:if test="${mvo.member_image eq null}">
-	                    			<img src="${root}/image/user.png">
+	                    			<img src="${root}/image/common/user.png">
 	                    		</c:if>
 							</div>
 							<div class="comment-feed__form__input">
@@ -116,7 +116,7 @@
 												<button class="sidebar__action__btn" type="button">
 													<span class="icon--common-action" style="vertical-align: middle; 
 													margin-right: 8px; background-position: -240px -280px; width: 24px; height: 24px;">
-													<img src="../image/heart.png" width="24" height="24">
+													<img src="../image/common/heart.png" width="24" height="24">
 													</span>
 													1
 												</button>
@@ -137,7 +137,7 @@
 													<a href="">
 														<c:choose>
 														<c:when test="${mvo.member_image eq null }">
-														<img class="card-item-writer_image" src="${root }/image/user.png">
+														<img class="card-item-writer_image" src="${root }/image/common/user.png">
 														</c:when>
 														<c:otherwise>
 														<img src="${root }/image/${mvo.member_image}">

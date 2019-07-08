@@ -26,7 +26,7 @@
 									<li class="filter-bar__control-list__item">
 										<div class="drop-down panel-drop-down filter-bar-control">
 											<button class="button button--color-gray-4 button--size-50 button--shape-4 filter-bar-control__button">정렬
-											<img class="icon" src="${root }/image/down-arrow.png"></button>
+											<img class="icon" src="${root }/image/common/down-arrow.png"></button>
 											<div class="photolist-drop-down-menu">
 												<ul class="photolist-dropdown-menu-list">
 													<li class="photolist-dropdown-menu-item"><a href="#">인기순</a></li>
@@ -38,7 +38,7 @@
 									<li class="filter-bar__control-list__item">
 										<div class="drop-down panel-drop-down filter-bar-control">
 											<button class="button button--color-gray-4 button--size-50 button--shape-4 filter-bar-control__button">주거형태
-											<img class="icon" src="${root }/image/down-arrow.png"></button>
+											<img class="icon" src="${root }/image/common/down-arrow.png"></button>
 											<div class="photolist-drop-down-menu">
 												<ul class="photolist-dropdown-menu-list">
 													<li class="photolist-dropdown-menu-item"><a href="#">원룸</a></li>
@@ -51,7 +51,7 @@
 									<li class="filter-bar__control-list__item">
 										<div class="drop-down panel-drop-down filter-bar-control">
 											<button class="button button--color-gray-4 button--size-50 button--shape-4 filter-bar-control__button">평수
-											<img class="icon" src="${root }/image/down-arrow.png"></button>
+											<img class="icon" src="${root }/image/common/down-arrow.png"></button>
 											<div class="photolist-drop-down-menu">
 												<ul class="photolist-dropdown-menu-list">
 													<li class="photolist-dropdown-menu-item"><a href="#">10평미만</a></li>
@@ -80,7 +80,7 @@
 										<div class="card-item-writer_link">
 											<c:choose>
 											<c:when test="${mvo.member_image eq null}">
-											<img class="card-item-writer_image" src="${root }/image/user.png">
+											<img class="card-item-writer_image" src="${root }/image/common/user.png">
 											</c:when>
 											<c:otherwise>
 											<img class="card-item-writer_image" src="${root }/image/${mvo.member_image}">
@@ -96,18 +96,18 @@
 							</c:forEach>
 							<div class="card-item_content">
 								<div class="card-item-image">
-									<img class="image" src="${root }/image/room1.png" onclick="location.href='photodetail.do?num=${pvo.photo_seq_no }'">
+									<img class="image" src="${root }/image/common/room1.png" onclick="location.href='photodetail.do?num=${pvo.photo_seq_no }'">
 									<span class="card-item-image_view-count">
 										조회수 ${pvo.photo_hits }
 									</span>
 								</div>
 								<aside class="card-item-action-list">
 									<div class="card-item-action-list__action">
-										<img src="${root }/image/heart.png" width="24" height="24">
+										<img src="${root }/image/common/heart.png" width="24" height="24">
 										<span class="count">${pvo.photo_good }</span>
 									</div>
 									<div class="card-item-action-list__action">
-										<img src="${root }/image/comment.png" width="24" height="24">
+										<img src="${root }/image/common/comment.png" width="24" height="24">
 										<span class="count"></span>
 									</div>
 								</aside>

@@ -236,3 +236,16 @@ ul.main_rank_list{margin-top: 15px;display: flex;flex-wrap:wrap;flex-direction:c
 li.main_rank_item{float: left;margin-right: 30px;border: 1px solid gray;width: 260px;height: 260px;margin-top: 10px;}
 
 
+
+
+
+
+
+
+/********************************************************************************
+ 							@MEDIA MAX-WIDTH : 360PX
+********************************************************************************/
+@media only screen and (min-width: 375px) {
+	.main_wrapper{
+	}
+}	

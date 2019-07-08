@@ -1,4 +1,5 @@
 $(function(){
+	// 글쓰기 버튼 hover 이벤트
 	$(".navi-primary_write-btn").hover(function(){
         $(this).css({
             "color": "white",
@@ -10,40 +11,42 @@ $(function(){
             "background-color": "transparent"
         });
     });
+	// 장바구니 버튼 hover 이벤트
     $(".navi-primary_cart-btn").hover(function(){
         $(this).css({
             "background-color": "#35C5F0"
         });
-        $(this).children("img").attr("src", "/image/common/cart white.png");
+        $(this).children("img").attr("src", "/image/cart white.png");
     }, function(){
         $(this).css({
             "background-color": "transparent",
             "border": "none"
         });
-        $(this).children("img").attr("src", "/image/common/cart gray.png");
+        $(this).children("img").attr("src", "/image/cart gray.png");
     });
+    // 로그인 후 알림 버튼 hover 이벤트
     $(".navi-primary_notification-btn").hover(function(){
         $(this).css({
             "background-color": "#35C5F0"
         });
-        $(this).children("img").attr("src", "/image/common/notification white.png");
+        $(this).children("img").attr("src", "/image/notification white.png");
     }, function(){
         $(this).css({
             "background-color": "transparent",
             "border": "none"
         });
-        $(this).children("img").attr("src", "/image/common/notification gray.png");
+        $(this).children("img").attr("src", "/image/notification gray.png");
     });
     $(".navi-primary_user_header").hover(function(){
         $(this).find("img:eq(0)").css({
             "border-color": "#35C5F0"
         });
-        $(this).find("img.navi-primary_user-btn").attr("src", "/image/common/button hover.png");
+        $(this).find("img.navi-primary_user-btn").attr("src", "/image/button hover.png");
     }, function(){
         $(this).find("img:eq(0)").css({
             "border-color": "transparent"
         });
-        $(this).find("img.navi-primary_user-btn").attr("src", "/image/common/button.png");
+        $(this).find("img.navi-primary_user-btn").attr("src", "/image/button.png");
     });
     // 로그인 후 유저 메뉴 클릭시 이벤트
     $(".navi-primary_user").click(function(){
@@ -99,9 +102,10 @@ $(function(){
     });
     
     // 스크롤 움직였을 때 상단메뉴 fixed
+    var secondaryTop = $(".navi-secondary_container").attr("data-offset");
     $(window).scroll(function(){
         var height = $(this).scrollTop();
-        if(height == 0) {
+        if(height == 0 && secondaryTop != -51) {
             $(".navi-secondary_container").css("top", "");
             $(".navi-secondary_container").addClass("open");
             $(".navi-primary_container").removeClass("float"); // float 클래스로 css fixed
@@ -149,7 +153,7 @@ $(function(){
         }
     });
     
-    // 상세 메뉴 라인
+    // 세컨더리 메뉴 라인
     $(".navi-secondary_menu>ul li").hover(function(){
         $(this).children("a").css("color", "#35C5F0");
     }, function(){
@@ -162,4 +166,34 @@ $(function(){
         $(this).siblings().removeClass("active");
         $(this).addClass("active"); 
     });
+    
+    // 글쓰기 리스트 페이지 이동 후 세컨더리 메뉴 숨기기
+    secondaryTop = parseInt(secondaryTop);
+    if(secondaryTop == -51) {
+    	$(".navi-secondary_container").css({
+    		"position": "fixed",
+    		"top": secondaryTop,
+    		"bottom": "auto"
+    	});
+    	$(".navi-primary_menu").removeClass("open");
+    	$(".navi-menu li").removeClass("active");
+    	$(".navi-menu li").removeClass("current");
+    }
 });
+
+//function sendWPage(name) {
+//	console.log(name);
+//	if(name == '사진') {
+//		alert(name);
+//		$.ajax({
+//			url: "../photo/photolist.do",
+//			type: "POST",
+//			dataType: "json",
+//			data: JSON.stringify({"myCondition": name}),
+//			contentType : 'application/json; charset=UTF-8',
+//			success: function(redata) {
+//				alert("성공")
+//			}
+//		});
+//	}
+//}

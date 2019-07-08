@@ -35,11 +35,12 @@ public class PhotoController {
 	private CombineService cservice;
 	
 	@RequestMapping("photo/photolist.do")
-	public ModelAndView photo() {
+	public ModelAndView photo(@RequestParam String where) {
 		ModelAndView model = new ModelAndView();
 		List<PhotoVO> list = service.getList();
 		List<MemberVO> mlist = mservice.getMemberList();
 		
+		model.addObject("where", where);
 		model.addObject("list",list);
 		model.addObject("mlist",mlist);
 		model.setViewName("/2/photo/list");

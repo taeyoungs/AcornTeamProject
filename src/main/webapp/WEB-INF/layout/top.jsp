@@ -18,7 +18,7 @@
         <nav class="navi-primary-wrap sticky-top">
             <div class="navi-primary_container sticky-content" data-offset="0">
                 <div class="navi-primary">
-                    <a class="navi-primary_logo" href="${root }/main.do">
+                    <a class="navi-primary_logo" href="${root}/main.do?where=home">
                         <img src="${root}/image/common/logo.png">
                     </a>
                     <div class="navi-primary_menu open">
@@ -61,7 +61,7 @@
                         <button class="navi-primary_search-sm-btn navi-primary_button button-sm">
                             <img src="${root}/image/common/search.png" width="20">
                         </button>
-                        <a href="${root}/write" class="navi-primary_write-btn">
+                        <a href="${root}/member/writelist" class="navi-primary_write-btn">
                             	글쓰기
                         </a>
                         <a href="#" class="navi-primary_cart-btn navi-primary_button">
@@ -76,11 +76,11 @@
                    <c:if test="${sessionScope.loginok eq 'login'}">
                     	<div class="navi-primary_user logged">
 	                    	<div class="navi-primary_user_header">
- 	                    		<c:if test="${mvo.member_image ne null}">
-	                    			<img src="${root}/image/common/${mvo.member_image}" class="navi-primary_user-image">
+ 	                    		<c:if test="${sessionScope.mvo.member_image ne null}">
+	                    			<img src="${root}/image/common/${sessionScope.mvo.member_image}" class="navi-primary_user-image">
 	                    		</c:if>
-	                    		<c:if test="${mvo.member_image eq null}">
-	                    			<img src="${root}/image/common/user.png" class="navi-primary_user-image">
+	                    		<c:if test="${sessionScope.mvo.member_image eq null}">
+	                    			<img src="${root}/common/image/user.png" class="navi-primary_user-image">
 	                    		</c:if>
 	                    		<img src="${root}/image/common/button.png" class="navi-primary_user-btn">
 	                    	</div>
@@ -104,21 +104,21 @@
             </div>
         </nav>
         <nav class="navi-secondary-wrap sticky-top">
-            <div class="navi-secondary_container sticky-content open" data-offset="0">
+            <div class="navi-secondary_container sticky-content open" data-offset="${secondaryTop}">
                 <div class="navi-secondary">
                     <div class="navi-secondary_menu">
                         <ul style="white-space: nowrap;">
-                            <li class="navi-menu_primary_secondary active">
-                                <a href="../main.do">홈</a>    
+                            <li class="navi-menu_primary_secondary ${where eq 'home' ? 'active' : ''}">
+                                <a href="${root}/main.do?where=home">홈</a>    
+                            </li>
+                            <li class="navi-menu_primary_secondary ${where eq 'photo' ? 'active' : ''}">
+                                <a href="${root}/photo/photolist.do?where=photo">사진</a> 
                             </li>
                             <li class="navi-menu_primary_secondary">
-                                <a href="${root}/photo/photolist.do">사진</a> 
+                                <a href="#" onClick="sendWPage('집들이')">집들이</a> 
                             </li>
-                            <li class="navi-menu_primary_secondary"> 
-                                <a href="#">집들이</a> 
-                            </li>
-                            <li class="navi-menu_primary_secondary">
-                                <a href="${root}/board/list.do">질문과답변</a> 
+                            <li class="navi-menu_primary_secondary ${where eq 'board' ? 'active' : ''}">
+                                <a href="${root}/board/list.do?where=board">질문과답변</a> 
                             </li>
                         </ul>
                     </div>

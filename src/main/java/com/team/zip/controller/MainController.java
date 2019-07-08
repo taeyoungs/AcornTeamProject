@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.zip.model.vo.MainCommunityVO;
@@ -25,7 +26,7 @@ public class MainController {
 	private MainService mainService;
 	
 	@RequestMapping("/main.do")
-	public ModelAndView mainGo(HttpSession session)
+	public ModelAndView mainGo(HttpSession session, @RequestParam(value="where", defaultValue = "home") String where)
 	{
 		if(session.getAttribute("member_no") != null) {
 			int memberNo = (Integer)session.getAttribute("member_no");
@@ -42,6 +43,7 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("photoList", photoList);
+		mav.addObject("where", where);
 		mav.addObject("zipList", zipList);
 		
 		mav.setViewName("/main/main");

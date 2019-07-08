@@ -136,6 +136,7 @@ public class LoginController {
 		
 		session.removeAttribute("loginok");
 		session.removeAttribute("member_no");
+		session.removeAttribute("mvo");
 		
 		return "redirect:../main.do";
 	}

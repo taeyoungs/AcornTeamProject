@@ -1,15 +1,18 @@
 package com.team.zip.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class TopController {
 
-	@RequestMapping("/member/login.do")
-	public String gotoLoginForm() {
+	@RequestMapping("/member/writelist")
+	public String gotoLoginForm(Model model) {
 		
-		return "/1/member/loginForm";
+		model.addAttribute("secondaryTop", "-51");
+		
+		return "/2/member/writelist";
 	}
 	
 }

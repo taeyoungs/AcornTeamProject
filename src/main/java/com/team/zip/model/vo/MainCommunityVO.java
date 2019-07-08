@@ -6,7 +6,6 @@ public class MainCommunityVO {
 	private String photoImage;
 	private String memberNickname;
 	private String memberImage;
-	
 	private String zipSeqNo;
 	private String zipTitle;
 	private String zipImage;

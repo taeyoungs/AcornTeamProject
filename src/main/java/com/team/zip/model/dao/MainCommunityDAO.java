@@ -22,4 +22,5 @@ public class MainCommunityDAO extends SqlSessionDaoSupport {
 		zipList = getSqlSession().selectList("MainSql.selectZipList"); 
 		return zipList;
 	}
+
 }

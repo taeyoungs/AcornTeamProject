@@ -16,7 +16,7 @@
 <body>
     <div id="navi" class="navi-top-banner">
         <nav class="navi-primary-wrap sticky-top">
-            <div class="navi-primary_container sticky-content">
+            <div class="navi-primary_container sticky-content" data-offset="0">
                 <div class="navi-primary">
                     <a class="navi-primary_logo" href="${root }/main.do">
                         <img src="${root}/image/common/logo.png">
@@ -61,7 +61,7 @@
                         <button class="navi-primary_search-sm-btn navi-primary_button button-sm">
                             <img src="${root}/image/common/search.png" width="20">
                         </button>
-                        <a href="#" class="navi-primary_write-btn">
+                        <a href="${root}/write" class="navi-primary_write-btn">
                             	글쓰기
                         </a>
                         <a href="#" class="navi-primary_cart-btn navi-primary_button">
@@ -104,7 +104,7 @@
             </div>
         </nav>
         <nav class="navi-secondary-wrap sticky-top">
-            <div class="navi-secondary_container sticky-content open">
+            <div class="navi-secondary_container sticky-content open" data-offset="0">
                 <div class="navi-secondary">
                     <div class="navi-secondary_menu">
                         <ul style="white-space: nowrap;">
@@ -114,7 +114,7 @@
                             <li class="navi-menu_primary_secondary">
                                 <a href="${root}/photo/photolist.do">사진</a> 
                             </li>
-                            <li class="navi-menu_primary_secondary">
+                            <li class="navi-menu_primary_secondary"> 
                                 <a href="#">집들이</a> 
                             </li>
                             <li class="navi-menu_primary_secondary">

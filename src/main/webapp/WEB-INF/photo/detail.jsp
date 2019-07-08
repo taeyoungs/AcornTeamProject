@@ -33,7 +33,7 @@
 							<img src="${root }/image/room1.png">
 						</div>
 						<figcaption>
-							${pvo.photo_content }
+							<p>${pvo.photo_content }</p>
 						</figcaption>
 					</figure>
 					<ul class="keyword">
@@ -64,7 +64,12 @@
 						</h1>
 						<form class="comment-feed__form">
 							<div class="comment-feed__form__user">
-								<img src="">
+								<c:if test="${mvo.member_image ne null}">
+									<img src="${root}/image/${mvo.member_image}">
+								</c:if>
+								<c:if test="${mvo.member_image eq null}">
+	                    			<img src="${root}/image/user.png">
+	                    		</c:if>
 							</div>
 							<div class="comment-feed__form__input">
 								<div class="comment-feed__form__content">
@@ -130,7 +135,14 @@
 											<div class="writer-profile">
 												<div class="writer-profile__img">
 													<a href="">
-														<img src="">
+														<c:choose>
+														<c:when test="${mvo.member_image eq null }">
+														<img class="card-item-writer_image" src="${root }/image/user.png">
+														</c:when>
+														<c:otherwise>
+														<img src="${root }/image/${mvo.member_image}">
+														</c:otherwise>
+														</c:choose>
 													</a>
 												</div>
 												<div>
@@ -138,7 +150,7 @@
 														<strong class="writer-profile__name">${mvo.member_nickname }</strong>
 													</a>
 													<a href="">
-														<p class="writer-profile__about">d</p>
+														<p class="writer-profile__about">${mvo.member_comment }</p>
 													</a>
 												</div>
 											</div>

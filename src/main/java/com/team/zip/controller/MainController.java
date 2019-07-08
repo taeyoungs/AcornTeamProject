@@ -31,9 +31,11 @@ public class MainController {
 			MemberVO mvo = mservice.getMember(memberNo);
 			
 			session.setAttribute("mvo", mvo);
+			session.setMaxInactiveInterval(10800);
 		}
 		
 		List<MainCommunityVO> photoList = mainService.selectPhotoList();
+
 		List<MainCommunityVO> zipList = mainService.selecZipList();
 		
 		ModelAndView mav = new ModelAndView();
@@ -44,6 +46,3 @@ public class MainController {
 		mav.setViewName("/main/main");
 		return mav;
 	}
-		
-}
-

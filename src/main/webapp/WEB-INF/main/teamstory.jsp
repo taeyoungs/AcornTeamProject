@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <c:set var="root" value="<%=request.getContextPath()%>" />
 <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="${root}/css/teamstory.css">
+<link rel="stylesheet" type="text/css" href="${root}/css/main/teamstory.css">
 </head>
 <body>
 <div class="teamstory_wrapper">

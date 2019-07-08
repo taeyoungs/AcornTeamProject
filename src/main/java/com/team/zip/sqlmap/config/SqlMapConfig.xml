@@ -10,7 +10,7 @@
 		<typeAlias type="com.team.zip.model.vo.MainCommunityVO" alias="mainCommunityVO"/>
 		<typeAlias type="com.team.zip.model.vo.MainStoreVO" alias="mainStoreVO"/>
 		<typeAlias type="com.team.zip.model.vo.BoardVO" alias="bvo"/>
-	</typeAliases
+	</typeAliases>
     
 	<mappers>
 		<mapper resource="com/team/zip/sqlmap/mapper/PhotoSql.xml"/>

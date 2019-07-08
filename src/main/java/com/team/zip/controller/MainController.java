@@ -35,28 +35,14 @@ public class MainController {
 		}
 		
 		List<MainCommunityVO> photoList = mainService.selectPhotoList();
-		
-//		System.out.println("photoListSize = " + photoList.size());
-		
-		for (int i=0; i<photoList.size(); i++) {
-//			System.out.println("i="+i);
-			MainCommunityVO vo = photoList.get(i);
-			if (vo == null) {
-//				System.out.println("vo is null!");
-				continue;
-			} else {
-//				System.out.println("photoImage="+vo.getPhotoImage());
-			}
-				
-		}
+
+		List<MainCommunityVO> zipList = mainService.selecZipList();
 		
 		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("photoList", photoList);
+		mav.addObject("zipList", zipList);
+		
 		mav.setViewName("/main/main");
 		return mav;
 	}
-	
-	
-	
-}
-

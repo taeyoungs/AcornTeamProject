@@ -14,9 +14,30 @@
 			     , M.MEMBER_IMAGE
 			  FROM PHOTO P, MEMBER M
 			 WHERE P.MEMBER_NO = M.MEMBER_NO 
-			 ORDER BY P.PHOTO_HITS ASC
+			 ORDER BY P.PHOTO_HITS DESC
 		) A
 		WHERE ROWNUM < 9
+		]]>
+	</select>
+	
+	<select id="selectZipList" resultType="mainCommunityVO">
+		<![CDATA[
+		SELECT A.ZIP_SEQ_NO AS zipSeqNo
+			 , A.ZIP_TITLE AS zipTitle
+		     , A.ZIP_IMAGE AS zipImage
+		     , A.MEMBER_NICKNAME AS memberNickname
+		     , A.MEMBER_IMAGE AS memberImage
+		FROM (
+		    SELECT Z.ZIP_SEQ_NO
+		    	 , Z.ZIP_TITLE
+			     , Z.ZIP_IMAGE
+			     , M.MEMBER_NICKNAME
+			     , M.MEMBER_IMAGE
+			  FROM ZIP Z, MEMBER M
+			 WHERE Z.MEMBER_NO = M.MEMBER_NO 
+			 ORDER BY Z.ZIP_HITS DESC
+		) A
+		WHERE ROWNUM < 4
 		]]>
 	</select>
 </mapper>

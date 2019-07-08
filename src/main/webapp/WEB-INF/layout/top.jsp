@@ -19,7 +19,7 @@
             <div class="navi-primary_container sticky-content" data-offset="0">
                 <div class="navi-primary">
                     <a class="navi-primary_logo" href="${root }/main.do">
-                        <img src="${root}/image/logo.png">
+                        <img src="${root}/image/common/logo.png">
                     </a>
                     <div class="navi-primary_menu open">
                         <ul class="navi-menu">
@@ -50,7 +50,7 @@
                                        <span class="icon"></span>
                                    </button>
                                    <span class="navi-search_box_icon_blur">
-                                       <img src="${root}/image/search.png" width="20">
+                                       <img src="${root}/image/common/search.png" width="20">
                                    </span>
                                    <input type="text" placeholder="검색" size="1" class="navi-search_box_input">
                                    <span class="navi-search_box_bg"></span>
@@ -59,30 +59,30 @@
                     </div>
                     <div class="navi-primary_action">
                         <button class="navi-primary_search-sm-btn navi-primary_button button-sm">
-                            <img src="${root}/image/search.png" width="20">
+                            <img src="${root}/image/common/search.png" width="20">
                         </button>
                         <a href="${root}/write" class="navi-primary_write-btn">
                             	글쓰기
                         </a>
                         <a href="#" class="navi-primary_cart-btn navi-primary_button">
-                            <img src="${root}/image/cart gray.png" width="20">
+                            <img src="${root}/image/common/cart gray.png" width="20">
                         </a>
                         <c:if test="${sessionScope.loginok eq 'login'}">
                         	<a href="" class="navi-primary_notification-btn navi-primary_button">
-                        		<img src="${root}/image/notification gray.png" width="20">
+                        		<img src="${root}/image/common/notification gray.png" width="20">
                         	</a>
                         </c:if>
                     </div>
                    <c:if test="${sessionScope.loginok eq 'login'}">
                     	<div class="navi-primary_user logged">
 	                    	<div class="navi-primary_user_header">
- 	                    		<c:if test="${sessionScope.mvo.member_image ne null}">
-	                    			<img src="${root}/image/${sessionScope.mvo.member_image}" class="navi-primary_user-image">
+ 	                    		<c:if test="${mvo.member_image ne null}">
+	                    			<img src="${root}/image/common/${mvo.member_image}" class="navi-primary_user-image">
 	                    		</c:if>
-	                    		<c:if test="${sessionScope.mvo.member_image eq null}">
-	                    			<img src="${root}/image/user.png" class="navi-primary_user-image">
+	                    		<c:if test="${mvo.member_image eq null}">
+	                    			<img src="${root}/image/common/user.png" class="navi-primary_user-image">
 	                    		</c:if>
-	                    		<img src="${root}/image/button.png" class="navi-primary_user-btn">
+	                    		<img src="${root}/image/common/button.png" class="navi-primary_user-btn">
 	                    	</div>
 	                    	<div class="navi-primary_user_list">
 	                    		<ul class="navi-user-menu">

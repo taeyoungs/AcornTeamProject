@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,8 +54,17 @@ public class PhotoController {
 	}
 	
 	@RequestMapping("photo/photowrite.do")
-	public String photowrite() {
-		return "/1/photo/writeform";
+	public String photowrite(HttpSession session) {
+		
+		String login = (String)session.getAttribute("loginok");
+		if(login != null && login.equals("login")) {
+	         
+			 return "/1/photo/writeform";
+	         
+	    } else {
+	  
+	         return "/1/member/signin";
+	    }
 	}
 	
 	@RequestMapping(value="photo/write.do", method=RequestMethod.POST)

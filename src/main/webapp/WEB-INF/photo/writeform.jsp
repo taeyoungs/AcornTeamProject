@@ -49,7 +49,7 @@
 								<div class="Photo-Write-Form_photo-item_image-wrap">
 									<button class="Photo-Write-Form_photo-image-upload" type="button">
 										<span class="content">
-											<img class="icon" src="${root }/image/photo-camera.svg">
+											<img class="icon" src="${root }/image/common/photo-camera.svg">
 											<span class="text" style="font-size:15pt">
 											사진올리기<br>*최소1장이상
 											</span>

@@ -15,7 +15,7 @@
 		
 		<!-- LEFT MENU [S] -->
 		<div class="teamstory_left_menu">
-			<a class="left_menu_logo" href="/main.do">
+			<a class="left_menu_logo" href="/main.do?where=main">
 				<span class="left_menu_logo_icon">
 					<img src="${root}/image/common/home_logo_white.png">
 				</span>

@@ -14,10 +14,9 @@
 			<!-- Main Image -->
 			<div class="col-12 col-md-9 home-header__story">
 				<article class="story-entry">
-					<a href="photo/photolist.do" class="story-entry-link">
+					<a href="#" class="story-entry-link">
 						<div class="story-entry__image-wrap">
 							<div class="story-entry__image" style="background-image: url('${root}/image/common/main_image.jpg')">
-<%-- 								<img src="${root}/image/common/main_image.jpg"> --%>
 							</div>
 						</div>
 						<div class="story-entry__content-wrap">
@@ -39,32 +38,19 @@
 						<ul class="home-header__banner">
 							<li class="home-header__banner__item">
 								<a class="home-header__banner__item__link">
-									<div class="pc-banner" style="background-image: url('/image/common/questionmark.png')">
-									</div>
-<!-- 									<img class="mobile-banner" src=""> -->
+									<div class="pc-banner" style="background-image: url('/image/common/weired01.png'); background-size: cover;background-position: center;"></div>
 								</a>
 							</li>
 						</ul>
 						<ul class="home-header__banner-items">
 							<li class="home-header__banner__item">
 								<a class="home-header__banner__item__link">
-									<div class="pc-banner" style="background-image: url('/image/common/questionmark.png')">
-									</div>
-									<img class="mobile-banner" src="">
+									<div class="pc-banner" style="background-image: url('/image/common/weired02.png')"></div>
 								</a>
 							</li>
 							<li class="home-header__banner__item">
 								<a class="home-header__banner__item__link">
-									<div class="pc-banner" style="background-image: url('/image/common/error.png')">
-									</div>
-									<img class="mobile-banner" src="">
-								</a>
-							</li>
-							<li class="home-header__banner__item">
-								<a class="home-header__banner__item__link">
-									<div class="pc-banner" style="background-image: url('/image/common/disappointment.png')">
-									</div>
-									<img class="mobile-banner" src="">
+									<div class="pc-banner" style="background-image: url('/image/common/weired03.png')"></div>
 								</a>
 							</li>
 						</ul>
@@ -85,57 +71,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- Banner -->
-		<!-- <div id="slider-wrap" class="row2">
-		<div class="carousel_section">
-			<ul>
-				<li><img src="/image/common/questionmark.png"></li>
-				<li><img src="/image/common/error.png"></li>
-				<li><img src="/image/common/disappointment.png"></li>
-			</ul>
-		</div> -->
-<!-- 			<ul id="slider"> -->
-<!-- 				<li class="slider_banner_item_list"> -->
-<!-- 					<div class="slider_banner_item"> -->
-<!-- 						<div class="slider_banner_item_b1"> -->
-<!-- 							<span class="weired1">이상하네 #1</span> -->
-<!-- 							<h3>어제는 됐는데?</h3> -->
-<!-- 							<span></span> -->
-<!-- 							<span class="item_b1_subimage"> -->
-<!-- 								<img src="/image/common/questionmark.png"> -->
-<!-- 							</span> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
-
-<!--  				<li class="slider_banner_item_list"> -->
-<!-- 					<div class="slider_banner_item"> -->
-<!-- 						<div class="slider_banner_item_b2"> -->
-<!-- 							<span class="weired2">이상하네 #2</span> -->
-<!-- 							<h3>500 ERROR</h3> -->
-<!-- 							<span></span> -->
-<!-- 							<span class="item_b2_subimage"> -->
-<!-- 								<img src="/image/common/error.png"> -->
-<!-- 							</span> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
-
-<!-- 				<li class="slider_banner_item_list"> -->
-<!-- 					<div class="slider_banner_item"> -->
-<!-- 						<div class="slider_banner_item_b3"> -->
-<!-- 							<span class="weired3">이상하네 #3</span> -->
-<!-- 							<h3>다 된 프로그램에<br>세미콜론 빠트리기</h3> -->
-<!-- 							<span></span> -->
-<!-- 							<span class="item_b3_subimage"> -->
-<!-- 								<img src="/image/common/disappointment.png"> -->
-<!-- 							</span> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
-<!-- 			</ul> -->
-
-			
 		</div>
 	</section>
 
@@ -161,7 +96,7 @@
 		</li>
 		<div class="blank_margin"></div>
 		<li class="shortcut__list__item">
-			<a href="" class="shortcut__list__item__link">
+			<a href="photo/photolist.do?where=photo" class="shortcut__list__item__link">
 				<div class="shortcut__list__item__link__image">
 					<img class="shortcut__list__item__link__image__img" src="${root}/image/common/sofa.png">
 				</div>
@@ -179,7 +114,7 @@
 		</li>
 		<div class="blank_margin"></div>
 		<li class="shortcut__list__item">
-			<a href="" class="shortcut__list__item__link">
+			<a href="board/list.do?where=board" class="shortcut__list__item__link">
 				<div class="shortcut__list__item__link__image">
 					<img class="shortcut__list__item__link__image__img" src="${root}/image/common/question.png">
 				</div>
@@ -206,7 +141,12 @@
 						<div class="story-entry__content">
 							<div class="story-entry__content__title">${zip.zipTitle}</div>
 							<div class="story-entry__content__profile">
-								<span class="story-entry__content__profile__image">${zip.memberImage}</span>
+								<c:if test="${empty zip.memberImage}">
+									<span class="story-entry__content__profile__image" style="background-image: url('/image/common/user.png')"></span>
+								</c:if>
+								<c:if test="${!empty zip.memberImage}">
+									<span class="story-entry__content__profile__image" style="background-image: url('${zip.memberImage}')"></span>
+								</c:if>
 								<span class="story-entry__content__profile__name">${zip.memberNickname}</span>
 							</div>
 						</div>

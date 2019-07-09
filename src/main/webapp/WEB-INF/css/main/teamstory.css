@@ -2,7 +2,7 @@
 /*************************
 	 LEFT MENU BAR
 *************************/
-.teamstory_left_menu{width: 280px;border: 0px solid gray;height: 100%;position: fixed;margin: 0;}
+.teamstory_left_menu{max-width: 280px;border: 0px solid gray;height: 100%;position: fixed;margin: 0;width: 100%;}
     
 .left_menu_logo{display: flex;flex-direction: row;margin: 80px 50px 20px 50px;}
 .left_menu_logo_icon{padding: 10px;}   
@@ -30,3 +30,16 @@ a.team_story_title{position: relative;color: #000000;font-weight: bold;line-heig
 
 .teamstory_member_info{margin-top: 30px;padding: 18px;text-align: center;}
 .member_info_text{font-family: 'Sunflower', sans-serif;}
+
+
+@media ( min-width : 1024px) {
+	.teamstory_main_wrapper{max-width: 250px;}
+}
+
+@media ( min-width : 768px) {
+	.teamstory_main_wrapper{max-width: 200px;}
+}
+
+@media ( min-width : 360px) {
+	
+}

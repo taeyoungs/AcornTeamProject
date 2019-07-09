@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>질문하기</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<link rel="stylesheet" type="text/css" href="${root}/css/common.css">
 <link rel="stylesheet" media="all"
 	href="https://d1nyaccf3kuclt.cloudfront.net/assets/v3/bucket_ui/bucket_ui-a69ea26903ba7b7b1e58db706ee621d7fa1695945755178ff07fe330df44fff6.css" />
 <link rel="stylesheet" media="screen"
@@ -19,7 +20,7 @@
 <link rel="stylesheet" href="../css/board/board.css">
 </head>
 <body>
-	<main role="main">
+<main role="main">
 	<div class="question-form container">
 		<form id="question-form" class="new_question" action="write.do"
 			accept-charset="UTF-8" method="post" enctype="multipart/form-data">
@@ -28,7 +29,6 @@
 				<div class="question-form__header__title form-group">
 					<input placeholder="제목을 적어주세요." class="form-control" maxlength="61"
 						size="1" type="text" name="board_title" id="question_title" />
-					<p class="error">제목을 7자 이상으로 적어주세요.</p>
 				</div>
 
 			</header>
@@ -49,6 +49,6 @@
 			</footer>
 		</form>
 	</div>
-	</main>
+</main>
 </body>
 </html>

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -86,8 +87,8 @@ public class LoginController {
 	
 	// 로그인 처리
 	// 1. 이메일이 다른 경우, 2. 비밀번호가 다른 경우
-	@RequestMapping(value="/member/signin", method=RequestMethod.POST)
-	public String signin(@RequestParam String email, @RequestParam String pw, 
+	@RequestMapping(value="/{path}/signin", method=RequestMethod.POST)
+	public String signin(@PathVariable String path, @RequestParam String email, @RequestParam String pw, 
 			HttpSession session, Model model) {
 		
 		// DB에 저장된 이메일, 비밀번호를 가져오기 위한 리스트

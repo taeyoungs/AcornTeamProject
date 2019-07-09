@@ -23,10 +23,10 @@
 	</update>
 	<select id="boardSelectChu" parameterType="int" resultType="int">
 		select chu from board where num=#{num}
-	</select>
+	</select> -->
 	<delete id="boardDelete" parameterType="int">
-		delete from board where num=#{num}
-	</delete> -->
+		delete from board where board_seq_no=#{board_seq_no}
+	</delete>
 	
 	<select id="boardSelectByNum" parameterType="int" resultType="bvo">
 		select * from board where board_seq_no=#{board_seq_no}

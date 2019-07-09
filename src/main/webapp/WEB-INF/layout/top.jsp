@@ -87,7 +87,7 @@
 	                    	<div class="navi-primary_user_list">
 	                    		<ul class="navi-user-menu">
 	                    			<li><a href="">마이홈</a></li>
-	                    			<li><a href="member/logout">로그아웃</a></li>
+	                    			<li><a href="${root}/member/logout">로그아웃</a></li>
 	                    		</ul>
 	                    	</div>
                     	</div>

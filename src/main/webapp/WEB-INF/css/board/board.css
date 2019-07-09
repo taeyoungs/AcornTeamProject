@@ -1,0 +1,22 @@
+.question-form__body__content_wrap {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #dbdbdb;
+    transition: border .2s, background-color .2s;
+}
+.btn-priority{
+	margin-left:35%;
+	margin-top: 20px;
+	background-color: #35C5F0;
+	color: white;
+	height: 50px;
+	font-size: 18px;
+	width:250px;
+}
+ul{
+	list-style: none;
+}
+li{
+	display: inline-block;
+}

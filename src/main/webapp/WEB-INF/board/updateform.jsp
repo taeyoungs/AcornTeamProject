@@ -14,17 +14,17 @@
 	<table style="width: 400px;" class="table table-bordered">
 		<caption><b>방명록 수정</b></caption>
 		<tr>
-			<td>제 목: ${dto.board_title}</td>
+			<td>제 목: ${vo.board_title}</td>
 		</tr>
 		<tr>
 			<td>
 				<textarea style="width: 380px;height: 130px;" 
-				name="content" class="form-control">${dto.board_content}</textarea>
+				name="content" class="form-control">${vo.board_content}</textarea>
 			</td>
 		</tr>
 		<tr>
 			<td align="center">
-				<input type="hidden" name="board_seq_no" value="${dto.board_seq_no}">
+				<input type="hidden" name="board_seq_no" value="${vo.board_seq_no}">
 				<input type="hidden" name="pageNum" value="${pageNum}">
 				<button type="submit" style="width: 100px;"
 				 class="btn btn-basic btn-sm">방명록 수정</button>

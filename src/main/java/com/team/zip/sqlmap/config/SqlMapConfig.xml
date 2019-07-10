@@ -10,6 +10,7 @@
 		<typeAlias type="com.team.zip.model.vo.MainCommunityVO" alias="mainCommunityVO"/>
 		<typeAlias type="com.team.zip.model.vo.MainStoreVO" alias="mainStoreVO"/>
 		<typeAlias type="com.team.zip.model.vo.BoardVO" alias="bvo"/>
+		<typeAlias type="com.team.zip.model.vo.BoardReplyVO" alias="brvo"/>
 	</typeAliases>
     
 	<mappers>

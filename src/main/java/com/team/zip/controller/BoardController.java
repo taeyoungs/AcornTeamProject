@@ -1,11 +1,14 @@
 package com.team.zip.controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.team.zip.model.vo.BoardVO;
 import com.team.zip.service.BoardService;
+import com.team.zip.service.MemberService;
 import com.team.zip.util.SpringFileWriter;
 
 @Controller
@@ -23,6 +27,9 @@ public class BoardController {
 	@Autowired
 	private BoardService service;
 
+	@Autowired
+	private MemberService mservice;
+	
 	@RequestMapping("/board/list.do") 
 	public ModelAndView list(
 			@RequestParam(value="pageNum",defaultValue="1")
@@ -30,7 +37,7 @@ public class BoardController {
 	{
 		ModelAndView model=new ModelAndView();
 		int totalCount;//총 데이타 갯수
-		
+
 		totalCount=service.getTotalCount();
 
 		//페이징 복사한거
@@ -91,9 +98,18 @@ public class BoardController {
 		return model;
 	}
 	@RequestMapping("/board/form.do")
-	public String form()
+	public String form(HttpSession session)
 	{
-		return "/board/boardform";
+		//오브젝트 타입으로 저장되어있는 세션의 값을 String으로 변경
+		//login으로 저장후 문자타입 비교는 equals를 통해서 진행
+		String login = (String)session.getAttribute("loginok");
+		if(login != null && login.equals("login")) {
+	
+			return "/board/boardform";
+
+		} else {
+			return "/1/member/signin";
+		}
 	}
 
 	@RequestMapping(value="/board/write.do",method=RequestMethod.POST)
@@ -120,7 +136,7 @@ public class BoardController {
 			}
 		}
 
-		//dto 에 이미지 이름들 저장
+		//vo 에 이미지 이름들 저장
 		vo.setBoard_image(board_image);
 		//db에 저장
 		service.boardInsert(vo);
@@ -139,7 +155,7 @@ public class BoardController {
 		model.setViewName("/board/updateform");
 		return model;
 	}
-	
+
 	@RequestMapping(value="/board/update.do",method=RequestMethod.POST)
 	public String update(
 			@RequestParam int board_seq_no,
@@ -150,6 +166,48 @@ public class BoardController {
 		//db 수정
 		service.boardUpdate(board_seq_no, board_content);
 		//목록으로 이동
+		return "redirect:list.do?pageNum="+pageNum;
+	}
+
+	@RequestMapping("/board/view.do")
+	public String content(Model model,@RequestParam int board_seq_no,
+			@RequestParam int pageNum){
+		//데이터 가져오기
+		BoardVO vo=service.getData(board_seq_no);
+		//model 에 저장
+		model.addAttribute("vo",vo);
+		model.addAttribute("pageNum",pageNum);
+		return "/board/boardview";
+	}
+	
+	@RequestMapping("/board/delete.do")
+	public String delete(
+			@RequestParam int board_seq_no,
+			@RequestParam String pageNum,
+			HttpServletRequest request
+			)
+	{
+		//이미지 업로드 경로
+		String path=request.getSession().getServletContext().getRealPath("/save");
+		System.out.println(path);
+		//db 에서 삭제하기 전에 이미지부터 지우자
+		String board_image=service.getData(board_seq_no).getBoard_image();
+		if(!board_image.equals("noimage"))
+		{
+			//이미지가 여러개일경우 , 로 분리
+			String []myImg=board_image.split(",");
+			for(String s:myImg)
+			{
+				//파일 객체로 생성
+				File f=new File(path+"\\"+s);
+				//존재할경우 삭제
+				if(f.exists())
+					f.delete();
+			}
+		}
+		
+		//삭제
+		service.boardDelete(board_seq_no);
 		return "redirect:list.do?pageNum="+pageNum;
 	}
 }

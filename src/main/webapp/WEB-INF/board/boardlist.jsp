@@ -252,7 +252,7 @@
 									src="https://image.ohou.se/image/central_crop/bucketplace-v2-development/uploads-users-profile_images-1562307995_lLddF7bt4f.jpeg/80/80"
 									onerror="this.src='https://bucketplace-v2-development.s3.amazonaws.com/uploads/default_images/avatar.png'">
 							</span> <span
-								class="questions-item__footer__author__content text-caption-1">${mvo.member_no}</span>
+								class="questions-item__footer__author__content text-caption-1">${vo.member_no}</span>
 							</span> <span class="questions-item__footer__meta text-caption-1">
 								<time datetime="2019-07-05T16:15:18+09:00"
 									class="questions-item__footer__date text-gray"> ${vo.reg_date} </time> <span
@@ -260,7 +260,7 @@
 									class="questions-item__footer__comments__content active">
 										4 </span>
 							</span> <span class="questions-item__footer__views text-gray"> 조회
-									<span class="questions-item__footer__views__content">13</span>
+									<span class="questions-item__footer__views__content">${vo.board_hits}</span>
 							</span>
 							</span>
 							<ul class="questions-item__footer__tags keyword-list">

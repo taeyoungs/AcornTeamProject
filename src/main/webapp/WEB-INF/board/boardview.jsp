@@ -19,23 +19,6 @@
 </head>
 <body>
 <main role="main" id="root">
-  <a id="btn-open-app-floating" class="has-floating" href="https://ohouse.onelink.me/2107755860?af_ad=&amp;af_c_id=&amp;af_campaign=&amp;af_channel=&amp;af_dp=ohouseapp%3A%2F%2Fohou.se%2Fquestions%2F11761%3Faffect_id%3D0%26affect_type%3DQuestionIndex%26query%3D&amp;af_media=web_organic&amp;af_web_dp=https%3A%2F%2Fohou.se%2Fquestions%2F11761%3Faffect_id%3D0%26affect_type%3DQuestionIndex%26query%3D&amp;pid=web_organic">앱열기</a>
-
-
-
-
-
-<div id="kakaoTemplateData" style="display: none"
-     data-title="거실 소파 추천 부탁 드려연"
-     data-id="11761"
-     data-photo="https://image.ohou.se/image/central_crop/bucketplace-v2-development/uploads-cards-snapshots1562512356_Z.jpeg/1700/1700"
-     data-user_nickname="${mvo.member_no}"
-     data-user_profile="https://image.ohou.se/image/central_crop/bucketplace-v2-development/uploads-users-profile_images1561382491_Ik8.jpeg/850/850"
-     data-comment_count="6"
-     data-share_count="0"
-     data-view_count="54"
-></div>
-
 <article id="page" class="page-2col container" data-question-id="11761">
   <section id="question__content" class="page-2col__content">
     <header class="question__content__header page-2col__content__header">
@@ -51,7 +34,7 @@
     </div>
     <div class="question__author__content">
       <div class="question__author__content__name text-body-1">
-        <span class="question__author__content__name__name">${mvo.member_no}</span>
+        <span class="question__author__content__name__name">${vo.member_no}</span>
       </div>
       <div class="question__author__content__body text-caption-4"></div>
     </div>
@@ -92,7 +75,7 @@
         </time>
         <span class="question__content__footer__views text-gray">
             조회
-            <span class="question__content__footer__views__content">54</span>
+            <span class="question__content__footer__views__content">${vo.board_hits}</span>
           </span>
         <span class="question__content__footer__bookmarks text-gray">
           스크랩
@@ -103,8 +86,9 @@
       </div>
     </footer>
     <section class="question__content__comments">
-      <div data-react-class="CommentFeed" data-react-props="{&quot;type&quot;:&quot;Question&quot;,&quot;id&quot;:11761,&quot;count&quot;:6,&quot;total_count&quot;:6,&quot;comment_name&quot;:&quot;답글&quot;,&quot;user&quot;:{&quot;id&quot;:4468397,&quot;nickname&quot;:&quot;null+1&quot;,&quot;profileImageUrl&quot;:&quot;https://bucketplace-v2-development.s3.amazonaws.com/uploads/users/profile_images/1561688957_naver_7e2bf28501dab80529cd66ff062ff12cbc8dfdebedfdc7b84a4f2968c259ac00.jpg&quot;,&quot;userableType&quot;:&quot;NormalUser&quot;,&quot;userableId&quot;:4510362,&quot;isAdmin&quot;:false},&quot;page_size&quot;:5,&quot;disable_image&quot;:null,&quot;disable_reply&quot;:null,&quot;show_mentor&quot;:true,&quot;placeholder&quot;:null}"></div>
-
+      <div data-react-class="CommentFeed">
+      
+      </div>
     </section>
     <aside class="question__content__aside question__aside">
   <div class="question__aside__section question__aside__popular">
@@ -139,7 +123,7 @@
     </div>
     <div class="question__author__content">
       <div class="question__author__content__name text-body-1">
-        <span class="question__author__content__name__name">${vo.member_no}</span>
+        <span class="question__author__content__name__name">${mvo.member_no}</span>
       </div>
       <div class="question__author__content__body text-caption-4"></div>
     </div>
@@ -155,9 +139,11 @@
   </div>
 </address>
       <div class="question__sidebar__actions question__actions">
-<c:if test="${sesssionScope.mvo.member_id == vo.member_no}">
-	<button type="button">수정</button>
-	<button type="button">삭제</button>
+<c:if test="${sessionScope.mvo.member_no eq vo.member_no}">
+	<button type="button" class="btn btn-md btn-priority question__aside__section__new-question"
+	 style="width:200px;margin-right:2px;">수정</button>
+	<button type="button" class="btn btn-md btn-priority question__aside__section__new-question"
+	 style="width:200px;margin-left:2px;" onclick="location.href='delete.do?board_seq_no=${vo.board_seq_no}&pageNum=${pageNum}'">삭제</button>
 </c:if>
 </div>
       <aside class="question__sidebar__aside question__aside">

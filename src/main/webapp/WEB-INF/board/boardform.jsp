@@ -33,6 +33,8 @@
 
 			</header>
 			<section>
+				<!-- 로그인한 정보를 같이 넘겨야 한다 -->
+				<input type="hidden" name="member_no" value="${sessionScope.member_no}">
 				<div class="question-form__body__content_wrap">
 					<textarea required="required" placeholder="내용을 적어주세요" style="height:200px;width:100%;" name="board_content"></textarea>
 					<div>

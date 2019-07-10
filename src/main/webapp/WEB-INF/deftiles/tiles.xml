@@ -18,6 +18,11 @@
 		<put-attribute name="top" value="/WEB-INF/layout/top.jsp"/>
 		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
 	</definition>
+	<definition name="mainLayout4" template="/WEB-INF/layout/layout_mainmitop.jsp">
+		<put-attribute name="top" value="/WEB-INF/layout/top.jsp"/>
+		<put-attribute name="navi" value="/WEB-INF/layout/userNavi.jsp"/>
+		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+	</definition>
 	<!-- template [E] -->
 	
 	<definition name="main.tiles" extends="mainLayout">
@@ -34,5 +39,7 @@
 	<definition name="/2/*/*" extends="mainLayout3">
 		<put-attribute name="main" value="/WEB-INF/{1}/{2}.jsp"/>
 	</definition>
-	
+	<definition name="/3/*/*" extends="mainLayout4">
+		<put-attribute name="main" value="/WEB-INF/{1}/{2}.jsp"/>
+	</definition>
 </tiles-definitions>

@@ -5,7 +5,7 @@
 <mapper namespace="board">
 	<insert id="boardInsert" parameterType="bvo">
 		insert into board values (seq_no.nextval,
-		#{board_title},#{board_content},1,
+		#{board_title},#{board_content},#{member_no},
 		sysdate,1,#{board_image})
 	</insert>
 	<select id="boardPagingList" parameterType="HashMap" resultType="bvo">
@@ -18,15 +18,22 @@
 	<select id="boardTotalCount" resultType="int">
 		select count(*) from board
 	</select>
+	<insert id="wirteBoardReply" parameterType="brvo">
+		insert into b_reply values (b_reply_seq_no,
+		#{member_no},#{b_reply_content},sysdate,#{b_reply_no})
+	</insert>
+	<select id="getBoardReplyData" resultType="brvo" parameterType="int">
+		select m.member_nickname, b.b_reply_content, b.reg_date from member m, b_reply b where m.memeber_no=b.member_no and b_reply_seq_no=${b.b_reply_seq_no}
+	</select>
 	<!-- <update id="boardChuUpdate" parameterType="int">
 		update board set chu=chu+1 where num=#{num}
 	</update>
 	<select id="boardSelectChu" parameterType="int" resultType="int">
 		select chu from board where num=#{num}
-	</select>
+	</select> -->
 	<delete id="boardDelete" parameterType="int">
-		delete from board where num=#{num}
-	</delete> -->
+		delete from board where board_seq_no=#{board_seq_no}
+	</delete>
 	
 	<select id="boardSelectByNum" parameterType="int" resultType="bvo">
 		select * from board where board_seq_no=#{board_seq_no}

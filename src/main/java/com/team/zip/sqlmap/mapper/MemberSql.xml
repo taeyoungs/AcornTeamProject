@@ -17,4 +17,8 @@
 	<select id="getMemberNo" parameterType="HashMap" resultType="int">
 		select member_no from member where member_id = #{email} and member_domain = #{domain}
 	</select>
+	<select id="memberUpdate" parameterType="mvo">
+		update member set member_nickname = #{member_nickname}, member_image = #{member_image},
+			member_sex = #{member_sex}, member_birth = #{member_birth} where member_no = #{member_no}
+	</select>
 </mapper>

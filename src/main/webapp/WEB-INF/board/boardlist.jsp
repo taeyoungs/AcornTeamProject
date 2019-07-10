@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>질문과 답변</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<link rel="stylesheet" type="text/css" href="${root}/css/common.css">
 <link rel="stylesheet" media="all"
 	href="https://d1nyaccf3kuclt.cloudfront.net/assets/v3/bucket_ui/bucket_ui-a69ea26903ba7b7b1e58db706ee621d7fa1695945755178ff07fe330df44fff6.css" />
 <link rel="stylesheet" media="screen"
@@ -222,90 +223,87 @@
 				</div>
 			</div>
 		</section>
-<c:forEach var="vo" items="${list}">
-		<section id="questions-list" class="container">
-			<a class="questions-item__link"
-				href="/questions/11684?affect_id=0&amp;affect_type=QuestionIndex&amp;query=">
-				<article class="questions-item">
-					<div class="questions-item__image">
-						<div class="image-wrap square">
-							<c:if test="${vo.board_image!='board_image'}">
-  								<c:forTokens var="myimg" items="${vo.board_image}" delims=",">
-  									<a href="../save/${myimg}" target="_new">
-  									<img src="../save/${myimg}" style="max-width: 100px;"
-  										 class="img-thumbnail"></a>
-  								</c:forTokens>
-  							</c:if>
+		<section id="questions-notice-list" class="container">
+    		<ol class="questions-notice-list__list">
+        		<li class="questions-notice-list__list__entry">
+           				<span class="icon icon-etc-announcement-md"></span>
+            			<span class="title text-body-1">[공지] 쇼핑 포인트 5배! 7월 멘토 모집 마감</span>
+               	</li>
+   			</ol>
+  		</section>
+		<c:forEach var="vo" items="${list}">
+			<section id="questions-list" class="container">
+				<a class="questions-item__link"
+					href="view.do?board_seq_no=${vo.board_seq_no}&pageNum=${currentPage}">
+						<div class="questions-item__image">
+							<div class="image-wrap square">
+								<c:if test="${vo.board_image!='board_image'}">
+									<c:forTokens var="myimg" items="${vo.board_image}" delims=",">
+										<img src="../save/${myimg}" style="max-width: 100px;"
+											class="img-thumbnail">
+									</c:forTokens>
+								</c:if>
+							</div>
 						</div>
-					</div>
-					<h1 class="questions-item__title text-heading-5 bold text-black">${vo.board_title}</h1>
-					<p class="questions-item__content text-caption-1">${vo.board_content}</p>
-					<footer class="questions-item__footer">
-						<span class="questions-item__footer__author"> <span
-							class="questions-item__footer__author__image"> <img
-								src="https://image.ohou.se/image/central_crop/bucketplace-v2-development/uploads-users-profile_images1558534283_eTD3li.jpeg/80/80"
-								onerror="this.src='https://bucketplace-v2-development.s3.amazonaws.com/uploads/default_images/avatar.png'">
-						</span> <span
-							class="questions-item__footer__author__content text-caption-1">저예유</span>
-						</span> <span class="questions-item__footer__meta text-caption-1">
-							<time datetime="2019-07-04T11:12:38+09:00"
-								class="questions-item__footer__date text-gray"> 3시간 전 </time> <span
-							class="questions-item__footer__comments text-gray"> 답글 <span
-								class="questions-item__footer__comments__content active">
-									6 </span>
-						</span> <span class="questions-item__footer__views text-gray"> 조회
-								<span class="questions-item__footer__views__content">31</span>
-						</span>
-						</span>
-						<ul class="questions-item__footer__tags keyword-list">
-							<li
-								class="keyword-item questions-item__footer__tags__tag
+						<h1 class="questions-item__title text-heading-5 bold text-black">${vo.board_title}</h1>
+						<p class="questions-item__content text-caption-1">${vo.board_content}</p>
+						<footer class="questions-item__footer">
+							<span class="questions-item__footer__author"> <span
+								class="questions-item__footer__author__image"> <img
+									src="https://image.ohou.se/image/central_crop/bucketplace-v2-development/uploads-users-profile_images-1562307995_lLddF7bt4f.jpeg/80/80"
+									onerror="this.src='https://bucketplace-v2-development.s3.amazonaws.com/uploads/default_images/avatar.png'">
+							</span> <span
+								class="questions-item__footer__author__content text-caption-1">${vo.member_no}</span>
+							</span> <span class="questions-item__footer__meta text-caption-1">
+								<time datetime="2019-07-05T16:15:18+09:00"
+									class="questions-item__footer__date text-gray"> ${vo.reg_date} </time> <span
+								class="questions-item__footer__comments text-gray"> 답글 <span
+									class="questions-item__footer__comments__content active">
+										4 </span>
+							</span> <span class="questions-item__footer__views text-gray"> 조회
+									<span class="questions-item__footer__views__content">${vo.board_hits}</span>
+							</span>
+							</span>
+							<ul class="questions-item__footer__tags keyword-list">
+								<li
+									class="keyword-item questions-item__footer__tags__tag
                   "
-								role="button">샷시/창호</li>
-							<li
-								class="keyword-item questions-item__footer__tags__tag
+									role="button">단독주택</li>
+								<li
+									class="keyword-item questions-item__footer__tags__tag
                   "
-								role="button">필름</li>
-							<li
-								class="keyword-item questions-item__footer__tags__tag
-                  "
-								role="button">블라인드</li>
-							<li
-								class="keyword-item questions-item__footer__tags__tag
-                  "
-								role="button">원룸</li>
-							<li
-								class="keyword-item questions-item__footer__tags__tag
-                  "
-								role="button">10평대</li>
-						</ul>
-					</footer>
-				</article>
-			</a>
-		</section>
-</c:forEach>
-		<div id="questions-paginator">
-			<nav class="paginator" data-total="1899" data-current="1">
-				<ul>
-					<li rel="prev" role="button" class="hidden"><span
-						class="icon icon-pointer-button-square-left" aria-hidden="true"></span>
-					<li role="" class="active" data-page="1">1</li>
-					<li role="button" class="" data-page="2">2</li>
-					<li role="button" class="" data-page="3">3</li>
-					<li role="button" class="" data-page="4">4</li>
-					<li role="button" class="" data-page="5">5</li>
-					<li role="button" class="" data-page="6">6</li>
-					<li role="button" class="" data-page="7">7</li>
-					<li role="button" class="" data-page="8">8</li>
-					<li role="button" class="" data-page="9">9</li>
-					<li role="button" class="" data-page="10">10</li>
-					<li rel="next" role="button" class=""><span
-						class="icon icon-pointer-button-square-right" aria-hidden="true"></span></li>
-				</ul>
-			</nav>
-
-		</div>
-
+									role="button">10평미만</li>
+							</ul>
+						</footer>
+					</article>
+				</a>
+			</section>
+		</c:forEach>
+<!-- paging -->
+<div style="width: 500px;text-align: center;margin:auto;">
+	<ul  class="pagination">
+		<c:if test="${startPage>1}">
+			<li>
+				<a href="list.do?pageNum=${startPage-1}">◀</a>
+			</li>
+		</c:if>
+		<c:forEach var="pp" begin="${startPage}" end="${endPage}">
+			<li>
+			  <c:if test="${pp==currentPage}">
+				<a href="list.do?pageNum=${pp}" style="color: red;">${pp}</a>
+			  </c:if>
+			  <c:if test="${pp!=currentPage}">
+				<a href="list.do?pageNum=${pp}" style="color: black;">${pp}</a>
+			  </c:if>	
+			</li>
+		</c:forEach>
+		<c:if test="${endPage<totalPage}">	
+			<li>
+				<a href="list.do?pageNum=${endPage+1}">▶</a>
+			</li>
+		</c:if>
+	</ul>
+</div>
 		<div id="questions-filter-sort-modal"
 			class="modal fade fade-done modal-filter">
 			<div class="modal-dialog" role="document" style="">
@@ -323,11 +321,36 @@
 							href="/questions?order=recent&amp;page=1">최신순</a></li>
 					</ul>
 				</div>
-
 			</div>
 		</div>
 	</div>
-
 	</main>
+<footer class="footer">
+	<div class="footer_content_wrapper">
+		<div class="footer_cs_wrapper">
+			<p class="footer_cs">
+				<b><a class="footer_customer_center">고객센터 ></a></b>
+				<br>
+				<strong><a class="footer_customer_center_tel">1588-1234</a></strong>
+				<br>
+				근무시간 10:00 - 18:00 ( 평일 점심시간 주말 공휴일 제외 )
+			</p>
+		</div>
+		
+		<div class="footer_outbound">
+		
+		</div>
+		
+		<div class="short_cuts">
+			<a class="short_cuts_items">상호명:(주)혼자하는인테리어</a>
+			<a class="short_cuts_items" href="mailto:sowon7912@gmail.com">이메일:sowon7912@gmail.com</a>
+			<a class="short_cuts_items">대표이사:박소원</a>
+			<a class="short_cuts_items">사업자 등록번호:880621-2</a>
+		</div>
+		<div class="footer_address">
+			<span class="footer_address_item">주소 : 서울특별시 강남구 역삼동 강남대로94길 20</span>
+		</div>
+	</div>
+</footer>
 </body>
 </html>

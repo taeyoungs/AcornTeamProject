@@ -119,7 +119,9 @@ $(function(){
             $(".navi-primary_container").addClass("float");
             $(".navi-secondary_container").addClass("float");
             $(".navi-primary_menu").removeClass("open");
-            $(".navi-primary-wrap").css("height", "81px");   
+            if(secondaryTop != -51) {
+            	$(".navi-primary-wrap").css("height", "81px");  
+            }	
             $(".navi-secondary-wrap").css("height", "51px");
         }
     });

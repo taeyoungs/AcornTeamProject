@@ -12,6 +12,7 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <c:set var="root" value="<%=request.getContextPath()%>"/>
+<script type="text/javascript" src="${root}/js/photo/photodetail.js"></script>
 <link rel="stylesheet" href="${root}/css/photo/photo_detail.css">
 <link rel="shortcut icon" href="#">
 </head>
@@ -31,7 +32,7 @@
 					<figure>
 						<div class="card-img card">
 							<div class="card-img__bg" style="padding-top: 65%"></div>
-							<img src="${root }/image/common/room1.png">
+							<img src="${pvo.photo_image}">
 						</div>
 						<figcaption>
 							<p>${pvo.photo_content }</p>
@@ -39,9 +40,13 @@
 					</figure>
 					
 					<ul class="keyword">
+						<c:forEach items="${hashtag }" var="hash">
 						<li class="keyword__item">
-							<div class="keyword__item__badge">${pvo.hashtag }</div>
+							<div class="keyword__item__badge">
+							#${hash }
+							</div>
 						</li>
+						</c:forEach>
 					</ul>
 					
 				</section>
@@ -65,23 +70,23 @@
 						<h1 class="comment-feed__header">댓글
 							<span class="comment-feed__header__count">${fn:length(cvo)}</span>
 						</h1>
-						<form class="comment-feed__form">
+						<form class="comment-feed__form" id="commentform">
 							<div class="comment-feed__form__user">
 								<c:if test="${sessionScope.mvo.member_image ne null}">
 									<img src="${root }/image/common/${sessionScope.mvo.member_image }">
 								</c:if>
 								<c:if test="${sessionScope.mvo.member_image eq null}">
 	                    			<img src="${root}/image/common/user.png">
-	                    		</c:if>
+                </c:if>
 							</div>
 							<div class="comment-feed__form__input">
 								<div class="comment-feed__form__content">
 									<div class="comment-content-input">
-										<input type="text" class="comment-content-input__text comment-feed__form__content__text">
+										<input type="text" class="comment-content-input__text comment-feed__form__content__text" id="comment">
 									</div>
 								</div>
 								<div class="comment-feed__form__actions">
-									<button class="comment-feed__form__submit" type="submit" disabled="disabled"></button>
+									<button class="comment-feed__form__submit" type="button"></button>
 								</div>
 							</div>
 						</form>

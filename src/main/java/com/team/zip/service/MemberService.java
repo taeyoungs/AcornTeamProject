@@ -49,5 +49,11 @@ public class MemberService {
 	public MemberVO getData(int num) {
 	      return dao.getData(num);
 	}
+	
+	public void updateMember(MemberVO mvo) {
+		System.out.println(mvo.getMember_birth());
+		System.out.println(mvo.getMember_sex());
+		dao.updateMember(mvo);
+	}
 
 }

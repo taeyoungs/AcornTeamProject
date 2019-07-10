@@ -147,9 +147,7 @@
 									</button>
 									<button class="card-item-action-list__action" type="button">
 										<img class="icon icon--stroke" src="${root }/image/common/comment.png" width="24" height="24">
-									
 										<span class="count"></span>
-										
 									</button>
 								</aside>
 								<div class="expandable-text card-item-description card-item__description">

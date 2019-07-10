@@ -40,13 +40,14 @@ public class PhotoService {
 	public List<PhotoVO> photoSortByNew(){
 		return dao.photoSortByNew();
 	}
-	
+	 
 	public List<PhotoVO> photoSortByHomeType(String HomeType){
 		return dao.photoSortByHomeType(HomeType);
 	}
 	
 	public List<PhotoVO> photoSortByPyeong(String Pyeong){
 		return dao.photoSortByPyeong(Pyeong);
+
 	}
 	
 }

@@ -1,0 +1,149 @@
+#users-contents {
+	max-width: 800px;
+	width: 100%;
+    margin: 30px auto;
+    background-color: #ffffff;
+    padding: 40px 50px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2);
+    color: #424242;
+}
+
+.users-title {
+	float: left;
+    font-size: 24px;
+    line-height: 32px;
+    padding: 0 0 30px;
+}
+
+.withdraw {
+	float: right;
+    font-size: 13px;
+    line-height: 32px;
+    color: #bdbdbd;
+    text-decoration: underline;
+    font-weight: normal;
+}
+
+#users-contents>form>.field {
+	margin-top: 20px;
+    overflow: hidden;
+    clear: both;
+}
+#users-contents>form>.field>.sub_title {
+	float: left;
+    width: 144px;
+    line-height: 40px;
+}
+#users-contents>form>.field>input[type=text] {
+	padding: 0 15px;
+    border: solid 1px #dcdcdc;
+    box-sizing: border-box;
+    width: 290px;
+    height: 40px;
+    line-height: 40px;
+}
+#users-contents>form>.field>input[type=text].email {
+	width: 136px;
+}
+
+#users-contents>form>.field>.alert {
+	clear: both;
+    margin-top: 12px;
+    padding-left: 156px;
+    padding-right: 12px;
+    font-size: 13px;
+    color: #dcdcdc;
+    font-weight: normal;
+}
+#users-contents>form>.field>.radio_buttons {
+	float: left;
+    margin-right: 10px;
+    width: 100px;
+    height: 40px;
+    line-height: 36px;
+    position: relative;
+}
+.ui_checked>input {
+	display: none;
+}
+
+#users-contents>form>.field>.radio_buttons>.image {
+	width: 22px;
+	height: 22px;
+	margin: 9px 15px 9px 0;
+	float: left;
+}
+#users-contents>form>.field>.radio_buttons>label {
+	margin: 9px 0 9px 0;
+	font-size: 16px;
+    color: #424242;
+    padding: 2px 0;
+    display: block;
+    z-index: 1;
+    position: relative;
+    line-height: initial !important;
+}
+#users-contents>form>.field>select {
+	padding: 0 15px;
+    border: solid 1px #dcdcdc;
+    box-sizing: border-box;
+    height: 40px;
+    line-height: 40px;
+    background-color: #ffffff;
+}
+
+#users-contents>form>.image_uploader {
+	position: relative;
+    height: 220px;
+    cursor: pointer;
+}
+#users-contents>form>.field.profile>.result {
+	width: 220px;
+	height: 220px;
+	float: left;
+	background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#users-contents>form>.image_uploader>.result>.filter {
+	width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3);
+    position: relative;
+}
+#users-contents>form>.image_uploader>.result>.filter>.icon {
+	position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 62px;
+    height: 60px;
+}
+
+#users-contents>form>.field>input[type=text].comment {
+	width: calc(100% - 144px);
+}
+#users-contents>form>.field>.limit {
+	float: right;
+    margin: 10px;
+    font-size: 12px;
+    color: #dcdcdc;
+}
+#users-contents>form>input[type=submit] {
+	margin: 25px 0 0 144px;
+    width: 290px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #35c5f0;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+

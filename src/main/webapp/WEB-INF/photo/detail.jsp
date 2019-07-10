@@ -38,6 +38,7 @@
 							<p>${pvo.photo_content }</p>
 						</figcaption>
 					</figure>
+					
 					<ul class="keyword">
 						<c:forEach items="${hashtag }" var="hash">
 						<li class="keyword__item">
@@ -47,6 +48,7 @@
 						</li>
 						</c:forEach>
 					</ul>
+					
 				</section>
 				<section class="footer">
 					<div class="footer__stats">
@@ -75,7 +77,7 @@
 								</c:if>
 								<c:if test="${sessionScope.mvo.member_image eq null}">
 	                    			<img src="${root}/image/common/user.png">
-	                    		</c:if>
+                </c:if>
 							</div>
 							<div class="comment-feed__form__input">
 								<div class="comment-feed__form__content">

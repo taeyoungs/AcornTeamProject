@@ -23,7 +23,6 @@ $(function(){
 			function(){$(this).addClass("selected")},
 			function(){$(this).removeClass("selected")
 	});
-  
 	$(".panel-entry-list__item__title").on("click", function(){
 		var value = $(this).text();
 		var idx  = $(this).attr("idx");

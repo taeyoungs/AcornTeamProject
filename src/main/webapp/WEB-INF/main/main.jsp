@@ -23,7 +23,8 @@
 							<div class="story-entry__content">
 								<div class="story-entry__content__title">내가 선택한 오늘의 행복.</div>
 								<div class="story-entry__content__profile">
-									<span class="story-entry__content__profile__image"></span>
+									<span class="story-entry__content__profile__image" style="background-image: url('${root}/image/common/girl.png')">
+									</span>
 									<span class="story-entry__content__profile__name">sowon7912</span>
 								</div>
 							</div>
@@ -43,6 +44,11 @@
 							</li>
 						</ul>
 						<ul class="home-header__banner-items">
+							<li class="home-header__banner__item">
+								<a class="home-header__banner__item__link">
+									<div class="pc-banner" style="background-image: url('/image/common/weired01.png')"></div>
+								</a>
+							</li>
 							<li class="home-header__banner__item">
 								<a class="home-header__banner__item__link">
 									<div class="pc-banner" style="background-image: url('/image/common/weired02.png')"></div>

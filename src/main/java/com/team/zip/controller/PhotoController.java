@@ -130,9 +130,8 @@ public class PhotoController {
 		MemberVO mvo = mservice.getData(num);
 		List<PhotoCombineVO> cvo = cservice.getData(num);
 
-		
 		String[] hashtag = pvo.getHashtag().split(",");
-		
+
 		model.addAttribute("pvo", pvo);
 		model.addAttribute("mvo", mvo);
 		model.addAttribute("cvo", cvo);
@@ -140,7 +139,7 @@ public class PhotoController {
 		
 		return "/2/photo/detail";
 	}
-
+  
 	@RequestMapping(value="/photo/upload.do", method=RequestMethod.POST)
 	public String photoUpload(@RequestParam MultipartFile photo, HttpServletRequest request) {
 		

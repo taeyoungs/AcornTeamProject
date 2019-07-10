@@ -321,7 +321,6 @@
 							href="/questions?order=recent&amp;page=1">최신순</a></li>
 					</ul>
 				</div>
-
 			</div>
 		</div>
 	</div>

@@ -70,6 +70,7 @@
 								<c:if test="${sessionScope.mvo.member_image ne null}">
 									<img src="${root }/image/common/${sessionScope.mvo.member_image }">
 								</c:if>
+								<c:if test="${mvo.member_image eq null}">
 								<c:if test="${sessionScope.mvo.member_image eq null}">
 	                    			<img src="${root}/image/common/user.png">
 	                    		</c:if>

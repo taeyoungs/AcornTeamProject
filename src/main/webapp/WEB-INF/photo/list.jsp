@@ -43,7 +43,7 @@
 																<span class="panel-entry-list__item__title" idx="2">최신순 </span>
 															</div>
 														</button>
-													</li>
+                          </li>
 												</ul>
 											</div>
 										</div>

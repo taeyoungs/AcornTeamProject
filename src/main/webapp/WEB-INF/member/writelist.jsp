@@ -29,7 +29,7 @@
 					</a>
 				</section>
 				<section class="upload-types_item_wrap">
-					<a href="${root}/zipdle/uploadform.do" class="upload-types_item upload-types_item_project">
+					<a href="" class="upload-types_item upload-types_item_project">
 						<div class="upload-types_item_pictogram">
 							<div class="upload-types_item_pictogram_contents">
 								<img src="${root}/image/common/zipdle.png" style="width: 70px;">

@@ -10,6 +10,6 @@
 	<title>Welcome</title>
 </head> 
 <body>
-	<c:redirect url="main.do"/>	
+	<c:redirect url="main.do"/>
 </body>
 </html>

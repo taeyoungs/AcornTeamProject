@@ -87,7 +87,7 @@ a {
     background: #fafafa;
     border-radius: 50%;
 }
-.upload-types_item_pictogram.changed:after {
+.upload-types_item_pictogram:hover:after {
     content: '';
     display: block;
     padding-top: 100%;

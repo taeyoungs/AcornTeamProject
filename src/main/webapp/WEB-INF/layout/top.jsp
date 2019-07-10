@@ -80,14 +80,14 @@
 	                    			<img src="${root}/image/common/${sessionScope.mvo.member_image}" class="navi-primary_user-image">
 	                    		</c:if>
 	                    		<c:if test="${sessionScope.mvo.member_image eq null}">
-	                    			<img src="${root}/image/common/user.png" class="navi-primary_user-image">
+	                    			<img src="${root}/common/image/user.png" class="navi-primary_user-image">
 	                    		</c:if>
 	                    		<img src="${root}/image/common/button.png" class="navi-primary_user-btn">
 	                    	</div>
 	                    	<div class="navi-primary_user_list">
 	                    		<ul class="navi-user-menu">
 	                    			<li><a href="">마이홈</a></li>
-	                    			<li><a href="${root}/member/logout">로그아웃</a></li>
+	                    			<li><a href="member/logout">로그아웃</a></li>
 	                    		</ul>
 	                    	</div>
                     	</div>

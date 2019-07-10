@@ -142,7 +142,7 @@
 						<div class="main_zip_content">
 							<div class="main_zip_content_title">${zip.zipTitle}</div>
 							<div class="main_zip_content_profile">
-								<span class="main_zip_profile_image">${zip.memberImage}</span>
+								<span class="main_zip_profile_image" style="background-image: url('/image/common/user.png')"></span>
 								<span class="main_zip_profile_nickname">${zip.memberNickname}</span>
 							</div>
 						</div>
@@ -194,8 +194,12 @@
 							<div class="main_photo_profile_wrap">
 								<div class="main_photo_profile_content">
 									<div class="main_photo_profile_item">
-										<span class="main_photo_profile_image">${photo.memberImage}</span>
-										<span class="main_photo_profile_nickname">${photo.memberNickname}</span>
+										<c:if test="${empty photo.memberImage}">
+										<span class="main_photo_profile_image" style="background-image: url('/image/common/user.png')"></span>
+										</c:if>
+										 <c:if test="${!empty photo.memberImage}">
+										<span class="main_photo_profile_nickname" style="background-image: url('${photo.memberImage}')"></span>
+										</c:if>
 									</div>
 									<div class="main_photo_rank_icon">
 										<span class="main_photo_rank_no">${status.count}</span>

@@ -15,7 +15,7 @@
 </head>
 <body>
     <div id="navi" class="navi-top-banner">
-        <nav class="navi-primary-wrap sticky-top">
+        <nav class="navi-primary-wrap sticky-top" style="height: auto">
             <div class="navi-primary_container sticky-content" data-offset="0">
                 <div class="navi-primary">
                     <a class="navi-primary_logo" href="${root}/main.do?where=home">
@@ -25,7 +25,7 @@
                         <ul class="navi-menu">
                             <li class="navi-menu_primary current active">
                                <div class="title">
-                                   <a href="#">커뮤니티</a>
+                                   <a href="${root}/main.do?where=home">커뮤니티</a>
                                </div>
                             </li>
                             <li class="navi-menu_primary">
@@ -76,17 +76,17 @@
                    <c:if test="${sessionScope.loginok eq 'login'}">
                     	<div class="navi-primary_user logged">
 	                    	<div class="navi-primary_user_header">
- 	                    		<c:if test="${sessionScope.mvo.member_image ne null}">
-	                    			<img src="${root}/image/common/${sessionScope.mvo.member_image}" class="navi-primary_user-image">
+ 	                    		<c:if test="${sessionScope.mvo.member_image ne 'noimage'}">
+	                    			<img src="${root}/uploadImage/${sessionScope.mvo.member_image}" class="navi-primary_user-image">
 	                    		</c:if>
-	                    		<c:if test="${sessionScope.mvo.member_image eq null}">
+	                    		<c:if test="${sessionScope.mvo.member_image eq 'noimage'}">
 	                    			<img src="${root}/image/common/user.png" class="navi-primary_user-image">
 	                    		</c:if>
 	                    		<img src="${root}/image/common/button.png" class="navi-primary_user-btn">
 	                    	</div>
 	                    	<div class="navi-primary_user_list">
 	                    		<ul class="navi-user-menu">
-	                    			<li><a href="">마이홈</a></li>
+	                    			<li><a href="${root}/users/userPhoto">마이홈</a></li>
 	                    			<li><a href="${root}/member/logout">로그아웃</a></li>
 	                    		</ul>
 	                    	</div>
@@ -103,7 +103,7 @@
                 </div>
             </div>
         </nav>
-        <nav class="navi-secondary-wrap sticky-top">
+        <nav class="navi-secondary-wrap sticky-top" style="height: auto">
             <div class="navi-secondary_container sticky-content open" data-offset="${secondaryTop}">
                 <div class="navi-secondary">
                     <div class="navi-secondary_menu">

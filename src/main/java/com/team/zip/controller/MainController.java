@@ -31,6 +31,14 @@ public class MainController {
 			int memberNo = (Integer)session.getAttribute("member_no");
 			MemberVO mvo = mservice.getMember(memberNo);
 			
+			if(mvo.getMember_birth() != null) {
+				String temp[] = mvo.getMember_birth().split("-");
+				mvo.setMember_birth_1i(temp[0]);
+				mvo.setMember_birth_2i(temp[1]);
+				mvo.setMember_birth_3i(temp[2]);
+			}
+			System.out.println(mvo.getMember_sex());
+
 			session.setAttribute("mvo", mvo);
 			session.setMaxInactiveInterval(10800);
 		}

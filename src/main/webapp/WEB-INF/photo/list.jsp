@@ -33,17 +33,17 @@
 													<li class="panel-entry-list__item-wrap">
 														<button class="panel-entry-list__item" type="button">
 															<div class="panel-entry-list__item__header">
-																<span class="panel-entry-list__item__title" idx="1">인기순</span>
+																<span class="panel-entry-list__item__title" idx="1" value="pop">인기순</span>
 															</div>
 														</button>
 													</li>
 													<li class="panel-entry-list__item-wrap">
 														<button class="panel-entry-list__item" type="button">
 															<div class="panel-entry-list__item__header">
-																<span class="panel-entry-list__item__title" idx="2">최신순 </span>
+																<span class="panel-entry-list__item__title" idx="2" value="new">최신순 </span>
 															</div>
 														</button>
-                          </li>
+													</li>
 												</ul>
 											</div>
 										</div>
@@ -98,12 +98,11 @@
 									</li>
 								</ul>
 							</div>
-							<ul class="filter-bar_tag-list"></ul>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="virtualized-list card-feed__content row" style="padding-top: 0px;">
+			<div class="virtualized-list card-feed__content row" style="padding-top: 0px;" id="aaa">
 			<c:forEach var="pvo" items="${list}">
 				<div class="card-feed__item-wrap col-12 col-md-4 col-lg-3">
 					<div class="card-feed_item">
@@ -132,7 +131,7 @@
 							</c:forEach>
 							<div class="card-item_content">
 								<div class="card-item-image">
-									<img class="image" src="${root }/image/common/room1.png" onclick="location.href='photodetail.do?num=${pvo.photo_seq_no }'">
+									<img class="image" src="${pvo.photo_image}" onclick="location.href='photodetail.do?num=${pvo.photo_seq_no }'">
 									<span class="card-item-image_view-count">
 										조회수 ${pvo.photo_hits }
 									</span>
@@ -148,7 +147,7 @@
 									</button>
 									<button class="card-item-action-list__action" type="button">
 										<img class="icon icon--stroke" src="${root }/image/common/comment.png" width="24" height="24">
-										<span class="count" data-no="${pvo.photo_seq_no }"></span>
+										<span class="count"></span>
 									</button>
 								</aside>
 								<div class="expandable-text card-item-description card-item__description">

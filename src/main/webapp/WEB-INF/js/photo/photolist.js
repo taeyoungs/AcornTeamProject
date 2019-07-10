@@ -1,6 +1,4 @@
 $(function(){
-	
-	
 	$(".filter-bar__control-list__item").mouseenter(function(){
 		$(this).find(".drop-down-panel").css({
 			"visibility": "visible",
@@ -24,5 +22,13 @@ $(function(){
 	$(".panel-entry-list__item").hover(
 			function(){$(this).addClass("selected")},
 			function(){$(this).removeClass("selected")
+	});
+  
+	$(".panel-entry-list__item__title").on("click", function(){
+		var value = $(this).text();
+		var idx  = $(this).attr("idx");
+		
+		console.log(value);
+		location.href='photoSortlist.do?idx='+idx+'&value='+value;
 	});
 });

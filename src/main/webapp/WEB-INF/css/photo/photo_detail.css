@@ -145,6 +145,7 @@ figure{
 .card-img{
 	width: 100%;
 	position: relative;
+	overflow: hidden;
 }
 
 .card-img__bg{

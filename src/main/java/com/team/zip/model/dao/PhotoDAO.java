@@ -35,12 +35,12 @@ public class PhotoDAO extends SqlSessionDaoSupport {
 		return getSqlSession().selectList("photo.photoSortByNew");
 	}
 	
-	public List<PhotoVO> photoSortByHomeType(){
-		return getSqlSession().selectList("photo.photoSortByHomeType");
+	public List<PhotoVO> photoSortByHomeType(String HomeType){
+		return getSqlSession().selectList("photo.photoSortByHomeType", HomeType);
 	}
 	
-	public List<PhotoVO> photoSortByPyeong(){
-		return getSqlSession().selectList("photo.photoSortByPyeong");
-	}
+	public List<PhotoVO> photoSortByPyeong(String Pyeong){
+		return getSqlSession().selectList("photo.photoSortByPyeong", Pyeong);
+
 
 }

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>     
 <!DOCTYPE html>
@@ -10,7 +9,7 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 <link rel="stylesheet" href="${root}/css/photo/photo_write.css">
-<%-- <script type="text/javascript" src="${root }/js/photo/photowrite.js"></script> --%>
+<script type="text/javascript" src="${root }/js/photo/photowrite.js"></script>
 <link rel="shortcut icon" href="#">
 </head>
 <body>
@@ -55,6 +54,7 @@
 											</span>
 										</span>
 									</button>
+									<input type="file" name="file" id="file" style="display: none;"/>
 								</div>
 								<div class="Photo-Write-Form_photo-item_content">
 									<div class="Photo-Write-Form_photo-item_content_row">

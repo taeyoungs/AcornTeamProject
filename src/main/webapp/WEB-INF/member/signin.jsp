@@ -17,8 +17,8 @@
         <div class="sign-in-form-warp">
             <div class="sign-in-form">
                 <h1 class="sign-in-form_header">
-                    <a href="/main.do" class="sign-in-form_header_link">
-                        <img class="icon-page-login" src="${root}/image/logo.png">
+                    <a href="${root}/main.do?where=home" class="sign-in-form_header_link">
+                        <img class="icon-page-login" src="${root}/image/common/logo.png">
                     </a>
                 </h1>
                 <form action="signin" class="sign-in-form_form" method="post" accept-charset="UTF-8" id="new_user">
@@ -40,11 +40,11 @@
                 <section class="sign-in-form_sns">
                     <h2 class="sign-in-form_sns_title">SNS계정으로 간편 로그인/회원가입</h2>
                     <div class="sign-in-form_sns_list">
-                        <a href=""><img src="${root}/image/home.png" 
+                        <a href=""><img src="${root}/image/common/home.png" 
                         class="sign-in-form_sns_button"></a>
-                        <a href=""><img src="${root}/image/house.png" 
+                        <a href=""><img src="${root}/image/common/house.png" 
                         class="sign-in-form_sns_button"></a>
-                        <a href=""><img src="${root}/image/house2.png" 
+                        <a href=""><img src="${root}/image/common/house2.png" 
                         class="sign-in-form_sns_button"></a>
                     </div>
                     <div class="sign-in-form_line"></div>

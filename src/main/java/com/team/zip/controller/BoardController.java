@@ -33,7 +33,7 @@ public class BoardController {
 	@RequestMapping("/board/list.do") 
 	public ModelAndView list(
 			@RequestParam(value="pageNum",defaultValue="1")
-			int currentPage)
+			int currentPage, @RequestParam String where )
 	{
 		ModelAndView model=new ModelAndView();
 		int totalCount;//총 데이타 갯수
@@ -86,6 +86,7 @@ public class BoardController {
 		//2. 리스트 가져오기
 		List<BoardVO> list=service.getList(startNum, endNum);
 
+		model.addObject("where", where);
 		model.addObject("list", list);
 		model.addObject("currentPage", currentPage);
 		model.addObject("startPage", startPage);

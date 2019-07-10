@@ -22,5 +22,25 @@ public class PhotoDAO extends SqlSessionDaoSupport {
 		getSqlSession().update("photoUpdateReadcount", num);
 	}
 	
+	public void insertPhoto(PhotoVO pvo) {
+		getSqlSession().insert("photo.insertPhoto", pvo);
+	}
+	
+	//사진 정렬
+	public List<PhotoVO> photoSortByHits(){
+		return getSqlSession().selectList("photo.photoSortByHits");
+	}
+	
+	public List<PhotoVO> photoSortByNew(){
+		return getSqlSession().selectList("photo.photoSortByNew");
+	}
+	
+	public List<PhotoVO> photoSortByHomeType(String HomeType){
+		return getSqlSession().selectList("photo.photoSortByHomeType", HomeType);
+	}
+	
+	public List<PhotoVO> photoSortByPyeong(String Pyeong){
+		return getSqlSession().selectList("photo.photoSortByPyeong", Pyeong);
+
 
 }

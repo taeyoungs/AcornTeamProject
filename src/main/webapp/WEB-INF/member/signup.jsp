@@ -13,8 +13,8 @@
 <body>
     <header id="simplified-gnb" class="simplified-gnb">
         <div class="container simplified-gnb_container">
-            <a href="/main.do" class="simplified-gnb_logo">
-                <img src="${root}/image/logo.png" width="80">
+            <a href="${root}/main.do?where=home" class="simplified-gnb_logo">
+                <img src="${root}/image/common/logo.png" width="80">
             </a>
         </div>
     </header>
@@ -25,9 +25,9 @@
                 <section id="signup-form_social" class="signup-form_social">
                     <p class="signup-form_social_title">SNS계정으로 간편하게 회원가입</p>
                     <div class="signup-form_social_content" style="text-align: center;">
-                        <a href=""><img src="${root}/image/home.png" class="signup-form_social_button"></a>
-                        <a href=""><img src="${root}/image/house.png" class="signup-form_social_button"></a>
-                        <a href=""><img src="${root}/image/house2.png" class="signup-form_social_button"></a>
+                        <a href=""><img src="${root}/image/common/home.png" class="signup-form_social_button"></a>
+                        <a href=""><img src="${root}/image/common/house.png" class="signup-form_social_button"></a>
+                        <a href=""><img src="${root}/image/common/house2.png" class="signup-form_social_button"></a>
                     </div>
                 </section>
                 <hr class="signup-form_divider">
@@ -187,10 +187,15 @@
     		$(this).closest("div").find("p.error").text("");
     	}
     });
+    // 비밀번호 확인 체크
     $("#normal_user_password_confirm").focusout(function(){
     	var pass = $("#normal_user_password").val();
     	var pass_confirm = $(this).val();
-    	if(pass != pass_confirm) {
+    	if(pass_confirm.length == 0) {
+    		console.log($(this).val().length);
+    		$(this).closest("div").addClass("error");
+    		$(this).closest("div").find("p.error").text("비밀번호 확인을 입력해주세요.");	
+    	} else if(pass != pass_confirm) {
     		$(this).closest("div").addClass("error");
     		$(this).closest("div").find("p.error").text("비밀번호가 일치하지 않습니다.");	
     	} else {

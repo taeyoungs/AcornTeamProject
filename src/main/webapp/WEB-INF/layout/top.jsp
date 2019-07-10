@@ -15,17 +15,17 @@
 </head>
 <body>
     <div id="navi" class="navi-top-banner">
-        <nav class="navi-primary-wrap sticky-top">
-            <div class="navi-primary_container sticky-content">
+        <nav class="navi-primary-wrap sticky-top" style="height: auto">
+            <div class="navi-primary_container sticky-content" data-offset="0">
                 <div class="navi-primary">
-                    <a class="navi-primary_logo" href="${root }/main.do">
-                        <img src="${root}/image/logo.png">
+                    <a class="navi-primary_logo" href="${root}/main.do?where=home">
+                        <img src="${root}/image/common/logo.png">
                     </a>
                     <div class="navi-primary_menu open">
                         <ul class="navi-menu">
                             <li class="navi-menu_primary current active">
                                <div class="title">
-                                   <a href="#">커뮤니티</a>
+                                   <a href="${root}/main.do?where=home">커뮤니티</a>
                                </div>
                             </li>
                             <li class="navi-menu_primary">
@@ -50,7 +50,7 @@
                                        <span class="icon"></span>
                                    </button>
                                    <span class="navi-search_box_icon_blur">
-                                       <img src="${root}/image/search.png" width="20">
+                                       <img src="${root}/image/common/search.png" width="20">
                                    </span>
                                    <input type="text" placeholder="검색" size="1" class="navi-search_box_input">
                                    <span class="navi-search_box_bg"></span>
@@ -59,30 +59,30 @@
                     </div>
                     <div class="navi-primary_action">
                         <button class="navi-primary_search-sm-btn navi-primary_button button-sm">
-                            <img src="${root}/image/search.png" width="20">
+                            <img src="${root}/image/common/search.png" width="20">
                         </button>
-                        <a href="#" class="navi-primary_write-btn">
+                        <a href="${root}/member/writelist" class="navi-primary_write-btn">
                             	글쓰기
                         </a>
                         <a href="#" class="navi-primary_cart-btn navi-primary_button">
-                            <img src="${root}/image/cart gray.png" width="20">
+                            <img src="${root}/image/common/cart gray.png" width="20">
                         </a>
                         <c:if test="${sessionScope.loginok eq 'login'}">
                         	<a href="" class="navi-primary_notification-btn navi-primary_button">
-                        		<img src="${root}/image/notification gray.png" width="20">
+                        		<img src="${root}/image/common/notification gray.png" width="20">
                         	</a>
                         </c:if>
                     </div>
                    <c:if test="${sessionScope.loginok eq 'login'}">
                     	<div class="navi-primary_user logged">
 	                    	<div class="navi-primary_user_header">
- 	                    		<c:if test="${mvo.member_image ne null}">
-	                    			<img src="${root}/image/${mvo.member_image}" class="navi-primary_user-image">
+ 	                    		<c:if test="${sessionScope.mvo.member_image ne 'noimage'}">
+	                    			<img src="${root}/uploadImage/${sessionScope.mvo.member_image}" class="navi-primary_user-image">
 	                    		</c:if>
-	                    		<c:if test="${mvo.member_image eq null}">
-	                    			<img src="${root}/image/user.png" class="navi-primary_user-image">
+	                    		<c:if test="${sessionScope.mvo.member_image eq 'noimage'}">
+	                    			<img src="${root}/image/common/user.png" class="navi-primary_user-image">
 	                    		</c:if>
-	                    		<img src="${root}/image/button.png" class="navi-primary_user-btn">
+	                    		<img src="${root}/image/common/button.png" class="navi-primary_user-btn">
 	                    	</div>
 	                    	<div class="navi-primary_user_list">
 	                    		<ul class="navi-user-menu">
@@ -103,22 +103,22 @@
                 </div>
             </div>
         </nav>
-        <nav class="navi-secondary-wrap sticky-top">
-            <div class="navi-secondary_container sticky-content open">
+        <nav class="navi-secondary-wrap sticky-top" style="height: auto">
+            <div class="navi-secondary_container sticky-content open" data-offset="${secondaryTop}">
                 <div class="navi-secondary">
                     <div class="navi-secondary_menu">
                         <ul style="white-space: nowrap;">
-                            <li class="navi-menu_primary_secondary active">
-                                <a href="../main.do">홈</a>    
+                            <li class="navi-menu_primary_secondary ${where eq 'home' ? 'active' : ''}">
+                                <a href="${root}/main.do?where=home">홈</a>    
+                            </li>
+                            <li class="navi-menu_primary_secondary ${where eq 'photo' ? 'active' : ''}">
+                                <a href="${root}/photo/photolist.do?where=photo">사진</a> 
                             </li>
                             <li class="navi-menu_primary_secondary">
-                                <a href="${root}/photo/photolist.do">사진</a> 
+                                <a href="#" onClick="sendWPage('집들이')">집들이</a> 
                             </li>
-                            <li class="navi-menu_primary_secondary">
-                                <a href="#">집들이</a> 
-                            </li>
-                            <li class="navi-menu_primary_secondary">
-                                <a href="${root}/board/list.do">질문과답변</a> 
+                            <li class="navi-menu_primary_secondary ${where eq 'board' ? 'active' : ''}">
+                                <a href="${root}/board/list.do?where=board">질문과답변</a> 
                             </li>
                         </ul>
                     </div>

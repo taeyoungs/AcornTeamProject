@@ -2,8 +2,8 @@
 /**************
 	FOOTER
 ***************/
-.footer{background: #FAFAFA;width: 100%;height: 250px;padding: 30px 0 50px;margin-top: 50px;}
-.footer_content_wrapper{width: 1136px;margin: auto;}
+.footer{background: #FAFAFA;width: 100%;height: 219px;padding: 40px 0 20px;margin-top: 130px;position: relative;}
+.footer_content_wrapper{width: 1136px;margin: auto;position: relative;}
 .footer_cs_wrapper{}
 .footer_cs{margin-bottom: 30px;color: #757575;font-size: 12px;}
 .footer_cs strong{margin: 10px 0 5px 0px;display: inline-block;}
@@ -12,7 +12,9 @@
 
 
 
-.footer_outbound{}
+.footer_outbound{position: absolute;margin-right: auto;margin-left: auto;box-sizing: border-box;top: 0;width: 1136px;}
+.footer_outbound img{width: 32px; height: 32px;padding: 10px;margin-left: 8px;}
+.footer_outbound_list{float: right;}
 
 .short_cuts{margin-bottom: 5px;}
 .short_cuts a{margin-right: 5px;}

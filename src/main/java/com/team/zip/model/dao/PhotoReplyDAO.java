@@ -17,4 +17,8 @@ public class PhotoReplyDAO extends SqlSessionDaoSupport{
 		return n;
 	}
 	
+	public void insertReply(PhotoReplyVO rvo) {
+		getSqlSession().insert("photo.InsertReply", rvo);
+	}
+	
 }

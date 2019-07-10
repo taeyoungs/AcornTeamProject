@@ -19,4 +19,8 @@ public class PhotoReplyService {
 	public int getCount(int num) {
 		return dao.getCount(num);
 	}
+	
+	public void insertReply(PhotoReplyVO rvo) {
+		dao.insertReply(rvo);
+	}
 }

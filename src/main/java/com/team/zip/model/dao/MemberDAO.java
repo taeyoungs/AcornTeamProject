@@ -53,5 +53,10 @@ public class MemberDAO extends SqlSessionDaoSupport {
 	public MemberVO getData(int num) {
 	      return getSqlSession().selectOne("photo.getMemberData", num);
 	}
+	
+	public void updateMember(MemberVO mvo) {
+		System.out.println(mvo.getMember_no());
+		getSqlSession().update("member.memberUpdate", mvo);
+	}
 
 }

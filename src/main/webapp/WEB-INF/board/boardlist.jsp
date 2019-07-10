@@ -13,7 +13,8 @@
 	href="https://d1nyaccf3kuclt.cloudfront.net/assets/v3/bucket_ui/bucket_ui-a69ea26903ba7b7b1e58db706ee621d7fa1695945755178ff07fe330df44fff6.css" />
 <link rel="stylesheet" media="screen"
 	href="https://d1nyaccf3kuclt.cloudfront.net/assets/v3/bucket_ui/components-7c293474cce07a07e4c5740df12838356c5abd5f542add27a47f1ac12c737da4.css" />
-
+<link rel="stylesheet" media="screen"
+	href="https://d1nyaccf3kuclt.cloudfront.net/assets/v3/layout/application-d819a6efb3afb7a9272381f7f76bd3edd7f2d4e27f2f82b84a7cd52c9b68e261.css" />
 <link rel="stylesheet" media="screen"
 	href="https://d1nyaccf3kuclt.cloudfront.net/assets/v3/bucket_ui/components-7c293474cce07a07e4c5740df12838356c5abd5f542add27a47f1ac12c737da4.css" />
 <link rel="stylesheet" media="screen"
@@ -303,7 +304,6 @@
 		</c:if>
 	</ul>
 </div>
-
 		<div id="questions-filter-sort-modal"
 			class="modal fade fade-done modal-filter">
 			<div class="modal-dialog" role="document" style="">
@@ -325,7 +325,6 @@
 			</div>
 		</div>
 	</div>
-
 	</main>
 <footer class="footer">
 	<div class="footer_content_wrapper">

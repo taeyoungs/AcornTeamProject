@@ -26,7 +26,7 @@
 						<!-- First Category List -->
 						<li class="commerce-category-tree__entry">
 							<div class="commerce-category-tree__entry__header">
-								<a class="commerce-category-tree__entry__title selected">가구</a>
+								<a class="commerce-category-tree__entry__title selected">침실가구</a>
 								<button class="commerce-category-tree__entry__expand open" title="펼치기">
 									<svg class="icon">
 										<path></path>

@@ -70,14 +70,16 @@
 						<h1 class="comment-feed__header">댓글
 							<span class="comment-feed__header__count">${fn:length(cvo)}</span>
 						</h1>
-						<form class="comment-feed__form" id="commentform">
+						<div class="comment-feed__form" id="commentform">
+							<input type="hidden" name="member_no" value="${sessionScope.mvo.member_no }"/>
+							<input type="hidden" name="photo_seq_no" value="${pvo.photo_seq_no }"/>
 							<div class="comment-feed__form__user">
 								<c:if test="${sessionScope.mvo.member_image ne null}">
 									<img src="${root }/image/common/${sessionScope.mvo.member_image }">
 								</c:if>
 								<c:if test="${sessionScope.mvo.member_image eq null}">
 	                    			<img src="${root}/image/common/user.png">
-                </c:if>
+              					</c:if>
 							</div>
 							<div class="comment-feed__form__input">
 								<div class="comment-feed__form__content">
@@ -89,9 +91,10 @@
 									<button class="comment-feed__form__submit" type="button"></button>
 								</div>
 							</div>
-						</form>
+						</div>
 						<ul class="comment-feed__list">
-							<c:forEach var="cvo" items="${cvo }">
+						<div id="comment_append" session-data-member="${sessionScope.member_no}" data-member="${mvo.member_no }">
+							<%-- <c:forEach var="cvo" items="${cvo }">
 							<li class="comment-feed__list__item">
 								<article class="comment-feed__item">
 									<p class="comment-feed__item__content">
@@ -113,7 +116,8 @@
 									</footer>
 								</article>
 							</li>
-							</c:forEach>
+							</c:forEach> --%>
+						</div>
 						</ul>
 						<ul class="list-paginator">
 							<li>
@@ -135,7 +139,7 @@
 													margin-right: 8px; background-position: -240px -280px; width: 24px; height: 24px;">
 													<img src="../image/common/heart.png" width="24" height="24">
 													</span>
-													1
+													${pvo.photo_good }
 												</button>
 											</div>
 											<div>

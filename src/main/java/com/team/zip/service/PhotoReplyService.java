@@ -12,9 +12,9 @@ public class PhotoReplyService {
 	@Autowired
 	private PhotoReplyDAO dao;
 	
-	public PhotoReplyVO getData(int num) {
-		return dao.getData(num);
-	}
+//	public PhotoReplyVO getData(int num) {
+//		return dao.getData(num);
+//	}
 	
 	public int getCount(int num) {
 		return dao.getCount(num);

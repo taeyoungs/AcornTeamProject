@@ -9,6 +9,6 @@ public class CategoryController {
 	@RequestMapping("/store/category.do")
 	public String categoryGo() {
 		
-		return "/store/category";
+		return "/categoryLayout/store/category";
 	}
 }

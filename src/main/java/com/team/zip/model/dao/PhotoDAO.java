@@ -43,4 +43,5 @@ public class PhotoDAO extends SqlSessionDaoSupport {
 		return getSqlSession().selectList("photo.photoSortByPyeong", Pyeong);
 	}
 
+
 }

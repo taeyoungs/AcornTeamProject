@@ -30,7 +30,7 @@
                             </li>
                             <li class="navi-menu_primary">
                                 <div class="title">
-                                   <a href="#">스토어</a>
+                                   <a href="${root}/store/category.do?codeVal=가구">스토어</a>
                                </div>
                             </li>
                             <li class="navi-menu_primary">

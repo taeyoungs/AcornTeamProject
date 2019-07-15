@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProductSql">
+	<select id="getProductList" resultType="ProductVO">
+		<![CDATA[
+		SELECT PROD_NO AS prodNo
+			 , PROD_TITLE AS prodTitle
+			 , PROD_PRICE AS prodPrice
+			 , PROD_IMG AS prodImage
+			 , DISCOUNT_RATE AS discountRate
+			 , PROD_SELLER AS prodSeller
+		FROM PRODUCT
+		]]>
+	</select>
+
+</mapper>

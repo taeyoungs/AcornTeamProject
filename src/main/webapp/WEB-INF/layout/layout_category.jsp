@@ -16,14 +16,14 @@
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 </head>
 <body>
-<div id="top" class="layout">
-	<tiles:insertAttribute name="top"/>
-</div>
-<div id="leftmenu" class="layout">
-	<tiles:insertAttribute name="leftmenu"/>
-</div>
-<div id="bottom" class="layout">
-	<tiles:insertAttribute name="bottom"/>
-</div>
+	<div id="top" class="layout">
+		<tiles:insertAttribute name="top"/>
+	</div>
+	<div id="main" class="layout">
+		<tiles:insertAttribute name="main"/>
+	</div>
+	<div id="bottom" class="layout">
+		<tiles:insertAttribute name="bottom"/>
+	</div>
 </body>
 </html>

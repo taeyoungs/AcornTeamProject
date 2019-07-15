@@ -1,37 +1,95 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <body>
-<embed src="http://localhost:3000" style="width: 100%; height: 100%;">
-			<!-- right main content [S]-->
-			<!-- <div class="category-feed__content col-12 col-md-9">
-				<div class="commerce-category-header category-feed__content__header">
-					<div class="commerce-category-header__breadcrumb-wrap">
-						<nav class="commerce-category-breadcrumb-wrap commerce-category-header__breadcrumb">
-							<ol class="commerce-category-breadcrumb">
-								<li class="commerce-category-breadcrumb__entry">
-									<a class="link" href=""></a>
-									<svg class="icon"></svg>
-								</li>
-							</ol>
-						</nav>
-					</div>
-					<nav class="commerce-category-header__menu-wrap"></nav>
-				</div>
-				<div class="sticky-container category-feed__content__filter-container"></div>
-				상품 출력
-				<ul class="category-feed__content__content row">
-					<li class="col-6 col-lg-4">
-						<div class="product-item">
-							<div class="product-item__image">
-								<a href="">
-									<img class="image" src=""/>
-								</a>
-							</div>
-							<a href=""></a>
-						</div>
-					</li>
-				</ul>
-			</div> -->
-			<!-- right main content [S]-->
+<!-- 카테고리 whole wrap -->
+<div class="category-feed-container">
+	<div class="category-feed-wrap container">
+		<div class="category-feed row">
+		<!-- left menu-bar [S]-->
+			<div class="category-feed__side-bar col-12 col-md-3">
+				<section class="commerce-category-list">
+					<h2 class="commerce-category-list__title">
+						<a class="commerce-category-list__title">${currentCategory}</a>
+					</h2>
+					<ul class="commerce-category-tree commerce-category-list__categories">
+						<c:forEach var="secondCategory" items="${secondList}">
+							<li class="commerce-category-tree__entry">
+								<div class="commerce-category-tree__entry__header">
+									<a class="commerce-category-tree__entry__title">${secondCategory.codeNm}</a>
+								</div>
+							</li>
+						</c:forEach>
+					</ul>		
+					
+					<ul class="commerce-category-list__others">
+						<c:forEach var="firstCategory" items="${ctgrList}">
+						<li class="commerce-category-list__others__item">
+							<a href="/store/category.do?codeVal=${firstCategory.codeVal}">${firstCategory.codeVal}</a>
+						</li>
+						</c:forEach>
+					</ul>
+				</section>
+			</div>
+			<!-- left menu-bar [E]-->
+			
 
+            <!-- right main content [S] -->
+			<div class="category-feed__content col-12 col-md-9">  
+            	<div class="commerce-category-header category-feed__content__header">
+                	<div class="commerce-category-header__breadcrumb-wrap">
+                        <nav class="commerce-category-breadcrumb-wrap commerce-category-header__breadcrumb">
+                            <ol class="commerce-category-breadcrumb">
+                                <li class="commerce-category-breadcrumb__entry">
+                                    <a class="link" href=""></a>
+                                    <svg class="icon"></svg>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                	<nav class="commerce-category-header__menu-wrap"></nav>
+             	</div>
+                    
+                <div class="sticky-container category-feed__content__filter-container"
+                    style="position: sticky; top: 0px;">
+                </div>
+                <ul class="category-feed__content__content row">
+                	<c:forEach var="prod" items="${prodList}">
+                	<li class="col-6 col-lg-4">
+                        <div class="product-item">
+                            <div class="product-item__image">
+                                <a href="#">
+                                    <img class="image" src="${prod.prodImage}"/>
+                                </a>
+                            </div>
+                            <a href="#">
+                                <div class="product-item__info">
+                                    <div class="product-item__info__title">
+                                        <p class="product-item__info__title__brand">${prod.prodSeller}</p>
+                                        <p>${prod.prodTitle}</p>
+                                    </div>
+                                    <div class="product-item__info__col">
+                                        <div class="product-item__info__price">
+                                            <span class="discount-rate">${prod.discountRate}</span>
+                                            <strong>${prod.prodPrice}</strong>
+                                        </div>
+                                    </div>
+                                    <div class="product-item__info__col">
+                                        <div class="product-item__info__stats review">리뷰
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    </c:forEach>
+                </ul>
+			</div>
+	    	<!-- right main content [E] -->
+			
+		</div>
+	</div>
+</div>
 </body>
+</html>

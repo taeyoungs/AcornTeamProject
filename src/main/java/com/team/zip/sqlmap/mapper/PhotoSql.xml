@@ -32,7 +32,7 @@
 	
 	<!-- photoWrite -->
 	<insert id="insertPhoto" parameterType="pvo">
-		insert into photo values(photo_seq_no.nextval, #{member_no}, #{photo_image}, #{photo_content}, #{photo_hometype}, #{photo_pyeong}, 0, 0, sysdate, ${hashtag})
+		insert into photo values(photo_seq_no.nextval, #{member_no}, #{photo_image}, #{photo_content}, #{photo_hometype}, #{photo_pyeong}, 0, 0, sysdate, #{hashtag})
 	</insert>
 	
 	

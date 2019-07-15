@@ -1,14 +1,19 @@
 package com.team.zip.controller;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.multi.MultiFileChooserUI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;import org.springframework.validation.BindingResult;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -98,9 +103,34 @@ public class PhotoController {
 	}
 	
 	@RequestMapping(value="photo/write.do", method=RequestMethod.POST)
-	public String write(@ModelAttribute PhotoVO pvo, HttpServletRequest request) {
+	public String write(@ModelAttribute PhotoVO pvo, HttpServletRequest request, MultipartFile photo, HttpSession session) {
+		
+		String path = "D://Project/AcornProject/src/main/webapp/WEB-INF/image/photoimage";
+		System.out.println(path);
+		int memberNo = (Integer) session.getAttribute("member_no");
+		System.out.println(memberNo);
+		System.out.println(pvo.getHashtag());
+		System.out.println(pvo.getPhoto_content());
+		System.out.println(pvo.getPhoto_pyeong());
+
+		String imagename = "";
+		SpringFileWriter fileWriter = new SpringFileWriter();
+		MultipartFile f = pvo.getPhoto();
+		if(f.getOriginalFilename().length() > 0) {
+			imagename = f.getOriginalFilename();
+			System.out.println(imagename);
+			fileWriter.writeFile(f, path, imagename);
+		}
+		
+		if(imagename.length() == 0) {
+			imagename = "noimage";
+		}
+		
+		pvo.setPhoto_image(imagename);
+		pvo.setMember_no(memberNo);
+		
 		service.photoInsert(pvo);
-		return "redirect:photolist.do";
+		return "redirect:photolist.do?where=photo";
 	}
 	
 	
@@ -129,13 +159,29 @@ public class PhotoController {
 		PhotoVO pvo = service.getData(num);
 		MemberVO mvo = mservice.getData(num);
 		List<PhotoCombineVO> cvo = cservice.getData(num);
-
-		String[] hashtag = pvo.getHashtag().split(",");
+		
+		List<PhotoVO> plist = new ArrayList<PhotoVO>();
 	
+		String[] photo_image = pvo.getPhoto_image().split(",");
+ 		String[] photo_content = pvo.getPhoto_content().split(",");
+		String[] hashtag = pvo.getHashtag().split(",");
+		
+		for (int i = 0; i < photo_image.length; i++) {
+			PhotoVO pvo2 = new PhotoVO();
+			pvo2.setPhoto_image(photo_image[i]);
+			if (photo_content[i] != null) {
+				pvo2.setPhoto_content(photo_content[i]);
+			}
+			if (hashtag[i] != null) {
+				pvo2.setHashtag(hashtag[i]);
+			}
+			plist.add(pvo2);
+		}
+		
 		model.addAttribute("pvo", pvo);
 		model.addAttribute("mvo", mvo);
 		model.addAttribute("cvo", cvo);
-		model.addAttribute("hashtag", hashtag);
+		model.addAttribute("plist", plist);
 		
 		return "/2/photo/detail";
 	}

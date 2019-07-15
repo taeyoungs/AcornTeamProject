@@ -30,25 +30,25 @@
 				</header>
 				<section class="card-section">
 					<figure>
+						<c:forEach items="${plist }" var="photo">
 						<div class="card-img card">
 							<div class="card-img__bg" style="padding-top: 65%"></div>
-							<img src="${pvo.photo_image}">
+							<img src="${photo.photo_image}">
 						</div>
 						<figcaption>
-							<p>${pvo.photo_content }</p>
+							<p>${photo.photo_content }</p>
 						</figcaption>
+						</c:forEach>
 					</figure>
-					
 					<ul class="keyword">
-						<c:forEach items="${hashtag }" var="hash">
+						<c:forEach items="${plist }" var="photo">
 						<li class="keyword__item">
 							<div class="keyword__item__badge">
-							#${hash }
+							#${photo.hashtag }
 							</div>
 						</li>
 						</c:forEach>
 					</ul>
-					
 				</section>
 				<section class="footer">
 					<div class="footer__stats">

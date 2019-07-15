@@ -87,7 +87,37 @@
     </footer>
     <section class="question__content__comments">
       <div data-react-class="CommentFeed">
-      
+		<section class="comment-feed">
+			<h1 class="comment-feed__header">답글&nbsp;</h1>
+			<form class="comment-feed__form">
+				<a href="reply.do" class="comment-feed__form__cover">
+					<div class="comment-feed__form__input">
+						<div class="comment-content-input__text comment-feed__form__content__text" data-ph="의견을 남겨 보세요." contenteditable="true"></div>
+					</div>
+				</a>
+			</form>
+			<li class="comment-feed__list__item">
+				<article class="comment-feed__item">
+					<p class="comment-feed__item__content">
+					<a href="/users/2593483" class="comment-feed__item__content__author">
+						<img class="comment-feed__item__content__author__image" src="">
+						<span class="comment-feed__item__content__author__name">푸른달v</span>
+					</a>
+						<span class="comment-feed__item__content__content">거울 세워두고 러그깔아두시면 좋을거 같아요~^^</span>
+					</p>
+					<footer class="comment-feed__item__footer">
+					<time class="comment-feed__item__footer__time">2시간 전</time>
+					<span class="comment-feed__item__footer__likes zero">
+						<a class="comment-feed__item__footer__likes__icon" href="/users/sign_in"></a>
+						<span class="comment-feed__item__footer__likes__count">0</span>
+					</span>
+						<a class="comment-feed__item__footer__like-btn" href="/users/sign_in">좋아요</a>
+						<a class="comment-feed__item__footer__reply-btn" href="/users/sign_in">답글 달기</a>
+						<a class="comment-feed__item__footer__report-btn" href="/users/sign_in">신고</a>
+					</footer>
+				</article>
+			</li>
+		</section>	
       </div>
     </section>
     <aside class="question__content__aside question__aside">
@@ -175,22 +205,7 @@
 <section id="question__floating" class="floating-bar sticky-bottom">
   <div class="floating-bar__content sticky-content question__floating">
     <div class="question__floating__actions question__actions">
-  <!--
-    <div class="question__actions__action__wrap">
-            <div class="question__actions__action question-bookmark-btn
-            
-            " role="button" data-target="11761"
-            data-path="/bookmarks?bookmark%5Bbookmarkable_id%5D=11761&amp;bookmark%5Bbookmarkable_type%5D=Question"
-            data-cancel-path="/bookmarks/destroy_by_content?content_id=11761&amp;content_type=Question">
-                    <span class="icon icon-action-scrap-sm sm inactive"></span>
-                    <span class="icon icon-action-scrap-blue-sm sm active"></span>
-                    <span class="icon icon-action-scrap-light-md md inactive"></span>
-                    <span class="icon icon-action-scrap-blue-md md active"></span>
-                <span class="question__actions__action__caption">스크랩</span>
-                <span class="question__actions__action__count">0</span>
-            </div>
-    </div>
-    -->
+
   <div class="question__actions__action__wrap">
     <div class="question__actions__action question-share-btn" role="button" data-target="11761"
          data-path="/questions/11761/increase_share">

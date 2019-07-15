@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CommonCodeSql">
+	<select id="getCategoryList" resultType="commonCodeVO" parameterType="String">
+		<![CDATA[
+		SELECT DISTINCT CODE_VAL AS codeVal
+		FROM COMMON_CODE
+		WHERE CODE_VAL != #{codeVal}
+		]]>
+	</select>
+	
+	<select id="getCategorySecondList" resultType="commonCodeVO" parameterType="String">
+		<![CDATA[
+		SELECT CODE_NM AS codeNm
+		FROM COMMON_CODE
+		WHERE CODE_VAL = #{codeVal}
+		]]>
+	</select>
+</mapper>

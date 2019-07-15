@@ -51,9 +51,11 @@ public class MemberService {
 	}
 	
 	public void updateMember(MemberVO mvo) {
-		System.out.println(mvo.getMember_birth());
-		System.out.println(mvo.getMember_sex());
 		dao.updateMember(mvo);
+	}
+	
+	public void updatePw(MemberVO mvo) {
+		dao.updatePw(mvo);
 	}
 
 }

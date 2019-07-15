@@ -34,7 +34,7 @@
                             value="로그인">
                 </form>
                 <div class="sign-in-form_action">
-                    <a href="/" class="sign-in-form_action_entry">비밀번호 재설정</a>
+                    <a href="findPassword" class="sign-in-form_action_entry">비밀번호 재설정</a>
                     <a href="gotoSignup" class="sign-in-form_action_entry">회원가입</a>
                 </div>
                 <section class="sign-in-form_sns">

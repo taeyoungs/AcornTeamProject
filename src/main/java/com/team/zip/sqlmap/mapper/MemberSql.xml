@@ -21,4 +21,7 @@
 		update member set member_nickname = #{member_nickname}, member_image = #{member_image},
 			member_sex = #{member_sex}, member_birth = #{member_birth} where member_no = #{member_no}
 	</select>
+	<update id="pwUpdate" parameterType="mvo">
+		update member set member_pw = #{member_pw} where member_no = #{member_no}
+	</update>
 </mapper>

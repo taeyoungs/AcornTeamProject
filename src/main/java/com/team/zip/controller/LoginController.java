@@ -142,6 +142,13 @@ public class LoginController {
 		return "redirect:../main.do";
 	}
 	
+	// 비밀번호 재설정 폼으로 이동
+	@RequestMapping("/member/findPassword")
+	public String findPassword() {
+		
+		return "/1/member/findPassword";
+	}
+	
 	// 카카오 로그인
 	@RequestMapping(value="/member/kakaoLogin")
 	public String kakaoLogin(@RequestParam("code") String code, HttpSession session) {

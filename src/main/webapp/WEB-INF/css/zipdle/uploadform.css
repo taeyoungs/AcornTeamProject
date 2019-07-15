@@ -1,3 +1,8 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+
 #project_form_wrap #total_change {
 	position: relative;
     text-align: center;
@@ -6,10 +11,9 @@
     color: #ffffff;
     margin-bottom: 50px;
     padding: 3px 0 0;
-    height: 55px;
 }
 
-#project_form_wrap #total_change .header {
+#project_form_wrap #total_change>.header {
 	position: absolute;
     top: 0;
     left: 60px;
@@ -17,20 +21,20 @@
     line-height: 30px;
 }
 
-#project_form_wrap #total_change .wrap_panel {
+#project_form_wrap #total_change>.wrap-panel {
 	display: inline-block;
     overflow: hidden;
 }
 
-#project_form_wrap #total_change .wrap_panel .title {
+#project_form_wrap #total_change>.wrap-panel>.title {
 	float: left;
     line-height: 50px;
     padding: 0 10px;
 }
 
 .total_align_icon img {
-	width: 40px;
-    height: 40px;
+	width: 25px;
+    height: 25px;
     color: #ffffff;
     cursor: pointer;
     text-align: center;
@@ -41,4 +45,16 @@
 
 .uploadform-logo {
 	width: 70px;
+	display: inline-block;
+}
+
+#project_form_wrap #total_change>.wrap-panel>.total_align_icon {
+	width: 40px;
+    height: 40px;
+    color: #ffffff;
+    cursor: pointer;
+    text-align: center;
+    line-height: 40px;
+    margin: 5px;
+    float: left;
 }

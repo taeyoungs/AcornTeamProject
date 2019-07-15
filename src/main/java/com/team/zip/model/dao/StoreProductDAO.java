@@ -5,13 +5,14 @@ import java.util.List;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import com.team.zip.model.vo.CommonCodeVO;
 import com.team.zip.model.vo.ProductVO;
 
 @Repository
 public class StoreProductDAO extends SqlSessionDaoSupport {
 	
-	public List<ProductVO> getProductList() {
+	public List<ProductVO> getProductList(CommonCodeVO commonCodeVo) {
 
-		return getSqlSession().selectList("getProductList");
+		return getSqlSession().selectList("getProductList", commonCodeVo);
 	}
 }

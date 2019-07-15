@@ -4,34 +4,34 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.zip.model.vo.CommonCodeVO;
 import com.team.zip.model.vo.ProductVO;
-import com.team.zip.service.CategoryService;
-import com.team.zip.service.ProductService;
+import com.team.zip.service.StoreCategoryService;
+import com.team.zip.service.StoreProductService;
 
 @Controller
-public class CategoryController {
+public class StoreCategoryController {
 	
 	@Autowired
-	CategoryService categoryService;
+	StoreCategoryService categoryService;
 	
 	@Autowired
-	private ProductService productService;
+	private StoreProductService storeProductService;
 	
 	@RequestMapping("/store/category.do")
-	public ModelAndView categoryGo(@RequestParam String codeVal) {
+	public ModelAndView categoryGo(@ModelAttribute CommonCodeVO commonCodeVo) {
 		
 		ModelAndView mav = new ModelAndView();
 		
+		String codeVal = commonCodeVo.getCodeVal();
 		List<CommonCodeVO> ctgrList = categoryService.getCategoryList(codeVal);
 		List<CommonCodeVO> secondList = categoryService.getCategorySecondList(codeVal);
-		List<ProductVO> prodList = productService.getProductList();
+		List<ProductVO> prodList = storeProductService.getProductList(commonCodeVo);
 				
 		mav.addObject("ctgrList", ctgrList);
 		mav.addObject("secondList", secondList);

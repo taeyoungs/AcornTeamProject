@@ -11,13 +11,13 @@
 			<div class="category-feed__side-bar col-12 col-md-3">
 				<section class="commerce-category-list">
 					<h2 class="commerce-category-list__title">
-						<a class="commerce-category-list__title">${currentCategory}</a>
+						<a href="/store/category.do?codeVal=${currentCategory}" class="commerce-category-list__title">${currentCategory}</a>
 					</h2>
 					<ul class="commerce-category-tree commerce-category-list__categories">
 						<c:forEach var="secondCategory" items="${secondList}">
 							<li class="commerce-category-tree__entry">
 								<div class="commerce-category-tree__entry__header">
-									<a class="commerce-category-tree__entry__title">${secondCategory.codeNm}</a>
+									<a href="/store/category.do?codeVal=${currentCategory}&codeSeqNo=${secondCategory.codeSeqNo}" class="commerce-category-tree__entry__title">${secondCategory.codeNm}</a>
 								</div>
 							</li>
 						</c:forEach>
@@ -42,8 +42,19 @@
                         <nav class="commerce-category-breadcrumb-wrap commerce-category-header__breadcrumb">
                             <ol class="commerce-category-breadcrumb">
                                 <li class="commerce-category-breadcrumb__entry">
-                                    <a class="link" href=""></a>
-                                    <svg class="icon"></svg>
+                                    <a class="link" href="">혼자하는 인테리어 스토어홈</a>
+                                    <svg class="icon" width="8" height="8" viewBox="0 0 8 8">
+                                    	<path fill = "#424242" d="M4.95 4L2.12 1.19l.7-.71 3.54 3.54-3.53 3.53-.7-.7z"></path>
+                                    </svg>
+                                </li>
+                                <li class="commerce-category-breadcrumb__entry">
+                                	<a class="link">${currentCategory}</a>
+                                	<svg class="icon" width="8" height="8" viewBox="0 0 8 8">
+                                    	<path fill = "#424242" d="M4.95 4L2.12 1.19l.7-.71 3.54 3.54-3.53 3.53-.7-.7z"></path>
+                                    </svg>
+                                </li>
+                                <li class="commerce-category-breadcrumb__entry">
+                                	<a class="link">${secondList[0].codeNm}</a>
                                 </li>
                             </ol>
                         </nav>
@@ -71,7 +82,7 @@
                                     </div>
                                     <div class="product-item__info__col">
                                         <div class="product-item__info__price">
-                                            <span class="discount-rate">${prod.discountRate}</span>
+                                            <span class="discount-rate">${prod.discountRate}%</span>
                                             <strong>${prod.prodPrice}</strong>
                                         </div>
                                     </div>

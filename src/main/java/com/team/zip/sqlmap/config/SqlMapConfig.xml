@@ -21,6 +21,6 @@
 		<mapper resource="com/team/zip/sqlmap/mapper/MainSql.xml"/>
 		<mapper resource="com/team/zip/sqlmap/mapper/BoardSql.xml"/>
 		<mapper resource="com/team/zip/sqlmap/mapper/CommonCodeSql.xml"/>
-		<mapper resource="com/team/zip/sqlmap/mapper/ProductSql.xml"/>
+		<mapper resource="com/team/zip/sqlmap/mapper/StoreProductSql.xml"/>
 	</mappers>
 </configuration>                           

@@ -105,18 +105,18 @@ public class PhotoController {
 	
 	
 	@RequestMapping(value="photo/writeComment.do", method=RequestMethod.POST)
-	public String writeComment(HttpSession session) {
+	@ResponseBody
+	public List<PhotoCombineVO> writeComment(@ModelAttribute PhotoReplyVO rvo) {
 		
-		String login = (String)session.getAttribute("loginok");
-		if(login != null && login.equals("login")) {
-			return "/1/member/signin";
-		} else {
+		List<PhotoCombineVO> clist = null;
 			
-			int num = 0;
-			
-			return "redirect:photodetail.do?num="+num;
-		}
-	
+			if (rvo.getP_reply_content()==null) {
+				clist = cservice.getData(rvo.getP_reply_no());	
+			}else{
+				rservice.insertReply(rvo);
+				clist = cservice.getData(rvo.getP_reply_no());	
+			}
+			return clist;
 	}
 	
 	@RequestMapping("photo/photodetail.do")
@@ -131,7 +131,7 @@ public class PhotoController {
 		List<PhotoCombineVO> cvo = cservice.getData(num);
 
 		String[] hashtag = pvo.getHashtag().split(",");
-
+	
 		model.addAttribute("pvo", pvo);
 		model.addAttribute("mvo", mvo);
 		model.addAttribute("cvo", cvo);

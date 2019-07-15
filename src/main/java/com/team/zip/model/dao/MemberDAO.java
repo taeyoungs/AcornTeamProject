@@ -58,5 +58,9 @@ public class MemberDAO extends SqlSessionDaoSupport {
 		System.out.println(mvo.getMember_no());
 		getSqlSession().update("member.memberUpdate", mvo);
 	}
+	public void updatePw(MemberVO mvo) {
+		
+		getSqlSession().update("pwUpdate", mvo);
+	}
 
 }

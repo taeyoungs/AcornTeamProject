@@ -48,7 +48,7 @@ public class TopController {
 			
 			return "/3/users/userUpdate";
 		} else if(path.equals("userChange")) {
-			return "/3/users/userChange";
+			return "/3/users/userPwChange";
 		} else {
 			return "/3/users/userPhoto";
 		}
@@ -63,10 +63,14 @@ public class TopController {
 		System.out.println(path);
 		
 		String imagename = "";
+		MemberVO oldMVO = (MemberVO)session.getAttribute("mvo");
 		SpringFileWriter fileWriter = new SpringFileWriter();
 		MultipartFile f = mvo.getProfile_image_uploader();
 		if(f.getOriginalFilename().length() > 0) {
 			imagename = f.getOriginalFilename();
+			// 기존에 업로드 되어있던 이미지 파일을 삭제
+			fileWriter.deleteFile(path, oldMVO.getMember_image());
+			// 새로운 이미지 파일 업로드
 			fileWriter.writeFile(f, path, f.getOriginalFilename());
 		}
 		
@@ -79,10 +83,10 @@ public class TopController {
 		mvo.setMember_no(memberNo);
 		mvo.setMember_image(imagename);
 		mvo.setMember_birth(birth);
-		System.out.println(mvo.getProfile_image_uploader());
-		System.out.println(mvo.getMember_birth());
-		System.out.println(mvo.getMember_sex());
-		System.out.println(mvo.getMember_image());
+//		System.out.println(mvo.getProfile_image_uploader());
+//		System.out.println(mvo.getMember_birth());
+//		System.out.println(mvo.getMember_sex());
+//		System.out.println(mvo.getMember_image());
 		mservice.updateMember(mvo);
 //		MemberVO newMvo = mservice.getMember(memberNo);
 		session.setAttribute("mvo", mvo);
@@ -93,6 +97,27 @@ public class TopController {
 		model.setViewName("redirect:/users/userUpdate");
 		
 		return model;
+	}
+	
+	@RequestMapping("/users/pwChange")
+	public String pwChange(@RequestParam String changeOk, @RequestParam String user_password,
+			@RequestParam int member_no, Model model) {
+		
+		// 비밀번호가 조건이 맞아 변경 진행
+		if(changeOk.equals("yes")) {
+			model.addAttribute("changeOk", "success");
+			// 비밀번호 업데이트
+			MemberVO mvo = new MemberVO();
+			mvo.setMember_no(member_no);
+			mvo.setMember_pw(user_password);
+			mservice.updatePw(mvo);
+		// 조건이 안맞아서 알림창 띄우기
+		} else {
+			model.addAttribute("changeOk", "fail");
+			
+		}
+		model.addAttribute("pageType", "userChange");
+		return "/3/users/userPwChange";
 	}
 	
 }

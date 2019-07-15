@@ -1,5 +1,6 @@
 package com.team.zip.util;
 
+import java.io.File;
 import java.io.FileOutputStream;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -25,5 +26,11 @@ public class SpringFileWriter {
    }
    
    // 파일 업로드 전에 기존 업로드 파일 삭제하는 메서드
+   public void deleteFile(String path,String fileName) {
+	   File file = new File(path+"\\"+fileName);
+	   if(file.exists()) {
+			file.delete();
+	   }
+   }
    
 }

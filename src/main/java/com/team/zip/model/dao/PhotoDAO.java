@@ -41,6 +41,7 @@ public class PhotoDAO extends SqlSessionDaoSupport {
 	
 	public List<PhotoVO> photoSortByPyeong(String Pyeong){
 		return getSqlSession().selectList("photo.photoSortByPyeong", Pyeong);
-
 	}
+
+
 }

@@ -8,17 +8,17 @@ $(function(){
 	$("#comment").keydown(function(key){
 		if(key.keyCode == 13) {
 			var comment = $("#comment").val();
-			insertComment(comment, member_no, photo_seq_no);
+			insertComment(comment, session_member_no, photo_seq_no);
 		}
 	});
 })
 
-function insertComment(comment, member_no, photo_seq_no) {
+function insertComment(comment, session_member_no, photo_seq_no) {
 	$.ajax({
 		url:'writeComment.do',
 		type:'post',
 		data:{
-			"member_no": member_no,
+			"member_no": session_member_no,
 			"p_reply_content": comment,
 			"p_reply_no": photo_seq_no  
 		},
@@ -57,12 +57,12 @@ function insertComment(comment, member_no, photo_seq_no) {
 }
 
 
-function commentList(member_no, photo_seq_no) {
+function commentList(session_member_no, photo_seq_no) {
 	$.ajax({
 		url:'writeComment.do',
 		type:'post',
 		data:{
-			"member_no": member_no,
+			"member_no": session_member_no,
 			"p_reply_no": photo_seq_no  
 		},
 		dataType: 'json',

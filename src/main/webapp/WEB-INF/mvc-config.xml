@@ -52,7 +52,7 @@
 	<!-- file upload setting -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="3500000" />
+		<property name="maxUploadSize" value="350000000" />
 	</bean>
 	<mvc:default-servlet-handler/>
 

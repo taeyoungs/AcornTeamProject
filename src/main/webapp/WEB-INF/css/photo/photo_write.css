@@ -121,7 +121,7 @@ a, button{
 .Photo-Write-Form_photo-item_content, .Photo-Write-Form_photo-item_image-wrap{
 	flex: 0 0 auto;
 	padding: 0 12px;
-	width: 50%;
+	width: 39%;
 	box-sizing: border-box;
 	max-width: 460px;
 	
@@ -147,7 +147,7 @@ a, button{
 	font-size: 0;
 }
 
-.Photo-Write-Form_photo-image-upload>.content>.icon{
+.Photo-Write-Form_photo-image-upload>.content>#icon{
 	display: inline-block;
 	width: 48px;
 	height: 48px;
@@ -259,5 +259,39 @@ Photo-Write-Form_photo-item_content_row .text-area-input{
 	border: none;
 	border-radius: 4px;
 	transition: box-shadow .2s;
+}
+
+.card-collection-form__card-section__upload-button{
+	display: block;
+	width: 87%;
+	margin: 0 0 40px;
+	padding: 20px 0;
+	border: none;
+	background: #f5f5f5;
+	color: #757575;
+	font-family: inherit;
+	font-size: 17px;
+	font-weight: 700;
+	line-height: 30px;
+	transition: opacity .1s;
+	border-radius: 4px;
+}
+
+.card-collection-form__card-image{
+	position: relative;
+	border-radius: 8px;
+	overflow: hidden;
+	min-height: 80px;
+	box-sizing: border-box;
+	background-color: #ededed;
+}
+
+.card-collection-form__card-image__image{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100%;
+	height: 100%;
+	transform: translate(-50%,-50%);
 }
 

@@ -2,6 +2,8 @@ package com.team.zip.model.vo;
 
 import java.sql.Timestamp;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class PhotoVO {
 	public int photo_seq_no;
 	public int member_no;
@@ -13,6 +15,8 @@ public class PhotoVO {
 	public int photo_good;
 	public Timestamp reg_date;
 	public String hashtag;
+	public MultipartFile photo;
+	
 	
 	public int getPhoto_seq_no() {
 		return photo_seq_no;
@@ -74,7 +78,12 @@ public class PhotoVO {
 	public void setHashtag(String hashtag) {
 		this.hashtag = hashtag;
 	}
-	
+	public MultipartFile getPhoto() {
+		return photo;
+	}
+	public void setPhoto(MultipartFile photo) {
+		this.photo = photo;
+	}
 	
 	
 }

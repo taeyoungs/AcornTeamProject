@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.zip.model.vo.BoardReplyVO;
 import com.team.zip.model.vo.BoardVO;
+import com.team.zip.service.BoardReplyService;
 import com.team.zip.service.BoardService;
 import com.team.zip.service.MemberService;
 import com.team.zip.util.SpringFileWriter;
@@ -29,6 +31,28 @@ public class BoardController {
 
 	@Autowired
 	private MemberService mservice;
+	
+	@Autowired
+	private BoardReplyService brs;
+	
+	@RequestMapping(value="/board/reply.do",method={RequestMethod.GET, RequestMethod.POST})
+	public String read(
+			@ModelAttribute BoardReplyVO brvo,
+			HttpServletRequest request, HttpSession session
+			)
+	{
+		System.out.println(brvo.getB_reply_content());
+		
+		String login = (String)session.getAttribute("loginok");
+		if(login != null && login.equals("login")) {
+	
+			brs.insertBoardReply(brvo);
+			return "/board/boardview";
+
+		} else {
+			return "/1/member/signin";
+		}
+	}
 	
 	@RequestMapping("/board/list.do") 
 	public ModelAndView list(
@@ -143,6 +167,7 @@ public class BoardController {
 
 		return "redirect:list.do";
 	}
+	
 	@RequestMapping("/board/updateform.do")
 	public ModelAndView updateform(
 			@RequestParam int board_seq_no,

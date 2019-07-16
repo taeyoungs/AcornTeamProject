@@ -7,8 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>질문과 답변</title>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<c:set var="root" value="<%=request.getContextPath() %>"/>
 <link rel="stylesheet" type="text/css" href="${root}/css/common.css">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <link rel="stylesheet" media="all"
 	href="https://d1nyaccf3kuclt.cloudfront.net/assets/v3/bucket_ui/bucket_ui-a69ea26903ba7b7b1e58db706ee621d7fa1695945755178ff07fe330df44fff6.css" />
 <link rel="stylesheet" media="screen"

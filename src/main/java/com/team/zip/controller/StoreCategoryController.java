@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.zip.model.dao.StoreProductDAO;
 import com.team.zip.model.vo.CommonCodeVO;
 import com.team.zip.model.vo.ProductVO;
 import com.team.zip.service.StoreCategoryService;
@@ -16,7 +17,7 @@ import com.team.zip.service.StoreProductService;
 
 @Controller
 public class StoreCategoryController {
-	
+
 	@Autowired
 	StoreCategoryService categoryService;
 	
@@ -33,6 +34,9 @@ public class StoreCategoryController {
 		List<CommonCodeVO> secondList = categoryService.getCategorySecondList(codeVal);
 		List<ProductVO> prodList = storeProductService.getProductList(commonCodeVo);
 				
+		String totalCount = storeProductService.getProductTotalCount();
+		
+		mav.addObject("totalCount", totalCount);
 		mav.addObject("ctgrList", ctgrList);
 		mav.addObject("secondList", secondList);
 		mav.addObject("currentCategory", codeVal);

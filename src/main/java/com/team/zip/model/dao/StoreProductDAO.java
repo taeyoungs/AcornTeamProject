@@ -15,4 +15,9 @@ public class StoreProductDAO extends SqlSessionDaoSupport {
 
 		return getSqlSession().selectList("getProductList", commonCodeVo);
 	}
+	
+	public String getProductTotalCount() {
+		return getSqlSession().selectOne("getProductTotalCount");
+	}
+
 }

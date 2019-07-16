@@ -14,5 +14,10 @@
     	   AND CATEGORY_NO = #{codeSeqNo}
   		</if>
 	</select>
+	
+	<select id="getProductTotalCount" resultType="String">
+		SELECT COUNT(*)
+		FROM PRODUCT
+	</select>
 
 </mapper>

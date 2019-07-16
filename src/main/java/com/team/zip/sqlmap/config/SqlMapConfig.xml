@@ -12,6 +12,7 @@
 		<typeAlias type="com.team.zip.model.vo.BoardVO" alias="bvo"/>
 		<typeAlias type="com.team.zip.model.vo.BoardReplyVO" alias="brvo"/>
 		<typeAlias type="com.team.zip.model.vo.CommonCodeVO" alias="commonCodeVO"/>
+		<typeAlias type="com.team.zip.model.vo.ProductVO" alias="productVO"/>
 	</typeAliases>
     
 	<mappers>
@@ -20,5 +21,6 @@
 		<mapper resource="com/team/zip/sqlmap/mapper/MainSql.xml"/>
 		<mapper resource="com/team/zip/sqlmap/mapper/BoardSql.xml"/>
 		<mapper resource="com/team/zip/sqlmap/mapper/CommonCodeSql.xml"/>
+		<mapper resource="com/team/zip/sqlmap/mapper/StoreProductSql.xml"/>
 	</mappers>
 </configuration>                           

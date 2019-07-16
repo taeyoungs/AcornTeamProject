@@ -10,7 +10,7 @@ import com.team.zip.model.dao.CategoryDAO;
 import com.team.zip.model.vo.CommonCodeVO;
 
 @Service
-public class CategoryService {
+public class StoreCategoryService {
 	
 	@Autowired
 	private CategoryDAO categoryDAO;
@@ -26,4 +26,6 @@ public class CategoryService {
 		
 		return categoryDAO.getCategorySecondList(codeVal);
 	}
+	
+
 }

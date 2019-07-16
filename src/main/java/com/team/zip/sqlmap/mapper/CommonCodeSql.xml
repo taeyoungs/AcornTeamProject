@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="CommonCodeSql">
-	<select id="getCategoryList" resultType="commonCodeVO" parameterType="String">
+	<select id="getCategoryList" parameterType="String" resultType="commonCodeVO">
 		<![CDATA[
 		SELECT DISTINCT CODE_VAL AS codeVal
 		FROM COMMON_CODE
@@ -9,9 +9,10 @@
 		]]>
 	</select>
 	
-	<select id="getCategorySecondList" resultType="commonCodeVO" parameterType="String">
+	<select id="getCategorySecondList" parameterType="String" resultType="commonCodeVO">
 		<![CDATA[
-		SELECT CODE_NM AS codeNm
+		SELECT CODE_SEQ_NO AS codeSeqNo
+		     , CODE_NM AS codeNm
 		FROM COMMON_CODE
 		WHERE CODE_VAL = #{codeVal}
 		]]>

@@ -12,12 +12,5 @@ import com.team.zip.model.vo.StoreReviewVO;
 @Service
 public class StoreReviewService {
 
-	@Autowired
-	private StoreReviewDAO storeReviewDAO;
-	
-	public List<StoreReviewVO> getReviewTotalCount(String prodNo) {
-		List<StoreReviewVO> reviewList = new ArrayList<StoreReviewVO>();
-		
-		return storeReviewDAO.getReviewTotalCount(prodNo);
-	}
+
 }

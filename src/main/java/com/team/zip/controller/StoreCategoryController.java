@@ -1,27 +1,20 @@
 package com.team.zip.controller;
 
 import java.util.List;
-import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.team.zip.model.dao.StoreProductDAO;
 import com.team.zip.model.vo.CommonCodeVO;
 import com.team.zip.model.vo.ProductVO;
-import com.team.zip.model.vo.StoreReviewVO;
 import com.team.zip.service.StoreCategoryService;
 import com.team.zip.service.StoreProductService;
-import com.team.zip.service.StoreReviewService;
 
 @Controller
 public class StoreCategoryController {
-	@Autowired
-	private StoreReviewService storeReviewService;
 	
 	@Autowired
 	StoreCategoryService categoryService;

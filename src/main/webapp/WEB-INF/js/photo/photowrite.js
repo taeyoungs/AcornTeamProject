@@ -1,31 +1,13 @@
 $(function(){
-	
-//	$(document).on('click', '.Photo-Write-Form_photo-image-upload', function(){
-//		$(".file").click();
-//	});
-	
 	$('.Photo-Write-Form_photo-image-upload').click(function(){
 		$(".file").click();
 		var th = $(this);
 		
 		$(document).on('change','.file',function(){
-			
 			readURL(this, th);
-			
-			
-//			var imageWrap = `<div class="card-collection-form__card-image card-collection-form__card-item__image focused" style="padding-bottom: 88%; display:block;">
-//			<img class="card-collection-form__card-image__image" src="${temp2}" style="display:block;"></div>`
-//			if($(".Photo-Write-Form_photo-section_list_item").length==1){
-//				$(th).parent().append(imageWrap);
-//			}
-//			$(th).remove();
-//						
-//			$(".card-collection-form__card-section__upload-button").insertAfter(".Photo-Write-Form_photo-section_list");
-//			$(".card-collection-form__card-section__upload-button").css("display","block");
-			
 		});
 	});
-	
+	 
 	$(".keyword-input_input-item").on("keydown",function(key){
 		console.log(key.keycode);
 		var hashtagList = `<div class="keyword-input_input-item" style="display:inline-block">
@@ -37,14 +19,14 @@ $(function(){
 		}
 	});
 	
-	
-	$(document).on('click','.card-collection-form__card-section__upload-button',function(){
+	$(".card-collection-form__card-section__upload-button").click(function(e){
 		$(".file").click();
 		var th = $(this);
-		$(document).on('change','.file',function(){
+		$(document).one('change','.file',function(e){
 			readURL2(this, th);
 		});
-	});	
+	});
+	
 });
 
 function readURL(input, th){
@@ -100,12 +82,9 @@ function readURL2(input, th){
 						</div>
 					</div>
 				</li>`
-
 			$(th).prev().append(writeSection);
-
 		}
 		reader.readAsDataURL(input.files[0]);
-
 	}
 }
 

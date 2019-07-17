@@ -46,7 +46,7 @@ public class PhotoController {
 	private CombineService cservice;
 	
 	@RequestMapping("photo/photolist.do")
-	public ModelAndView photo(@RequestParam String where) {
+	public ModelAndView photo(@RequestParam(value="where", defaultValue = "photo") String where) {
 
 		ModelAndView model = new ModelAndView();
 		List<PhotoVO> list = service.getList();

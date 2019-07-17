@@ -18,19 +18,19 @@
         <nav class="navi-primary-wrap sticky-top" style="height: auto">
             <div class="navi-primary_container sticky-content" data-offset="0">
                 <div class="navi-primary">
-                    <a class="navi-primary_logo" href="${root}/main.do?where=home">
+                    <a class="navi-primary_logo" href="${root}/main.do">
                         <img src="${root}/image/common/logo.png">
                     </a>
                     <div class="navi-primary_menu open">
                         <ul class="navi-menu">
-                            <li class="navi-menu_primary current active">
-                               <div class="title">
-                                   <a href="${root}/main.do?where=home">커뮤니티</a>
+                            <li class="navi-menu_primary ${sessionScope.category eq 'main' ? 'current active' : ''}">
+                               <div class="title community">
+                                   <a href="${root}/main.do">커뮤니티</a>
                                </div>
                             </li>
-                            <li class="navi-menu_primary">
-                                <div class="title">
-                                   <a href="${root}/store/ranks.do">스토어</a>
+                            <li class="navi-menu_primary ${sessionScope.category eq 'store' ? 'current active' : ''}">
+                                <div class="title store">
+                                   <a href="${root}/store/store.do">스토어</a>
                                </div>
                             </li>
                             <li class="navi-menu_primary">
@@ -103,22 +103,35 @@
                 </div>
             </div>
         </nav>
-        <nav class="navi-secondary-wrap sticky-top" style="height: auto">
+        <nav class="navi-secondary-wrap sticky-top" style="height: auto;">
             <div class="navi-secondary_container sticky-content open" data-offset="${secondaryTop}">
                 <div class="navi-secondary">
-                    <div class="navi-secondary_menu">
+                    <div class="navi-secondary_menu" style="display: ${sessionScope.category eq 'main' ? 'block' : 'none'}">
                         <ul style="white-space: nowrap;">
                             <li class="navi-menu_primary_secondary ${where eq 'home' ? 'active' : ''}">
-                                <a href="${root}/main.do?where=home">홈</a>    
+                                <a href="${root}/main.do">홈</a>    
                             </li>
                             <li class="navi-menu_primary_secondary ${where eq 'photo' ? 'active' : ''}">
-                                <a href="${root}/photo/photolist.do?where=photo">사진</a> 
+                                <a href="${root}/photo/photolist.do">사진</a> 
                             </li>
                             <li class="navi-menu_primary_secondary">
-                                <a href="#" onClick="sendWPage('집들이')">집들이</a> 
+                                <a href="#">집들이</a> 
                             </li>
                             <li class="navi-menu_primary_secondary ${where eq 'board' ? 'active' : ''}">
                                 <a href="${root}/board/list.do?where=board">질문과답변</a> 
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="navi-secondary_menu" style="display: ${sessionScope.category eq 'store' ? 'block' : 'none'}">
+                        <ul style="white-space: nowrap;">
+                            <li class="navi-menu_primary_secondary ${where eq 'storehome' ? 'active' : ''}">
+                                <a href="${root}/store/store.do">스토어홈</a>    
+                            </li>
+                            <li class="navi-menu_primary_secondary ${where eq 'catego' ? 'active' : ''}">
+                                <a href="${root}/store/category.do?codeVal=가구">카테고리</a> 
+                            </li>
+                            <li class="navi-menu_primary_secondary ${where eq 'ranking' ? 'active' : ''}">
+                                <a href="${root}/">랭킹</a> 
                             </li>
                         </ul>
                     </div>

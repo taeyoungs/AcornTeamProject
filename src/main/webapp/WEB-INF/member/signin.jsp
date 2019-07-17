@@ -17,7 +17,7 @@
         <div class="sign-in-form-warp">
             <div class="sign-in-form">
                 <h1 class="sign-in-form_header">
-                    <a href="${root}/main.do?where=home" class="sign-in-form_header_link">
+                    <a href="${root}/main.do" class="sign-in-form_header_link">
                         <img class="icon-page-login" src="${root}/image/common/logo.png">
                     </a>
                 </h1>

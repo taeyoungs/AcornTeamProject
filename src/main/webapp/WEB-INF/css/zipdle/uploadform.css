@@ -3,6 +3,23 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     padding: 0;
 }
 
+input[type="number"], input[type='text'], input[type='password'], input[type='file'], select, option, textarea, input[type='submit'], button {
+	-webkit-appearance: none;
+    border-radius: 0;
+    outline: 0;
+}
+input[type='number']::-webkit-outer-spin-button{-webkit-appearance: none;margin: 0;}
+input[type='number']::-webkit-inner-spin-button{-webkit-appearance: none;margin: 0;}
+
+body {
+	font-family: 'Nanum Gothic';
+}
+
+input::placeholder {
+	font-family: 'Nanum Gothic';
+	font-size: 15px;
+}
+
 #project_form_wrap #total_change {
 	position: relative;
     text-align: center;
@@ -17,7 +34,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 	position: absolute;
     top: 0;
     left: 60px;
-    padding: 13px 0;
+    padding: 5px 0;
     line-height: 30px;
 }
 
@@ -33,13 +50,13 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 
 .total_align_icon img {
-	width: 25px;
-    height: 25px;
+	width: 20px;
+    height: 20px;
     color: #ffffff;
     cursor: pointer;
     text-align: center;
     line-height: 40px;
-    margin: 5px;
+    margin: 10px;
     float: left;
 }
 
@@ -57,4 +74,402 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     line-height: 40px;
     margin: 5px;
     float: left;
+}
+
+#project_form_wrap #project_form {
+	width: 670px;
+	margin: 0 auto 180px;
+}
+
+#project_form_wrap #project_form #cover_image_upload {
+	width: 670px;
+    height: 330px;
+    margin: 0 auto;
+    position: relative;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.1s ease-in;
+    background-position: center;
+    background-size: cover;
+    background-color: #F5F5F5;
+}
+
+#project_form_wrap #project_form #cover_image_upload .cover_icon {
+	position: absolute;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#project_form_wrap #project_form #cover_image_upload .cover_icon>.icon {
+	display: block;
+    margin: 0 auto 15px;
+    text-align: center;
+    font-size: 0;
+}
+
+#project_form_wrap #project_form #cover_image_upload .cover_icon>.title {
+	margin: 0 auto;
+    font-size: 17px;
+    line-height: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #757575;
+    white-space: nowrap;
+}
+
+#project_form_wrap #project_form #title_panel {
+	padding-top: 30px;
+}
+#project_form_wrap #project_form #title_panel>.category {
+	display: block;
+    margin: 0 0 13px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #757575;
+}
+#project_form_wrap #project_form #title_panel #project_title {
+	width: 590px;
+    float: left;
+    padding: 9px 14px;
+    margin: 0 10px 30px 0;
+    line-height: 30px;
+    font-size: 16px;
+    border: 1px solid #dcdcdc;
+    background-color: #ffffff;
+    color: #757575;
+    font-weight: normal;
+}
+#project_form_wrap #project_form #title_panel #title_count {
+	float: left;
+    font-size: 15px;
+    font-weight: bold;
+    color: #dcdcdc;
+    margin-top: 15px;
+}
+#project_form_wrap #project_form #title_panel #writer_profile {
+	clear: both;
+    margin: 0 0 30px;
+    padding: 20px 10px;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+    overflow: hidden;
+}
+
+#project_form_wrap #project_form #title_panel #writer_profile>img {
+	width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin-right: 15px;
+    float: left;
+}
+#project_form_wrap #project_form #title_panel #writer_profile>.nickname {
+	font-size: 15px;
+    color: #424242;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+#project_form_wrap #project_form #title_panel #writer_profile>.introduction {
+	font-size: 13px;
+    color: #424242;
+}
+
+#project_form_wrap #project_form #information_wrap #information {
+	padding: 0 0 15px;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+#project_form_wrap #project_form #information_wrap #information>.information_header {
+	color: #424242;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+#project_form_wrap #project_form #information_wrap #information>.field {
+	margin-bottom: 20px;
+}
+#project_form_wrap #project_form #information_wrap #information>.field:after {
+	display: block;
+    content: '';
+    clear: both;
+}
+#project_form_wrap #project_form #information_wrap #information>.field>.label {
+	float: left;
+    height: 40px;
+    line-height: 40px;
+    color: #424242;
+    width: 110px;
+    font-weight: bold;
+}
+
+#project_form_wrap #project_form #information_wrap #information>.field>.label.essential {
+	color: #35c5f0;
+    font-weight: bold;
+}
+
+#project_form_wrap #project_form #information_wrap #information>.field>.value {
+	float: left;
+    height: 40px;
+}
+#project_form_wrap #project_form #information_wrap #information>.field>.value select {
+	display: block;
+    float: left;
+    width: 200px;
+    border: 1px solid #dcdcdc;
+    background-color: #ffffff;
+    font-size: 15px;
+    line-height: 38px;
+    height: 40px;
+    padding: 0 15px;
+    color: #424242;
+    background-image: url(https://d1nyaccf3kuclt.cloudfront.net/assets/ic-arrow-triangled-10-down.png);
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 15px);
+    background-size: 10px;
+}
+
+#project_form_wrap #project_form #information_wrap #information>.field>.value input[type=text], 
+#project_form_wrap #project_form #information_wrap #information>.field>.value input[type=number] {
+	display: block;
+    float: left;
+    width: 200px;
+    box-sizing: border-box;
+    border: 1px solid #dcdcdc;
+    background-color: #ffffff;
+    font-size: 15px;
+    line-height: 40px;
+    height: 40px;
+    padding: 0 15px;
+    color: #424242;
+}
+#project_form_wrap #project_form #information_wrap #information>.field>.value.has_unit>.unit.one {
+	left: -30px;
+}
+#project_form_wrap #project_form #information_wrap #information>.field>.value.has_unit>.unit.two {
+	left: -45px;
+}
+#project_form_wrap #project_form #information_wrap #information>.field>.value.has_unit>.unit {
+	position: relative;
+    float: left;
+    line-height: 40px;
+    width: 40px;
+}
+#project_form_wrap #project_form #alert_panel {
+	padding: 30px 0 0;
+}
+#project_form_wrap #project_form #alert_panel>div {
+	letter-spacing: -0.3px;
+    font-size: 13px;
+    line-height: 28px;
+    color: #424242;
+}
+
+#project_form_wrap #project_form #card_panel {
+	position: relative;
+    padding: 50px 0;
+}
+
+#project_form_wrap #project_form #card_panel .card_form {
+	margin-bottom: 55px;
+    box-sizing: border-box;
+}
+#project_form_wrap #project_form #card_panel .add_card_panel {
+	padding: 10px 0;
+    overflow: hidden;
+    background-color: #F5F5F5;
+    text-align: center;
+    font-size: 15px;
+    line-height: 30px;
+    font-weight: bold;
+    color: #757575;
+    cursor: pointer;
+}
+#project_form_wrap #project_form #card_panel .add_card_panel.big {
+	padding: 111px 0;
+    font-size: 17px;
+    line-height: 20px;
+}
+#project_form_wrap #project_form #card_panel .add_card_panel>.icon {
+	display: inline-block;
+    font-size: 0;
+    line-height: 0;
+    margin-right: 10px;
+    vertical-align: -4px;
+}
+#project_form_wrap #project_form #card_panel .add_card_panel.big>.icon {
+	display: block;
+    margin: 0 auto 15px;
+}
+#project_form_wrap #project_form #card_panel .add_card_panel>.text {
+	display: inline-block;
+}
+#project_form_wrap #project_form #card_panel .add_card_panel.big>.text {
+	display: block;
+    margin: 0 auto;
+}
+#project_form_wrap #project_form #card_panel .card_form_content {
+	position: relative;
+    margin: 55px 0 0;
+    padding: 54px 54px;
+    border: 1px solid #dcdcdc;
+}
+#project_form_wrap #project_form #card_panel .card_form_content>.title {
+	display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 0 18px;
+    padding: 9px 14px;
+    border: 1px solid #dcdcdc;
+    color: #757575;
+    background-color: #ffffff;
+    font-size: 15px;
+    line-height: 30px;
+    resize: none;
+    height: 50px;
+}
+#project_form_wrap #project_form #card_panel .card_form_content>.move_delete_button {
+	position: absolute;
+    top: 0;
+    left: 100%;
+    margin-left: 13px;
+}
+
+#project_form_wrap #project_form #card_panel .card_form_content>.move_delete_button>.up {
+	margin-top: 200px;
+}
+#project_form_wrap #project_form #card_panel .card_form_content>.move_delete_button>.delete, 
+#project_form_wrap #project_form #card_panel .card_form_content>.move_delete_button>.up, 
+#project_form_wrap #project_form #card_panel .card_form_content>.move_delete_button>.down {
+	width: auto;
+    min-width: 40px;
+    padding: 10px 5px;
+    background-color: #f5f5f5;
+    color: #757575;
+    font-weight: bold;
+    font-size: 0;
+    line-height: 0;
+    border-radius: 4px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+#project_form_wrap #project_form #card_panel .card_form_content>.move_delete_button>.delete {
+	background-color: #757575;
+    color: #ffffff;
+}
+#project_form_wrap #project_form #card_panel .card_form_content>.move_delete_button>.delete>.icon, 
+#project_form_wrap #project_form #card_panel .card_form_content>.move_delete_button>.delete>.text, 
+#project_form_wrap #project_form #card_panel .card_form_content>.move_delete_button>.up>.icon, 
+#project_form_wrap #project_form #card_panel .card_form_content>.move_delete_button>.up>.text, 
+#project_form_wrap #project_form #card_panel .card_form_content>.move_delete_button>.down>.icon, 
+#project_form_wrap #project_form #card_panel .card_form_content>.move_delete_button>.down>.text {
+	display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#project_form_wrap #project_form #card_panel .card_form_content>.move_delete_button>.delete>.text, 
+#project_form_wrap #project_form #card_panel .card_form_content>.move_delete_button>.up>.text, 
+#project_form_wrap #project_form #card_panel .card_form_content>.move_delete_button>.down>.text {
+	margin-top: 6px;
+    font-size: 13px;
+    line-height: 16px;
+}
+#project_form_wrap #project_form #card_panel .card_form_content>.move_delete_button>.down {
+	margin-top: 10px;
+}
+#project_form_wrap #project_form #card_panel .card_form_content>.content_panel>.input>.image {
+	width: 560px;
+    margin: 0 auto;
+    position: relative;
+}
+#project_form_wrap #project_form #card_panel .card_form_content>.content_panel>.input>.image>.image {
+	width: 100%;
+    background-color: #bdbdbd;
+    border: none;
+}
+#project_form_wrap #project_form #card_panel .card_form_content>.content_panel>.input>.image>.source {
+	border: none;
+    color: #757575;
+    font-size: 13px;
+    width: 100%;
+}
+#project_form_wrap #project_form #card_panel .card_form_content>.content_panel>.input>.user_input {
+	width: 100%;
+    margin-top: 10px;
+}
+#project_form_wrap #project_form #card_panel .card_form_content>.content_panel>.input>.user_input>.content_space {
+	min-height: 100px;
+    margin-top: 20px;
+    padding: 9px 14px;
+    font-size: 15px;
+    line-height: 28px;
+    background-color: #ffffff;
+    color: #757575;
+    border: 1px solid #dcdcdc;
+    box-sizing: border-box;
+    outline: 0;
+}
+[contentEditable=true]:empty:not(:focus):before {
+	content: attr(data-ph);
+    color: #939598;
+}
+#project_form_wrap #project_form #card_panel .card_form_content>.content_panel>.hashtag {
+	margin-top: 20px;
+}
+.ui-keyword-field {
+	overflow: hidden;
+}
+.ui-keyword-field>div {
+	float: left;
+    margin-right: 10px;
+    margin-top: 8px;
+    padding: 0 10px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: #fafafa;
+    font-size: 16px;
+    line-height: 30px;
+}
+.ui-keyword-field>div:empty {
+	padding: 0 0 0 22px;
+}
+.ui-keyword-field>div[placeholder]:empty:before {
+	content: "# " attr(placeholder);
+    color: #d8d8d8;
+    position: relative;
+    left: -12px;
+}
+.ui-keyword-field>div:before {
+	content: '#';
+    margin-right: 5px;
+    color: #d8d8d8;
+}
+
+#project_form_wrap #action_buttons {
+	width: 100%;
+    background-color: rgba(66,66,66,0.9);
+    min-height: 70px;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    z-index: 15;
+}
+#project_form_wrap #action_buttons>.right {
+	float: right;
+    line-height: 70px;
+    height: 70px;
+    padding: 0 50px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+}
+#project_form_wrap #action_buttons>.right.has_border {
+	border-right: 1px solid rgba(0,0,0,0.15);
+    border-left: 1px solid rgba(0,0,0,0.15);
+}
+#project_form_wrap #action_buttons>.right.positive {
+	color: #35c5f0;
 }

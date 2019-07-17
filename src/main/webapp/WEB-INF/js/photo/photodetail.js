@@ -24,7 +24,8 @@ function insertComment(comment, session_member_no, photo_seq_no) {
 		},
 		dataType: 'json',
 		error:function(request,status,error){
-            alert("댓글 작성에 실패했음");
+			alert("로그인 후 댓글 작성이 가능합니다");
+			window.location.href = "/member/gotoSignin";
         },
         success:function(data){
         	var str = "";

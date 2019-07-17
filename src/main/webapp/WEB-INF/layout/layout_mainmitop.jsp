@@ -14,7 +14,7 @@
 	#top {
 		width: 100%;
 		height: auto;
-	}
+	} 
 	#navi {
 		width: 100%;
 	}

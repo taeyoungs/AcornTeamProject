@@ -123,10 +123,10 @@ public class PhotoController {
 		}
 		
 		if(imagename.length() == 0) {
-			imagename = "noimage";
+			imagename = "noimage.jpg";
 		}
 		
-		pvo.setPhoto_image(imagename);
+		pvo.setPhoto_image("/image/photoimage/"+imagename);
 		pvo.setMember_no(memberNo);
 		
 		service.photoInsert(pvo);

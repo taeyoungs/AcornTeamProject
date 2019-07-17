@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="${root}/css/store/commerce.css">
+<link rel="stylesheet" type="text/css" href="${root}/css/store/button.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/common.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/main/main_media.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/main/bucket_ui.css">
@@ -16,14 +17,14 @@
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 </head>
 <body>
-<div id="top" class="layout">
-	<tiles:insertAttribute name="top"/>
-</div>
-<div id="leftmenu" class="layout">
-	<tiles:insertAttribute name="leftmenu"/>
-</div>
-<div id="bottom" class="layout">
-	<tiles:insertAttribute name="bottom"/>
-</div>
+	<div id="top" class="layout">
+		<tiles:insertAttribute name="top"/>
+	</div>
+	<div id="main" class="layout">
+		<tiles:insertAttribute name="main"/>
+	</div>
+	<div id="bottom" class="layout">
+		<tiles:insertAttribute name="bottom"/>
+	</div>
 </body>
 </html>

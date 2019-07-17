@@ -84,21 +84,30 @@ $(function(){
     		"font-weight": "normal"
     	});
     });
-    // 상단 메뉴 hover 이벤트 때 active랑 current 클래스 지정
+    // 상단 메뉴 hover 이벤트 때 active 클래스 지정
     $("ul.navi-menu li").hover(function(){
         $(this).siblings().removeClass("active");
-        $(this).addClass("active"); 
-    }, function(){
-        if(!$(this).hasClass("current")) {
-            $(this).removeClass("active");
-            $(this).siblings(".current").addClass("active");
+        $(this).addClass("active");
+        if($(this).find("div").hasClass("community")) {
+        	$(".navi-secondary_menu").eq(0).css("display", "block");
+        	$(".navi-secondary_menu").eq(1).css("display", "none");
+        } else if($(this).find("div").hasClass("store")) {
+        	$(".navi-secondary_menu").eq(1).css("display", "block");
+        	$(".navi-secondary_menu").eq(0).css("display", "none");
         }
     });
-    $("ul.navi-menu li").click(function(){
-        $(this).siblings().removeClass("current");
-        $(this).addClass("current");
-        $(this).addClass("active");
-        $(".navi-primary_menu").addClass("open");
+    // 상단 메뉴 영역 나갔을 때 current 클래스를 가지고 있는 세컨더리 메뉴가 표시되도록
+    $("#navi").mouseleave(function(){
+    	 var current = $(".navi-menu_primary").siblings(".current");
+    	 if($(current).find("div").hasClass("community")) {
+         	$(".navi-secondary_menu").eq(0).css("display", "block");
+         	$(".navi-secondary_menu").eq(1).css("display", "none");
+         } else if($(current).find("div").hasClass("store")) {
+         	$(".navi-secondary_menu").eq(1).css("display", "block");
+         	$(".navi-secondary_menu").eq(0).css("display", "none");
+         }
+    	 $(".navi-menu_primary").siblings().removeClass("active");
+    	 $(current).addClass("active");
     });
     
     // 스크롤 움직였을 때 상단메뉴 fixed

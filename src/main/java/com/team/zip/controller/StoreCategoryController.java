@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.zip.model.vo.CommonCodeVO;
@@ -23,7 +24,8 @@ public class StoreCategoryController {
 	private StoreProductService storeProductService;
 	
 	@RequestMapping("/store/category.do")
-	public ModelAndView categoryGo(@ModelAttribute CommonCodeVO commonCodeVo) {
+	public ModelAndView categoryGo(@ModelAttribute CommonCodeVO commonCodeVo,
+			@RequestParam(value="where", defaultValue="catego") String where ) {
 		
 		ModelAndView mav = new ModelAndView();
 		

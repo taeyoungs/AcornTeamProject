@@ -8,16 +8,20 @@
 			 , PROD_IMG AS prodImage
 			 , DISCOUNT_RATE AS discountRate
 			 , PROD_SELLER AS prodSeller
-		  FROM PRODUCT
+			 , (SELECT COUNT(*) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS reviewCnt
+		  FROM PRODUCT P
 		 WHERE CATEGORY_NM = #{codeVal}
 		<if test="codeSeqNo != ''">
     	   AND CATEGORY_NO = #{codeSeqNo}
   		</if>
 	</select>
 	
-	<select id="getProductTotalCount" resultType="String">
+	<select id="getProductTotalCount" parameterType="commonCodeVO" resultType="String">
 		SELECT COUNT(*)
 		FROM PRODUCT
+		WHERE CATEGORY_NM = #{codeVal}
+		<if test="codeSeqNo != ''">
+    	   AND CATEGORY_NO = #{codeSeqNo}
+  		</if>
 	</select>
-
 </mapper>

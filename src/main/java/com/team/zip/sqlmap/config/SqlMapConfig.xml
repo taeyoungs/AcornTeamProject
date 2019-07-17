@@ -13,6 +13,7 @@
 		<typeAlias type="com.team.zip.model.vo.BoardReplyVO" alias="brvo"/>
 		<typeAlias type="com.team.zip.model.vo.CommonCodeVO" alias="commonCodeVO"/>
 		<typeAlias type="com.team.zip.model.vo.ProductVO" alias="productVO"/>
+		<typeAlias type="com.team.zip.model.vo.StoreReviewVO" alias="storeReviewVO"/>
 	</typeAliases>
     
 	<mappers>

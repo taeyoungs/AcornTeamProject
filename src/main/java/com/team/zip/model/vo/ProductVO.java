@@ -7,7 +7,15 @@ public class ProductVO {
 	private String prodImage;
 	private String discountRate;
 	private String prodSeller;
+	private String reviewCnt;
 	
+	
+	public String getReviewCnt() {
+		return reviewCnt;
+	}
+	public void setReviewCnt(String reviewCnt) {
+		this.reviewCnt = reviewCnt;
+	}
 	public String getProdNo() {
 		return prodNo;
 	}

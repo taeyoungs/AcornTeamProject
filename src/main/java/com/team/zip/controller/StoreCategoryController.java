@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.team.zip.model.dao.StoreProductDAO;
 import com.team.zip.model.vo.CommonCodeVO;
 import com.team.zip.model.vo.ProductVO;
 import com.team.zip.service.StoreCategoryService;
@@ -17,7 +16,7 @@ import com.team.zip.service.StoreProductService;
 
 @Controller
 public class StoreCategoryController {
-
+	
 	@Autowired
 	StoreCategoryService categoryService;
 	
@@ -25,16 +24,21 @@ public class StoreCategoryController {
 	private StoreProductService storeProductService;
 	
 	@RequestMapping("/store/category.do")
-	public ModelAndView categoryGo(@ModelAttribute CommonCodeVO commonCodeVo) {
+	public ModelAndView categoryGo(@ModelAttribute CommonCodeVO commonCodeVo,
+			@RequestParam(value="where", defaultValue="catego") String where ) {
 		
 		ModelAndView mav = new ModelAndView();
+		
+		if (commonCodeVo.getCodeVal() == null) {
+			commonCodeVo.setCodeVal("가구");
+		}
 		
 		String codeVal = commonCodeVo.getCodeVal();
 		List<CommonCodeVO> ctgrList = categoryService.getCategoryList(codeVal);
 		List<CommonCodeVO> secondList = categoryService.getCategorySecondList(codeVal);
 		List<ProductVO> prodList = storeProductService.getProductList(commonCodeVo);
-				
-		String totalCount = storeProductService.getProductTotalCount();
+		
+		String totalCount = storeProductService.getProductTotalCount(commonCodeVo);
 		
 		mav.addObject("totalCount", totalCount);
 		mav.addObject("ctgrList", ctgrList);

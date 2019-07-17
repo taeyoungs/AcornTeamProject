@@ -131,7 +131,7 @@
                                 <a href="${root}/store/category.do?codeVal=가구">카테고리</a> 
                             </li>
                             <li class="navi-menu_primary_secondary ${where eq 'ranking' ? 'active' : ''}">
-                                <a href="${root}/">랭킹</a> 
+                                <a href="${root}/store/ranks.do">랭킹</a> 
                             </li>
                         </ul>
                     </div>

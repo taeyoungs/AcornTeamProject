@@ -40,6 +40,7 @@ public class StoreCategoryController {
 		
 		String totalCount = storeProductService.getProductTotalCount(commonCodeVo);
 		
+		mav.addObject("where", where);
 		mav.addObject("totalCount", totalCount);
 		mav.addObject("ctgrList", ctgrList);
 		mav.addObject("secondList", secondList);

@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <c:set var="root" value="<%=request.getContextPath()%>"/>
-<link rel="stylesheet" type="text/css" href="${root}/css/store/ranks.css">
+<link rel="stylesheet" type="text/css" href="/css/store/ranks.css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <body>
 <main id="root" role="main">
@@ -22,39 +22,43 @@
 						<div class="container">
 							<p class="ranking-feed-card__title"></p>
 							<div class="ranking-feed-card__product-wrap">
+								<c:forEach items="${list }" var="plist" varStatus="status" begin="0" end="49">
 								<div class="ranking-product-item-wrap">
 									<div class="product-item">
 										<div class="product-item__image">
 											<a href="#">
-												<img class="image" src="#">
-												<div class="product-item__image__number"></div>
+												<img class="image" src="${root }${plist.prodImage }">
+												<div class="product-item__image__number">${status.count }</div>
 											</a>
 											<button type="button">
-												<img src="#" style="width:24px;height:24px;">
+												<img src="/image/common/bookmark-gray.png" style="width:24px;height:24px;">
 											</button>
 										</div>
 									</div>
 									<a href="#">
 										<div class="project-item__info">
 											<div class="product-item__info__title">
-												<p class="product-item__info__title__brand"></p>
-												<p></p>
+												<p class="product-item__info__title__brand">${plist.prodSeller }</p>
+												<p>${plist.prodTitle }</p>
 											</div>
 											<div class="product-item__info__col">
 												<div class="product-item__info__price">
 													<span class="discount-rate">
-													
+													${plist.discountRate }%
 													</span>
-													<strong></strong>
+													<strong>
+													<fmt:formatNumber value="${plist.prodPrice }" pattern="#,###"/>
+													</strong>
 												</div>
 											</div>
 											<div class="product-item__info__col">
-												<img src="#">
-												<strong></strong>
+												<img src="/image/common/star.png" style="width:12px;height:12px;">
+												<strong>4.4</strong>
 											</div>
 										</div>
 									</a>
 								</div>
+								</c:forEach>
 							</div>
 							<a href="#">
 								<button class="ranking-feed-card__more-btn" type="button">더보기</button>
@@ -70,30 +74,31 @@
 						<div class="container">
 							<p class="ranking-feed-card__title"></p>
 							<div class="ranking-feed-card__product-wrap">
+								<c:forEach items="${flist }" var="flist" varStatus="status" begin="0" end="9">
 								<div class="ranking-product-item-wrap">
 									<div class="product-item">
 										<div class="product-item__image">
 											<a href="#">
-												<img class="image" src="#">
-												<div class="product-item__image__number"></div>
+												<img class="image" src="${root }${flist.prodImage }">
+												<div class="product-item__image__number">${status.count}</div>
 											</a>
 											<button type="button">
-												<img src="#" style="width:24px;height:24px;">
+												<img src="/image/common/bookmark-gray.png" style="width:24px;height:24px;">
 											</button>
 										</div>
 									</div>
 									<a href="#">
 										<div class="project-item__info">
 											<div class="product-item__info__title">
-												<p class="product-item__info__title__brand"></p>
+												<p class="product-item__info__title__brand">${flist.prodSeller }</p>
 												<p></p>
 											</div>
 											<div class="product-item__info__col">
 												<div class="product-item__info__price">
 													<span class="discount-rate">
-													
+													${flist.discountRate }%
 													</span>
-													<strong></strong>
+													<strong><fmt:formatNumber value="${flist.prodPrice }" pattern="#,###"/></strong>
 												</div>
 											</div>
 											<div class="product-item__info__col">
@@ -103,6 +108,7 @@
 										</div>
 									</a>
 								</div>
+								</c:forEach>
 							</div>
 							<a href="#">
 								<button class="ranking-feed-card__more-btn" type="button">더보기</button>
@@ -118,28 +124,29 @@
 						<div class="container">
 							<p class="ranking-feed-card__title"></p>
 							<div class="ranking-feed-card__product-wrap">
+							<c:forEach items="${alist }" var="alist" begin="0" end="9" varStatus="status">
 								<div class="ranking-product-item-wrap">
 									<div class="product-item">
 										<div class="product-item__image">
 											<a href="#">
-												<img class="image" src="#">
-												<div class="product-item__image__number"></div>
+												<img class="image" src="${root }${alist.prodImage }">
+												<div class="product-item__image__number">${status.count }</div>
 											</a>
 											<button type="button">
-												<img src="#" style="width:24px;height:24px;">
+												<img src="/image/common/bookmark-gray.png" style="width:24px;height:24px;">
 											</button>
 										</div>
 									</div>
 									<a href="#">
 										<div class="project-item__info">
 											<div class="product-item__info__title">
-												<p class="product-item__info__title__brand"></p>
-												<p></p>
+												<p class="product-item__info__title__brand">${alist.prodSeller }</p>
+												<p><fmt:formatNumber value="${alist.prodPrice }" pattern="#,###"/></p>
 											</div>
 											<div class="product-item__info__col">
 												<div class="product-item__info__price">
 													<span class="discount-rate">
-													
+													${alist.discountRate }%
 													</span>
 													<strong></strong>
 												</div>
@@ -151,6 +158,7 @@
 										</div>
 									</a>
 								</div>
+								</c:forEach>
 							</div>
 							<a href="#">
 								<button class="ranking-feed-card__more-btn" type="button">더보기</button>
@@ -166,30 +174,31 @@
 						<div class="container">
 							<p class="ranking-feed-card__title"></p>
 							<div class="ranking-feed-card__product-wrap">
+							<c:forEach items="${ilist }" var="ilist" begin="0" end="9" varStatus="status">
 								<div class="ranking-product-item-wrap">
 									<div class="product-item">
 										<div class="product-item__image">
 											<a href="#">
-												<img class="image" src="#">
-												<div class="product-item__image__number"></div>
+												<img class="image" src="${root }${ilist.prodImage }">
+												<div class="product-item__image__number">${status.count }</div>
 											</a>
 											<button type="button">
-												<img src="#" style="width:24px;height:24px;">
+												<img src="/image/common/bookmark-gray.png" style="width:24px;height:24px;">
 											</button>
 										</div>
 									</div>
 									<a href="#">
 										<div class="project-item__info">
 											<div class="product-item__info__title">
-												<p class="product-item__info__title__brand"></p>
+												<p class="product-item__info__title__brand">${ilist.prodSeller }</p>
 												<p></p>
 											</div>
 											<div class="product-item__info__col">
 												<div class="product-item__info__price">
 													<span class="discount-rate">
-													
+													${ilist.discountRate }
 													</span>
-													<strong></strong>
+													<strong><fmt:formatNumber value="${ilist.prodPrice }" pattern="#,###"/></strong>
 												</div>
 											</div>
 											<div class="product-item__info__col">
@@ -199,6 +208,7 @@
 										</div>
 									</a>
 								</div>
+								</c:forEach>
 							</div>
 							<a href="#">
 								<button class="ranking-feed-card__more-btn" type="button">더보기</button>

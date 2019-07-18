@@ -6,7 +6,10 @@ public class ProductVO {
 	private String prodPrice;
 	private String prodImage;
 	private String discountRate;
+	private String categoryNo;
 	private String prodSeller;
+	private String categoryNm;
+	private int prodHits;
 	
 	public String getProdNo() {
 		return prodNo;
@@ -43,6 +46,24 @@ public class ProductVO {
 	}
 	public void setProdSeller(String prodSeller) {
 		this.prodSeller = prodSeller;
+	}
+	public String getCategoryNo() {
+		return categoryNo;
+	}
+	public void setCategoryNo(String categoryNo) {
+		this.categoryNo = categoryNo;
+	}
+	public String getCategoryNm() {
+		return categoryNm;
+	}
+	public void setCategoryNm(String categoryNm) {
+		this.categoryNm = categoryNm;
+	}
+	public int getProdHits() {
+		return prodHits;
+	}
+	public void setProdHits(int prodHits) {
+		this.prodHits = prodHits;
 	}
 	
 }

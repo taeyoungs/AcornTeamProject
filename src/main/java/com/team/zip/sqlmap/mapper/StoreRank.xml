@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="StoreRank">
+	<select id="getTop10List" resultType="productVO">
+		SELECT PROD_NO AS prodNo
+			 , PROD_TITLE AS prodTitle
+			 , PROD_PRICE AS prodPrice
+			 , PROD_IMG AS prodImage
+			 , DISCOUNT_RATE AS discountRate
+			 , CATEGORY_NO AS categoryNo
+			 , PROD_SELLER AS prodSeller
+			 , CATEGORY_NM AS categoryNm
+			 , PROD_HITS AS prodHits
+		  FROM PRODUCT
+		  ORDER BY prodHits
+	</select>
+	<select id="getFurnitureTop10List" resultType="productVO">
+		SELECT PROD_NO AS prodNo
+			 , PROD_TITLE AS prodTitle
+			 , PROD_PRICE AS prodPrice
+			 , PROD_IMG AS prodImage
+			 , DISCOUNT_RATE AS discountRate
+			 , CATEGORY_NO AS categoryNo
+			 , PROD_SELLER AS prodSeller
+			 , CATEGORY_NM AS categoryNm
+			 , PROD_HITS AS prodHits
+		  FROM PRODUCT
+		  where CATEGORY_No=1 or CATEGORY_No=2
+		  ORDER BY prodHits
+	</select>
+	<select id="getApplianceTop10List" resultType="productVO">
+		SELECT PROD_NO AS prodNo
+			 , PROD_TITLE AS prodTitle
+			 , PROD_PRICE AS prodPrice
+			 , PROD_IMG AS prodImage
+			 , DISCOUNT_RATE AS discountRate
+			 , CATEGORY_NO AS categoryNo
+			 , PROD_SELLER AS prodSeller
+			 , CATEGORY_NM AS categoryNm
+			 , PROD_HITS AS prodHits
+		  FROM PRODUCT
+		  where CATEGORY_No=3 or CATEGORY_No=4 
+		  ORDER BY prodHits
+	</select>
+	<select id="getInteriorTop10List" resultType="productVO">
+		SELECT PROD_NO AS prodNo
+			 , PROD_TITLE AS prodTitle
+			 , PROD_PRICE AS prodPrice
+			 , PROD_IMG AS prodImage
+			 , DISCOUNT_RATE AS discountRate
+			 , CATEGORY_NO AS categoryNo
+			 , PROD_SELLER AS prodSeller
+			 , CATEGORY_NM AS categoryNm
+			 , PROD_HITS AS prodHits
+		  FROM PRODUCT
+		  where CATEGORY_No=5 or CATEGORY_No=6 
+		  ORDER BY prodHits
+	</select> 
+</mapper>

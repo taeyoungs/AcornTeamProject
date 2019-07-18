@@ -19,15 +19,12 @@
 		height: auto;
 	}
 	#main {
-		position: absolute;
-		top: 160px;
 		width: 100%;
 		font-size: 20pt;
 		font-family: 'Nanum Gothic';
 		font-weight: bold;
 	}
 	#bottom {
-		position: absolute;
 		width: 100%;
 		top: 2700px;
 		font-family: 'Nanum Gothic';

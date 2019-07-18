@@ -11,14 +11,4 @@ public class StoreHomeController {
 		
 		return "/store/ranks";
 	}
-	
-	@RequestMapping("/store/rank.do")
-	public ModelAndView rankGo() {
-		ModelAndView model = new ModelAndView();
-		
-		
-		model.setViewName("/store/ranks");
-		return model;
-	}
-	
 }

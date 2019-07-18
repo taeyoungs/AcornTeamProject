@@ -41,8 +41,11 @@ public class MainController {
 			System.out.println(mvo.getMember_sex());
 
 			session.setAttribute("mvo", mvo);
-			session.setMaxInactiveInterval(10800);
+			session.setMaxInactiveInterval(21600);
 		}
+		
+		session.removeAttribute("category");
+		session.setAttribute("category", "main");
 		
 		List<MainCommunityVO> photoList = mainService.selectPhotoList();
 

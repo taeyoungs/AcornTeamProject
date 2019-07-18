@@ -13,7 +13,7 @@
 <body>
     <header id="simplified-gnb" class="simplified-gnb">
         <div class="container simplified-gnb_container">
-            <a href="${root}/main.do?where=home" class="simplified-gnb_logo">
+            <a href="${root}/main.do" class="simplified-gnb_logo">
                 <img src="${root}/image/common/logo.png" width="80">
             </a>
         </div>

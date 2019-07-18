@@ -59,7 +59,7 @@ public class TopController {
 	public ModelAndView upload(HttpServletRequest request, @ModelAttribute MemberVO mvo,
 			HttpSession session) {
 		
-		String path = "D:/springwork/AcornTeamProject/src/main/webapp/WEB-INF/uploadImage";
+		String path = "D:/acornproject/TeamProject/src/main/webapp/WEB-INF/uploadImage";
 		System.out.println(path);
 		
 		String imagename = "";
@@ -69,7 +69,7 @@ public class TopController {
 		if(f.getOriginalFilename().length() > 0) {
 			imagename = f.getOriginalFilename();
 			// 기존에 업로드 되어있던 이미지 파일을 삭제
-			fileWriter.deleteFile(path, oldMVO.getMember_image());
+//			fileWriter.deleteFile(path, oldMVO.getMember_image());
 			// 새로운 이미지 파일 업로드
 			fileWriter.writeFile(f, path, f.getOriginalFilename());
 		}
@@ -77,16 +77,30 @@ public class TopController {
 		if(imagename.length() == 0) {
 			imagename = "noimage";
 		}
+		System.out.println(imagename);
+		
+		// lastIndexOf를 이용해서 파일 이름과 확장자를 분리
+		int lastIndex = imagename.lastIndexOf(".");
+        String fileName = imagename.substring(0, lastIndex);
+        String extension = imagename.substring(lastIndex + 1);
+		
+		String filePath = path+"/"+imagename;
+		System.out.println(fileName);
+		System.out.println(extension);
+		System.out.println(filePath);
+		// 썸네일 이미지 만드는 메서드 호출
+		try {
+			fileWriter.makeThumbnail(filePath, fileName, extension);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
 		String birth = mvo.getMember_birth_1i()+"-"+mvo.getMember_birth_2i()+"-"+mvo.getMember_birth_3i();
 		
 		int memberNo = (Integer)session.getAttribute("member_no");
 		mvo.setMember_no(memberNo);
-		mvo.setMember_image(imagename);
+		mvo.setMember_image("THUMB_"+imagename);
 		mvo.setMember_birth(birth);
-//		System.out.println(mvo.getProfile_image_uploader());
-//		System.out.println(mvo.getMember_birth());
-//		System.out.println(mvo.getMember_sex());
-//		System.out.println(mvo.getMember_image());
 		mservice.updateMember(mvo);
 //		MemberVO newMvo = mservice.getMember(memberNo);
 		session.setAttribute("mvo", mvo);

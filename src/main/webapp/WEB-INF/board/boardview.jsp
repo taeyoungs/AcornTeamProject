@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<c:set var="root" value="<%=request.getContextPath() %>"/>
 <link rel="stylesheet" type="text/css" href="${root}/css/common.css">
 <link rel="stylesheet" media="all" href="https://d1nyaccf3kuclt.cloudfront.net/assets/v3/bucket_ui/bucket_ui-a69ea26903ba7b7b1e58db706ee621d7fa1695945755178ff07fe330df44fff6.css" />
 <link rel="stylesheet" media="screen" href="https://d1nyaccf3kuclt.cloudfront.net/assets/v3/bucket_ui/components-7c293474cce07a07e4c5740df12838356c5abd5f542add27a47f1ac12c737da4.css" />
@@ -16,7 +17,30 @@
 <link rel="stylesheet" media="screen" href="https://d1nyaccf3kuclt.cloudfront.net/assets/v3/questions/show-10f80a072f9392a5b0bb049a10197bacd8005cc0ea40775b3536b50d1b45a09c.css" />
 <link rel="stylesheet" media="screen" href="https://d1nyaccf3kuclt.cloudfront.net/dist/css/3-4402b1c8.chunk.css" />
 <link rel="stylesheet" media="screen" href="https://d1nyaccf3kuclt.cloudfront.net/dist/css/CommentFeed-556f37ea.css" />
+<script type="text/javascript">
+$(function(){
+	$("#replybox").keyup(function(e) {
+		console.log("111");
+		e.preventDefault();
+		var code = e.keyCode ? e.keyCode : e.which;
+		if (code == 13) // EnterKey
+		{ 
+			if (e.shiftKey === true)
+			{ 
+				
+				// shift 키가 눌려진 상태에서는 new line 입력
+			} else
+			{
+				$('#myreply').submit();
+			} 
+			
+			return false;
+		}
+	});
+});
+</script>
 </head>
+
 <body>
 <main role="main" id="root">
 <article id="page" class="page-2col container" data-question-id="11761">
@@ -89,12 +113,21 @@
       <div data-react-class="CommentFeed">
 		<section class="comment-feed">
 			<h1 class="comment-feed__header">답글&nbsp;</h1>
-			<form class="comment-feed__form">
+			<form class="comment-feed__form" action="reply.do" id="myreply"
+			accept-charset="UTF-8" method="post">
+			<c:if test="${sessionScope.mvo.member_no!=null}">
+				<input type="hidden" name="member_no" value="${sessionScope.member_no}">
+				<input type="hidden" name="b_reply_no" value="${vo.board_seq_no}">
+				<textarea class="comment-feed__form__cover" name="b_reply_content" id="replybox"
+				placeholder="의견을 남겨 보세요." style="width:700px;height:35px;"></textarea>
+			</c:if>
+			<c:if test="${sessionScope.mvo.member_no==null}">
 				<a href="reply.do" class="comment-feed__form__cover">
 					<div class="comment-feed__form__input">
 						<div class="comment-content-input__text comment-feed__form__content__text" data-ph="의견을 남겨 보세요." contenteditable="true"></div>
 					</div>
 				</a>
+			</c:if>
 			</form>
 			<li class="comment-feed__list__item">
 				<article class="comment-feed__item">
@@ -103,10 +136,10 @@
 						<img class="comment-feed__item__content__author__image" src="">
 						<span class="comment-feed__item__content__author__name">푸른달v</span>
 					</a>
-						<span class="comment-feed__item__content__content">거울 세워두고 러그깔아두시면 좋을거 같아요~^^</span>
+						<span class="comment-feed__item__content__content">${brvo.b_reply_content}</span>
 					</p>
 					<footer class="comment-feed__item__footer">
-					<time class="comment-feed__item__footer__time">2시간 전</time>
+					<time class="comment-feed__item__footer__time">${rvo.reg_date}</time>
 					<span class="comment-feed__item__footer__likes zero">
 						<a class="comment-feed__item__footer__likes__icon" href="/users/sign_in"></a>
 						<span class="comment-feed__item__footer__likes__count">0</span>

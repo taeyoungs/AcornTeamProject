@@ -19,7 +19,7 @@ public class StoreProductService {
 		return storeProductDAO.getProductList(commonCodeVo);
 	}
 	
-	public String getProductTotalCount() {
-		return storeProductDAO.getProductTotalCount();
+	public String getProductTotalCount(CommonCodeVO commonCodeVo) {
+		return storeProductDAO.getProductTotalCount(commonCodeVo);
 	}
 }

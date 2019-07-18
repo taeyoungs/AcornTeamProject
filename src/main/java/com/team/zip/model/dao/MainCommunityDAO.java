@@ -17,10 +17,10 @@ public class MainCommunityDAO extends SqlSessionDaoSupport {
 		return list;
 	}
 	
-	public List<MainCommunityVO> selectZipList() {
-		List<MainCommunityVO> zipList = new ArrayList<MainCommunityVO>();
-		zipList = getSqlSession().selectList("MainSql.selectZipList"); 
-		return zipList;
-	}
+//	public List<MainCommunityVO> selectZipList() {
+//		List<MainCommunityVO> zipList = new ArrayList<MainCommunityVO>();
+//		zipList = getSqlSession().selectList("MainSql.selectZipList"); 
+//		return zipList;
+//	}
 
 }

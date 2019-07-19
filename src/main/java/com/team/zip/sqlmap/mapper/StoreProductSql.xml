@@ -8,7 +8,9 @@
 			 , PROD_IMG AS prodImage
 			 , DISCOUNT_RATE AS discountRate
 			 , PROD_SELLER AS prodSeller
+			 , PROD_HITS AS prodHits
 			 , (SELECT COUNT(*) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS reviewCnt
+			 , (SELECT SUM(REW_GRADE) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS starGrade
 		  FROM PRODUCT P
 		 WHERE CATEGORY_NM = #{codeVal}
 		<if test="codeSeqNo != ''">

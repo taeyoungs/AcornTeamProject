@@ -109,6 +109,7 @@ a * {
 .product-item {
     position: relative;
     margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .product-item__image::before {
@@ -316,6 +317,7 @@ a * {
 	
 	.product-item {
     margin-bottom: 15px;
+    margin-top: 15px;
 	}
 	
 	.product-item__image__number {
@@ -335,7 +337,7 @@ a * {
 	}
 	
 	.ranking-feed-card__more-btn {
-    margin: 0 0 80px;
+    margin: 30px 0 30px;
 	}
 }
 

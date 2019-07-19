@@ -16,7 +16,7 @@
 	<div class="RankingFeed">
 		<section class="ranking-feed">
 			<div class="ranking-feed-group">
-				<p class="ranking-feed-group__title container">카테고리 BEST 100</p>
+				<p class="ranking-feed-group__title container">전체상품 BEST 50</p>
 				<div class="ranking-feed-group__card-wrap">
 					<div class="ranking-feed-card">
 						<div class="container">
@@ -53,14 +53,15 @@
 											</div>
 											<div class="product-item__info__col">
 												<img src="/image/common/star.png" style="width:12px;height:12px;">
-												<strong>4.4</strong>
+												<strong>4.4</strong>&nbsp;
+												 리뷰 40
 											</div>
 										</div>
 									</a>
 								</div>
 								</c:forEach>
 							</div>
-							<a href="#">
+							<a href="/store/ranksDetail.do?num=0">
 								<button class="ranking-feed-card__more-btn" type="button">더보기</button>
 							</a>
 						</div>
@@ -91,7 +92,7 @@
 										<div class="project-item__info">
 											<div class="product-item__info__title">
 												<p class="product-item__info__title__brand">${flist.prodSeller }</p>
-												<p></p>
+												<p>${flist.prodTitle }</p>
 											</div>
 											<div class="product-item__info__col">
 												<div class="product-item__info__price">
@@ -102,15 +103,16 @@
 												</div>
 											</div>
 											<div class="product-item__info__col">
-												<img src="#">
-												<strong></strong>
+												<img src="/image/common/star.png" style="width:12px;height:12px;">
+												<strong>3.2</strong>&nbsp;
+												리뷰 4
 											</div>
 										</div>
 									</a>
 								</div>
 								</c:forEach>
 							</div>
-							<a href="#">
+							<a href="/store/ranksDetail.do?num=1">
 								<button class="ranking-feed-card__more-btn" type="button">더보기</button>
 							</a>
 						</div>
@@ -141,26 +143,27 @@
 										<div class="project-item__info">
 											<div class="product-item__info__title">
 												<p class="product-item__info__title__brand">${alist.prodSeller }</p>
-												<p><fmt:formatNumber value="${alist.prodPrice }" pattern="#,###"/></p>
+												<p>${alist.prodTitle }</p>
 											</div>
 											<div class="product-item__info__col">
 												<div class="product-item__info__price">
 													<span class="discount-rate">
 													${alist.discountRate }%
 													</span>
-													<strong></strong>
+													<strong><fmt:formatNumber value="${alist.prodPrice }" pattern="#,###"/></strong>
 												</div>
 											</div>
 											<div class="product-item__info__col">
-												<img src="#">
-												<strong></strong>
+												<img src="/image/common/star.png" style="width:12px;height:12px;">
+												<strong>3.2</strong>&nbsp;
+												리뷰 20
 											</div>
 										</div>
 									</a>
 								</div>
 								</c:forEach>
 							</div>
-							<a href="#">
+							<a href="/store/ranksDetail.do?num=2">
 								<button class="ranking-feed-card__more-btn" type="button">더보기</button>
 							</a>
 						</div>
@@ -191,26 +194,27 @@
 										<div class="project-item__info">
 											<div class="product-item__info__title">
 												<p class="product-item__info__title__brand">${ilist.prodSeller }</p>
-												<p></p>
+												<p>${ilist.prodTitle }</p>
 											</div>
 											<div class="product-item__info__col">
 												<div class="product-item__info__price">
 													<span class="discount-rate">
-													${ilist.discountRate }
+													${ilist.discountRate }%
 													</span>
 													<strong><fmt:formatNumber value="${ilist.prodPrice }" pattern="#,###"/></strong>
 												</div>
 											</div>
 											<div class="product-item__info__col">
-												<img src="#">
-												<strong></strong>
+												<img src="/image/common/star.png" style="width:12px;height:12px;">
+												<strong>4.2</strong>&nbsp;
+												리뷰 14
 											</div>
 										</div>
 									</a>
 								</div>
 								</c:forEach>
 							</div>
-							<a href="#">
+							<a href="/store/ranksDetail.do?num=3">
 								<button class="ranking-feed-card__more-btn" type="button">더보기</button>
 							</a>
 						</div>

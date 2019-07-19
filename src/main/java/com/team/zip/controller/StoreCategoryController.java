@@ -50,4 +50,13 @@ public class StoreCategoryController {
 		mav.setViewName("/categoryLayout/store/category");
 		return mav;
 	}
+	
+	@RequestMapping("/store/selling.do")
+	public ModelAndView selling() {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("/store/selling");
+		return mav;
+	}
 }

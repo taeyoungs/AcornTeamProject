@@ -48,7 +48,6 @@ public class MainController {
 		session.setAttribute("category", "main");
 		
 		List<MainCommunityVO> photoList = mainService.selectPhotoList();
-
 //		List<MainCommunityVO> zipList = mainService.selecZipList();
 		
 		ModelAndView mav = new ModelAndView();

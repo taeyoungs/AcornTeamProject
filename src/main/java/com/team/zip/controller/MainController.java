@@ -49,13 +49,13 @@ public class MainController {
 		
 		List<MainCommunityVO> photoList = mainService.selectPhotoList();
 
-		List<MainCommunityVO> zipList = mainService.selecZipList();
+		//List<MainCommunityVO> zipList = mainService.selecZipList();
 		
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("photoList", photoList);
 		mav.addObject("where", where);
-		mav.addObject("zipList", zipList);
+		//mav.addObject("zipList", zipList);
 		
 		mav.setViewName("/main/main");
 		return mav;

@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="${root}/css/store/commerce.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/store/button.css">
+<link rel="stylesheet" type="text/css" href="${root}/css/store/selling.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/common.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/main/main_media.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/main/bucket_ui.css">

@@ -16,14 +16,14 @@
 </head>
 <body>
 <img src="${root}/image/NAVER_Icon_Green.PNG" id="naverlogin" onclick="location.href='naverlogin'" width="70"><br>
-<c:if test="${userId eq null}">
+	<c:if test="${userId eq null}">
         <a href="https://kauth.kakao.com/oauth/authorize?client_id=1a6e6db213064a94585972365b718e1c&redirect_uri=http://localhost:9000/member/login&response_type=code">
-            <img src="${root}/image/kakaolink_btn_small.png">
+            <img src="${root}/image/common/kakaolink_btn_small.png">
         </a>
     </c:if>
     <c:if test="${userId ne null}">
         <h1>로그인 성공입니다</h1>
-        <input type="button" value="로그아웃" onclick="location.href='logout'">
+        <input type="button" value="로그아웃" onclick="location.href='kakaoLogout'">
     </c:if>
 </body>
 </html>

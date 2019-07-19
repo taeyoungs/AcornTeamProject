@@ -1,7 +1,7 @@
 $(function(){
 	$("div.filter").click(function(){
 		console.log('fileadd');
-		$("input[name='profile_image_uploader'").click();
+		$("input[name='profile_image_uploader']").click();
 	});
 	
 	$("input[name='profile_image_uploader']").change(function(e){

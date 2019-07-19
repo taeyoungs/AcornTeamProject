@@ -20,7 +20,7 @@
 		]]>
 	</select>
 	
-	<select id="selectZipList" resultType="mainCommunityVO">
+<!-- 	<select id="selectZipList" resultType="mainCommunityVO">
 		<![CDATA[
 		SELECT A.ZIP_SEQ_NO AS zipSeqNo
 			 , A.ZIP_TITLE AS zipTitle
@@ -39,6 +39,6 @@
 		) A
 		WHERE ROWNUM < 4
 		]]>
-	</select>
+	</select> -->
 </mapper>
 

@@ -111,8 +111,6 @@ public class LoginController {
 				int member_no = mservice.getMemberNo(temp[0], temp[1]);
 				session.setAttribute("loginok", "login");
 				session.setAttribute("member_no", member_no);
-				System.out.println(session.getAttribute("loginok"));
-				System.out.println(session.getAttribute("member_no"));
 				isMatch = true;
 				break;
 			} 
@@ -149,8 +147,15 @@ public class LoginController {
 		return "/1/member/findPassword";
 	}
 	
+	// 비밀번호 재설정 폼으로 이동
+	@RequestMapping("/member/gotoKakao")
+	public String gotoKakoLogin() {
+			
+		return "/1/member/loginForm";
+	}
+		
 	// 카카오 로그인
-	@RequestMapping(value="/member/kakaoLogin")
+	@RequestMapping(value="/member/login")
 	public String kakaoLogin(@RequestParam("code") String code, HttpSession session) {
 		String access_Token = kakao.getAccessToken(code);
 		HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);

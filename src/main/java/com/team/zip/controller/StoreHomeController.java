@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class StoreHomeController {
 	@RequestMapping("/store/store.do")
+
 	   public String storeGo(HttpSession session, Model model,
 	         @RequestParam(value="where", defaultValue = "storehome") String where) {
 	      

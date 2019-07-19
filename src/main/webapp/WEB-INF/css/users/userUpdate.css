@@ -40,6 +40,7 @@ select:focus, option:focus, input[type='submit']:focus, button:focus, textarea:f
     width: 144px;
     line-height: 40px;
 }
+
 #users-contents>form>.field>input[type=text] {
 	padding: 0 15px;
     border: solid 1px #dcdcdc;

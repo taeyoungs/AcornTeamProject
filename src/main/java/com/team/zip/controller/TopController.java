@@ -62,10 +62,13 @@ public class TopController {
 		String path = "D:/acornproject/TeamProject/src/main/webapp/WEB-INF/uploadImage";
 		System.out.println(path);
 		
+		System.out.println(mvo.getProfile_image_uploader());
+		
 		String imagename = "";
 		MemberVO oldMVO = (MemberVO)session.getAttribute("mvo");
 		SpringFileWriter fileWriter = new SpringFileWriter();
 		MultipartFile f = mvo.getProfile_image_uploader();
+		System.out.println(f);
 		if(f.getOriginalFilename().length() > 0) {
 			imagename = f.getOriginalFilename();
 			// 기존에 업로드 되어있던 이미지 파일을 삭제

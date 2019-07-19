@@ -10,15 +10,19 @@
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 <link rel="stylesheet" type="text/css" href="${root}/css/zipdle/uploadform.css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
-<%-- <script type="text/javascript" src="${root}/js/writelist.js"></script> --%>
+<script type="text/javascript" src="${root}/js/zipdle/formplugin.js"></script>
+<script type="text/javascript" src="${root}/js/zipdle/serializeJson.js"></script>
+<script type="text/javascript" src="${root}/js/zipdle/uploadform.js"></script>
 </head>
 <body>
 <div id="wrapper" class="aws">
 	<div id="body" class="projects write" data-s_id="${sessionScope.member_no}">
-		<form action="" id="project_form_wrap" class="new_zipdle" method="post" accept-charset="UTF-8">
+		<form action="zip_upload" id="project_form_wrap" class="new_zipdle" method="post" accept-charset="UTF-8"
+			enctype="multipart/form-data">
+			<input type="hidden" value="${sessionScope.member_no}" name="data[member_no]">
 			<div id="total_change">
 				<div class="header">
-					<a href="${root}/main.do?where=home">
+					<a href="${root}/main.do">
 						<img src="${root}/image/common/logo-white.png" class="uploadform-logo">
 					</a>
 				</div>
@@ -43,14 +47,14 @@
 						</div>
 						<div class="title">커버사진 추가하기</div>
 					</div>
-					<input type="hidden" name="cover_image_url" id="project_cover_image_url">
+					<input type="hidden" name="data[cover_image_url]" id="project_cover_image_url" value="">
 					<input type="file" name="cover_image_uploader" id="cover_image_uploader"
 						accept="image/*">
 				</div>
 				<div id="title_panel">
 					<div class="category">온라인 집들이</div>
 					<input type="text" placeholder="제목을 입력해주세요." maxlength="30" size="30"
-						name="zip_title" id="project_title">
+						name="data[title]" id="project_title">
 					<div id="title_count" class="count">
 						<span>0</span>/30
 					</div>
@@ -66,7 +70,7 @@
 						<div class="field">
 							<div class="label essential">공간*</div>
 							<div class="value">
-								<select name="zip_type">
+								<select name="data[type]">
 									<option value="0">원룸</option>
 									<option value="1">투룸</option>
 								</select>
@@ -75,7 +79,7 @@
 						<div class="field">
 							<div class="label essential">평수*</div>
 							<div class="value has_unit">
-								<input maxlength="3" size="3" type="text" name="zip_pyeong"
+								<input maxlength="3" size="3" type="text" name="data[pyeong]"
 									id="project_real_area">
 								<div class="unit one">평</div>
 							</div>
@@ -83,7 +87,7 @@
 						<div class="field">
 							<div class="label essential">가족형태*</div>
 							<div class="value">
-								<select name="zip_fmtype">
+								<select name="data[fmtype]">
 									<option value>선택해주세요.</option>
 									<option value="0">1인 가구</option>
 									<option value="1">2인 가구 이상</option>
@@ -93,7 +97,7 @@
 						<div class="field">
 							<div class="label">기간</div>
 							<div class="value has_unit">
-								<input type="number" name="zip_period" id="project_period">
+								<input type="number" name="data[period]" id="project_period">
 								<div class="unit one">주</div>
 							</div>
 							<div class="value checkbox">
@@ -103,33 +107,65 @@
 						<div class="field">
 							<div class="label">예산</div>
 							<div class="value has_unit">
-								<input type="number" name="zip_budget" id="project_budget">
+								<input type="number" name="data[budget]" id="project_budget">
 								<div class="unit two">만원</div>
 							</div>
 						</div>
 						<div class="field">
 							<div class="label">지역</div>
-							<div class="value">
-								<select name="zip_fmtype">
-									<option value>시/도 선택</option>
-									<option value="0">서울특별시</option>
-									<option value="1">부산광역시</option>
-									<option value="2">대구광역시</option>
-									<option value="3">인천광역시</option>
-									<option value="4">광주광역시</option>
-									<option value="5">대전광역시</option>
-									<option value="6">울산광역시</option>
-									<option value="7">강원도</option>
-									<option value="8">경기도</option>
-									<option value="9">경상남도</option>
-									<option value="10">경상북도</option>
-									<option value="11">전라남도</option>
-									<option value="12">전라북도</option>
-									<option value="13">충청남도</option>
-									<option value="14">충청북도</option>
-									<option value="15">세종특별자치시</option>
-									<option value="16">제주특별자치도</option>
-								</select>
+							<div class="value region">
+								<div class="double_select">
+									<select name="data[region_attributes][province]"
+										class="first_select">
+										<option value>시/도 선택</option>
+										<option value="0">서울특별시</option>
+										<option value="1">부산광역시</option>
+										<option value="2">대구광역시</option>
+										<option value="3">인천광역시</option>
+										<option value="4">광주광역시</option>
+										<option value="5">대전광역시</option>
+										<option value="6">울산광역시</option>
+										<option value="7">강원도</option>
+										<option value="8">경기도</option>
+										<option value="9">경상남도</option>
+										<option value="10">경상북도</option>
+										<option value="11">전라남도</option>
+										<option value="12">전라북도</option>
+										<option value="13">충청남도</option>
+										<option value="14">충청북도</option>
+										<option value="15">세종특별자치시</option>
+										<option value="16">제주특별자치도</option>
+									</select>
+									<select name="data[region_attributes][district]"
+										class="second_select" style="display: none;">
+										<option value="0">지역 선택</option>
+										<option value="1">강남구</option>
+										<option value="2">강동구</option>
+										<option value="3">강북구</option>
+										<option value="4">강서구</option>
+										<option value="5">관악구</option>
+										<option value="6">광진구</option>
+										<option value="7">구로구</option>
+										<option value="8">금천구</option>
+										<option value="9">노원구</option>
+										<option value="10">도봉구</option>
+										<option value="11">동대문구</option>
+										<option value="12">동작구</option>
+										<option value="13">마포구</option>
+										<option value="14">서대문구</option>
+										<option value="15">서초구</option>
+										<option value="16">성동구</option>
+										<option value="17">성북구</option>
+										<option value="18">송파구</option>
+										<option value="19">양천구</option>
+										<option value="20">영등포구</option>
+										<option value="21">용산구</option>
+										<option value="22">은평구</option>
+										<option value="23">종로구</option>
+										<option value="24">중구</option>
+										<option value="25">중랑구</option>
+									</select>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -142,61 +178,8 @@
 						<div>6. 게시글 오픈 전/후, 수정이 필요하실때는 [마이홈]-[나의스토리]에서 작성 게시글을 확인하실 수 있습니다.</div>
 					</div>
 					<div id="card_panel" class="ui-sortable">
-						<div id="card_uploader_wrap" style="display:none;">
-							<input type="file" name="zip_image" id="card_uploader" accept="image/*"
-								multiple="multiple">
-						</div>
-						<div id="card_panel" class="ui-sortable">
-							<div class="add_card_panel">
-								<div class="icon">
-									<img src="${root}/image/common/add.png" width="20">
-								</div>
-								<div class="text">이 곳에 사진 추가하기</div>
-							</div>
-							<div class="card_form_content">
-								<textarea class="title" placeholder="제목이 필요하면 입력해주세요.(공백시 나타나지 않습니다.)" 
-									name="" id=""></textarea>
-								<div class="move_delete_button">
-									<div class="delete">
-										<span class="icon">
-											<img src="${root}/image/common/cancel white.png" width="16">
-										</span>
-										<span class="text">삭제</span>
-									</div>
-									<div class="up">
-										<span class="icon">
-											<img src="${root}/image/common/up-arrow2.png" width="16">
-										</span>
-										<span class="text">한칸<br>올리기</span>
-									</div>
-									<div class="down">
-										<span class="icon">
-											<img src="${root}/image/common/down-arrow2.png" width="16">
-										</span>
-										<span class="text">한칸<br>내리기</span>
-									</div>
-								</div>
-								<div class="content_panel">
-									<div class="input">
-										<input class="image_url" type="hidden" name=""
-											id="" value="">
-										<div class="image">
-											<img src="${root}/uploadImage/2.jpg" class="image" style="height: initial;">
-											<input class="source" placeholder="출처 URL이 있다면 입력해주세요.(http://를 꼭 붙여주세요.)"
-												type="text" name="" id="">
-										</div>
-										<div class="user_input">
-											<div class="content_space" contenteditable="true"
-											data-ph="사진에 대한 설명을 써주세요."></div>
-										</div>
-										<textarea class="description" name="" id=""
-											style="display: none;"></textarea>
-									</div>
-								</div>
-								<div class="hashtag ui-keyword-field">
-									<div class="hashtag_add_input" contenteditable="true" placeholder="태그입력"></div>
-								</div>
-							</div>
+						<div id="card_uploader_wrap" class="first" style="display:none;">
+							<input type="file" name="card_uploader" id="card_uploader" accept="image/*">
 						</div>
 						<div class="card_form only_add_content">
 							<div class="add_card_panel big">
@@ -211,9 +194,11 @@
 			</div>
 			<div id="action_buttons" class="floating_menu">
 				<div id="publish_submit" class="right positive">발행신청</div>
-				<div id="private_submit" class="right has_border">임시저장</div>
 			</div>
 		</form>
+		<div id="flash_messages" style="display: none;">
+        	<div id="flash_alert" class="flash_message"></div>
+        </div>
 	</div>
 </div>
 </body>

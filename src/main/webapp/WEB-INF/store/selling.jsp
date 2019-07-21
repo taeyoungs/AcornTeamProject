@@ -51,7 +51,7 @@
 					</div>
 					<div class="cover__info__price__price">
 						<small>할인율</small>
-						<del>가격</del>
+						<del>${product.prodPrice}</del>
 						<b>
 							<mark>최종가격</mark>
 							<span>원</span>

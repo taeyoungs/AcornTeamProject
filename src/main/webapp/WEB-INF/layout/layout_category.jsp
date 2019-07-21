@@ -27,5 +27,6 @@
 	<div id="bottom" class="layout">
 		<tiles:insertAttribute name="bottom"/>
 	</div>
+<script src="${root}/js/store/category.js"></script>	
 </body>
 </html>

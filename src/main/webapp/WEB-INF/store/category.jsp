@@ -103,6 +103,48 @@
                     		</div>
                     	</div>
                     </div>
+                    
+                    <!-- 정렬 HOVER -->
+					<div id="select_menu">
+						<div class="popout popout--prepared popout--axis-1 popout--dir-2 popout--cross-dir-2"
+							data-popout="true" style="position: absolute; z-index: 1000; top: 100px; right: 0px;">
+							<div class="animated-popout drop-down__content panel-drop-down__content"><!-- open open-active -->
+								<div class="drop-down-panel" data-panel-title="정렬" data-panel-parents="">
+									<ul class="panel-entry-list">
+										<li class="panel-entry-list__item-wrap">
+											<button class="panel-entry-list__item" type="button">
+												<div class="panel-entry-list__item__header">
+													<span class="panel-entry-list__item__title">인기순</span>
+												</div>
+											</button>
+										</li>
+										<li class="panel-entry-list__item-wrap">
+											<button class="panel-entry-list__item" type="button">
+												<div class="panel-entry-list__item__header">
+													<span class="panel-entry-list__item__title">낮은가격순</span>
+												</div>
+											</button>
+										</li>
+										<li class="panel-entry-list__item-wrap">
+											<button class="panel-entry-list__item" type="button">
+												<div class="panel-entry-list__item__header">
+													<span class="panel-entry-list__item__title">높은가격순</span>
+												</div>
+											</button>
+										</li>
+										<li class="panel-entry-list__item-wrap">
+											<button class="panel-entry-list__item" type="button">
+												<div class="panel-entry-list__item__header">
+													<span class="panel-entry-list__item__title">최신순</span>
+												</div>
+											</button>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 정렬 HOVER -->
                 </div>
                 
                 <ul class="category-feed__content__content row">
@@ -110,11 +152,11 @@
                 	<li class="col-6 col-lg-4">
                         <div class="product-item">
                             <div class="product-item__image">
-                                <a href="#">
+                                <a href="/store/selling.do?prodNo=${prod.prodNo}">
                                     <img class="image" src="${prod.prodImage}"/>
                                 </a>
                             </div>
-                            <a href="#">
+                            <a href="/store/selling.do?prodNo=${prod.prodNo}">
                                 <div class="product-item__info">
                                     <div class="product-item__info__title">
                                         <p class="product-item__info__title__brand">${prod.prodSeller}</p>
@@ -156,5 +198,8 @@
 		</div>
 	</div>
 </div>
+
+
+
 </body>
 </html>

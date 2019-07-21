@@ -52,10 +52,13 @@ public class StoreCategoryController {
 	}
 	
 	@RequestMapping("/store/selling.do")
-	public ModelAndView selling() {
+	public ModelAndView selling(@RequestParam String prodNo) {
 		
 		ModelAndView mav = new ModelAndView();
-		
+		ProductVO productVO = new ProductVO();
+		productVO = storeProductService.getProductDetail(prodNo);
+		 
+		mav.addObject("product", productVO);
 		mav.setViewName("/store/selling");
 		return mav;
 	}

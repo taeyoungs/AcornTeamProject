@@ -12,8 +12,6 @@ public class ProductVO {
 	private String prodHits;
 	private String reviewCnt;
 	private String starGrade;
-	private String minPrice;
-	private String maxPrice;
 	
 	public String getProdNo() {
 		return prodNo;
@@ -80,18 +78,6 @@ public class ProductVO {
 	}
 	public void setStarGrade(String starGrade) {
 		this.starGrade = starGrade;
-	}
-	public String getMinPrice() {
-		return minPrice;
-	}
-	public void setMinPrice(String minPrice) {
-		this.minPrice = minPrice;
-	}
-	public String getMaxPrice() {
-		return maxPrice;
-	}
-	public void setMaxPrice(String maxPrice) {
-		this.maxPrice = maxPrice;
 	}
 	
 }

@@ -71,10 +71,13 @@
 				<div class="cover__info__review cover__info__review--present">
 					<a href="">
 						<div class="cover__info__review__stars">
-							<span class="icon icon-etc-star-fill-sm"></span>
-							<span class="icon icon icon-etc-star-half-sm"></span>
+						<c:forEach begin="0" end="5" varStatus="loop">
+						    <c:if test="${loop.index+1 <= product.starGrade/product.reviewCnt}"><span class="icon icon-etc-star-fill-sm"></span></c:if>
+						    <c:if test="${loop.index+1 > product.starGrade/product.reviewCnt}"><span class="icon icon-etc-star-empty-sm"></span></c:if>
+							<!-- <span class="icon icon icon-etc-star-half-sm"></span> -->
+						</c:forEach>
 						</div>
-						<div>${prod.reviewCnt} 개 리뷰</div>
+						<div>${product.reviewCnt} 개 리뷰</div>
 					</a>
 				</div>
 				<div class="cover__info__price">

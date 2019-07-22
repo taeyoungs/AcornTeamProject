@@ -2,20 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="StoreProductSql">
 	<select id="getProductList" parameterType="commonCodeVO" resultType="ProductVO">
-		SELECT PROD_NO AS prodNo
-			 , PROD_TITLE AS prodTitle
-			 , PROD_PRICE AS prodPrice
-			 , PROD_IMG AS prodImage
-			 , DISCOUNT_RATE AS discountRate
-			 , PROD_SELLER AS prodSeller
-			 , PROD_HITS AS prodHits
-			 , (SELECT COUNT(*) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS reviewCnt
-			 , (SELECT SUM(REW_GRADE) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS starGrade
-		  FROM PRODUCT P
-		 WHERE CATEGORY_NM = #{codeVal}
-		<if test="codeSeqNo != ''">
-    	   AND CATEGORY_NO = #{codeSeqNo}
-  		</if>
+		SELECT * FROM (
+			SELECT ROWNUM AS RNUM, b.* from (
+				SELECT PROD_NO AS prodNo
+					 , PROD_TITLE AS prodTitle
+					 , PROD_PRICE AS prodPrice
+					 , PROD_IMG AS prodImage
+					 , DISCOUNT_RATE AS discountRate
+					 , PROD_SELLER AS prodSeller
+					 , PROD_HITS AS prodHits
+					 , REG_DATE AS regDate
+					 , (SELECT COUNT(*) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS reviewCnt
+					 , (SELECT SUM(REW_GRADE) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS starGrade
+				  FROM PRODUCT P
+				 WHERE CATEGORY_NM = #{codeVal}
+				<if test="codeSeqNo != ''">
+		    	   AND CATEGORY_NO = #{codeSeqNo}
+		  		</if>
+		  		<if test="minPrice != null and minPrice != ''">
+		    	<![CDATA[ AND PROD_PRICE >= #{minPrice:VARCHAR} ]]>
+		  		</if>
+		  		<if test="maxPrice != null and maxPrice != ''">
+				<![CDATA[ AND PROD_PRICE <= #{maxPrice:VARCHAR} ]]>
+		  		</if>
+		  		<if test="sorting == 'pop'">
+		    	   ORDER BY PROD_HITS DESC 
+		  		</if>
+		  		<if test="sorting == 'highPrice'">
+		    	   ORDER BY PROD_PRICE DESC 
+		  		</if>
+		  		<if test="sorting == 'lowPrice'">
+		    	   ORDER BY PROD_PRICE ASC 
+		  		</if>
+		  		<if test="sorting == 'new'">
+		    	   ORDER BY REG_DATE DESC 
+		  		</if>
+		  	)b
+	  	)a 
+		<![CDATA[ WHERE a.RNUM>=#{startNo} AND a.RNUM<=#{endNo}]]>
 	</select>
 	
 	<select id="getProductTotalCount" parameterType="commonCodeVO" resultType="String">
@@ -35,7 +59,9 @@
 			 , DISCOUNT_RATE AS discountRate
 			 , PROD_SELLER AS prodSeller
 			 , PROD_HITS AS prodHits
-		FROM PRODUCT
+			 , (SELECT COUNT(*) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS reviewCnt
+			 , (SELECT SUM(REW_GRADE) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS starGrade
+		FROM PRODUCT P
 		WHERE PROD_NO = #{prodNo}
 	</select>
 </mapper>

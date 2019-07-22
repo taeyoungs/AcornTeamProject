@@ -27,7 +27,7 @@
   		</if>
 	</select>
 	
-	<select id="getProductDetail" parameterType="String" resultType="productVO">
+	<select id="getProductDetail" parameterType="String" resultType="ProductVO">
 		SELECT PROD_NO AS prodNo
 			 , PROD_TITLE AS prodTitle
 			 , PROD_PRICE AS prodPrice

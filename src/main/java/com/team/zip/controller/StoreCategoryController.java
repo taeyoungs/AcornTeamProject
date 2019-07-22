@@ -25,7 +25,7 @@ public class StoreCategoryController {
 	
 	@RequestMapping("/store/category.do")
 	public ModelAndView categoryGo(@ModelAttribute CommonCodeVO commonCodeVo,
-			@RequestParam(value="where", defaultValue="catego") String where ) {
+			@RequestParam(value="where", defaultValue="catego") String where) {
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -55,10 +55,12 @@ public class StoreCategoryController {
 	public ModelAndView selling(@RequestParam String prodNo) {
 		
 		ModelAndView mav = new ModelAndView();
+		
 		ProductVO productVO = new ProductVO();
 		productVO = storeProductService.getProductDetail(prodNo);
-		 
+		
 		mav.addObject("product", productVO);
+
 		mav.setViewName("/store/selling");
 		return mav;
 	}

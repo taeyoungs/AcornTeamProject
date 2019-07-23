@@ -53,7 +53,6 @@ public class StoreCategoryController {
 		int currentPage = Integer.parseInt(commonCodeVo.getCurrentPage());
 		int startNo = (currentPage - 1) * perPage + 1; //각 페이지 시작번호
 		int endNo = startNo + perPage - 1; //각 페이지 끝번호
-//		int no;//출력할 시작번호
 		
 		commonCodeVo.setStartNo(String.valueOf(startNo));
 		commonCodeVo.setEndNo(String.valueOf(endNo));
@@ -97,17 +96,12 @@ public class StoreCategoryController {
 			@RequestParam(value="where", defaultValue="catego") String where) {
 		
 		ModelAndView mav = new ModelAndView();
-		System.out.println(commonCodeVo.getCodeVal());
-		System.out.println(commonCodeVo.getCodeSeqNo());
-		System.out.println(commonCodeVo.getCurrentPage());
-		System.out.println(commonCodeVo.getSorting());
+
 		if (commonCodeVo.getCodeVal() == null) {
 			commonCodeVo.setCodeVal("가구");
 		}
 		
-		String codeVal = commonCodeVo.getCodeVal();
 		String sorting = commonCodeVo.getSorting();
-		int codeSeqNo = commonCodeVo.getCodeSeqNo();
 		if (sorting == null) {
 			sorting = "pop";
 			commonCodeVo.setSorting("pop");
@@ -151,6 +145,7 @@ public class StoreCategoryController {
 		
 		return json.toString();
 	}
+	
 	
 	@RequestMapping("/store/selling.do")
 	public ModelAndView selling(@RequestParam String prodNo) {

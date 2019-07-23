@@ -163,118 +163,51 @@
 												</span> <span class="panel-price-range-control__input-row__footer">원</span>
 												</span>
 											</div>
-											
 
-										<!-- <ul class="panel-entry-list panel-price-range-control__list">
-									<li class="panel-entry-list__item-wrap"><button
-											class="panel-entry-list__item" type="button">
-											<div class="panel-entry-list__item__header">
-												<span class="panel-entry-list__item__title">
-												<div class="panel-price-range-control__list-item">
-														<span class="bullet"></span>50,000원 이하
-													</div></span>
-											</div>
-										</button></li>
-									<li class="panel-entry-list__item-wrap"><button
-											class="panel-entry-list__item" type="button">
-											<div class="panel-entry-list__item__header">
-												<span class="panel-entry-list__item__title">
-												<div class="panel-price-range-control__list-item">
-														<span class="bullet"></span>50,000원 ~ 100,000원
-													</div></span>
-											</div>
-										</button></li>
-									<li class="panel-entry-list__item-wrap"><button
-											class="panel-entry-list__item" type="button">
-											<div class="panel-entry-list__item__header">
-												<span class="panel-entry-list__item__title">
-												<div class="panel-price-range-control__list-item">
-														<span class="bullet"></span>100,000원 ~ 200,000원
-													</div></span>
-											</div>
-										</button></li>
-									<li class="panel-entry-list__item-wrap"><button
-											class="panel-entry-list__item" type="button">
-											<div class="panel-entry-list__item__header">
-												<span class="panel-entry-list__item__title">
-												<div class="panel-price-range-control__list-item">
-														<span class="bullet"></span>200,000원 ~ 300,000원
-													</div></span>
-											</div>
-										</button></li>
-									<li class="panel-entry-list__item-wrap">
-									<button class="panel-entry-list__item" type="button">
-											<div class="panel-entry-list__item__header">
-												<span class="panel-price-range-control__list-item">
-														<span class="bullet"></span>300,000원 ~ 400,000원
-													</div></span>
-											</div>
-										</button></li>
-									<li class="panel-entry-list__item-wrap">
-									<button class="panel-entry-list__item" type="button">
-											<div class="panel-entry-list__item__header">
-												<span class="panel-entry-list__item__title">
-												<div class="panel-price-range-control__list-item">
-														<span class="bullet"></span>400,000원 ~ 500,000원
-													</div></span>
-											</div>
-										</button></li>
-									<li class="panel-entry-list__item-wrap"><button
-											class="panel-entry-list__item" type="button">
-											<div class="panel-entry-list__item__header">
-												<span class="panel-entry-list__item__title">
-												<div class="panel-price-range-control__list-item">
-														<span class="bullet"></span>500,000원 ~ 600,000원
-													</div></span>
-											</div>
-										</button></li>
-									<li class="panel-entry-list__item-wrap"><button
-											class="panel-entry-list__item" type="button">
-											<div class="panel-entry-list__item__header">
-												<span class="panel-entry-list__item__title">
-												<div class="panel-price-range-control__list-item">
-														<span class="bullet"></span>600,000원 ~ 700,000원
-													</div></span>
-											</div>
-										</button></li>
-									<li class="panel-entry-list__item-wrap"><button
-											class="panel-entry-list__item" type="button">
-											<div class="panel-entry-list__item__header">
-												<span class="panel-entry-list__item__title">
-												<div class="panel-price-range-control__list-item">
-														<span class="bullet"></span>700,000원 ~ 800,000원
-													</div></span>
-											</div>
-										</button></li>
-									<li class="panel-entry-list__item-wrap"><button
-											class="panel-entry-list__item" type="button">
-											<div class="panel-entry-list__item__header">
-												<span class="panel-entry-list__item__title">
-												<div class="panel-price-range-control__list-item">
-														<span class="bullet"></span>800,000원 ~ 900,000원
-													</div></span>
-											</div>
-										</button></li>
-									<li class="panel-entry-list__item-wrap"><button
-											class="panel-entry-list__item" type="button">
-											<div class="panel-entry-list__item__header">
-												<span class="panel-entry-list__item__title">
-												<div class="panel-price-range-control__list-item">
-														<span class="bullet"></span>900,000원 ~ 1,000,000원
-													</div></span>
-											</div>
-										</button></li>
-									<li class="panel-entry-list__item-wrap"><button
-											class="panel-entry-list__item" type="button">
-											<div class="panel-entry-list__item__header">
-												<span class="panel-entry-list__item__title">
-												<div class="panel-price-range-control__list-item">
-														<span class="bullet"></span>1,000,000원 이상
-													</div></span>
-											</div>
-										</button>
-										</li>
-								</ul> -->
+											<!-- mobile 가격 옵션 설정 -->
+											<!-- <ul class="panel-entry-list panel-price-range-control__list">
+												<li class="panel-entry-list__item-wrap"><button
+														class="panel-entry-list__item" type="button">
+														<div class="panel-entry-list__item__header">
+															<span class="panel-entry-list__item__title">
+																<div class="panel-price-range-control__list-item">
+																	<span class="bullet"></span>100,000원 이하
+																</div>
+															</span>
+														</div>
+													</button></li>
+												<li class="panel-entry-list__item-wrap"><button
+														class="panel-entry-list__item" type="button">
+														<div class="panel-entry-list__item__header">
+															<span class="panel-entry-list__item__title">
+																<div class="panel-price-range-control__list-item">
+																	<span class="bullet"></span>100,000원 ~ 500,000원
+																</div>
+															</span>
+														</div>
+													</button></li>
+												<li class="panel-entry-list__item-wrap"><button
+														class="panel-entry-list__item" type="button">
+														<div class="panel-entry-list__item__header">
+															<span class="panel-entry-list__item__title">
+																<div class="panel-price-range-control__list-item">
+																	<span class="bullet"></span>500,000원 ~ 1,000,000원
+																</div>
+															</span>
+														</div>
+													</button></li>
+												<li class="panel-entry-list__item-wrap"><button
+														class="panel-entry-list__item" type="button">
+														<div class="panel-entry-list__item__header">
+															<span class="panel-entry-list__item__title">
+																<div class="panel-price-range-control__list-item">
+																	<span class="bullet"></span>1,000,000이상
+																</div>
+															</span>
+														</div>
+													</button>
+												</li>
+											</ul> -->
 									</section>
 								</div>
 							</div>

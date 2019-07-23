@@ -11,7 +11,6 @@ $(function(){
 	);
 	
 	
-	
 	//가격 설정 HOVER [S]
 	$(".filter-bar-control__button").hover(
 			function(){$("#select_price .animated-popout").addClass("open open-active")},

@@ -63,7 +63,7 @@
 					<h1>${product.prodTitle}</h1>
 				</div>
 				<div class="cover__info__review cover__info__review--present">
-					<a href="">
+					<a href="#product-review">
 						<div class="cover__info__review__stars">
 						<c:forEach begin="0" end="4" varStatus="loop">
 						    <c:if test="${loop.index+1 <= product.starGrade/product.reviewCnt}">
@@ -91,6 +91,7 @@
 						<b>
 							<mark>
 								<fmt:formatNumber value="${product.prodPrice-(product.prodPrice*product.discountRate/100)}" pattern="#,###"/>
+								<input type="hidden" id="salePrice" value="${product.prodPrice-(product.prodPrice*product.discountRate/100)}">
 							</mark>
 							<span>원</span>
 						</b>
@@ -126,23 +127,7 @@
 						        </div>
 					        <span class="icon icon-pointer-x-dark btn-remove hide" role="button" aria-hidden="false"></span>
 					      	</div>
-					      <div class="item hide">
-					        <p class="name">text</p>
-					        <div class="detail">
-					          <div class="amount">
-					            <span class="icon icon-etc-button-minus btn-change-amount down" role="button"></span>
-					            <input type="number" value="1">
-					            <span class="icon icon-etc-button-plus btn-change-amount up" role="button"></span>
-					          </div>
-					          <p class="price bold"><span class="amount">5,000</span>원</p>
-					        </div>
-					        <span class="icon icon-pointer-x-dark btn-remove hide" role="button" aria-hidden="false"></span>
-					      </div>
-					      <div class="item item-assembly-option hide">
-					        <p class="name"><span class="amount">1</span>개 조립</p>
-					        <p class="price bold"><span class="amount">0</span>원</p>
-					        <span class="icon icon-pointer-x-dark btn-remove hide" role="button" aria-hidden="false"></span>
-					      </div>
+					      
 					    </section>
 					    <p class="total-price">
 					      <span style="font-size: 15px">주문금액</span>
@@ -176,9 +161,9 @@
 					<nav id="product-contents-tab" style="font-size: 15px;">
 						<ul class="row align-flex-end">
 							<li class="col active" data-target="product-info">상품정보</li>
-							<li class="col" data-target="product-info">리뷰(${product.reviewCnt})</li>
-							<li class="col" data-target="product-info">문의</li>
-							<li class="col" data-target="product-info">배송/교환/환불</li>
+							<li class="col" data-target="product-review" role="button">리뷰(${product.reviewCnt})</li>
+							<li class="col" onclick="location.href='/member/writelist'" role="button">문의</li>
+							<li class="col" data-target="product-shipping" role="button">배송/교환/환불</li>
 						</ul>
 					</nav>
 				</section>
@@ -215,33 +200,6 @@
 											</span>원
 										</p>
 									</div>
-									<span class="icon icon-pointer-x-dark btn-remove hide"
-										role="button" aria-hidden="false"></span>
-								</div>
-								<div class="item hide">
-									<p class="name">text</p>
-									<div class="detail">
-										<div class="amount">
-											<span
-												class="icon icon-etc-button-minus btn-change-amount down"
-												role="button"></span> <input type="number" value="1">
-											<span class="icon icon-etc-button-plus btn-change-amount up"
-												role="button"></span>
-										</div>
-										<p class="price bold">
-											<span class="amount">5,000</span>원
-										</p>
-									</div>
-									<span class="icon icon-pointer-x-dark btn-remove hide"
-										role="button" aria-hidden="false"></span>
-								</div>
-								<div class="item item-assembly-option hide">
-									<p class="name">
-										<span class="amount">1</span>개 조립
-									</p>
-									<p class="price bold">
-										<span class="amount">0</span>원
-									</p>
 									<span class="icon icon-pointer-x-dark btn-remove hide"
 										role="button" aria-hidden="false"></span>
 								</div>
@@ -299,6 +257,59 @@
 						</section>
 					</section>
 					<!-- 상품 상세페이지 -->
+					
+					<!-- 리뷰 -->
+					<section id="product-review" class="contents">
+						<section class="production-review">
+							<div class="production-review__info">
+								<h1 class="production-review__info__title">리뷰
+									<span class="production-review__info__title__number"></span>
+								</h1>
+								<a class="production-review__info__write">리뷰쓰기</a>
+								<!-- 별 -->
+								<div class="production-review__info__star">
+									<div class="production-review__info__star__avg">별점</div>
+									<span class="production-review__info__star__rating"> 
+										<svg fill="#35C5F0" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
+											<defs>
+												<path id="star-path-1.000" d="M8 13.54l-4.37 1.85c-.5.22-.88-.06-.83-.6l.4-4.73L.1 6.47c-.37-.41-.22-.85.32-.98l4.62-1.07L7.48.36c.29-.48.75-.47 1.04 0l2.44 4.06 4.62 1.07c.54.13.68.57.32.98l-3.1 3.59.4 4.72c.05.55-.33.83-.83.61L8 13.54z"></path>
+												<clipPath id="star-clip-1.000">
+													<rect x="0" y="0" width="16" height="16"></rect>
+												</clipPath>
+											</defs>
+											<use xlink:href="#star-path-1.000" fill="#DBDBDB"></use>
+											<use clip-path="url(#star-clip-1.000)" xlink:href="#star-path-1.000"></use>
+										</svg>
+									</span>
+								</div>
+								<!-- 별 -->
+							</div>
+							
+							<div class="filter production-review__filter__options__list">
+								<div class="production-review__filter"></div>
+								<ul class="production-review__filter__tag__list"></ul>
+							</div>
+							<div class="production-review-item__list">
+								<div class="production-review__filter-wrap">
+									<ul class="production-review__filter__order">
+										<li class="production-review__filter__order__list production-review__filter__order__list--active">베스트순</li>
+										<li class="production-review__filter__order__list">
+											<span class="line">최신순</span>
+										</li>
+										<li class="production-review__filter__order__list">사진리뷰
+											<svg class="production-review__filter__order__list__icon" width="18" height="18" viewBox="0 0 18 18" preserveAspectRatio="xMidYMid meet">
+												<path fill="currentColor" d="M15.821 3a.67.67 0 0 1 .679.672v10.656a.67.67 0 0 1-.679.672H2.18a.67.67 0 0 1-.679-.672V3.672c0-.375.3-.672.679-.672H15.82zm-.679 1.344H2.858v8.14L7.01 7.781c.094-.125.284-.125.394 0l2.321 2.657c.048.046.063.109.048.156l-.3 1.375c-.016.11.11.172.173.094l2.369-2.579a.202.202 0 0 1 .284 0l2.842 3.094V4.344zm-2.526 3.61a1.1 1.1 0 0 1-1.105-1.095 1.1 1.1 0 0 1 1.105-1.093 1.1 1.1 0 0 1 1.105 1.093 1.1 1.1 0 0 1-1.105 1.094z"></path>
+											</svg>
+										</li>
+									</ul>
+									<div class=""></div>
+									<ul class=""></ul>
+								</div>
+							</div>
+							<ul class="list-paginator production-review__paginator"></ul>
+						</section>
+					</section>
+					<!-- 리뷰 -->
 				</div>
 			</section>
 		</div>
@@ -314,5 +325,6 @@
     </nav>
 	<!-- 모바일 구매하기 버튼-->
 </main>
+<script src="${root}/js/store/selling.js"></script>	
 </body>
 </html>

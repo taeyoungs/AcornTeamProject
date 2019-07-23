@@ -37,12 +37,6 @@
 	<!-- mobile [E] -->
 	
 	<div class="container">
-		<div class="breadcrumb">
-	      	<a href="/store/category?category=0&amp;order=popular">${currentCategory}</a>
-	    	<span class="icon icon-pointer-angle-right-gray-sm" aria-hidden="true" style="margin: 0px 2px;"></span>
-	      	<a href="/store/category?category=0_2&amp;order=popular">${secondList[0].codeNm}</a>
-	       	<span class="icon icon-pointer-angle-right-gray-sm" aria-hidden="true" style="margin: 0px 2px;"></span>
- 		</div>
 		<div class="row">
 			<div class="col-6 col-lg-7 images-lg">
 				<div class="images">
@@ -71,9 +65,13 @@
 				<div class="cover__info__review cover__info__review--present">
 					<a href="">
 						<div class="cover__info__review__stars">
-						<c:forEach begin="0" end="5" varStatus="loop">
-						    <c:if test="${loop.index+1 <= product.starGrade/product.reviewCnt}"><span class="icon icon-etc-star-fill-sm"></span></c:if>
-						    <c:if test="${loop.index+1 > product.starGrade/product.reviewCnt}"><span class="icon icon-etc-star-empty-sm"></span></c:if>
+						<c:forEach begin="0" end="4" varStatus="loop">
+						    <c:if test="${loop.index+1 <= product.starGrade/product.reviewCnt}">
+						    	<span class="icon icon-etc-star-fill-sm"></span>
+						    </c:if>
+						    <c:if test="${loop.index+1 > product.starGrade/product.reviewCnt}">
+						    	<span class="icon icon-etc-star-empty-sm"></span>
+						    </c:if>
 							<!-- <span class="icon icon icon-etc-star-half-sm"></span> -->
 						</c:forEach>
 						</div>
@@ -172,8 +170,8 @@
 	<!-- content -->
 	<section id="contents" class="container">
 		<div id="selling-helper-wrap" class="sticky-top">
-			<div id="selling-helper" class="sticky-content row absolute open float"
-				data-sticky-enabled="true" style="position: fixed; bottom: auto; top: 81px;">
+			<div id="selling-helper" class="sticky-content row absolute open"
+				data-sticky-enabled="false" style="position: absolute;" data-offset="132">
 				<section class="col-12">
 					<nav id="product-contents-tab" style="font-size: 15px;">
 						<ul class="row align-flex-end">

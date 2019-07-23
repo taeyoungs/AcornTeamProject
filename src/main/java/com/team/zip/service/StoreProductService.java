@@ -26,4 +26,9 @@ public class StoreProductService {
 	public ProductVO getProductDetail(String prodNo) {
 		return storeProductDAO.getProductDetail(prodNo);
 	}
+	
+	public void updateHits(String prodNo) { 
+		 storeProductDAO.updateHits(prodNo); 
+	}
+	 
 }

@@ -64,4 +64,15 @@
 		FROM PRODUCT P
 		WHERE PROD_NO = #{prodNo}
 	</select>
+	
+ 	<update id="updateHits" parameterType="String">
+		UPDATE PRODUCT SET PROD_HITS = PROD_HITS + 1
+		WHERE PROD_NO = #{prodNo}
+	</update>
+	
+<!-- 	<select id="selectHits" parameterType="String" resultType="int">
+		SELECT PROD_HITS AS prodHits
+		FROM PRODUCT
+		WHERE PROD_NO = #{prodNo}
+	</select> -->
 </mapper>

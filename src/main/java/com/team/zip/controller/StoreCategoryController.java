@@ -28,7 +28,7 @@ public class StoreCategoryController {
 	
 	@RequestMapping("/store/category.do")
 	public ModelAndView categoryGo(@ModelAttribute CommonCodeVO commonCodeVo,
-			@RequestParam(value="where", defaultValue="catego") String where) {
+			@RequestParam(value="where", defaultValue="catego") String where){
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -63,6 +63,7 @@ public class StoreCategoryController {
 		
 		String totalCount = storeProductService.getProductTotalCount(commonCodeVo);
 		String codeSeqNm = "";
+		
 		for(CommonCodeVO vo : secondList) {
 			if (vo.getCodeSeqNo() == codeSeqNo) {
 				codeSeqNm = vo.getCodeNm();
@@ -154,8 +155,10 @@ public class StoreCategoryController {
 		ProductVO productVO = new ProductVO();
 		productVO = storeProductService.getProductDetail(prodNo);
 		
+		//조회수 증가 
+		storeProductService.updateHits(prodNo);
+		
 		mav.addObject("product", productVO);
-
 		mav.setViewName("/store/selling");
 		return mav;
 	}

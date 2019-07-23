@@ -38,7 +38,6 @@ public class MainController {
 				mvo.setMember_birth_2i(temp[1]);
 				mvo.setMember_birth_3i(temp[2]);
 			}
-			System.out.println(mvo.getMember_sex());
 
 			session.setAttribute("mvo", mvo);
 			session.setMaxInactiveInterval(21600);
@@ -48,13 +47,13 @@ public class MainController {
 		session.setAttribute("category", "main");
 		
 		List<MainCommunityVO> photoList = mainService.selectPhotoList();
-//		List<MainCommunityVO> zipList = mainService.selecZipList();
+		List<MainCommunityVO> zipList = mainService.selecZipList();
 		
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("photoList", photoList);
 		mav.addObject("where", where);
-//		mav.addObject("zipList", zipList);
+		mav.addObject("zipList", zipList);
 		
 		mav.setViewName("/main/main");
 		return mav;

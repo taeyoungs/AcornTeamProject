@@ -19,7 +19,6 @@
 	<div id="body" class="projects write" data-s_id="${sessionScope.member_no}">
 		<form action="zip_upload" id="project_form_wrap" class="new_zipdle" method="post" accept-charset="UTF-8"
 			enctype="multipart/form-data">
-			<input type="hidden" value="${sessionScope.member_no}" name="data[member_no]">
 			<div id="total_change">
 				<div class="header">
 					<a href="${root}/main.do">

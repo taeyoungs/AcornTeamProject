@@ -18,7 +18,7 @@ public class MainService {
 		return mainCommunityDAO.selectPhotoList();
 	}
   
-//	public List<MainCommunityVO> selecZipList() {
-//		return mainCommunityDAO.selectZipList();
-//	}
+	public List<MainCommunityVO> selecZipList() {
+		return mainCommunityDAO.selectZipList();
+	}
 }

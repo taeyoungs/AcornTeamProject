@@ -103,9 +103,31 @@
                     			</div>
                     			
                     			<ul class="filter-bar__tag-list">
+                    				<c:if test="${!empty minPrice}">
                     				<li class="filter-bar__tag-list__item">
-                    					<button class="filter-bar__tag-list__clear" type="button">초기화</button>
+                    					<button class="button button--color-blue button--size-50 button--shape-4 filter-bar__tag" type="button" onclick="resetMinPrice()">
+                    						<fmt:formatNumber value="${minPrice}" pattern="#,###"/>원 이상
+                    						<svg class="icon" width="12" height="12" viewBox="0 0 12 12" preserveAspectRatio="xMidYMid meet">
+                    							<path fill="#FFF" d="M6 4.94L3.879 2.817l-1.061 1.06L4.939 6 2.818 8.121l1.06 1.061L6 7.061l2.121 2.121 1.061-1.06L7.061 6l2.121-2.121-1.06-1.061L6 4.939zM6 12A6 6 0 1 1 6 0a6 6 0 0 1 0 12z"></path>
+                    						</svg>
+                    					</button>
                     				</li>
+                    				</c:if>
+                    				<c:if test="${!empty maxPrice}">
+                    				<li class="filter-bar__tag-list__item">
+                    					<button class="button button--color-blue button--size-50 button--shape-4 filter-bar__tag" type="button" onclick="resetMaxPrice()">
+                    						<fmt:formatNumber value="${maxPrice}" pattern="#,###"/>원 이하
+                    						<svg class="icon" width="12" height="12" viewBox="0 0 12 12" preserveAspectRatio="xMidYMid meet">
+                    							<path fill="#FFF" d="M6 4.94L3.879 2.817l-1.061 1.06L4.939 6 2.818 8.121l1.06 1.061L6 7.061l2.121 2.121 1.061-1.06L7.061 6l2.121-2.121-1.06-1.061L6 4.939zM6 12A6 6 0 1 1 6 0a6 6 0 0 1 0 12z"></path>
+                    						</svg>
+                    					</button>
+                    				</li>
+                    				</c:if>
+                    				<c:if test="${!empty minPrice || maxPrice}">
+                    				<li class="filter-bar__tag-list__item">
+                    					<button class="filter-bar__tag-list__clear" type="button" onclick="resetOptions()">초기화</button>
+                    				</li>
+                    				</c:if>
                     			</ul>
                     		</div>
                     	</div>
@@ -125,7 +147,7 @@
 													<span class="panel-price-range-control__input-row__header">최소</span>
 													<span class="panel-price-range-control__input-row__input-wrap">
 														<input type="text" width="5" placeholder="1,234" class="panel-price-range-control__input-row__input"
-														name="minPrice">
+														name="minPrice" value="${minPrice}" id="minPrice">
 														<input type="hidden" name="codeVal" value="${currentCategory}">
 														<input type="hidden" name="codeSeqNo" value="${codeSeqNo}">
 												</span> 
@@ -137,7 +159,7 @@
 													<span class="panel-price-range-control__input-row__input-wrap">
 														<input type="text" width="5" placeholder="1,234,567"
 														class="panel-price-range-control__input-row__input"
-														name="maxPrice">
+														name="maxPrice" value="${maxPrice}" id="maxPrice">
 												</span> <span class="panel-price-range-control__input-row__footer">원</span>
 												</span>
 											</div>

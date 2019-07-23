@@ -64,6 +64,9 @@ public class StoreCategoryController {
 		String totalCount = storeProductService.getProductTotalCount(commonCodeVo);
 		String codeSeqNm = "";
 		
+		String minPrice = commonCodeVo.getMinPrice();
+		String maxPrice = commonCodeVo.getMaxPrice();
+		
 		for(CommonCodeVO vo : secondList) {
 			if (vo.getCodeSeqNo() == codeSeqNo) {
 				codeSeqNm = vo.getCodeNm();
@@ -81,6 +84,8 @@ public class StoreCategoryController {
 		mav.addObject("currentCategory", codeVal);
 		mav.addObject("prodList", prodList);
 		mav.addObject("currentPage", currentPage);
+		mav.addObject("minPrice", minPrice);
+		mav.addObject("maxPrice", maxPrice);
 		
 		mav.setViewName("/categoryLayout/store/category");
 		return mav;
@@ -132,7 +137,7 @@ public class StoreCategoryController {
 		for (int i=0; i < prodList.size(); i++) {
 			JSONObject jo = new JSONObject();
 			jo.put("prodNo", prodList.get(i).getProdNo());
-			jo.put("prodTtile", prodList.get(i).getProdTitle());
+			jo.put("prodTitle", prodList.get(i).getProdTitle());
 			jo.put("prodPrice", prodList.get(i).getProdPrice());
 			jo.put("prodImage", prodList.get(i).getProdImage());
 			jo.put("discountRate", prodList.get(i).getDiscountRate());

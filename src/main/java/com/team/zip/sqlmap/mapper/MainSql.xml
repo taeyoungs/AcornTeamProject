@@ -20,18 +20,18 @@
 		]]>
 	</select>
 	
-<!-- 	<select id="selectZipList" resultType="mainCommunityVO">
+ 	<select id="selectZipList" resultType="mainCommunityVO">
 
 		<![CDATA[
 		SELECT A.ZIP_SEQ_NO AS zipSeqNo
-			 , A.ZIP_TITLE AS zipTitle
-		     , A.ZIP_IMAGE AS zipImage
+			 , A.TITLE AS zipTitle
+		     , A.COVER_IMAGE AS zipImage
 		     , A.MEMBER_NICKNAME AS memberNickname
 		     , A.MEMBER_IMAGE AS memberImage
 		FROM (
 		    SELECT Z.ZIP_SEQ_NO
-		    	 , Z.ZIP_TITLE
-			     , Z.ZIP_IMAGE
+		    	 , Z.JSON.data.title AS TITLE
+			     , Z.JSON.data.cover_image_url AS COVER_IMAGE
 			     , M.MEMBER_NICKNAME
 			     , M.MEMBER_IMAGE
 			  FROM ZIP Z, MEMBER M
@@ -40,6 +40,6 @@
 		) A
 		WHERE ROWNUM < 4
 		]]>
-	</select> -->
+	</select>
 </mapper>
 

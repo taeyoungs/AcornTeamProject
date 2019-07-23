@@ -1,7 +1,185 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="zipdle"> 
-	<select id="insertZipdle" parameterType="String">
-		insert into zip values (zip_seq_no.nextval, #{json}, 0, 0, sysdate)
+	<select id="insertZipdle" parameterType="zvo">
+		insert into zip values (zip_seq_no.nextval, #{json}, 0, 0, sysdate, #{member_no})
 	</select>
+	<select id="getTotalCount" resultType="int">
+		select count(*) from zip
+	</select>
+	<select id="getAllList" resultType="zvo">
+		select * from zip
+	</select>
+	<select id="getZipData" parameterType="int" resultType="zvo">
+		select * from zip where zip_seq_no = #{zip_seq_no}
+	</select>
+	<select id="getListWithMember" resultType="zvo">
+		select z.zip_seq_no,
+			   z.json, 
+			   z.zip_hits,
+			   z.zip_good,
+			   z.reg_date,
+			   m.member_no,
+			   m.member_image,
+			   m.member_nickname
+		from zip z, member m
+		where z.member_no = m.member_no
+		order by z.reg_date desc
+	</select>
+	<select id="getHitsList" resultType="zvo">
+		select z.zip_seq_no,
+			   z.json, 
+			   z.zip_hits,
+			   z.zip_good,
+			   z.reg_date,
+			   m.member_no,
+			   m.member_image,
+			   m.member_nickname
+		from zip z, member m
+		where z.member_no = m.member_no
+		order by z.zip_hits desc
+	</select>
+	<select id="getGoodList" resultType="zvo">
+		select z.zip_seq_no,
+			   z.json, 
+			   z.zip_hits,
+			   z.zip_good,
+			   z.reg_date,
+			   m.member_no,
+			   m.member_image,
+			   m.member_nickname
+		from zip z, member m
+		where z.member_no = m.member_no
+		order by z.zip_good desc
+	</select>
+	<select id="getDateTypeList" resultType="zvo" parameterType="String">
+		select z.zip_seq_no,
+			   z.json, 
+			   z.zip_hits,
+			   z.zip_good,
+			   z.reg_date,
+			   m.member_no,
+			   m.member_image,
+			   m.member_nickname
+		from zip z, member m
+		where z.member_no = m.member_no and z.json.data.type = #{type}
+		order by z.reg_date desc
+	</select>
+	<select id="getHitsTypeList" resultType="zvo" parameterType="String">
+		select z.zip_seq_no,
+			   z.json, 
+			   z.zip_hits,
+			   z.zip_good,
+			   z.reg_date,
+			   m.member_no,
+			   m.member_image,
+			   m.member_nickname
+		from zip z, member m
+		where z.member_no = m.member_no and z.json.data.type = #{type}
+		order by z.zip_hits desc
+	</select>
+	<select id="getGoodTypeList" resultType="zvo" parameterType="String">
+		select z.zip_seq_no,
+			   z.json, 
+			   z.zip_hits,
+			   z.zip_good,
+			   z.reg_date,
+			   m.member_no,
+			   m.member_image,
+			   m.member_nickname
+		from zip z, member m
+		where z.member_no = m.member_no and z.json.data.type = #{type}
+		order by z.zip_good desc
+	</select>
+	<select id="getDatePyeongList" resultType="zvo" parameterType="HashMap">
+		<![CDATA[
+		select z.zip_seq_no,
+			   z.json, 
+			   z.zip_hits,
+			   z.zip_good,
+			   z.reg_date,
+			   m.member_no,
+			   m.member_image,
+			   m.member_nickname
+		from zip z, member m
+		where z.member_no = m.member_no and z.json.data.pyeong >= #{start} and z.json.data.pyeong < #{end}
+		order by z.reg_date desc
+		]]>
+	</select>
+	<select id="getHitsPyeongList" resultType="zvo" parameterType="HashMap">
+		<![CDATA[
+		select z.zip_seq_no,
+			   z.json, 
+			   z.zip_hits,
+			   z.zip_good,
+			   z.reg_date,
+			   m.member_no,
+			   m.member_image,
+			   m.member_nickname
+		from zip z, member m
+		where z.member_no = m.member_no and z.json.data.pyeong >= #{start} and z.json.data.pyeong < #{end}
+		order by z.zip_hits desc
+		]]>
+	</select>
+	<select id="getGoodPyeongList" resultType="zvo" parameterType="HashMap">
+		<![CDATA[
+		select z.zip_seq_no,
+			   z.json, 
+			   z.zip_hits,
+			   z.zip_good,
+			   z.reg_date,
+			   m.member_no,
+			   m.member_image,
+			   m.member_nickname
+		from zip z, member m
+		where z.member_no = m.member_no and z.json.data.pyeong >= #{start} and z.json.data.pyeong < #{end}
+		order by z.zip_good desc
+		]]>
+	</select>
+	<select id="getDate2CondiList" resultType="zvo" parameterType="HashMap">
+		<![CDATA[
+		select z.zip_seq_no,
+			   z.json, 
+			   z.zip_hits,
+			   z.zip_good,
+			   z.reg_date,
+			   m.member_no,
+			   m.member_image,
+			   m.member_nickname
+		from zip z, member m
+		where z.member_no = m.member_no and z.json.data.pyeong >= #{start} and z.json.data.pyeong < #{end} and z.json.data.type = #{type}
+		order by z.reg_date desc
+		]]>
+	</select>
+		<select id="getGood2CondiList" resultType="zvo" parameterType="HashMap">
+		<![CDATA[
+		select z.zip_seq_no,
+			   z.json, 
+			   z.zip_hits,
+			   z.zip_good,
+			   z.reg_date,
+			   m.member_no,
+			   m.member_image,
+			   m.member_nickname
+		from zip z, member m
+		where z.member_no = m.member_no and z.json.data.pyeong >= #{start} and z.json.data.pyeong < #{end} and z.json.data.type = #{type}
+		order by z.zip_good desc
+		]]>
+	</select>
+		<select id="getHits2CondiList" resultType="zvo" parameterType="HashMap">
+		<![CDATA[
+		select z.zip_seq_no,
+			   z.json, 
+			   z.zip_hits,
+			   z.zip_good,
+			   z.reg_date,
+			   m.member_no,
+			   m.member_image,
+			   m.member_nickname
+		from zip z, member m
+		where z.member_no = m.member_no and z.json.data.pyeong >= #{start} and z.json.data.pyeong < #{end} and z.json.data.type = #{type}
+		order by z.zip_hits desc
+		]]>
+	</select>
+	
 </mapper>

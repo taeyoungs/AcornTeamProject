@@ -48,17 +48,14 @@ $(function(){
 	$("#publish_submit").click(function(){
 		var params = $("#project_form_wrap").serializeJSON();
 		
-//		// 이놈을 통해서 데이터 출력
+		// 이놈을 통해서 데이터 출력
 		console.log(params);
 		
-		console.log(typeof(params));
-		
-//		// 이놈을 json 문자열 형태니까 ajax로 보내고
+		// 이놈을 json 문자열 형태니까 ajax로 보내고
 		console.log(JSON.stringify(params));
-		var data = JSON.stringify(params);
+		var json = JSON.stringify(params);
 		// json 문자열 -> json obejct 형태
 //		console.log(JSON.parse(test));
-		
 		
 		// upload ajax
 		$.ajax({
@@ -66,11 +63,12 @@ $(function(){
 			type: 'post',
 			dataType: 'json',
 			contentType: 'application/json',
-			data: data,
+			data: json,
 			success: function(e){
-				console.log(e);
+				window.location.href = "/zipdle/gotoZipList";
+			}, error:function(request,status,error){
+			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			}
-			
 		});
 		
 	});
@@ -190,7 +188,7 @@ function coverImg_readURL(input) {
         var reader = new FileReader();
         reader.onload = function(e) {
         	$("#cover_image_upload").css("background-image", "url('"+e.target.result+"')");
-        	$("#project_cover_image_url").val("/uploadImage/zipdle/cover_image"+input.files[0].name);
+        	$("#project_cover_image_url").val("/uploadImage/zipdle/"+input.files[0].name);
         }
         reader.readAsDataURL(input.files[0]);
     }
@@ -251,9 +249,6 @@ function card_readURL(input, th) {
 										<textarea class="description" name="data[zip_detail][`+card_count+`][content]" id="cards_content"
 											style="display: none;"></textarea>
 									</div>
-								</div>
-								<div class="hashtag ui-keyword-field">
-									<div class="hashtag_add_input" contenteditable="true" placeholder="태그입력"></div>
 								</div>
 							</div>
         				</div>

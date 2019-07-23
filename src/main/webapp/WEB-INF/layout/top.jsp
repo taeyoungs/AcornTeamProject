@@ -114,8 +114,8 @@
                             <li class="navi-menu_primary_secondary ${where eq 'photo' ? 'active' : ''}">
                                 <a href="${root}/photo/photolist.do">사진</a> 
                             </li>
-                            <li class="navi-menu_primary_secondary">
-                                <a href="#">집들이</a> 
+                            <li class="navi-menu_primary_secondary ${where eq 'zipdle' ? 'active' : ''}">
+                                <a href="${root}/zipdle/gotoZipList">집들이</a> 
                             </li>
                             <li class="navi-menu_primary_secondary ${where eq 'board' ? 'active' : ''}">
                                 <a href="${root}/board/list.do?where=board">질문과답변</a> 

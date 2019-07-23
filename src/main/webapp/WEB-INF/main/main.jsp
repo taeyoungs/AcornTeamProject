@@ -151,7 +151,7 @@
 									<span class="story-entry__content__profile__image" style="background-image: url('/image/common/user.png')"></span>
 								</c:if>
 								<c:if test="${!empty zip.memberImage}">
-									<span class="story-entry__content__profile__image" style="background-image: url('${zip.memberImage}')"></span>
+									<span class="story-entry__content__profile__image" style="background-image: url('/uploadImage/${zip.memberImage}')"></span>
 								</c:if>
 								<span class="story-entry__content__profile__name">${zip.memberNickname}</span>
 							</div>

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="StoreRank">
 	<select id="getTop10List" resultType="productVO">
-		SELECT PROD_NO AS prodNo
+		  SELECT PROD_NO AS prodNo
 			 , PROD_TITLE AS prodTitle
 			 , PROD_PRICE AS prodPrice
 			 , PROD_IMG AS prodImage
@@ -11,7 +11,9 @@
 			 , PROD_SELLER AS prodSeller
 			 , CATEGORY_NM AS categoryNm
 			 , PROD_HITS AS prodHits
-		  FROM PRODUCT
+			 , (SELECT COUNT(*) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS reviewCnt
+			 , (SELECT SUM(REW_GRADE) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS starGrade
+		  FROM PRODUCT P
 		  ORDER BY prodHits
 	</select>
 	<select id="getFurnitureTop10List" resultType="productVO">
@@ -24,7 +26,9 @@
 			 , PROD_SELLER AS prodSeller
 			 , CATEGORY_NM AS categoryNm
 			 , PROD_HITS AS prodHits
-		  FROM PRODUCT
+			 , (SELECT COUNT(*) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS reviewCnt
+			 , (SELECT SUM(REW_GRADE) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS starGrade
+		  FROM PRODUCT P
 		  where CATEGORY_No=1 or CATEGORY_No=2
 		  ORDER BY prodHits
 	</select>
@@ -38,7 +42,9 @@
 			 , PROD_SELLER AS prodSeller
 			 , CATEGORY_NM AS categoryNm
 			 , PROD_HITS AS prodHits
-		  FROM PRODUCT
+			 , (SELECT COUNT(*) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS reviewCnt
+			 , (SELECT SUM(REW_GRADE) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS starGrade
+		  FROM PRODUCT P
 		  where CATEGORY_No=3 or CATEGORY_No=4 
 		  ORDER BY prodHits
 	</select>
@@ -52,7 +58,9 @@
 			 , PROD_SELLER AS prodSeller
 			 , CATEGORY_NM AS categoryNm
 			 , PROD_HITS AS prodHits
-		  FROM PRODUCT
+			 , (SELECT COUNT(*) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS reviewCnt
+			 , (SELECT SUM(REW_GRADE) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS starGrade
+		  FROM PRODUCT P
 		  where CATEGORY_No=5 or CATEGORY_No=6 
 		  ORDER BY prodHits
 	</select> 

@@ -14,6 +14,9 @@
 		from p_reply r, member m, photo p 
 		where m.member_no=r.member_no and r.p_reply_no = p.photo_seq_no
 	</select>
+	<update id="photoUpdateReadcount" parameterType="int">
+		update photo set photo_hits=photo_hits+1 where photo_seq_no=#{num}
+	</update>
 	
 	<!-- photoList 정렬 -->
 	<select id="photoSortByHits" resultType="pvo" parameterType="String">
@@ -35,10 +38,23 @@
 		insert into photo values(photo_seq_no.nextval, #{member_no}, #{photo_image}, #{photo_content}, #{photo_hometype}, #{photo_pyeong}, 0, 0, sysdate, #{hashtag})
 	</insert>
 	
+	<!-- photoDelete -->
+	<delete id="deletePhoto" parameterType="int">
+		delete from photo where photo_seq_no=#{num}
+	</delete>
 	
-	<update id="photoUpdateReadcount" parameterType="int">
-		update photo set photo_hits=photo_hits+1 where photo_seq_no=#{num}
+	<!-- photoUpdate -->
+	<update id="updatePhoto" parameterType="pvo">
+		update photo set 
+			photo_image=#{photo_image},
+			photo_content=#{photo_content},
+			photo_hometype=#{photo_hometype},
+			photo_pyeong=#{photo_pyeong},
+			hashtag=#{hashtag}
+		where photo_seq_no=#{photo_seq_no}
 	</update>
+	
+	
 	<select id="getMemberData" resultType="mvo" parameterType="int">
 		select * from member where member_no in (select member_no from photo where photo_seq_no=#{num})
 	</select>

@@ -10,11 +10,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <c:set var="root" value="<%=request.getContextPath()%>"/>
 <script type="text/javascript" src="${root}/js/photo/photodetail.js"></script>
 <link rel="stylesheet" href="${root}/css/photo/photo_detail.css">
 <link rel="shortcut icon" href="#">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
 <main id="root" role="main">
@@ -174,6 +174,16 @@
 														<p class="writer-profile__about">${mvo.member_comment }</p>
 													</a>
 												</div>
+												<c:if test="${mvo.member_no eq sessionScope.mvo.member_no}">
+												<div class="sidebar__update_delete">
+													<a href="updateform.do?num=${pvo.photo_seq_no}">
+														<img src="/image/common/looping-arrows.png" class="sidebar__update_button">
+													</a>
+													<a href="delete.do?photo_seq_no=${pvo.photo_seq_no}">
+														<img src="/image/common/trashcan.png" class="sidebar__delete_button">
+													</a>
+												</div>
+												</c:if>
 											</div>
 										</section>
 										<section class="sidebar_others">

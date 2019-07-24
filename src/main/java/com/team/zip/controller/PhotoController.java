@@ -106,16 +106,12 @@ public class PhotoController {
 	public String write(@ModelAttribute PhotoVO pvo, HttpServletRequest request, MultipartFile photo, HttpSession session) {
 		
 		String path = "D://Project/AcornProject/src/main/webapp/WEB-INF/image/photoimage";
-		System.out.println(path);
 		int memberNo = (Integer) session.getAttribute("member_no");
-		System.out.println(memberNo);
-		System.out.println(pvo.getHashtag());
-		System.out.println(pvo.getPhoto_content());
-		System.out.println(pvo.getPhoto_pyeong());
 
 		String imagename = "";
 		SpringFileWriter fileWriter = new SpringFileWriter();
 		MultipartFile f = pvo.getPhoto();
+			
 		if(f.getOriginalFilename().length() > 0) {
 			imagename = f.getOriginalFilename();
 			System.out.println(imagename);
@@ -128,7 +124,6 @@ public class PhotoController {
 		
 		pvo.setPhoto_image("/image/photoimage/"+imagename);
 		pvo.setMember_no(memberNo);
-		
 		service.photoInsert(pvo);
 		return "redirect:photolist.do?where=photo";
 	}
@@ -196,6 +191,23 @@ public class PhotoController {
 		SpringFileWriter filewriter = new SpringFileWriter();
 		
 		return "redirect:photolist.do";
+	}
+	
+	@RequestMapping("/photo/delete.do")
+	public String photoDelete(@RequestParam int photo_seq_no) {
+		
+		service.photoDelete(photo_seq_no);
+		return "redirect:photolist.do";
+	}
+	
+	@RequestMapping("/photo/updateform.do")
+	public ModelAndView updateForm(@RequestParam int num) {
+		
+		ModelAndView model = new ModelAndView();
+		PhotoVO pvo = service.getData(num);
+		model.addObject("pvo", pvo);
+		model.setViewName("/1/photo/updateform");
+		return model;
 	}
 	
 }

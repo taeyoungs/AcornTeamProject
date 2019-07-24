@@ -13,6 +13,20 @@ $(function(){
 			location.href = '#' + dataTarget;
 		}
 	})
+	
+	//리뷰쓰기 버튼 클릭 시 팝업 
+	$(".production-review__info__write").click(function(e) {
+		e.preventDefault();
+		$(".ui-popup").css("display", "block");
+	});
+	
+	//취소하기 버튼 클릭 시 confirm -> 리뷰 팝업창 CLOSE
+	$(".cancel").click(function() {
+		var result = confirm("작성 중인 내용이 사라집니다.");
+		if(result){
+			$(".ui-popup").css("display", "none");
+		}
+	});
 });
 
 //Number Format
@@ -41,5 +55,40 @@ function plus() {
 		var price = $('#salePrice').val() * count;
 		$('.text-heading-2').text(formatNumber(price));
 		$('span.amount').text(formatNumber(price));
+	}
+}
+
+
+
+//리뷰쓰기 - 업로드 파일 이미지 미리보기
+var sel_file;
+
+$(document).ready(function() {
+	$("#card_uploader").on("change", handleImgFileSelect);
+});
+
+function handleImgFileSelect (e) {
+	var files = e.target.files;
+	var filesArr = Array.prototype.slice.call(files);
+	
+	filesArr.forEach(function (f) {
+		if(!f.type.match("image.*")){
+			alert("이미지 확장자만 가능");
+			return;
+		}
+		
+		sel_file = f;
+		
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			$("#previewImage").attr("src", e.target.result);
+		}
+		reader.readAsDataURL(f);
+	});
+	
+	//리뷰 파일 선택 시 이미지 미리보기
+	if ($('#previewImage').attr('src') != '')
+	{
+		$("#upload_panel").css("display", "block");
 	}
 }

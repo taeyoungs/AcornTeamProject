@@ -2,20 +2,26 @@ package com.team.zip.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.zip.model.vo.CommonCodeVO;
 import com.team.zip.model.vo.ProductVO;
 import com.team.zip.service.StoreCategoryService;
 import com.team.zip.service.StoreProductService;
+import com.team.zip.util.SpringFileWriter;
 
 @Controller
 public class StoreCategoryController {
@@ -146,6 +152,25 @@ public class StoreCategoryController {
 		return json.toString();
 	}
 	
+	@RequestMapping(value = "/store/upload.do", method = RequestMethod.POST)
+	public ModelAndView uploadReviewImage(
+			@RequestParam MultipartFile image,
+			HttpServletRequest request) {
+		
+		//이미지 업로드 경로
+		String path = request.getSession().getServletContext().getRealPath("/uploadImage/review");
+		System.out.println(path);
+		
+		String fileName = image.getOriginalFilename();
+		SpringFileWriter fileWriter = new SpringFileWriter();
+		
+		fileWriter.writeFile(image, path, fileName);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("fileName", fileName);
+		mav.setViewName("/store/selling.do");
+		return mav;
+	}
 	
 	@RequestMapping("/store/selling.do")
 	public ModelAndView selling(@RequestParam String prodNo) {

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -19,15 +20,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.team.zip.model.vo.CommonCodeVO;
 import com.team.zip.model.vo.ProductVO;
+import com.team.zip.model.vo.StoreReviewVO;
 import com.team.zip.service.StoreCategoryService;
 import com.team.zip.service.StoreProductService;
+import com.team.zip.service.StoreReviewService;
 import com.team.zip.util.SpringFileWriter;
 
 @Controller
 public class StoreCategoryController {
+	@Autowired
+	private StoreReviewService storeReviewService;
 	
 	@Autowired
-	StoreCategoryService categoryService;
+	private StoreCategoryService categoryService;
 	
 	@Autowired
 	private StoreProductService storeProductService;
@@ -173,7 +178,10 @@ public class StoreCategoryController {
 	}
 	
 	@RequestMapping("/store/selling.do")
-	public ModelAndView selling(@RequestParam String prodNo) {
+	public ModelAndView selling(@RequestParam String prodNo, HttpSession session) {
+		
+		String login = (String)session.getAttribute("loginok");
+		String memberNo = String.valueOf(session.getAttribute("member_no"));
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -183,8 +191,18 @@ public class StoreCategoryController {
 		//조회수 증가 
 		storeProductService.updateHits(prodNo);
 		
+		mav.addObject("login", login);
+		mav.addObject("memberNo", memberNo);
 		mav.addObject("product", productVO);
 		mav.setViewName("/store/selling");
 		return mav;
+	}
+	
+	@RequestMapping(value = "/store/insertReview.do", method = RequestMethod.POST)
+	public String insertReview(@ModelAttribute StoreReviewVO storeReviewVO) {
+		
+		storeReviewService.insertReview(storeReviewVO);
+		
+		return "redirect:/store/selling.do";
 	}
 }

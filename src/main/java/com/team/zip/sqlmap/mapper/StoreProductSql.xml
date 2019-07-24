@@ -70,9 +70,24 @@
 		WHERE PROD_NO = #{prodNo}
 	</update>
 	
-<!-- 	<select id="selectHits" parameterType="String" resultType="int">
-		SELECT PROD_HITS AS prodHits
-		FROM PRODUCT
-		WHERE PROD_NO = #{prodNo}
-	</select> -->
+	<insert id="insertReview" parameterType="storeReviewVO">
+		INSERT INTO REVIEW (
+			REW_NO,
+			MEMBER_NO,
+			PROD_NO,
+			REW_IMG,
+			REW_CONTENT,
+			REW_GRADE,
+			REG_DATE
+		) VALUES (
+			REW_NO.NEXTVAL,
+			#{memberNo},
+			#{prodNo},
+			#{rewImg},
+			#{rewContent},
+			#{rewGrade},
+			SYSDATE
+		)
+	</insert>
+	
 </mapper>

@@ -267,7 +267,12 @@
 								<h1 class="production-review__info__title">리뷰
 									<span class="production-review__info__title__number"></span>
 								</h1>
-								<a class="production-review__info__write">리뷰쓰기</a>
+								<c:if test="${login == 'login'}">
+								<a class="production-review__info__write" onclick="openReviewPopUp(event)">리뷰쓰기</a>
+								</c:if>
+								<c:if test="${login != 'login'}">
+								<a class="production-review__info__write" href="/member/gotoSignin">리뷰쓰기</a>
+								</c:if>
 								<!-- 별 -->
 								<div class="production-review__info__star">
 									<div class="production-review__info__star__avg">별점</div>
@@ -469,15 +474,17 @@
 			<div class="pop_container">
 				<div id="production_review_pop">
 					<div class="title">리뷰쓰기</div>
-					<form id="production_review_form" class="new_production_review" action="/store/upload.do" enctype="multipart/form-data">
+					<form id="production_review_form" class="new_production_review" action="/store/insertReview.do" enctype="multipart/form-data">
 						<!-- 상품 정보 -->
 						<div class="select_production field">
-							<div class="product_image" style="background-image: url('')"></div>
+							<div class="product_image" style="background-image: url('${product.prodImage}')"></div>
 							<div class="product_info">
-								<div class="brand_name">판매처</div>
-								<div class="name">상품명</div>
+								<div class="brand_name">${product.prodSeller}</div>
+								<div class="name">${product.prodTitle}</div>
 							</div>
 						</div>
+						<input type="hidden" name="memberNo" id="memberNo">
+						<input type="hidden" name="prodNo" id="prodNo">
 						<!-- 별점 -->
 						<div class="select_star field">
 							<div class="title">별점을 눌러 만족도를 알려주세요</div>

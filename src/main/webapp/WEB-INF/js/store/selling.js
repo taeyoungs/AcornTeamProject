@@ -14,11 +14,6 @@ $(function(){
 		}
 	})
 	
-	//리뷰쓰기 버튼 클릭 시 팝업 
-	$(".production-review__info__write").click(function(e) {
-		e.preventDefault();
-		$(".ui-popup").css("display", "block");
-	});
 	
 	//취소하기 버튼 클릭 시 confirm -> 리뷰 팝업창 CLOSE
 	$(".cancel").click(function() {
@@ -28,6 +23,12 @@ $(function(){
 		}
 	});
 });
+
+//리뷰쓰기 버튼 클릭 시 팝업 
+function openReviewPopUp(e) {
+	e.preventDefault();
+	$(".ui-popup").css("display", "block");
+}
 
 //Number Format
 function formatNumber(price) {
@@ -65,6 +66,17 @@ var sel_file;
 
 $(document).ready(function() {
 	$("#card_uploader").on("change", handleImgFileSelect);
+	
+	$("#delete_review_card").click(function() {
+		$('#previewImage').attr('src', '');
+		
+		if ($('#previewImage').attr('src') == '')
+		{
+			$("#upload_panel").css("display", "none");
+		}else{
+			$("#upload_panel").css("display", "block");
+		}
+	});
 });
 
 function handleImgFileSelect (e) {
@@ -82,13 +94,13 @@ function handleImgFileSelect (e) {
 		var reader = new FileReader();
 		reader.onload = function(e) {
 			$("#previewImage").attr("src", e.target.result);
+			
+			//리뷰 파일 선택 시 이미지 미리보기
+			if ($('#previewImage').attr('src') != '')
+			{
+				$("#upload_panel").css("display", "block");
+			}
 		}
 		reader.readAsDataURL(f);
 	});
-	
-	//리뷰 파일 선택 시 이미지 미리보기
-	if ($('#previewImage').attr('src') != '')
-	{
-		$("#upload_panel").css("display", "block");
-	}
 }

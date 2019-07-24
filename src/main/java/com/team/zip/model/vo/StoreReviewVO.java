@@ -11,7 +11,8 @@ public class StoreReviewVO {
 	private String rewContent;
 	private String rewGrade;
 	private Timestamp regDate;
-	
+	private String memberNickname;
+	private String memberImage;
 	
 	public String getRewNo() {
 		return rewNo;
@@ -61,6 +62,17 @@ public class StoreReviewVO {
 	public void setRegDate(Timestamp regDate) {
 		this.regDate = regDate;
 	}
-	
+	public String getMemberNickname() {
+		return memberNickname;
+	}
+	public void setMemberNickname(String memberNickname) {
+		this.memberNickname = memberNickname;
+	}
+	public String getMemberImage() {
+		return memberImage;
+	}
+	public void setMemberImage(String memberImage) {
+		this.memberImage = memberImage;
+	}
 	
 }

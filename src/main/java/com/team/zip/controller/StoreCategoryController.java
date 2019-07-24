@@ -2,7 +2,6 @@ package com.team.zip.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -157,28 +156,10 @@ public class StoreCategoryController {
 		return json.toString();
 	}
 	
-	@RequestMapping(value = "/store/upload.do", method = RequestMethod.POST)
-	public ModelAndView uploadReviewImage(
-			@RequestParam MultipartFile image,
-			HttpServletRequest request) {
-		
-		//이미지 업로드 경로
-		String path = request.getSession().getServletContext().getRealPath("/uploadImage/review");
-		System.out.println(path);
-		
-		String fileName = image.getOriginalFilename();
-		SpringFileWriter fileWriter = new SpringFileWriter();
-		
-		fileWriter.writeFile(image, path, fileName);
-		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("fileName", fileName);
-		mav.setViewName("/store/selling.do");
-		return mav;
-	}
 	
 	@RequestMapping("/store/selling.do")
-	public ModelAndView selling(@RequestParam String prodNo, HttpSession session) {
+	public ModelAndView selling(@RequestParam String prodNo, HttpSession session,
+			@ModelAttribute StoreReviewVO storeReviewVO) {
 		
 		String login = (String)session.getAttribute("loginok");
 		String memberNo = String.valueOf(session.getAttribute("member_no"));
@@ -188,9 +169,12 @@ public class StoreCategoryController {
 		ProductVO productVO = new ProductVO();
 		productVO = storeProductService.getProductDetail(prodNo);
 		
+		List<StoreReviewVO> reviewList = storeReviewService.getReviewList(storeReviewVO);
 		//조회수 증가 
 		storeProductService.updateHits(prodNo);
 		
+//		mav.addObject("prodNo", prodNo);
+		mav.addObject("reviewList", reviewList);
 		mav.addObject("login", login);
 		mav.addObject("memberNo", memberNo);
 		mav.addObject("product", productVO);
@@ -199,10 +183,24 @@ public class StoreCategoryController {
 	}
 	
 	@RequestMapping(value = "/store/insertReview.do", method = RequestMethod.POST)
-	public String insertReview(@ModelAttribute StoreReviewVO storeReviewVO) {
+	public String insertReview(@ModelAttribute StoreReviewVO storeReviewVO,
+			@RequestParam MultipartFile image,
+			HttpServletRequest request) throws Exception{
 		
+		//이미지 업로드 경로 1. 집  2. 학원
+		//String projectPath = "C:/Users/PARKSSO/git/AcornTeamProject";
+		String projectPath = "C:/Users/PARKSSO/git/AcornTeamProject";
+		
+		String realPath = projectPath+"/src/main/webapp/WEB-INF/uploadImage/review";
+		
+		String fileName = image.getOriginalFilename();
+		SpringFileWriter fileWriter = new SpringFileWriter();
+		
+		fileWriter.writeFile(image, realPath, fileName);
+		
+		storeReviewVO.setRewImg(fileName);
 		storeReviewService.insertReview(storeReviewVO);
 		
-		return "redirect:/store/selling.do";
+		return "redirect:/store/selling.do?prodNo="+storeReviewVO.getProdNo();
 	}
 }

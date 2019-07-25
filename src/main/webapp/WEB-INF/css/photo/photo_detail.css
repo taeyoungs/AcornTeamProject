@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 main {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -36,7 +38,7 @@ header, footer, main{
 }
 
 html, body{
-	font-family: "Noto Sans KR", "Apple SD Gothic Neo", "∏º¿∫ ∞ÌµÒ", "Malgun Gothic", sans-serif;
+	font-family: "Noto Sans KR", "Apple SD Gothic Neo", "ÎßëÏùÄ Í≥†Îîï", "Malgun Gothic", sans-serif;
 	font-size: 14px;
 	line-height: 1;
 	letter-spacing: -0.4px;
@@ -422,7 +424,7 @@ figure{
 .comment-feed__item__footer__like-btn{
 	display: inline-block;
 	color: #bdbdbd;
-	content: "°§";
+	content: "¬∑";
 	margin: 0 5px;
 	font-size: 13px;
 	font-weight: 400;
@@ -629,6 +631,20 @@ figure{
 	transition: transform .3s ease;
 }
 
+.sidebar__update_button{
+	width: 25px;
+	height: 25px;
+	margin-left: 15px;
+	border: none;
+}
+
+.sidebar__delete_button{
+	width: 25px;
+	height: 25px;
+	margin-left: 10px;
+	border: none;
+}
+
 @media (min-width: 360px) {
 
 	.container{
@@ -697,7 +713,6 @@ figure{
 	margin: 0 10px 0 0;
 	line-height: inherit;
 	}	
-
 }
 
 @media (min-width: 1024px){
@@ -730,6 +745,10 @@ figure{
 	
 	.section-divider{
 		margin: 60px 0;
+	}
+	
+	.sidebar__update_delete{
+	margin-left: 20px;
 	}
 
 }

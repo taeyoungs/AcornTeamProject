@@ -33,6 +33,14 @@ public class PhotoService {
 		dao.insertPhoto(pvo);
 	}
 	
+	public int photoDelete(int num) {
+		return dao.deletePhoto(num);
+	}
+	
+	public void updatePhoto(PhotoVO pvo) {
+		dao.updatePhoto(pvo);
+	}
+	
 	public List<PhotoVO> photoSortByHits(){
 		return dao.photoSortByHits();
 	}

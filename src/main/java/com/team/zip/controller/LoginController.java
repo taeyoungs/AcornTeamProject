@@ -73,9 +73,11 @@ public class LoginController {
 	
 	// 회원가입시 데이터 저장 후 메인으로 이동
 	@RequestMapping(value="/member/signup", method=RequestMethod.POST)
-	public String signup(@ModelAttribute MemberVO mvo) {
+	public String signup(@ModelAttribute MemberVO mvo, Model model) {
 
 		mservice.insertMember(mvo);
+		model.addAttribute("loginCondition", "3");
+		
 		return "redirect:/main.do";
 	}
 	
@@ -121,10 +123,10 @@ public class LoginController {
 				break;
 			} 
 		}
-		System.out.println("isMatch : "+isMatch);
+
 		// isMatch가 true일 경우 이메일과 비밀번호가 일치하는 상황이며 세션에 그에 대한 정보를 저장해놓은 상태
 		if(isMatch) {
-			
+		
 			//세션에서 사용 완료된 referer 지우기 [S] - 2019.07.24 SWPARK
 			String referer = (String)session.getAttribute("referer");
 			if (referer != null) {
@@ -132,7 +134,8 @@ public class LoginController {
 				return "redirect:"+referer;
 			}
 			//세션에서 사용 완료된 referer 지우기 [E]
-			
+
+			model.addAttribute("loginCondition", "1");
 			return "redirect:../main.do";
 			
 		} else {
@@ -145,11 +148,13 @@ public class LoginController {
 	
 	// 로그아웃
 	@RequestMapping(value="/member/logout")
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session, Model model) {
 		
 		session.removeAttribute("loginok");
 		session.removeAttribute("member_no");
 		session.removeAttribute("mvo");
+		
+		model.addAttribute("loginCondition", "2");
 		
 		return "redirect:../main.do";
 	}

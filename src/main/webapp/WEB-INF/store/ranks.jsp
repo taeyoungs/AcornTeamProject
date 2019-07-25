@@ -5,14 +5,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Insert title here</title>
 </head>
 <c:set var="root" value="<%=request.getContextPath()%>"/>
 <link rel="stylesheet" type="text/css" href="/css/store/ranks.css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <body>
-<main id="root" role="main">
+<main role="main" id="root">
 	<div class="RankingFeed">
 		<section class="ranking-feed">
 			<div class="ranking-feed-group">
@@ -51,11 +51,13 @@
 													</strong>
 												</div>
 											</div>
+											<c:if test="${plist.reviewCnt!=0}">
 											<div class="product-item__info__col">
 												<img src="/image/common/star.png" style="width:12px;height:12px;">
-												<strong>4.4</strong>&nbsp;
-												 리뷰 40
+												<strong>${plist.starGrade }</strong>&nbsp;
+												 리뷰 ${plist.reviewCnt }
 											</div>
+											</c:if>
 										</div>
 									</a>
 								</div>
@@ -102,11 +104,13 @@
 													<strong><fmt:formatNumber value="${flist.prodPrice }" pattern="#,###"/></strong>
 												</div>
 											</div>
+											<c:if test="${flist.reviewCnt!=0}">
 											<div class="product-item__info__col">
 												<img src="/image/common/star.png" style="width:12px;height:12px;">
 												<strong>3.2</strong>&nbsp;
 												리뷰 4
 											</div>
+											</c:if>
 										</div>
 									</a>
 								</div>
@@ -153,11 +157,13 @@
 													<strong><fmt:formatNumber value="${alist.prodPrice }" pattern="#,###"/></strong>
 												</div>
 											</div>
+											<c:if test="${alist.reviewCnt!=0}">
 											<div class="product-item__info__col">
 												<img src="/image/common/star.png" style="width:12px;height:12px;">
 												<strong>3.2</strong>&nbsp;
 												리뷰 20
 											</div>
+											</c:if>
 										</div>
 									</a>
 								</div>
@@ -204,11 +210,13 @@
 													<strong><fmt:formatNumber value="${ilist.prodPrice }" pattern="#,###"/></strong>
 												</div>
 											</div>
+											<c:if test="${ilist.reviewCnt!=0}">
 											<div class="product-item__info__col">
 												<img src="/image/common/star.png" style="width:12px;height:12px;">
 												<strong>4.2</strong>&nbsp;
 												리뷰 14
 											</div>
+											</c:if>
 										</div>
 									</a>
 								</div>

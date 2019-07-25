@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 body, div, dl, dt, dd, ul, ol, li, 
 h1, h2, h3, h4, h5, h6, 
 pre, code, form, fieldset, legend, 
@@ -6,12 +8,6 @@ input, textarea, p, blockquote, th, td{
 	padding: 0;
 }
 
-html, body{
-	line-height: 1;
-	font-family: "Noto Sans KR", "Apple SD Gothic Neo", "¸¼Àº °íµñ", "Malgun Gothic", sans-serif;
-	letter-spacing: -0.4px;
-	font-size: 13px;
-}
 
 header, footer, main {
     box-sizing: border-box;
@@ -39,6 +35,11 @@ main {
     flex: 1 0 auto;
     -ms-flex-negative: 0;
     min-height: 1px;
+    
+    line-height: 1;
+	font-family: "Noto Sans KR", "Apple SD Gothic Neo", "ë§‘ì€ ê³ ë”•", "Malgun Gothic", sans-serif;
+	letter-spacing: -0.4px;
+	font-size: 13px;
 }
 
 input, textarea, select, button {
@@ -137,7 +138,8 @@ a * {
 
 .product-item__image .image {
     position: absolute;
-    width: 180%;
+    width: 100%;
+    height: 100%;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
@@ -248,18 +250,19 @@ a * {
     font-weight: 800;
     text-align: center;
     color: #35c5f0;
+    cursor: pointer;
 }
 
 
 @media only screen and (min-width: 375px){
 	.container {
-    margin-right: auto;
-    margin-left: auto;
-    box-sizing: border-box;
-    width: calc(100% - 30px);
-    max-width: 100%;
-    box-sizing: border-box;
-    min-height: 1px;
+	    margin-right: auto;
+	    margin-left: auto;
+	    box-sizing: border-box;
+	    width: calc(100% - 30px);
+	    max-width: 100%;
+	    box-sizing: border-box;
+	    min-height: 1px;
 	}
 }
 
@@ -271,99 +274,99 @@ a * {
 	}
 	 
 	.ranking-feed {
-    margin-top: 40px;
+    	margin-top: 40px;
 	}
 	
 	.ranking-feed-group__title {
-    font-size: 32px;
+   		font-size: 32px;
 	}
 	
 	.container {
-    margin-right: auto;
-    margin-left: auto;
-    box-sizing: border-box;
-    width: calc(100% - 80px);
-    max-width: 100%;
-    box-sizing: border-box;
-    min-height: 1px;
+	    margin-right: auto;
+	    margin-left: auto;
+	    box-sizing: border-box;
+	    width: calc(100% - 80px);
+	    max-width: 100%;
+	    box-sizing: border-box;
+	    min-height: 1px;
 	}
 	
 	.ranking-feed-card__title {
-    margin-bottom: 40px;
-    font-size: 20px;
+	    margin-bottom: 40px;
+	    font-size: 20px;
 	}
 	
 	.ranking-feed-card__product-wrap {
-    -webkit-flex-wrap: wrap;
-    -moz-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    white-space: normal;
-    overflow: initial;
-    margin: 0 -10px;
-	}
-	
-	.ranking-product-item-wrap {
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 0 20%;
-    -moz-box-flex: 0;
-    -moz-flex: 0 0 20%;
-    -ms-flex: 0 0 20%;
-    flex: 0 0 20%;
-    width: 20%;
-    padding: 0 10px;
-    min-width: 0;
+	    -webkit-flex-wrap: wrap;
+	    -moz-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
+	    white-space: normal;
+	    overflow: initial;
+	    margin: 0 -10px;
 	}
 	
 	.product-item {
-    margin-bottom: 15px;
-    margin-top: 15px;
+	    margin-bottom: 15px;
+	    margin-top: 15px;
 	}
 	
 	.product-item__image__number {
-    width: 40px;
-    height: 30px;
-    font-size: 20px;
-    border-radius: 0 0 20px 0;
+	    width: 40px;
+	    height: 30px;
+	    font-size: 20px;
+	    border-radius: 0 0 20px 0;
 	}
 	
 	.product-item__image > button {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    border: none;
-    padding: 0;
-    background: transparent;
+	    position: absolute;
+	    bottom: 10px;
+	    right: 10px;
+	    border: none;
+	    padding: 0;
+	    background: transparent;
 	}
 	
 	.ranking-feed-card__more-btn {
-    margin: 30px 0 30px;
+   		margin: 30px 0 30px;
 	}
 }
 
 @media only screen and (min-width: 1024px){
 	
 	.container {
-    margin-right: auto;
-    margin-left: auto;
-    box-sizing: border-box;
-    width: calc(100% - 120px);
-    max-width: 100%;
-    box-sizing: border-box;
-    min-height: 1px;
+	    margin-right: auto;
+	    margin-left: auto;
+	    box-sizing: border-box;
+	    width: calc(100% - 120px);
+	    max-width: 100%;
+	    box-sizing: border-box;
+	    min-height: 1px;
 	}	
+	
+	.ranking-product-item-wrap {
+	    -webkit-box-flex: 0;
+	    -webkit-flex: 0 0 20%;
+	    -moz-box-flex: 0;
+	    -moz-flex: 0 0 20%;
+	    -ms-flex: 0 0 20%;
+	    flex: 0 0 20%;
+	    width: 20%;
+	    padding: 0 10px;
+	    min-width: 0;
+	}
 }
 
 
 @media only screen and (min-width: 1250px){
 	
 	.container {
-    margin-right: auto;
-    margin-left: auto;
-    box-sizing: border-box;
-    width: 1136px;
-    max-width: 100%;
-    box-sizing: border-box;
-    min-height: 1px;
+	    margin-right: auto;
+	    margin-left: auto;
+	    box-sizing: border-box;
+	    width: 1136px;
+	    max-width: 100%;
+	    box-sizing: border-box;
+	    min-height: 1px;
 	}
 }

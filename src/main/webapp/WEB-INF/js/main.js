@@ -85,6 +85,11 @@ var sliderWidth;
 var slideInterval = 1000 * 2.5;
 var imgUrl;
 $(document).ready(function(){
+	/*****************
+      LOGIN, LOGOUT ALERT
+	 *****************/
+	$("#flash_notice").delay(1500).fadeOut();
+	
 	totalSlides = $('.home-header__banner-container ul.home-header__banner-items li').length;
 	//sliderWidth = $('.home-header__banner-container').width();
     /*****************

@@ -560,7 +560,10 @@ input::placeholder {
 	border-left: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-
+[contentEditable=true]:empty:not(:focus):before {
+	content: attr(data-ph);
+    color: #939598;
+}
 
 
 

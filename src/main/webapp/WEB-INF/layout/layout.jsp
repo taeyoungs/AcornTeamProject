@@ -20,9 +20,7 @@
 	}
 	#main {
 		width: 100%;
-		/* font-size: 20pt;
 		font-family: 'Nanum Gothic';
-		font-weight: bold; */
 	}
 	#bottom {
 		width: 100%;

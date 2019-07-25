@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -82,8 +83,13 @@ public class LoginController {
 	
 	// 로그인 폼으로 이동
 	@RequestMapping(value="/member/gotoSignin")
-	public String gotoSignin() {
+	public String gotoSignin(HttpServletRequest request, HttpSession session) {
 		
+		//이전페이지 URL(referer) 세션에 담기 [S] - 2019.07.24 SWPARK
+		String referer = request.getHeader("referer");
+		session.setAttribute("referer", referer);
+		//이전페이지 URL(referer) 세션에 담기 [E]
+
 		return "/1/member/signin";
 	}
 	
@@ -120,6 +126,15 @@ public class LoginController {
 
 		// isMatch가 true일 경우 이메일과 비밀번호가 일치하는 상황이며 세션에 그에 대한 정보를 저장해놓은 상태
 		if(isMatch) {
+		
+			//세션에서 사용 완료된 referer 지우기 [S] - 2019.07.24 SWPARK
+			String referer = (String)session.getAttribute("referer");
+			if (referer != null) {
+				session.removeAttribute("referer");
+				return "redirect:"+referer;
+			}
+			//세션에서 사용 완료된 referer 지우기 [E]
+
 			model.addAttribute("loginCondition", "1");
 			return "redirect:../main.do";
 			

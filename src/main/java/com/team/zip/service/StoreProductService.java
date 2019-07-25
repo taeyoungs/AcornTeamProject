@@ -22,4 +22,13 @@ public class StoreProductService {
 	public String getProductTotalCount(CommonCodeVO commonCodeVo) {
 		return storeProductDAO.getProductTotalCount(commonCodeVo);
 	}
+	
+	public ProductVO getProductDetail(String prodNo) {
+		return storeProductDAO.getProductDetail(prodNo);
+	}
+	
+	public void updateHits(String prodNo) { 
+		 storeProductDAO.updateHits(prodNo); 
+	}
+	 
 }

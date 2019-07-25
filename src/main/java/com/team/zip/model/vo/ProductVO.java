@@ -9,7 +9,6 @@ public class ProductVO {
 	private String categoryNo;
 	private String prodSeller;
 	private String categoryNm;
-	//private int prodHits;
 	private String prodHits;
 	private String reviewCnt;
 	private String starGrade;
@@ -62,11 +61,6 @@ public class ProductVO {
 	public void setCategoryNm(String categoryNm) {
 		this.categoryNm = categoryNm;
 	}
-// 	public int getProdHits() {
-// 		return prodHits;
-// 	}
-// 	public void setProdHits(int prodHits) {
-// 		this.prodHits = prodHits;
 	public String getProdHits() {
 		return prodHits;
 	}

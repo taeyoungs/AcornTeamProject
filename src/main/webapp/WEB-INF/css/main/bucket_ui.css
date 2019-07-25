@@ -5314,7 +5314,7 @@ header, footer, main {
 }
 
 .icon-etc, [class*=icon-etc-] {
-	background-image: url("/assets/icon_map/v3/icon-etc.png")
+	background-image: url("/image/common/icon-etc.png")
 }
 
 @media ( -webkit-min-device-pixel-ratio : 2) , ( min-resolution : 2dppx) , (

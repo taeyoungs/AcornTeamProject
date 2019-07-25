@@ -3,7 +3,13 @@
 	FOOTER
 ***************/
 .footer{background: #FAFAFA;width: 100%;height: 219px;padding: 40px 0 20px;margin-top: 130px;position: relative;}
-.footer_content_wrapper{width: 1136px;margin: auto;position: relative;}
+.footer_content_wrapper{    
+	margin-right: auto;
+    margin-left: auto;
+    box-sizing: border-box;
+    width: calc(100% - 30px);
+    max-width: 100%;
+    position: relative;}
 .footer_cs_wrapper{}
 .footer_cs{margin-bottom: 30px;color: #757575;font-size: 12px;}
 .footer_cs strong{margin: 10px 0 5px 0px;display: inline-block;}
@@ -12,7 +18,7 @@
 
 
 
-.footer_outbound{position: absolute;margin-right: auto;margin-left: auto;box-sizing: border-box;top: 0;width: 1136px;}
+.footer_outbound{position: absolute;margin-right: auto;margin-left: auto;box-sizing: border-box;top: 0; width: 100%;}
 .footer_outbound img{width: 32px; height: 32px;padding: 10px;margin-left: 8px;}
 .footer_outbound_list{float: right;}
 
@@ -23,3 +29,10 @@
 .footer_address{margin-bottom: 5px;}
 .footer_address_item{font-size: 12px;color: #757575;}
 
+@media (min-width: 1024px) {
+	width: calc(100% - 120px);
+}
+
+@media (min-width: 768px) {
+	width: calc(100% - 80px);
+}

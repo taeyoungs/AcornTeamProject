@@ -5,10 +5,10 @@ $(function(){
 	conditionArray[0] = '최신순';
 	getList(conditionArray);
 	
-	$(window).resize(function(){
-		var width_size = $(window).width();
+//	$(window).resize(function(){
+//		var width_size = $(window).width();
 //		console.log(width_size);
-	});
+//	});
 	
 	$("ul.filter-bar_control-list_left li").hover(function(){
 		var temp = $(this).find("div button").text();

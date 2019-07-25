@@ -12,6 +12,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.team.zip.model.vo.MemberVO;
+import com.team.zip.model.vo.ZipdleReplyVO;
 import com.team.zip.model.vo.ZipdleVO;
 import com.team.zip.service.MemberService;
 import com.team.zip.service.ZipdleService;
@@ -110,7 +112,7 @@ public class ZipdleController {
 			multipartFile = (CommonsMultipartFile) request.getFile(key);
 			String uploadedFileName = multipartFile.getOriginalFilename();
 			System.out.println(uploadedFileName);
-			// 이미지 저장 (막아놓은 상태)
+			// 이미지 저장
 			fileWriter.writeFile(multipartFile, path, uploadedFileName);	
 
 		}
@@ -282,13 +284,23 @@ public class ZipdleController {
 	}
 	
 	@RequestMapping(value="/zipdle/{seq_no}/zipdleDetail")
-	public String gotoZipDetail(@PathVariable String seq_no, Model model) {
+	public String gotoZipDetail(@PathVariable String seq_no, Model model, HttpSession session) {
 		
 		int zip_seq_no = Integer.parseInt(seq_no);
-		System.out.println(zip_seq_no);
+		int member_no = 0;
+		if(session.getAttribute("member_no") != null) {
+			member_no = (Integer)session.getAttribute("member_no");
+		}
+		
+		ZipdleVO zvo = new ZipdleVO();
+		zvo = zservice.getZipData(zip_seq_no);
+		
+		// 자신이 작성한 글이 아닐 경우 선택한 게시글 조회수 증가
+		if(member_no != zvo.getMember_no()) {
+			zservice.updateZipHits(zip_seq_no);
+		}
 		
 		// seq_no로 photo_seq_no 가지고 넘어옴
-		ZipdleVO zvo = new ZipdleVO();
 		zvo = zservice.getZipData(zip_seq_no);
 		
 		MemberVO mvo = mservice.getMember(zvo.getMember_no());
@@ -299,14 +311,49 @@ public class ZipdleController {
 		return "/zipdle/zipdleDetail";
 	}
 	
-//	// 조건에 맞는 리스트 가져오기 위한 ajax 반환 메서드
-//	@RequestMapping(value="/zipdle/getAllList", method = RequestMethod.POST)
-//	@ResponseBody
-//	public List<ZipdleVO> getWhereList() {
-//			
-//		List<ZipdleVO> zlist = zservice.getListWithMember();
-//			
-//		return zlist;
-//	}
+	// zip_seq_no에 해당하는 detail data 보내주는 ajax
+	@RequestMapping(value="/zipdle/{seq_no}/getZipAjax", method = RequestMethod.POST)
+	@ResponseBody
+	public ZipdleVO getZipAjax(@PathVariable String seq_no) {
+		
+		int zip_seq_no = Integer.parseInt(seq_no);
+		ZipdleVO zvo = new ZipdleVO();
+		
+		zvo = zservice.getZipData(zip_seq_no);
+
+		return zvo;
+	}
+	
+	// 집들이 게시글 좋아요수 업데이트 ajax
+	@RequestMapping(value="/zipdle/{seq_no}/updateZipGood", method = RequestMethod.POST)
+	@ResponseBody
+	public ZipdleVO updateZipGood(@PathVariable String seq_no, @RequestParam int upDown) {
+		
+		int zip_seq_no = Integer.parseInt(seq_no);
+		
+		if(upDown == 0) {
+			zservice.updateZipGoodUp(zip_seq_no);
+		} else {
+			zservice.updateZipGoodDown(zip_seq_no);
+		}
+		
+		ZipdleVO zvo = new ZipdleVO();
+		zvo = zservice.getZipData(zip_seq_no);
+
+		return zvo;
+	}
+	
+	// zip_seq_no에 해당하는 detail data 보내주는 ajax
+	@RequestMapping(value="/zipdle/{seq_no}/getZipReply", method = RequestMethod.POST)
+	@ResponseBody
+	public ZipdleVO getZipReply(@PathVariable String seq_no, @ModelAttribute ZipdleReplyVO zrvo) {
+			
+		int zip_seq_no = Integer.parseInt(seq_no);
+		ZipdleVO zvo = new ZipdleVO();
+			
+		zvo = zservice.getZipData(zip_seq_no);
+
+		return zvo;
+	}
 	
 }

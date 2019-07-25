@@ -81,4 +81,16 @@ public class ZipdleService {
 		return zdao.getZipData(zip_seq_no);
 	}
 	
+	public void updateZipHits(int zip_seq_no) {
+		zdao.updateZipHits(zip_seq_no);
+	}
+	
+	public void updateZipGoodUp(int zip_seq_no) {
+		zdao.updateZipGoodUp(zip_seq_no);
+	}
+	
+	public void updateZipGoodDown(int zip_seq_no) {
+		zdao.updateZipGoodDown(zip_seq_no);
+	}
+	
 }

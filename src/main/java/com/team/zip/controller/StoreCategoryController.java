@@ -189,7 +189,7 @@ public class StoreCategoryController {
 		
 		//이미지 업로드 경로 1. 집  2. 학원
 		//String projectPath = "C:/Users/PARKSSO/git/AcornTeamProject";
-		String projectPath = "C:/Users/PARKSSO/git/AcornTeamProject";
+		String projectPath = "C:/Users/acorn/git/AcornTeamProject";
 		
 		String realPath = projectPath+"/src/main/webapp/WEB-INF/uploadImage/review";
 		

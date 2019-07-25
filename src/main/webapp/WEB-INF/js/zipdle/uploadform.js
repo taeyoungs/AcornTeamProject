@@ -45,7 +45,43 @@ $(function(){
 		}
 	});
 	
+//	$("#textButton").click(function(){
+//		console.log("123123123");
+//		var textareas = $(".description").get();
+//		console.log(textareas);
+//
+//		for(var i=0; i<textareas.length; i++) {
+//			
+//			var content = $("#project_cards_"+i+"_content");
+//			var con = $(content).prev().html();
+//
+//			con = con.replace(/<\/div>/gi, "");
+//
+//			$(content).val(con);
+//			console.log(con);
+//			
+//		}
+//	});
+	
 	$("#publish_submit").click(function(){
+		
+		var textareas = $(".description").get();
+
+		for(var i=0; i<textareas.length; i++) {
+			
+			var content = $("#project_cards_"+i+"_content");
+			var con = $(content).prev().html();
+
+			console.log(con);
+			con = con.replace(/<\/div>/gi, "");
+			
+			console.log(con);
+
+			$(content).val(con);
+			console.log($(content).val());
+			
+		}
+		
 		var params = $("#project_form_wrap").serializeJSON();
 		
 		// 이놈을 통해서 데이터 출력
@@ -236,7 +272,7 @@ function card_readURL(input, th) {
 								<div class="content_panel">
 									<div class="input">
 										<input class="image_url" type="hidden" name="data[zip_detail][`+card_count+`][image_url]"
-											id="cards_image_url" value="/uploadImage/images/`+input.files[0].name+`">
+											id="cards_image_url" value="/uploadImage/zipdle/`+input.files[0].name+`">
 										<div class="image">
 											<img src="`+e.target.result+`" class="image" style="height: initial;">
 											<input class="source" placeholder="출처 URL이 있다면 입력해주세요.(http://를 꼭 붙여주세요.)"
@@ -245,9 +281,9 @@ function card_readURL(input, th) {
 										<div class="user_input">
 											<div class="content_space" contenteditable="true"
 											data-ph="사진에 대한 설명을 써주세요."></div>
-										</div>
-										<textarea class="description" name="data[zip_detail][`+card_count+`][content]" id="cards_content"
+										<textarea class="description" name="data[zip_detail][`+card_count+`][content]" id="project_cards_`+card_count+`_content"
 											style="display: none;"></textarea>
+										</div>
 									</div>
 								</div>
 							</div>

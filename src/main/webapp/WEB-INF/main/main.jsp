@@ -448,4 +448,21 @@
 	</div>
 </section>
 </div>
+<div id="flash_messages">
+    <c:if test="${loginCondition eq 'logout'}">
+        <div id="flash_notice" class="flash_message">
+        	정상적으로 로그아웃이 되었습니다.
+        </div>
+    </c:if>
+    <c:if test="${loginCondition eq 'login'}">
+        <div id="flash_notice" class="flash_message">
+        	정상적으로 로그인 되었습니다.
+        </div>
+    </c:if>
+    <c:if test="${loginCondition eq 'signup'}">
+        <div id="flash_notice" class="flash_message">
+        	회원가입이 완료되었습니다. 로그인 해주세요.
+        </div>
+    </c:if>
+</div>
 </body>

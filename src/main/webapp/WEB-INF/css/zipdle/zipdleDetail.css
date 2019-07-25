@@ -8,6 +8,23 @@
     min-height: 1px;
 }
 
+.hide {
+	display: none !important;
+}
+
+#content #user_action>.contents>.category>.report, 
+#content #user_action>.contents>.category>.modify, 
+#content #user_action>.contents>.category>.delete, 
+#content #user_action>.contents>.category>.button {
+	float: right;
+    font-size: 13px;
+    line-height: 17px;
+    color: #757575;
+    text-decoration: underline;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
 #content {
 	background-color: transparent;
     margin: 30px auto;
@@ -46,6 +63,462 @@
     border-radius: 4px;
 }
 
+#content #user_action>.contents {
+	padding: 20px 20px 0;
+	margin-bottom: 20px;
+}
+
+#content #user_action>.contents>.category {
+	overflow: hidden;
+    margin-bottom: 10px;
+}
+
+#content #user_action>.contents>.category>.category {
+	float: left;
+    font-size: 15px;
+    color: #424242;
+    font-weight: bold;
+}
+
+#content #user_action>.contents>.title {
+	font-weight: bold;
+    color: #424242;
+    font-size: 18px;
+    line-height: 26px;
+    margin-bottom: 10px;
+}
+
+#content #user_action>.contents>.created_at {
+	color: #bdbdbd;
+    font-size: 12px;
+    margin-bottom: 15px;
+    font-weight: normal;
+}
+
+#content #user_action>.contents>.buttons {
+	overflow: hidden;
+}
+
+#content #user_action>.contents>.buttons>a:first-child, 
+#content #user_action>.contents>.buttons .btn-toggle-scrap:first-child, 
+#content #user_action>.contents>.buttons .btn-project-scrap:first-child {
+	margin-right: 10px;
+}
+
+#content #user_action>.contents>.buttons>a, 
+#content #user_action>.contents>.buttons .btn-toggle-scrap, 
+#content #user_action>.contents>.buttons .btn-project-scrap {
+	float: left;
+    overflow: hidden;
+    cursor: pointer;
+    width: calc(50% - 5px);
+    background-color: #ffffff;
+    border: 1px solid #bdbdbd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #bdbdbd;
+}
+
+#content #user_action>.contents>.buttons>a img.icon, 
+#content #user_action>.contents>.buttons .btn-toggle-scrap img.icon,
+#content #user_action>.contents>.buttons .btn-project-scrap img.icon {
+	width: 20px;
+    height: 20px;
+    padding: 10px 0 10px 10px;
+    float: left;
+}
+
+#content #user_action>.contents>.buttons>a div.label, 
+#content #user_action>.contents>.buttons .btn-toggle-scrap div.label, 
+#content #user_action>.contents>.buttons .btn-project-scrap div.label {
+	text-align: center;
+    font-size: 13px;
+    padding: 12px 0;
+}
+
+#content #writer {
+	overflow: hidden;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+}
+
+#content #writer>.wrap {
+	overflow: hidden;
+    padding: 20px 0;
+}
+
+#content #writer>.wrap>a>.profile_image {
+	float: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    margin-right: 18px;
+    background-size: cover;
+    background-position: center;
+}
+
+.btn {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 0;
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.btn {
+	ransition: .2s ease;
+}
+
+#content #writer>.wrap>.btn-follow-user {
+	float: right;
+    margin-top: 5px;
+    cursor: pointer;
+    padding: 8px 0;
+    width: 50px;
+    height: 30px;
+    font-size: 11px;
+    color: #757575;
+    border-color: #dcdcdc;
+    background-color: #ffffff;
+    text-align: center;
+    position: relative;
+}
+
+#content #writer>.wrap>.btn-follow-user>.icon {
+	display: none;
+}
+
+.icon-etc-check-white-sm {
+	width: 8px;
+    height: 9px;
+    background-position: top -512px left -380px;
+}
+
+#content #writer>.wrap>a>.other {
+	float: left;
+    width: calc(100% - 40px - 50px - 18px - 10px);
+}
+#content #writer>.wrap>a>.other>.nickname {
+	font-size: 15px;
+    color: #424242;
+    line-height: 22px;
+}
+#content #writer>.wrap>a>.other>.introduction {
+	font-size: 13px;
+    color: #424242;
+    line-height: 18px;
+    font-weight: normal;
+}
+
+#content #description_wrap {
+	padding-bottom: 30px;
+}
+
+#content #description_wrap, 
+#content #metadata_wrap, 
+#content #contents_panel, 
+#content #comment_panel {
+	float: left;
+    width: 800px;
+    padding: 0 50px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+#content #description_wrap>div.information {
+	padding-top: 20px;
+}
+
+#content #description_wrap>div.information>div {
+	overflow: hidden;
+    padding: 15px 14px 10px;
+    border-bottom: 1px solid #424242;
+    max-width: 360px;
+    box-sizing: border-box;
+}
+
+#content #description_wrap>div.information>div>div {
+	float: left;
+    color: #424242;
+    font-size: 15px;
+    line-height: 15px;
+    max-width: 67%;
+}
+
+#content #description_wrap>div.information>div>div.label {
+	width: 95px;
+    color: #757575;
+}
+
+#content #description_wrap>.divider {
+	margin-top: 30px;
+    width: 100%;
+    border-top: 1px solid #dcdcdc;
+}
+
+#content #contents_panel>.contents {
+	padding: 0 0 70px;
+}
+#content #contents_panel>.contents>.title {
+	width: 100%;
+    box-sizing: border-box;
+    padding: 5px 5px 5px 10px;
+    border: none;
+    color: #424242;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: bold;
+    border-left: 3px solid #dcdcdc;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+#content #contents_panel>.contents .card {
+	float: left;
+    width: 100%;
+	margin: 0 0 25px 0;
+}
+#content #contents_panel>.contents .card>.image_panel {
+	position: relative;
+}
+#content #contents_panel>.contents>.card>.image_panel>img {
+	display: block;
+    width: 100%;
+}
+#content #contents_panel>.contents>.image_description {
+	font-size: 15px;
+    line-height: 28px;
+    font-weight: normal;
+}
+#content #contents_panel>.contents:after {
+	clear: both;
+    content: "";
+    display: block;
+}
+
+#content #metadata_wrap {
+	padding-bottom: 15px;
+}
+
+#content #metadata_wrap>dl {
+	margin: 0;
+    padding: 0;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+#content #metadata_wrap>dl>dt {
+	display: inline-block;
+    color: #bdbdbd;
+}
+#content #metadata_wrap>dl>dd {
+	display: inline-block;
+    margin-right: 5px;
+    color: #757575;
+}
+
+#content #comment_panel {
+	padding-bottom: 50px;
+}
+
+#content #comment_panel .comment-feed_header {
+	margin-top: 50px;
+}
+.comment-feed_header_count {
+	color: #35c5f0;
+}
+
+.comment-feed_header {
+	font-weight: 700;
+    color: #000;
+    margin: 10px 0 20px;
+    font-size: 16px;
+}
+
+.comment-feed_form {
+	margin-bottom: 30px;
+	display: flex;
+    position: relative;
+}
+
+.comment-feed_form_cover {
+	position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.comment-feed_form_user {
+	-webkit-box-flex: 0;
+	flex: 0 0 auto;
+} 
+
+.comment-feed_form_user>img {
+	width: 30px;
+    height: 30px;
+    margin: 5px 10px 0 0;
+    border-radius: 100%;
+}
+
+.comment-feed_form_content, 
+.comment-feed_form_input {
+	-webkit-box-flex: 1;
+	flex: 1 1 0px;
+    min-width: 0;
+}
+
+.comment-feed_form_input {
+	display: flex;
+    position: relative;
+    max-width: 100%;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+}
+
+.comment-content-input {
+	position: relative;
+}
+
+.comment-feed_form_content_text {
+	display: block;
+    width: 100%;
+    min-height: 38px;
+    border: none;
+    background: none;
+    color: #424242;
+    margin: 0;
+    padding: 10px 15px 9px;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.4;
+    resize: none;
+    overflow: hidden;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    outline: 0;
+}
+
+[contentEditable=true]:empty:not(:focus):before {
+	content: attr(data-ph);
+    color: #939598;
+    display: block;
+    font-weight: normal;
+}
+
+.comment-feed_form_actions {
+	-webkit-box-flex: 0;
+	flex: 0 0 auto;
+    padding: 8px 15px 6px 0;
+    margin: 0 -7.5px;
+    font-size: 0;
+}
+
+.comment-feed_form_photo:disabled, 
+.comment-feed_form_submit:disabled {
+	opacity: .4;
+}
+
+.comment-feed_form_photo, 
+.comment-feed_form_submit {
+	margin: 0 7.5px;
+    padding: 0;
+    border: none;
+    background: none;
+    transition: opacity .2s;
+}
+
+.comment-feed_item {
+	margin-bottom: 20px;
+    padding-left: 40px;
+}
+
+.comment-feed_item_content {
+	position: relative;
+    margin: -4px 0 4px;
+    min-width: 0;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    font-size: 14px;
+    line-height: 1.67;
+}
+
+.comment-feed_item_content_author {
+	display: block;
+    margin: 0 0 -5px;
+    font-size: 0;
+    line-height: 20px;
+}
+
+.comment-feed_item_content_author_image {
+	position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 2px;
+    left: -40px;
+    margin-right: 10px;
+    border-radius: 100%;
+    background-color: #dbdbdb;
+}
+
+.comment-feed_item_content_author_name {
+	color: #424242;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.comment-feed_item_content_content {
+	white-space: pre-line;
+	font-weight: normal;
+}
+
+.comment-feed_item_footer {
+	color: #757575;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.comment-feed_form_submit>img {
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+}
+
+#content #user_action>.contents>.buttons>a.active, 
+#content #user_action>.contents>.buttons .btn-toggle-scrap.active, 
+#content #user_action>.contents>.buttons .btn-project-scrap.active {
+	background-color: #35c5f0;
+    color: #ffffff;
+    border-color: #35c5f0;
+}
+
+@media (min-width: 768px) {
+	.comment-feed_header {
+		font-size: 18px;
+	}
+	
+	.comment-feed_item {
+		margin-bottom: 30px;
+	}
+	
+	.comment-feed_item_content_author {
+		display: inline;
+	    margin: 0 10px 0 0;
+	    line-height: inherit;
+	}
+	
+	.comment-feed_item_content_author_image {
+		top: 5px;
+	}
+}
+
 @media only screen and (max-width: 767px) {
 	
 	#content {
@@ -53,6 +526,38 @@
 	    width: 100%;
 	    min-width: 320px;
 	    margin-top: 0;
+	}
+	
+	#content>.right {
+		float: left;
+	    margin: 0;
+	    width: 100%;
+	    box-sizing: border-box;
+	    padding: 0 10px 20px;
+	    background-color: #ffffff;
+	    border-radius: 0;
+	    display: block !important;
+	}
+	
+	#content #description_wrap, 
+	#content #metadata_wrap, 
+	#content #contents_panel, 
+	#content #comment_panel {
+		width: 100%;
+    	padding: 0 15px;
+	}
+	
+	#content #description_wrap>div.information>div {
+		padding: 8px 14px;
+	}
+	
+	#content #description_wrap>div.information>div>div.label {
+		width: 85px;
+	}
+	
+	#content #description_wrap>div.information>div>div {
+		font-size: 13px;
+    	line-height: 14px;
 	}
 }
 
@@ -62,6 +567,39 @@
 		max-width: 614px;
     	padding: 0 0 70px;
 	}
+	
+	#content #user_action {
+		padding: 0 20px;
+	}
+	
+	#content>.right {
+		float: left;
+	    margin: 0;
+	    width: 614px;
+	    box-sizing: border-box;
+	    padding: 0 15px 20px;
+	    background-color: #ffffff;
+	    border-radius: 0;
+	    display: block !important;
+	}
+	
+	#content #description_wrap, 
+	#content #metadata_wrap, 
+	#content #contents_panel, 
+	#content #comment_panel {
+		width: 614px;
+    	padding: 0 25px;
+	}
+	
+	#content #comment_panel .comment-feed_header {
+	    margin-top: 25px;
+	}
+}
+
+@media (min-width: 1024px) {
+	.comment-feed_form_submit {
+		display: none;
+	}
 }
 
 @media only screen and (max-width: 1279px) and (min-width: 1024px) {
@@ -70,5 +608,61 @@
 		max-width: 800px;
     	padding: 0 0 70px;
 	}
+	
+	#content #user_action {
+		padding: 0 20px;
+	}
+	
+	#content>.right {
+		float: left;
+	    margin: 0;
+	    width: 800px;
+	    box-sizing: border-box;
+	    padding: 0 15px 20px;
+	    background-color: #ffffff;
+	    border-radius: 0;
+	    display: block !important;
+	}
+	
+	#content #user_action>.contents {
+		position: relative;
+    	padding: 30px 30px 0;
+	}
+	
+	#content #user_action>.contents>.title {
+		font-size: 20px;
+    	line-height: 30px;
+	}
+	
+	#content #user_action>.contents>.buttons>a, 
+	#content #user_action>.contents>.buttons .btn-toggle-scrap, 
+	#content #user_action>.contents>.buttons .btn-project-scrap {
+		width: 140px;
+	}
+	
+	#content #writer {
+		padding: 0 30px;
+	}
+	
+	#content #writer>.wrap>a>.profile_image {
+		width: 40px;
+	    height: 40px;
+	    border-radius: 20px;
+	    margin-right: 15px;
+	}
+	
+	#content #writer>.wrap>.btn-follow-user {
+		margin-top: 0;
+	}
 }
 
+@media only screen and (min-width: 1280px) {
+	#content #writer {
+		padding: 0 20px;
+    	border: none;
+	}
+	
+	#content #writer>.wrap {
+		border-top: 1px solid #eeeeee;
+	}
+}

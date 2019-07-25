@@ -7,12 +7,29 @@
 	<select id="getTotalCount" resultType="int">
 		select count(*) from zip
 	</select>
+	<update id="updateZipHits" parameterType="int">
+		update zip set zip_hits = zip_hits+1 where zip_seq_no = #{zip_seq_no}
+	</update>
+	<update id="updateZipGoodUp" parameterType="int">
+		update zip set zip_good = zip_good+1 where zip_seq_no = #{zip_seq_no}
+	</update>
+	<update id="updateZipGoodDown" parameterType="int">
+		update zip set zip_good = zip_good-1 where zip_seq_no = #{zip_seq_no}
+	</update>
 	<select id="getAllList" resultType="zvo">
 		select * from zip
 	</select>
 	<select id="getZipData" parameterType="int" resultType="zvo">
 		select * from zip where zip_seq_no = #{zip_seq_no}
 	</select>
+	
+	<insert id="insertZipReply">
+		insert into zip values (z_reply_seq_no.nextval, #{member_no}, #{z_reply_content}, sysdate, #{z_reply_no}, 0)
+	</insert>
+	<select id="getAllZipReply">
+		select * from z_reply where z_reply_no = #{zip_seq_no}
+	</select>
+	
 	<select id="getListWithMember" resultType="zvo">
 		select z.zip_seq_no,
 			   z.json, 

@@ -26,8 +26,11 @@ public class MainController {
 	private MainService mainService;
 	
 	@RequestMapping("/main.do")
-	public ModelAndView mainGo(HttpSession session, @RequestParam(value="where", defaultValue = "home") String where)
+	public ModelAndView mainGo(HttpSession session, @RequestParam(value="where", defaultValue = "home") String where,
+			@RequestParam(value="loginCondition" ,defaultValue = "0") String loginCondition)
 	{
+		ModelAndView mav = new ModelAndView();
+		
 		if(session.getAttribute("member_no") != null) {
 			int memberNo = (Integer)session.getAttribute("member_no");
 			MemberVO mvo = mservice.getMember(memberNo);
@@ -43,13 +46,19 @@ public class MainController {
 			session.setMaxInactiveInterval(21600);
 		}
 		
+		if(loginCondition.equals("1")) {
+			mav.addObject("loginCondition", "login");
+		} else if(loginCondition.equals("2")) {
+			mav.addObject("loginCondition", "logout");
+		} else if(loginCondition.equals("3")) {
+			mav.addObject("loginCondition", "signup");
+		}
+		
 		session.removeAttribute("category");
 		session.setAttribute("category", "main");
 		
 		List<MainCommunityVO> photoList = mainService.selectPhotoList();
 		List<MainCommunityVO> zipList = mainService.selecZipList();
-		
-		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("photoList", photoList);
 		mav.addObject("where", where);

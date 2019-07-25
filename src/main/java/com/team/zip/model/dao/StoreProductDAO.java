@@ -27,5 +27,9 @@ public class StoreProductDAO extends SqlSessionDaoSupport {
 	public void updateHits(String prodNo) { 
 		getSqlSession().update("updateHits", prodNo); 
 	}
-
+	
+	public String getReviewTotalCount(String prodNo) {
+		return getSqlSession().selectOne("getReviewTotalCount", prodNo);
+	}
+	
 }

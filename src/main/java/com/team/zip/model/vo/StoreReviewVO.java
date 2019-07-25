@@ -13,6 +13,10 @@ public class StoreReviewVO {
 	private Timestamp regDate;
 	private String memberNickname;
 	private String memberImage;
+	private String startNo;
+	private String endNo;
+	private String currentPage;
+	private String reviewCnt;
 	
 	public String getRewNo() {
 		return rewNo;
@@ -74,5 +78,28 @@ public class StoreReviewVO {
 	public void setMemberImage(String memberImage) {
 		this.memberImage = memberImage;
 	}
-	
+	public String getStartNo() {
+		return startNo;
+	}
+	public void setStartNo(String startNo) {
+		this.startNo = startNo;
+	}
+	public String getEndNo() {
+		return endNo;
+	}
+	public void setEndNo(String endNo) {
+		this.endNo = endNo;
+	}
+	public String getCurrentPage() {
+		return currentPage;
+	}
+	public void setCurrentPage(String currentPage) {
+		this.currentPage = currentPage;
+	}
+	public String getReviewCnt() {
+		return reviewCnt;
+	}
+	public void setReviewCnt(String reviewCnt) {
+		this.reviewCnt = reviewCnt;
+	}
 }

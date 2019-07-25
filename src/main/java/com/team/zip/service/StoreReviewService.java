@@ -21,4 +21,8 @@ public class StoreReviewService {
 	public List<StoreReviewVO> getReviewList(StoreReviewVO storeReviewVO) {
 		return storeReviewDAO.getReviewList(storeReviewVO);
 	}
+	
+	public int getReviewTotalCount(String prodNo) {
+		return storeReviewDAO.getReviewTotalCount(prodNo);
+	}
 }

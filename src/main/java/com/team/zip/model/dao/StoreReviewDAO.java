@@ -17,4 +17,8 @@ public class StoreReviewDAO extends SqlSessionDaoSupport{
 	public List<StoreReviewVO> getReviewList(StoreReviewVO storeReviewVO) {
 		return getSqlSession().selectList("getReviewList", storeReviewVO);
 	}
+	
+	public int getReviewTotalCount(String prodNo) {
+		return getSqlSession().selectOne("getReviewTotalCount", prodNo);
+	}
 }

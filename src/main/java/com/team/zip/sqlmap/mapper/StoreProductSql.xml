@@ -90,18 +90,29 @@
 		)
 	</insert>
 	
-	<select id="getReviewList" parameterType="String" resultType="storeReviewVO">
-		SELECT R.REW_NO AS rewNo
-			 , R.MEMBER_NO AS memberNo
-			 , R.PROD_NO AS prodNo
-			 , R.REW_IMG AS rewImg
-			 , R.REW_CONTENT AS rewContent
-			 , R.REW_GRADE AS rewGrade
-			 , R.REG_DATE AS regDate
-			 , M.MEMBER_NICKNAME AS memberNickname
-			 , M.MEMBER_IMAGE AS memberImage
-		FROM REVIEW R, MEMBER M
-		WHERE R.MEMBER_NO = M.MEMBER_NO
-		AND PROD_NO = #{prodNo}
+	<select id="getReviewList" parameterType="storeReviewVO" resultType="storeReviewVO">
+		SELECT * FROM (
+			SELECT ROWNUM AS RNUM, b.* from (
+				SELECT R.REW_NO AS rewNo
+					 , R.MEMBER_NO AS memberNo
+					 , R.PROD_NO AS prodNo
+					 , R.REW_IMG AS rewImg
+					 , R.REW_CONTENT AS rewContent
+					 , R.REW_GRADE AS rewGrade
+					 , R.REG_DATE AS regDate
+					 , M.MEMBER_NICKNAME AS memberNickname
+					 , M.MEMBER_IMAGE AS memberImage
+				FROM REVIEW R, MEMBER M
+				WHERE R.MEMBER_NO = M.MEMBER_NO
+				AND PROD_NO = #{prodNo}
+			)b
+	  	)a
+	  	<![CDATA[ WHERE a.RNUM>=#{startNo} AND a.RNUM<=#{endNo}]]>
+	</select>
+	
+	<select id="getReviewTotalCount" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM REVIEW
+		WHERE PROD_NO = #{prodNo}
 	</select>
 </mapper>

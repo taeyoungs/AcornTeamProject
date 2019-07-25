@@ -120,12 +120,13 @@
 						        <div class="detail">
 						          <div class="amount">
 						            <span class="icon icon-etc-button-minus btn-change-amount down" role="button"></span>
-						            <input type="number" value="1">
+						            	<input type="number" value="1">
 						            <span class="icon icon-etc-button-plus btn-change-amount up" role="button"></span>
 						          </div>
-						          <p class="price bold"><span class="amount">
-						          	<fmt:formatNumber value="${product.prodPrice-(product.prodPrice*product.discountRate/100)}" pattern="#,###"/>
-						          </span>원</p>
+						          <p class="price bold">
+						          	<span class="amount">
+						          		<fmt:formatNumber value="${product.prodPrice-(product.prodPrice*product.discountRate/100)}" pattern="#,###"/>
+						          	</span>원</p>
 						        </div>
 					        <span class="icon icon-pointer-x-dark btn-remove hide" role="button" aria-hidden="false"></span>
 					      	</div>
@@ -287,6 +288,7 @@
 									<c:if test="${product.reviewCnt > 0}">
 									<div class="production-review__info__star__avg">별점</div>
 									<span class="production-review__info__star__rating"> 
+										<c:forEach items="">
 										<svg fill="#35C5F0" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
 											<defs>
 												<path id="star-path-1.000" d="M8 13.54l-4.37 1.85c-.5.22-.88-.06-.83-.6l.4-4.73L.1 6.47c-.37-.41-.22-.85.32-.98l4.62-1.07L7.48.36c.29-.48.75-.47 1.04 0l2.44 4.06 4.62 1.07c.54.13.68.57.32.98l-3.1 3.59.4 4.72c.05.55-.33.83-.83.61L8 13.54z"></path>
@@ -297,6 +299,7 @@
 											<use xlink:href="#star-path-1.000" fill="#DBDBDB"></use>
 											<use clip-path="url(#star-clip-1.000)" xlink:href="#star-path-1.000"></use>
 										</svg>
+										</c:forEach>
 									</span>
 									</c:if>
 								</div>
@@ -353,7 +356,7 @@
 												<p class="production-review-item__name"></p>
 												<button class="production-review-item__img__btn">
 													<img class="production-review-item__img" src="${root}/uploadImage/review/${reviewList.rewImg}"
-													  onerror="this.onerror='';this.src='${root}/uploadImage/review/noimage.jpg'">
+													  onerror="this.src='${root}/uploadImage/review/noimage.jpg'; this.onerror='';">
 												</button>
 												<p class="production-review-item__description">${reviewList.rewContent}</p>
 												<div class="production-review-item__help">
@@ -364,7 +367,40 @@
 										<!-- 리뷰 내용 -->
 									</div>
 								</c:forEach>
-								<ul class="list-paginator production-review__paginator"></ul>
+								<!-- PAGING [S] -->
+								<ul class="list-paginator production-review__paginator">
+									<li>
+										<button class="list-paginator__prev" type="button">
+											<svg width="26" height="26" viewBox="0 0 26 26" preserveAspectRatio="xMidYMid meet">
+												<g fill="none" fill-rule="evenodd">
+													<rect width="25" height="25" x=".5" y=".5" stroke="#DCDCDC" rx="4"></rect>
+													<g stroke="#424242" stroke-linecap="square" stroke-width="2">
+														<path d="M14.75 8.263L10.25 13M10.25 13l4.5 4.737"></path>
+													</g>
+												</g>
+											</svg>
+										</button>
+									</li>
+									<li>
+										<button class="list-paginator__page sm selected" type="button">1</button>
+									</li>
+									<li>
+										<button class="list-paginator__page sm" type="button">2</button>
+									</li>
+									<li>
+										<button class="list-paginator__next" type="button">
+											<svg width="26" height="26" viewBox="0 0 26 26" preserveAspectRatio="xMidYMid meet">
+												<g fill="none" fill-rule="evenodd" transform="matrix(-1 0 0 1 26 0)">
+													<rect width="25" height="25" x=".5" y=".5" stroke="#DCDCDC" rx="4"></rect>
+													<g stroke="#424242" stroke-linecap="square" stroke-width="2">
+														<path d="M14.75 8.263L10.25 13M10.25 13l4.5 4.737"></path>
+													</g>
+												</g>
+											</svg>
+										</button>
+									</li>
+								</ul>
+								<!-- PAGING [E] -->
 							</c:if>
 						</section>
 					</section>

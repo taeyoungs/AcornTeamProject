@@ -119,6 +119,8 @@ public class LoginController {
 				int member_no = mservice.getMemberNo(temp[0], temp[1]);
 				session.setAttribute("loginok", "login");
 				session.setAttribute("member_no", member_no);
+				session.setAttribute("mvo", mvo);
+				session.setMaxInactiveInterval(21600);
 				isMatch = true;
 				break;
 			} 
@@ -134,7 +136,7 @@ public class LoginController {
 				return "redirect:"+referer;
 			}
 			//세션에서 사용 완료된 referer 지우기 [E]
-
+			
 			model.addAttribute("loginCondition", "1");
 			return "redirect:../main.do";
 			

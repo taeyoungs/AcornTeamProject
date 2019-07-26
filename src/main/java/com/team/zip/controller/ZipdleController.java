@@ -1,5 +1,6 @@
 package com.team.zip.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -23,10 +24,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team.zip.model.vo.MemberVO;
 import com.team.zip.model.vo.ZipdleReplyVO;
 import com.team.zip.model.vo.ZipdleVO;
 import com.team.zip.service.MemberService;
+import com.team.zip.service.ZipdleReplyService;
 import com.team.zip.service.ZipdleService;
 import com.team.zip.util.SpringFileWriter;
 
@@ -38,6 +41,9 @@ public class ZipdleController {
 	
 	@Autowired
 	MemberService mservice;
+	
+	@Autowired
+	ZipdleReplyService zrservice;
 	
 	@RequestMapping(value="/zipdle/gotoZipList")
 	public String gotoZipList(@RequestParam(value="where", defaultValue="zipdle") String where, Model model) {
@@ -346,14 +352,90 @@ public class ZipdleController {
 	// zip_seq_no에 해당하는 detail data 보내주는 ajax
 	@RequestMapping(value="/zipdle/{seq_no}/getZipReply", method = RequestMethod.POST)
 	@ResponseBody
-	public ZipdleVO getZipReply(@PathVariable String seq_no, @ModelAttribute ZipdleReplyVO zrvo) {
+	public JSONObject getZipReply(@PathVariable String seq_no, @ModelAttribute ZipdleReplyVO zrvo,
+			@RequestParam(value="pageNum", defaultValue="1") int currentPage) {
 			
 		int zip_seq_no = Integer.parseInt(seq_no);
-		ZipdleVO zvo = new ZipdleVO();
-			
-		zvo = zservice.getZipData(zip_seq_no);
+		if(zrvo.getZ_reply_content() != null) {
+			zrservice.insertZipReply(zrvo);
+		}
+		System.out.println("currentPage : "+currentPage);
+		
+		// 전체 개수
+		int totalCount;
+		// 총 페이지 수
+		int totalPage;
+		// 각 페이지 시작번호
+		int startNum;
+		// 각 페이지 끝 번호
+		int endNum = 0;
+		// 블럭의 시작 페이지
+		int startPage;
+		// 블럭의 끝 페이지
+		int endPage = 0;
+		// 출력할 시작번호
+		int no;
+		// 한 페이지당 보여질 글의 개수
+		int perPage = 5;
+		// 한 블럭당 보여질 페이지의 개수
+		int perBlock = 5;
 
-		return zvo;
+		// 총 글의 개수를 구한다.
+		totalCount = zrservice.getZipReplyCnt(zip_seq_no);
+
+		// 총 페이지 수 -> 나머지 글의 개수가 1개라도 있으면 한 페이지를 더 만든다.
+		totalPage = totalCount/perPage+(totalCount%perPage > 0 ? 1 : 0);
+				
+
+		// 존재하지 않는 페이지일 경우 마지막 페이지로 가기
+		if(currentPage > totalPage) {
+			currentPage = totalPage;
+		}
+		System.out.println("totalPage : "+totalPage);
+		System.out.println("currentPage : "+currentPage);
+		// 각 블럭의 시작페이지와 끝페이지를 구한다.
+		// 예) 현재페이지 3일 경우 시작페이지:1 끝페이지:5
+		// 예) 현재페이지 7일 경우 시작페이지:6 끝페이지:10
+		// 예) 현재페이지 11일 경우 시작페이지:11 끝페이지:15
+		int temp = (currentPage-1)/perBlock;
+		startPage = 1 + perBlock*temp;
+		endPage = startPage+perBlock-1;
+		if(endPage > totalPage) {
+			endPage = totalPage;
+		}
+
+		// 각 페이지의 시작번호와 끝번호를 구한다.
+		// 예) 1페이지 - 시작번호 : 1, 끝번호 : 5
+		//	   3페이지 - 시작번호 : 11, 끝번호 : 15
+		startNum = (currentPage-1)*perPage+1;
+		endNum = startNum + perPage-1;
+		// 마지막 페이지의 글 번호 체크하기
+		if(endNum > totalCount) {
+			endNum = totalCount;
+		}
+		List<ZipdleReplyVO> zrlist = new ArrayList<ZipdleReplyVO>();
+		zrlist = zrservice.getAllZipReply(startNum, endNum, zip_seq_no);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonList="";
+		
+		try { 
+			jsonList = mapper.writeValueAsString(zrlist); 
+		} catch (IOException e) { 
+			e.printStackTrace(); 
+		}
+
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("totalCount", totalCount);
+		jsonObj.put("currentPage", currentPage);
+		jsonObj.put("startPage", startPage);
+		jsonObj.put("endPage", endPage);
+		jsonObj.put("totalPage", totalPage);
+		jsonObj.put("totalCount", totalCount);
+		jsonObj.put("totalCount", totalCount);
+		jsonObj.put("jsonList", jsonList);
+
+		return jsonObj;
 	}
 	
 }

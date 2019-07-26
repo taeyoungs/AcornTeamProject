@@ -41,9 +41,9 @@ public class MainController {
 				mvo.setMember_birth_2i(temp[1]);
 				mvo.setMember_birth_3i(temp[2]);
 			}
-
-			session.setAttribute("mvo", mvo);
-			session.setMaxInactiveInterval(21600);
+			
+            session.setAttribute("mvo", mvo);
+            session.setMaxInactiveInterval(21600);
 		}
 		
 		if(loginCondition.equals("1")) {

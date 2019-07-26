@@ -1,6 +1,11 @@
 $(function(){
 	var zip_seq_no = $("#body").attr("data-s_id");
 	getData(zip_seq_no);
+	getReplyList();
+	
+	if($(".comment-feed_form_content_text").text() == "") {
+		$(".comment-feed_form_submit").attr("disabled", "disabled");
+	}
 	
 	// 브라우저 시작할 때 우측 유저 메뉴 static or fixed 설정
 	var window_size = $(window).width();
@@ -22,7 +27,6 @@ $(function(){
 	// window width에 따라서 user 메뉴 static or fiexd
 	$(window).resize(function(){
 		var width_size = $(window).width();
-		console.log(width_size);
 		if(width_size <= 1262) {
 			$("#user_action").css({
 				'position': 'static',
@@ -51,7 +55,7 @@ $(function(){
 			upDown = 0;
 			
 			// zip_good Up ajax
-			upDownZipGood(upDown);
+			upDownZipGood(upDown, th);
 		} else {
 			$(this).removeClass("active");
 			$(this).find(".icon").attr("src", "/image/common/like-gray.png");
@@ -59,45 +63,341 @@ $(function(){
 			upDown = 1;
 			
 			// zip_good Down ajax
-			upDownZipGood(upDown);
+			upDownZipGood(upDown, th);
 		}
 		
 	});
 	
-	// 댓글 입력 이벤트, 출력 ajax
-	$("comment-feed_form_content_text").keydown(function(key){
+	$(".comment-feed_form_submit").click(function(e){
+		e.preventDefault();
 		
 		var member_no = $(".memberNo").val();
 		var zip_seq_no = $("#body").attr("data-s_id");
+		var z_reply_content = $(".comment-feed_form_content_text").text();
+		
+		insUpdReply(member_no, zip_seq_no, z_reply_content);
+	});
+	
+	// 댓글 입력 이벤트, 출력 ajax
+	$(".comment-feed_form_content_text").keyup(function(key){
+		
+		if($(this).text().length == 0) {
+			$(".comment-feed_form_submit").attr("disabled", "disabled");
+		} else {
+			$(".comment-feed_form_submit").removeAttr("disabled");
+		}
 		
 		if(key.keyCode == 13) {
 			
-			var z_reply_content = $(".comment-feed_form_content_text").text();
 			
-			$.ajax({
-				url: 'getZipReply',
-				type: 'post',
-				dataType: 'json',
-				data: {
-					'member_no' : member_no,
-					'z_reply_seq_no' : zip_seq_no,
-					'z_reply_content' : z_reply_content	
-				},
-				error:function(request,status,error){
-				    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				}, success: function(redata){
-					
-				}
-			});
+			$(".comment-feed_form_submit").click();
+			$(this).text("");
+			
 		}
-		
-	})
+	});
+
+	// 페이지 누를 대 currentPage에 해당하는 댓글 리스트 가져오기
+	$(document).on('click', '.list-paginator_page', function(){
+		var pageNum = $(this).text();
+		getCurrentPageReply(pageNum, zip_seq_no);
+	});
 	
+	$(document).on('click', '.list-paginator_prev', function(){
+		var pageNum = $('.list-paginator_page.sm.selected').text();
+		getCurrentPageReply(pageNum-1, zip_seq_no);
+	});
+	
+	$(document).on('click', '.list-paginator_next', function(){
+		var pageNum = $('.list-paginator_page.sm.selected').text();
+		console.log(pageNum);
+		getCurrentPageReply(parseInt(pageNum)+1, zip_seq_no);
+	});
+
 });
 
+// currentPage에 따라서 댓글 리스트 가져와서 append하는 메서드
+function getCurrentPageReply(pageNum, zip_seq_no) {
+	$.ajax({
+		url: 'getZipReply',
+		type: 'post',
+		dataType: 'json',
+		data: {
+			'pageNum' : pageNum,
+			'z_reply_no' : zip_seq_no
+		},
+		error:function(request,status,error){
+		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}, success: function(redata){
+			// 넘어오는 데이터 => List zrvo
+			var replyList = "";
+			var pagingList = "";
+			
+			$(".comment-feed_list").empty();
+			$('.list_paginator').empty();
+			
+			$(".comment-feed_header_count").text(redata.totalCount);
+			
+			var jsonType = JSON.parse(redata.jsonList);
+			
+			for(var i=0; i<jsonType.length; i++) {
+				replyList += `
+					<li class="comment-feed_list_item">
+						<article class="comment-feed_item">
+							<p class="comment-feed_item_content">
+								<a class="comment-feed_item_content_author" href="/">
+									<img src="/uploadImage/`+jsonType[i].member_image+`" class="comment-feed_item_content_author_image">
+									<span class="comment-feed_item_content_author_name">`+jsonType[i].member_nickname+`</span>
+								</a>
+								<span class="comment-feed_item_content_content">`+jsonType[i].z_reply_content+`</span>
+							</p>
+							<footer class="comment-feed_item_footer">
+								<time class="comment-feed_item_footer_time"></time>
+								<span class="comment-feed_item_footer_likes">
+									<button class="comment-feed_item_footer_likes_icon" type="button">
+										<img src="/image/common/like-gray.png" class="badge">
+									</button>
+									<span class="comment-feed_item_footer_likes_count">`+jsonType[i].z_reply_good+`</span>
+								</span>
+								<button class="comment-feed_item_footer_like-btn" type="button">좋아요</button>
+								<button class="comment-feed_item_footer_report-btn" type="button" style="font-weight: normal">신고</button>
+							</footer>
+						</article>
+					</li>
+				`
+			}
+			
+			console.log(redata);
+			
+			// 페이징 처리
+			if(redata.startPage < redata.currentPage){
+				pagingList += `
+					<li style="display: inline-block; vertical-align: bottom;">
+						<button class="list-paginator_prev" type="button">
+							<img src="/image/common/left-arrow-outline-button.png">
+						</button>
+					</li>
+				`
+			}
+			for(var i=redata.startPage; i<=redata.endPage; i++) {
+				if(i != redata.currentPage) {
+					pagingList +=`
+						<li style="display: inline-block; vertical-align: bottom;">
+							<button class="list-paginator_page sm" type="button">`+i+`</button>
+						</li>
+					`
+				} else {
+					pagingList +=`
+						<li style="display: inline-block; vertical-align: bottom;">
+							<button class="list-paginator_page sm selected" type="button">`+i+`</button>
+						</li>
+					`
+				}
+			}
+			if(redata.currentPage < redata.totalPage) {
+				pagingList += `
+					<li style="display: inline-block; vertical-align: bottom;">
+						<button class="list-paginator_next" type="button">
+							<img src="/image/common/right-arrow-outline-button.png">
+						</button>
+					</li>
+				`
+			}
+			
+			$(".list_paginator").append(pagingList);
+			$(".comment-feed_list").append(replyList);
+			
+		}
+	});
+}
+
+// 브라우저 시작할 때 댓글 리스트 가져와서 append하는 메서드
+function getReplyList() {
+	$.ajax({
+		url: 'getZipReply',
+		type: 'post',
+		dataType: 'json',
+		error:function(request,status,error){
+		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}, success: function(redata){
+			// 넘어오는 데이터 => List zrvo
+			var replyList = "";
+			var pagingList = "";
+			
+			$(".comment-feed_header_count").text(redata.totalCount);
+			
+			var jsonType = JSON.parse(redata.jsonList);
+			
+			for(var i=0; i<jsonType.length; i++) {
+				replyList += `
+					<li class="comment-feed_list_item">
+						<article class="comment-feed_item">
+							<p class="comment-feed_item_content">
+								<a class="comment-feed_item_content_author" href="/">
+									<img src="/uploadImage/`+jsonType[i].member_image+`" class="comment-feed_item_content_author_image">
+									<span class="comment-feed_item_content_author_name">`+jsonType[i].member_nickname+`</span>
+								</a>
+								<span class="comment-feed_item_content_content">`+jsonType[i].z_reply_content+`</span>
+							</p>
+							<footer class="comment-feed_item_footer">
+								<time class="comment-feed_item_footer_time"></time>
+								<span class="comment-feed_item_footer_likes">
+									<button class="comment-feed_item_footer_likes_icon" type="button">
+										<img src="/image/common/like-gray.png" class="badge">
+									</button>
+									<span class="comment-feed_item_footer_likes_count">`+jsonType[i].z_reply_good+`</span>
+								</span>
+								<button class="comment-feed_item_footer_like-btn" type="button">좋아요</button>
+								<button class="comment-feed_item_footer_report-btn" type="button" style="font-weight: normal">신고</button>
+							</footer>
+						</article>
+					</li>
+				`
+			}
+			
+			console.log(redata);
+			
+			// 페이징 처리
+			if(redata.startPage < redata.currentPage){
+				pagingList += `
+					<li style="display: inline-block; vertical-align: bottom;">
+						<button class="list-paginator_prev" type="button">
+							<img src="/image/common/left-arrow-outline-button.png">
+						</button>
+					</li>
+				`
+			}
+			for(var i=redata.startPage; i<=redata.endPage; i++) {
+				if(i != redata.currentPage) {
+					pagingList +=`
+						<li style="display: inline-block; vertical-align: bottom;">
+							<button class="list-paginator_page sm" type="button">`+i+`</button>
+						</li>
+					`
+				} else {
+					pagingList +=`
+						<li style="display: inline-block; vertical-align: bottom;">
+							<button class="list-paginator_page sm selected" type="button">`+i+`</button>
+						</li>
+					`
+				}
+			}
+			if(redata.currentPage < redata.totalPage) {
+				pagingList += `
+					<li style="display: inline-block; vertical-align: bottom;">
+						<button class="list-paginator_next" type="button">
+							<img src="/image/common/right-arrow-outline-button.png">
+						</button>
+					</li>
+				`
+			}
+			
+			$(".list_paginator").append(pagingList);
+			$(".comment-feed_list").append(replyList);
+			
+		}
+	});
+}
+
+// 댓글 insert 후 새로운 댓글 리스트 가져와서 append하는 메서드
+function insUpdReply(member_no, zip_seq_no, z_reply_content) {
+	console.log(member_no);
+	console.log(zip_seq_no);
+	console.log(z_reply_content);
+	$.ajax({
+		url: 'getZipReply',
+		type: 'post',
+		dataType: 'json',
+		data: {
+			'member_no' : member_no,
+			'z_reply_no' : zip_seq_no,
+			'z_reply_content' : z_reply_content,
+		},
+		error:function(request,status,error){
+		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}, success: function(redata){
+			// 넘어오는 데이터 => List zrvo
+			var replyList = "";
+			var pagingList = "";
+			
+			$(".list_paginator").empty();
+			$(".comment-feed_list").empty();
+			
+			$(".comment-feed_header_count").text(redata.totalCount);
+			
+			var jsonType = JSON.parse(redata.jsonList);
+			
+			// 댓글 리스트 출력하기 위한 반복문
+			for(var i=0; i<jsonType.length; i++) {
+				replyList += `
+					<li class="comment-feed_list_item">
+						<article class="comment-feed_item">
+							<p class="comment-feed_item_content">
+								<a class="comment-feed_item_content_author" href="/">
+									<img src="/uploadImage/`+jsonType[i].member_image+`" class="comment-feed_item_content_author_image">
+									<span class="comment-feed_item_content_author_name">`+jsonType[i].member_nickname+`</span>
+								</a>
+								<span class="comment-feed_item_content_content">`+jsonType[i].z_reply_content+`</span>
+							</p>
+							<footer class="comment-feed_item_footer">
+								<time class="comment-feed_item_footer_time"></time>
+								<span class="comment-feed_item_footer_likes">
+									<button class="comment-feed_item_footer_likes_icon" type="button">
+										<img src="/image/common/like-gray.png" class="badge">
+									</button>
+									<span class="comment-feed_item_footer_likes_count">`+jsonType[i].z_reply_good+`</span>
+								</span>
+								<button class="comment-feed_item_footer_like-btn" type="button">좋아요</button>
+								<button class="comment-feed_item_footer_report-btn" type="button" style="font-weight: normal">신고</button>
+							</footer>
+						</article>
+					</li>
+				`
+			}
+			
+			// 페이징 처리
+			if(redata.startPage < redata.currentPage){
+				pagingList += `
+					<li style="display: inline-block; vertical-align: bottom;">
+						<button class="list-paginator_prev" type="button">
+							<img src="/image/common/left-arrow-outline-button.png">
+						</button>
+					</li>
+				`
+			}
+			for(var i=redata.startPage; i<=redata.endPage; i++) {
+				if(i != redata.currentPage) {
+					pagingList +=`
+						<li style="display: inline-block; vertical-align: bottom;">
+							<button class="list-paginator_page sm" type="button">`+i+`</button>
+						</li>
+					`
+				} else {
+					pagingList +=`
+						<li style="display: inline-block; vertical-align: bottom;">
+							<button class="list-paginator_page sm selected" type="button">`+i+`</button>
+						</li>
+					`
+				}
+			}
+			if(redata.currentPage < redata.totalPage) {
+				pagingList += `
+					<li style="display: inline-block; vertical-align: bottom;">
+						<button class="list-paginator_next" type="button">
+							<img src="/image/common/right-arrow-outline-button.png">
+						</button>
+					</li>
+				`
+			}
+			
+			$(".list_paginator").append(pagingList);
+			$(".comment-feed_list").append(replyList);
+			
+		}
+	});
+}
 
 // 좋아요 update ajax 함수
-function upDownZipGood(upDown) {
+function upDownZipGood(upDown, th) {
 	$.ajax({
 		url: 'updateZipGood',
 		type: 'post',
@@ -147,9 +447,6 @@ function getData(seq_no) {
 				$(".fmtype").find(".value").text("2인 가구 이상");
 			}
 			
-			console.log(jsonType.data.region_attributes);
-			console.log(jsonType.data.region_attributes.province);
-			console.log(jsonType.data.region_attributes.district);
 			if(jsonType.data.region_attributes.province == '0') {
 				switch(jsonType.data.region_attributes.district) {
 					case '0':

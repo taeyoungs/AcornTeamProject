@@ -23,11 +23,30 @@
 		select * from zip where zip_seq_no = #{zip_seq_no}
 	</select>
 	
-	<insert id="insertZipReply">
-		insert into zip values (z_reply_seq_no.nextval, #{member_no}, #{z_reply_content}, sysdate, #{z_reply_no}, 0)
+	<select id="getZipReplyCnt" resultType="int">
+		select count(*) as count from z_reply where z_reply_no = #{zip_seq_no}
+	</select>
+	<insert id="insertZipReply" parameterType="zrvo">
+		insert into z_reply values (z_reply_seq_no.nextval, #{member_no}, #{z_reply_content}, sysdate, #{z_reply_no}, 0)
 	</insert>
-	<select id="getAllZipReply">
-		select * from z_reply where z_reply_no = #{zip_seq_no}
+ 	<select id="getAllZipReply" resultType="zrvo" parameterType="HashMap">
+ 	<![CDATA[
+		select a.* from (select ROWNUM as RNUM, b.* from 
+		(
+	    select  z.z_reply_seq_no,
+	            m.member_no,
+	            z.z_reply_content,
+	            z.reg_date,
+	            z.z_reply_no,
+	            z.z_reply_good,
+	            m.member_image,
+	            m.member_nickname
+	    from z_reply z, member m
+	    where z.member_no = m.member_no and z_reply_no = #{zip_seq_no}
+	    order by z.reg_date desc
+	    ) b where ROWNUM <= #{end} ) a 
+		where a.RNUM >= #{start}
+	]]>
 	</select>
 	
 	<select id="getListWithMember" resultType="zvo">

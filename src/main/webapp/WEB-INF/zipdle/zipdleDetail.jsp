@@ -9,12 +9,14 @@
 <title>Insert title here</title>
 <c:set var="root" value="<%=request.getContextPath()%>"/>
 <script type="text/javascript" src="${root}/js/zipdle/zipdleDetail.js"></script>
+<script src="/js/zipdle/jquery.timeago.js"></script>
+<script src="/js/zipdle/jquery.timeago.ko.js"></script> <!-- 한국어로 표시하기 -->
 <link rel="stylesheet" type="text/css" href="${root}/css/zipdle/zipdleDetail.css">
 </head>
 <body>
 <div id="body" class="projects detail" data-s_id="${zvo.zip_seq_no}">
 	<div id="content">
-		<div id="cover_image" style="background-image: url('/uploadImage/zipdle/zipimage001.jpg')"></div>
+		<div id="cover_image" style="background-image: url('')"></div>
 		<div id="user_action" class="right">
 			<div id="project_id" class="hide">15</div>
 			<div id="image_url" class="hide"></div>
@@ -50,7 +52,7 @@
 					</a>
 					<a class="">
 						<div class="other">
-							<input type="hidden" class="memberNo" value="${sessionScope.member_no}">
+							<input type="hidden" class="memberNo" value="${sessionScope.mvo.member_no}">
 							<div class="nickname">${mvo.member_nickname}</div>
 							<div class="introduction">${mvo.member_comment}</div>
 						</div>
@@ -103,9 +105,9 @@
 			<div class="wrap">
 				<section class="comment-feed">
 					<h1 class="comment-feed_header">댓글&nbsp;
-						<span class="comment-feed_header_count">6</span>
+						<span class="comment-feed_header_count"></span>
 					</h1>
-					<form class="comment-feed_form">
+					<form class="comment-feed_form" method="post" accept-charset="UTF-8">
 					<c:if test="${sessionScope.loginok ne 'login'}">
 						<a href="/member/gotoSignin" class="comment-feed_form_cover"></a>
 						<div class="comment-feed_form_user">
@@ -119,7 +121,7 @@
 								</div>
 							</div>
 							<div class="comment-feed_form_actions">
-								<button class="comment-feed_form_submit" type="submit" aria-label="작성" disabled="disabled">
+								<button class="comment-feed_form_submit" type="submit" aria-label="작성">
 									<img src="/image/common/right-arrow-button.png">
 								</button>
 							</div>
@@ -145,20 +147,9 @@
 					</c:if>
 					</form>
 					<ul class="comment-feed_list">
-						<li class="comment-feed_list_item">
-							<article class="comment-feed_item">
-								<p class="comment-feed_item_content">
-									<a class="comment-feed_item_content_author" href="/">
-										<img src="/uploadImage/THUMB_2.jpg" class="comment-feed_item_content_author_image">
-										<span class="comment-feed_item_content_author_name">테스트하는 사람</span>
-									</a>
-									<span class="comment-feed_item_content_content">여기에 작성한 댓글 내용이 출력</span>
-								</p>
-								<footer class="comment-feed_item_footer"></footer>
-							</article>
-						</li>
 					</ul>
-					<ul class="list_paginator"></ul>
+					<ul class="list_paginator">
+					</ul>
 				</section>
 			</div>
 		</div>

@@ -16,11 +16,12 @@ public class BoardDAO extends SqlSessionDaoSupport{
 		getSqlSession().insert("boardInsert",vo);
 	}
 	
-	public List<BoardVO> getList(int start,int end)
+	public List<BoardVO> getList(int start,int end,String keyword)
 	{
-		Map<String, Integer> map=new HashMap<String, Integer>();
+		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
+		map.put("keyword", keyword);
 		
 		return getSqlSession().selectList("boardPagingList", map);
 	}
@@ -50,12 +51,14 @@ public class BoardDAO extends SqlSessionDaoSupport{
 		return getSqlSession().selectOne("boardSelectByNum", num);
 	}
 	
-	public void boardUpdate(int num,String content)
+	public void boardUpdate(BoardVO vo)
 	{
-		Map<String, Object> map=new HashMap<String, Object>();
-		map.put("num", num);
-		map.put("content", content);
-		
-		getSqlSession().update("boardUpdate",map);
+		getSqlSession().update("boardUpdate",vo);
+	}
+	
+	//댓글 카운팅
+	public void boardHitsUpdate(int num)
+	{
+		getSqlSession().update("boardHitsUpdate", num);
 	}
 }

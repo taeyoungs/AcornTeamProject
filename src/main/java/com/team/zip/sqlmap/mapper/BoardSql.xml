@@ -10,25 +10,20 @@
 	</insert>
 	<select id="boardPagingList" parameterType="HashMap" resultType="bvo">
 	   <![CDATA[
-	   	select a.* from (select ROWNUM as RNUM,
-		b.* from (select * from board order by board_seq_no desc)b )a 
+	   	select board_hits, (select count(*) from b_reply where b_reply_no = board_seq_no) as b_reply_count,
+	   	a.* from (select ROWNUM as RNUM, b.* from (select * from board where board_title like '%'||#{keyword}||'%' 
+	   	or board_content like '%'||#{keyword}||'%' order by board_seq_no desc) b )a 
 		where a.RNUM>=#{start} and a.RNUM<=#{end}
 		 ]]>		
 	</select>
 	<select id="boardTotalCount" resultType="int">
 		select count(*) from board
 	</select>
-	<insert id="InsertBoardReply" parameterType="brvo">
-		insert into b_reply values (b_reply_seq_no.nextval,
-		#{member_no},#{b_reply_content},sysdate,#{b_reply_no})
-	</insert>
-	<select id="getBoardReplyData" resultType="brvo" parameterType="int">
-		select m.member_nickname, b.b_reply_content, b.reg_date from member m, b_reply b where m.memeber_no=b.member_no and b_reply_seq_no=${b.b_reply_seq_no}
-	</select>
-	<!-- <update id="boardChuUpdate" parameterType="int">
-		update board set chu=chu+1 where num=#{num}
+	
+	<update id="boardHitsUpdate" parameterType="int">
+		update board set board_hits=board_hits+1 where board_seq_no=#{board_seq_no}
 	</update>
-	<select id="boardSelectChu" parameterType="int" resultType="int">
+	<!-- <select id="boardSelectChu" parameterType="int" resultType="int">
 		select chu from board where num=#{num}
 	</select> -->
 	<delete id="boardDelete" parameterType="int">
@@ -38,7 +33,24 @@
 	<select id="boardSelectByNum" parameterType="int" resultType="bvo">
 		select * from board where board_seq_no=#{board_seq_no}
 	</select>
-	<!-- <update id="boardUpdate" parameterType="Map">
-		update board set content=#{content} where num=#{num}
-	</update> -->
+	<update id="boardUpdate" parameterType="bvo">
+		update board set board_title=#{board_title},
+		 board_content=#{board_content} where board_seq_no=#{board_seq_no}
+	</update>
+	
+	
+	<!-- 댓글 관련 쿼리들 -->
+	<insert id="InsertBoardReply" parameterType="brvo">
+		insert into b_reply values (b_reply_seq_no.nextval,
+		#{member_no},#{b_reply_content},sysdate,#{b_reply_no})
+	</insert>
+	<select id="getBoardReplyData" resultType="brvo" parameterType="int">
+		select b.b_reply_seq_no, m.member_nickname, b.b_reply_content, 
+		b.reg_date from member m, b_reply b where m.member_no=b.member_no
+		and b.b_reply_no=#{board_seq_no} order by b.reg_date desc
+	</select>
+	<delete id="boardReplyDelete" parameterType="int">
+		delete from b_reply where b_reply_seq_no=#{b_reply_seq_no}
+	</delete>
+	
 </mapper>

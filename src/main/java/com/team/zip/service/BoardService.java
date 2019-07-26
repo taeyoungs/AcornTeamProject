@@ -18,9 +18,9 @@ public class BoardService {
 		dao.boardInsert(vo);
 	}
 	
-	public List<BoardVO> getList(int start,int end)
+	public List<BoardVO> getList(int start,int end,String keyword)
 	{
-		return dao.getList(start, end);
+		return dao.getList(start, end, keyword);
 	}
 
 	public int getTotalCount()
@@ -28,9 +28,10 @@ public class BoardService {
 		return dao.getTotalCount();
 	}
 	
-	public void boardUpdateView(int num)
+	//조회수
+	public void boardHitsUpdate(int num)
 	{
-		dao.boardUpdateView(num);
+		dao.boardHitsUpdate(num);
 	}
 	
 	public int getSelectView(int num)
@@ -48,8 +49,8 @@ public class BoardService {
 		return dao.getData(num);
 	}
 	
-	public void boardUpdate(int num,String content)
+	public void boardUpdate(BoardVO vo)
 	{
-		dao.boardUpdate(num, content);
+		dao.boardUpdate(vo);
 	}
 }

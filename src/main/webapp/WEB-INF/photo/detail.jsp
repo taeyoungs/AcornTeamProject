@@ -166,14 +166,14 @@
 														</c:choose>
 													</a>
 												</div>
-												<div>
+												<div style="width:100%;">
 													<a href="">
 														<strong class="writer-profile__name">${mvo.member_nickname }</strong>
 													</a>
 													<a href="">
 														<p class="writer-profile__about">${mvo.member_comment }</p>
 													</a>
-												</div>
+												</div style="width:100%;">
 												<c:if test="${mvo.member_no eq sessionScope.mvo.member_no}">
 												<div class="sidebar__update_delete">
 													<a href="updateform.do?num=${pvo.photo_seq_no}">

@@ -35,6 +35,14 @@ public class PhotoDAO extends SqlSessionDaoSupport {
 		getSqlSession().update("photo.updatePhoto",pvo);
 	}
 	
+	public void likePhoto(int num) {
+		getSqlSession().update("photo.likePhoto", num);
+	}
+	
+	public void undoLike(int num) {
+		getSqlSession().update("photo.undoLike", num);
+	}
+	
 	//사진 정렬
 	public List<PhotoVO> photoSortByHits(){
 		return getSqlSession().selectList("photo.photoSortByHits");

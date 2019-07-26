@@ -14,7 +14,7 @@
 			 , (SELECT COUNT(*) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS reviewCnt
 			 , (SELECT SUM(REW_GRADE) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS starGrade
 		  FROM PRODUCT P
-		  ORDER BY prodHits
+		  ORDER BY prodHits DESC
 	</select>
 	<select id="getFurnitureTop10List" resultType="productVO">
 		SELECT PROD_NO AS prodNo
@@ -30,7 +30,7 @@
 			 , (SELECT SUM(REW_GRADE) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS starGrade
 		  FROM PRODUCT P
 		  where CATEGORY_No=1 or CATEGORY_No=2
-		  ORDER BY prodHits
+		  ORDER BY prodHits DESC
 	</select>
 	<select id="getApplianceTop10List" resultType="productVO">
 		SELECT PROD_NO AS prodNo
@@ -46,7 +46,7 @@
 			 , (SELECT SUM(REW_GRADE) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS starGrade
 		  FROM PRODUCT P
 		  where CATEGORY_No=3 or CATEGORY_No=4 
-		  ORDER BY prodHits
+		  ORDER BY prodHits DESC
 	</select>
 	<select id="getInteriorTop10List" resultType="productVO">
 		SELECT PROD_NO AS prodNo
@@ -62,6 +62,6 @@
 			 , (SELECT SUM(REW_GRADE) FROM REVIEW WHERE PROD_NO = P.PROD_NO) AS starGrade
 		  FROM PRODUCT P
 		  where CATEGORY_No=5 or CATEGORY_No=6 
-		  ORDER BY prodHits
+		  ORDER BY prodHits DESC
 	</select> 
 </mapper>

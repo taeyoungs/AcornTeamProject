@@ -69,4 +69,5 @@ public class RanksController {
 		model.setViewName("/store/ranks_detail");
 		return model;
 	}
+
 }

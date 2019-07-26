@@ -11,7 +11,44 @@ $(function(){
 			insertComment(comment, session_member_no, photo_seq_no);
 		}
 	});
+	
+	
+	$(".sidebar__action__btn").on('click', function(){
+		var src = ($(".icon--common-action>img:eq(0)").attr('src') === '../image/common/heart.png')
+			? '../image/common/red_heart.png' : '../image/common/heart.png'
+				$(".icon--common-action>img:eq(0)").attr('src', src);
+	});
 })
+
+function likePhoto(photo_seq_no){
+	$.ajax({
+		url:'like.do',
+		type:'get',
+		data:{
+			"photo_seq_no" : photo_seq_no
+		},
+		dataType: 'json',
+		error:function(request,status,error){
+			alert("test");
+		},
+		success: function(data){
+			
+		}
+	})
+}
+
+function Unix_timestamp(t)
+{
+	var months_arr = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+	var dt = new Date(t);
+	var year = dt.getFullYear();
+	var month = months_arr[dt.getMonth()];
+	var day = dt.getDate();
+	var hr = dt.getHours();
+	var m = "0" + dt.getMinutes();
+	var s = "0" + dt.getSeconds();
+	return year + '년 ' + month + ' ' + day + '일 ' + hr + ':' + m.substr(-2) ;  
+}
 
 function insertComment(comment, session_member_no, photo_seq_no) {
 	$.ajax({
@@ -20,7 +57,7 @@ function insertComment(comment, session_member_no, photo_seq_no) {
 		data:{
 			"member_no": session_member_no,
 			"p_reply_content": comment,
-			"p_reply_no": photo_seq_no  
+			"p_reply_no": photo_seq_no,
 		},
 		dataType: 'json',
 		error:function(request,status,error){
@@ -45,7 +82,7 @@ function insertComment(comment, session_member_no, photo_seq_no) {
 						str+= "</p>";
 						str+= "<footer class='comment-feed__item__footer'>";
 							str+= "<time class='comment-feed__item__footer__time'>";
-								str+= data[i].reg_date;
+								str+= Unix_timestamp(data[i].reg_date);
 							str+= "</time>";
 						str+= "</footer>";
 					str+= "</article>";
@@ -88,7 +125,7 @@ function commentList(session_member_no, photo_seq_no) {
 					str+= "</p>";
 						str+= "<footer class='comment-feed__item__footer'>";
 							str+= "<time class='comment-feed__item__footer__time'>";
-								str+= data[i].reg_date;
+								str+= Unix_timestamp(data[i].reg_date);
 							str+= "</time>";
 						str+= "</footer>";
 					str+= "</article>";
@@ -100,3 +137,4 @@ function commentList(session_member_no, photo_seq_no) {
         }
 	});
 }
+

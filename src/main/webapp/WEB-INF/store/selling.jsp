@@ -527,6 +527,18 @@
 			<div class="pop_container">
 				<div id="production_review_pop">
 					<div class="title">리뷰쓰기</div>
+					<div class="starRev">
+				        <span class="starR1 on">0.5</span>
+				        <span class="starR2 no">1.0</span>
+				        <span class="starR1 no">1.5</span>
+				        <span class="starR2 no">2.0</span>
+				        <span class="starR1 no">2.5</span>
+				        <span class="starR2 no">3.0</span>
+				        <span class="starR1 no">3.5</span>
+				        <span class="starR2 no">4.0</span>
+				        <span class="starR1 no">4.5</span>
+				        <span class="starR2 no">5.0</span>
+				     </div>
 					<form id="production_review_form" class="new_production_review" action="/store/insertReview.do" enctype="multipart/form-data" method="post">
 						<!-- 상품 정보 -->
 						<div class="select_production field">
@@ -544,11 +556,11 @@
 							<div class="star">
 								<div class="star_title">만족도</div>
 								<div class="star_image">
-				                    <div class="star avg_star empty"></div>
-				                    <div class="star avg_star empty"></div>
-				                    <div class="star avg_star empty"></div>
-				                    <div class="star avg_star empty"></div>
-				                    <div class="star empty avg_star"></div>
+				                    <div class="star avg_star empty">1</div>
+				                    <div class="star avg_star empty">2</div>
+				                    <div class="star avg_star empty">3</div>
+				                    <div class="star avg_star empty">4</div>
+				                    <div class="star avg_star empty">5</div>
 				                    <div class="star_msg" style="color: rgb(66, 66, 66);"></div>
 			               		</div>
 							</div>

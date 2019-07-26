@@ -355,6 +355,8 @@ public class ZipdleController {
 	public JSONObject getZipReply(@PathVariable String seq_no, @ModelAttribute ZipdleReplyVO zrvo,
 			@RequestParam(value="pageNum", defaultValue="1") int currentPage) {
 			
+		System.out.println("진입");
+		
 		int zip_seq_no = Integer.parseInt(seq_no);
 		if(zrvo.getZ_reply_content() != null) {
 			zrservice.insertZipReply(zrvo);

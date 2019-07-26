@@ -14,6 +14,15 @@ $(function(){
 		}
 	})
 	
+	//별점 평가
+	$('.starRev span').click(function(){
+	     $(this).parent().children('span').removeClass('on');
+	     $(this).addClass('on').prevAll('span').addClass('on');
+	     var star_score =  $(this).text();
+	     $("#star_score").val(star_score);
+	     alert($("#star_score").val());
+	     return false;
+	 });
 	
 	//취소하기 버튼 클릭 시 confirm -> 리뷰 팝업창 CLOSE
 	$(".cancel").click(function() {
@@ -23,6 +32,8 @@ $(function(){
 		}
 	});
 });
+
+
 
 //리뷰쓰기 버튼 클릭 시 팝업 
 function openReviewPopUp(e) {
@@ -60,6 +71,12 @@ function plus() {
 }
 
 
+//리뷰쓰기 - 별점평가
+$('.select_star>.star>.star_image>.star.empty').mouseenter(function() {
+	alert("선택");
+	$('.star_image>.star.empty').removeClass('empty')
+	$('.star_image>.star').addClass('filled')
+});
 
 //리뷰쓰기 - 업로드 파일 이미지 미리보기
 var sel_file;
@@ -104,3 +121,6 @@ function handleImgFileSelect (e) {
 		reader.readAsDataURL(f);
 	});
 }
+
+
+

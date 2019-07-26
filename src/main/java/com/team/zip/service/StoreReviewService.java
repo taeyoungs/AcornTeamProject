@@ -1,6 +1,8 @@
 package com.team.zip.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,11 +20,15 @@ public class StoreReviewService {
 		storeReviewDAO.insertReview(storeReviewVO);
 	}
 
-	public List<StoreReviewVO> getReviewList(StoreReviewVO storeReviewVO) {
-		return storeReviewDAO.getReviewList(storeReviewVO);
+	public List<StoreReviewVO> getReviewList(int prodNo, int startNo, int endNo) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startNo", startNo);
+		map.put("endNo", endNo);
+		map.put("prodNo", prodNo);
+		return storeReviewDAO.getReviewList(prodNo, startNo, endNo);
 	}
 	
-	public int getReviewTotalCount(String prodNo) {
+	public int getReviewTotalCount(int prodNo) {
 		return storeReviewDAO.getReviewTotalCount(prodNo);
 	}
 }

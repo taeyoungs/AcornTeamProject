@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class StoreReviewVO {
 	private String rewNo;
 	private String memberNo;
-	private String prodNo;
+	private int prodNo;
 	private String rewImg;
 	private String rewTitle;
 	private String rewContent;
@@ -30,10 +30,10 @@ public class StoreReviewVO {
 	public void setMemberNo(String memberNo) {
 		this.memberNo = memberNo;
 	}
-	public String getProdNo() {
+	public int getProdNo() {
 		return prodNo;
 	}
-	public void setProdNo(String prodNo) {
+	public void setProdNo(int prodNo) {
 		this.prodNo = prodNo;
 	}
 	public String getRewImg() {

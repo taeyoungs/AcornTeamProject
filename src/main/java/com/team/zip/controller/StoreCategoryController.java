@@ -1,5 +1,7 @@
 package com.team.zip.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +12,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team.zip.model.vo.CommonCodeVO;
 import com.team.zip.model.vo.ProductVO;
 import com.team.zip.model.vo.StoreReviewVO;
@@ -158,9 +162,7 @@ public class StoreCategoryController {
 	
 	
 	@RequestMapping("/store/selling.do")
-	public ModelAndView selling(@RequestParam String prodNo, HttpSession session,
-			@ModelAttribute StoreReviewVO storeReviewVO,
-			HttpServletRequest request) {
+	public ModelAndView selling(@RequestParam String prodNo, HttpSession session) {
 		
 		//로그인 유무 CHECK
 		String login = (String)session.getAttribute("loginok");
@@ -174,57 +176,6 @@ public class StoreCategoryController {
 		//조회수 증가 
 		storeProductService.updateHits(prodNo);
 		
-		
-		if (storeReviewVO.getCurrentPage() == null) {
-			storeReviewVO.setCurrentPage("1");
-		}
-		
-		//페이징처리에 필요한 변수들 선언
-		int reviewTotalCnt = storeReviewService.getReviewTotalCount(prodNo);
-		int currentPage = Integer.parseInt(storeReviewVO.getCurrentPage());
-		
-		int totalPage; //총 페이지수
-		int no;//출력 시작번호
-		int perPage = 3; //한페이지당 출력 리뷰 갯수
-		int perBlock = 3; //한블럭당 보여질 페이지의 갯수
-		
-		int startPage = (currentPage - 1) / perBlock * perBlock + 1; //블럭의 시작페이지
-		int endPage = startPage + perBlock - 1; //블럭의 끝페이지
-		int startNo = (currentPage - 1) * perPage + 1; //각페이지의시작번호
-		int endNo = startNo + perPage - 1; //각페이지의끝번호
-		
-		storeReviewVO.setStartNo(String.valueOf(startNo));
-		storeReviewVO.setEndNo(String.valueOf(endNo));
-		
-		
-		//총 페이지 수
-		totalPage = reviewTotalCnt / perPage + (reviewTotalCnt % perPage > 0?1:0);
-
-		if(currentPage > totalPage)
-			currentPage = totalPage;
-		
-
-		//마지막 블럭은 끝페이지가 총 페이지수와 같아야함
-		if(endPage > totalPage)
-			endPage = totalPage;
-
-		//마지막 페이지의 글번호 체크하기
-		if(endNo > reviewTotalCnt)
-			endNo = reviewTotalCnt;
-
-		//각 페이지마다 출력할 시작번호
-		//총갯수가 30일경우 1페이지는 30,2페이지는 25....
-		no = reviewTotalCnt - (currentPage - 1) * perPage;
-		
-		List<StoreReviewVO> reviewList = storeReviewService.getReviewList(storeReviewVO);
-		
-		mav.addObject("currentPage", currentPage);
-		mav.addObject("reviewTotalCnt", reviewTotalCnt);
-		mav.addObject("startPage", startPage);
-		mav.addObject("endPage", endPage);
-		mav.addObject("no", no);
-		mav.addObject("totalPage", totalPage);
-		mav.addObject("reviewList", reviewList);
 		mav.addObject("login", login);
 		mav.addObject("memberNo", memberNo);
 		mav.addObject("product", productVO);
@@ -232,78 +183,71 @@ public class StoreCategoryController {
 		return mav;
 	}
 	
-	
-	@RequestMapping(value = "/store/pagingAjax.do")
+	@RequestMapping(value = "/store/sellingAjax.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String pagingAjax(@ModelAttribute StoreReviewVO storeReviewVO, HttpSession session,
-			@RequestParam(value = "pageNo", defaultValue = "1") int pageNo) {
-		
-		//로그인 유무 CHECK
-		String login = (String)session.getAttribute("loginok");
-		String memberNo = String.valueOf(session.getAttribute("member_no"));
-		
-		ModelAndView mav = new ModelAndView();
-		String prodNo = storeReviewVO.getProdNo();
+	public JSONObject getReviewListForAjax(@PathVariable int prodNo,
+			@ModelAttribute StoreReviewVO storeReviewVO,
+			@RequestParam(value = "pageNo", defaultValue = "1") int currentPage)
+	{
 		
 		//페이징처리에 필요한 변수들 선언
-		int reviewTotalCnt = storeReviewService.getReviewTotalCount(prodNo);
-		int currentPage = Integer.parseInt(storeReviewVO.getCurrentPage());
 		
-		int totalPage; //총 페이지수
 		int no;//출력 시작번호
-		int perPage = 3; //한페이지당 출력 리뷰 갯수
-		int perBlock = 3; //한블럭당 보여질 페이지의 갯수
-		
+		int perPage = 3; //한페이지당 출력 리뷰 개수
+		int perBlock = 10; //한블럭당 보여질 페이지의 개수
 		int startPage = (currentPage - 1) / perBlock * perBlock + 1; //블럭의 시작페이지
 		int endPage = startPage + perBlock - 1; //블럭의 끝페이지
 		int startNo = (currentPage - 1) * perPage + 1; //각페이지의시작번호
 		int endNo = startNo + perPage - 1; //각페이지의끝번호
+
+		//총 리뷰 글의 개수
+		int reviewTotalCnt = storeReviewService.getReviewTotalCount(prodNo);
+		//총 페이지 수
+		int totalPage = reviewTotalCnt / perPage + (reviewTotalCnt % perPage > 0?1:0); 
 		
-		if (storeReviewVO.getCurrentPage() == null) {
-			storeReviewVO.setCurrentPage("1");
+		// 존재하지 않는 페이지일 경우 마지막 페이지로 가기
+		if(currentPage > totalPage) {
+			currentPage = totalPage;
 		}
 		
-		storeReviewVO.setStartNo(String.valueOf(startNo));
-		storeReviewVO.setEndNo(String.valueOf(endNo));
-		
-		
-		//총 페이지 수
-		totalPage = reviewTotalCnt / perPage + (reviewTotalCnt % perPage > 0?1:0);
-
-		if(currentPage > totalPage)
-			currentPage = totalPage;
-		
-
-		//마지막 블럭은 끝페이지가 총 페이지수와 같아야함
-		if(endPage > totalPage)
+		//마지막 블럭은 끝페이지가 총 페이지수와 같아야 한다.
+		if(endPage > totalPage) {
 			endPage = totalPage;
+		}
 
 		//마지막 페이지의 글번호 체크하기
 		if(endNo > reviewTotalCnt)
 			endNo = reviewTotalCnt;
 
-		//각 페이지마다 출력할 시작번호
-		//총갯수가 30일경우 1페이지는 30,2페이지는 25....
+		// 각 블럭의 시작페이지와 끝페이지를 구한다.
+		// 예) 현재페이지 3일 경우 시작페이지:1 끝페이지:5
+		// 예) 현재페이지 11일 경우 시작페이지:11 끝페이지:15
 		no = reviewTotalCnt - (currentPage - 1) * perPage;
 		
-		List<StoreReviewVO> reviewList = storeReviewService.getReviewList(storeReviewVO);
 		
-		mav.addObject("currentPage", currentPage);
-		mav.addObject("reviewTotalCnt", reviewTotalCnt);
-		mav.addObject("startPage", startPage);
-		mav.addObject("endPage", endPage);
-		mav.addObject("no", no);
-		mav.addObject("totalPage", totalPage);
-		mav.addObject("reviewList", reviewList);
-		mav.addObject("login", login);
-		mav.addObject("memberNo", memberNo);
+		List<StoreReviewVO> reviewList = new ArrayList<StoreReviewVO>();
+		reviewList = storeReviewService.getReviewList(prodNo, startNo, endNo);
 		
-		JSONObject json = new JSONObject();
-		json.put("reviewTotalCnt", reviewTotalCnt);
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonList = "";
 		
+		try { 
+			jsonList = mapper.writeValueAsString(reviewList); 
+		} catch (IOException e) { 
+			e.printStackTrace(); 
+		}
 		
-		return json.toString();
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("reviewTotalCnt", reviewTotalCnt);
+		jsonObj.put("currentPage", currentPage);
+		jsonObj.put("startPage", startPage);
+		jsonObj.put("endPage", endPage);
+		jsonObj.put("totalPage", totalPage);
+		jsonObj.put("jsonList", jsonList);
+
+		return jsonObj;
 	}
+	
 	
 	@RequestMapping(value = "/store/insertReview.do", method = RequestMethod.POST)
 	public String insertReview(@ModelAttribute StoreReviewVO storeReviewVO,

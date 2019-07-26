@@ -110,7 +110,7 @@
 	  	<![CDATA[ WHERE a.RNUM>=#{startNo} AND a.RNUM<=#{endNo}]]>
 	</select>
 	
-	<select id="getReviewTotalCount" parameterType="String" resultType="int">
+	<select id="getReviewTotalCount" parameterType="int" resultType="int">
 		SELECT COUNT(*)
 		FROM REVIEW
 		WHERE PROD_NO = #{prodNo}

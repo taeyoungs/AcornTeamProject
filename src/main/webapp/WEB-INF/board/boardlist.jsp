@@ -21,6 +21,22 @@
 <link rel="stylesheet" media="screen"
 	href="https://d1nyaccf3kuclt.cloudfront.net/assets/v3/questions/index-1a7920041c9d947e5f6d454aec5b74335960c1570560a32d5720d1cb4d4a6f09.css" />
 </head>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#questions-header__form__search").keydown(function(key) {
+        if (key.keyCode == 13) {
+        	var url = "list.do?"
+				+ "&keyword=" + $('#questions-header__form__search').val();
+			window.location.href = url;
+        }
+    });
+});
+</script>
+<style>
+	li{
+		padding:10px;
+	}
+</style>
 <body>
 	<main role="main" id="root">
 	<div id="questions-index-page">
@@ -30,191 +46,24 @@
 					<h1 class="text-heading-1 text-black bold">질문과 답변</h1>
 					<p class="text-caption-1">오늘의집 인테리어 고수들과 전문가들에게 조언을 받으세요.</p>
 				</div>
-				<form id="questions-header__form" class="sticky-top"
-					action="/questions" accept-charset="UTF-8" method="get">
-					<input name="utf8" type="hidden" value="&#x2713;" />
 					<div class="sticky-content">
 						<div class="questions-header__form__wrap row">
 							<div class="questions-header__form__search col">
 								<span class="icon icon-etc-find-sm-gray-dark search"
-									aria-hidden="true"></span> <span
+									aria-hidden="tru	e"></span> <span
 									class="icon icon-pointer-x-bold-gray clear clear-inactive hide"
 									aria-hidden="false" role="button"></span> <span
 									class="icon icon-pointer-x-bold-dark clear clear-active hide"
 									aria-hidden="false" role="button"></span> <input type="text"
-									name="query" id="questions-header__form__search" value=""
+									id="questions-header__form__search" value="${vo.keyword}"
 									class="form-control" placeholder="궁금한 것을 검색해보세요."
 									autocomplete="off" />
 							</div>
 						</div>
 					</div>
-				</form>
-				<div class="questions-header__keywords row">
-					<input id="questions-header__keywords__toggle"
-						class="questions-header__keywords__toggle" type="checkbox" />
-					<div class="col">
-						<div class="questions-header__keywords__group header">
-							<dt class="questions-header__keywords__group__name header bold">인기</dt>
-							<dd class="questions-header__keywords__group__list header">
-								<ul class="keyword-list">
-									<li class="keyword-item" role="button">리모델링/올수리</li>
-									<li class="keyword-item" role="button">20평대</li>
-									<li class="keyword-item" role="button">아파트</li>
-									<li class="keyword-item" role="button">도배</li>
-								</ul>
-							</dd>
-						</div>
-						<dl class="questions-header__keywords__all">
-							<div class="questions-header__keywords__group">
-								<dt class="questions-header__keywords__group__name bold">일반</dt>
-								<dd class="questions-header__keywords__group__list">
-									<ul class="keyword-list">
-										<li class="keyword-item" role="button">리모델링/올수리</li>
-										<li class="keyword-item" role="button">견적</li>
-										<li class="keyword-item" role="button">업체 추천</li>
-										<li class="keyword-item" role="button">셀프인테리어</li>
-										<li class="keyword-item" role="button">신혼</li>
-										<li class="keyword-item" role="button">리폼</li>
-										<li class="keyword-item" role="button">디자인 추천</li>
-									</ul>
-								</dd>
-							</div>
-							<div class="questions-header__keywords__group">
-								<dt class="questions-header__keywords__group__name bold">부분
-									공정</dt>
-								<dd class="questions-header__keywords__group__list">
-									<ul class="keyword-list">
-										<li class="keyword-item" role="button">가벽</li>
-										<li class="keyword-item" role="button">단열</li>
-										<li class="keyword-item" role="button">도배</li>
-										<li class="keyword-item" role="button">마루</li>
-										<li class="keyword-item" role="button">목공</li>
-										<li class="keyword-item" role="button">몰딩</li>
-										<li class="keyword-item" role="button">바닥</li>
-										<li class="keyword-item" role="button">벽</li>
-										<li class="keyword-item" role="button">붙박이</li>
-										<li class="keyword-item" role="button">샷시/창호</li>
-										<li class="keyword-item" role="button">수리/복구</li>
-										<li class="keyword-item" role="button">실리콘</li>
-										<li class="keyword-item" role="button">외관/외벽</li>
-										<li class="keyword-item" role="button">입주청소</li>
-										<li class="keyword-item" role="button">장판</li>
-										<li class="keyword-item" role="button">전기</li>
-										<li class="keyword-item" role="button">조명</li>
-										<li class="keyword-item" role="button">줄눈</li>
-										<li class="keyword-item" role="button">천장</li>
-										<li class="keyword-item" role="button">철거</li>
-										<li class="keyword-item" role="button">콘센트</li>
-										<li class="keyword-item" role="button">타일</li>
-										<li class="keyword-item" role="button">페인트</li>
-										<li class="keyword-item" role="button">필름</li>
-										<li class="keyword-item" role="button">기타공정</li>
-										<li class="keyword-item" role="button">기타청소</li>
-									</ul>
-								</dd>
-							</div>
-							<div class="questions-header__keywords__group">
-								<dt class="questions-header__keywords__group__name bold">가구</dt>
-								<dd class="questions-header__keywords__group__list">
-									<ul class="keyword-list">
-										<li class="keyword-item" role="button">가구배치/이동</li>
-										<li class="keyword-item" role="button">냉장고</li>
-										<li class="keyword-item" role="button">블라인드</li>
-										<li class="keyword-item" role="button">손잡이</li>
-										<li class="keyword-item" role="button">수전/싱크대</li>
-										<li class="keyword-item" role="button">소파</li>
-										<li class="keyword-item" role="button">식탁</li>
-										<li class="keyword-item" role="button">유리</li>
-										<li class="keyword-item" role="button">에어컨</li>
-										<li class="keyword-item" role="button">침대</li>
-										<li class="keyword-item" role="button">TV</li>
-										<li class="keyword-item" role="button">기타가구</li>
-									</ul>
-								</dd>
-							</div>
-							<div class="questions-header__keywords__group">
-								<dt class="questions-header__keywords__group__name bold">공간</dt>
-								<dd class="questions-header__keywords__group__list">
-									<ul class="keyword-list">
-										<li class="keyword-item" role="button">단독주택</li>
-										<li class="keyword-item" role="button">아파트</li>
-										<li class="keyword-item" role="button">상가</li>
-										<li class="keyword-item" role="button">원룸</li>
-									</ul>
-								</dd>
-							</div>
-							<div class="questions-header__keywords__group">
-								<dt class="questions-header__keywords__group__name bold">평수</dt>
-								<dd class="questions-header__keywords__group__list">
-									<ul class="keyword-list">
-										<li class="keyword-item" role="button">10평미만</li>
-										<li class="keyword-item" role="button">10평대</li>
-										<li class="keyword-item" role="button">20평대</li>
-										<li class="keyword-item" role="button">30평대</li>
-										<li class="keyword-item" role="button">40평대</li>
-										<li class="keyword-item" role="button">50평이상</li>
-									</ul>
-								</dd>
-							</div>
-							<div class="questions-header__keywords__group">
-								<dt class="questions-header__keywords__group__name bold">실내
-									공간</dt>
-								<dd class="questions-header__keywords__group__list">
-									<ul class="keyword-list">
-										<li class="keyword-item" role="button">화장실</li>
-										<li class="keyword-item" role="button">베란다</li>
-										<li class="keyword-item" role="button">거실</li>
-										<li class="keyword-item" role="button">주방</li>
-										<li class="keyword-item" role="button">현관</li>
-									</ul>
-								</dd>
-							</div>
-							<div class="questions-header__keywords__group">
-								<dt class="questions-header__keywords__group__name bold">기타</dt>
-								<dd class="questions-header__keywords__group__list">
-									<ul class="keyword-list">
-										<li class="keyword-item" role="button">기타</li>
-									</ul>
-								</dd>
-							</div>
-						</dl>
-					</div>
-					<div id="questions-header__keywords__fold"
-						class="questions-header__keywords__fold col">
-						<div class="sticky-bottom">
-							<div class="sticky-content">
-								<label for="questions-header__keywords__toggle"
-									class="questions-header__keywords__fold__button text-caption-1 bold"
-									role="button"> <span class="active">키워드 접기</span> <span
-									class="inactive">키워드 더보기</span> <span
-									class="icon icon-pointer-angle-down-dark-sm"></span>
-								</label>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 		</section>
-		<section id="questions-filter" class="sticky-top">
-			<div class="questions-filter__float sticky-content">
-				<div class="questions-filter__content container">
-					<div class="questions-filter__filters">
-						<div class="filter-select" id='questions-filter-sort'
-							data-modal-id="questions-filter-sort-modal">
-							<dl class="filter-select__header" role="button">
-								<dt class="filter-select__header__name">
-									정렬<span class="icon icon-pointer-angle-down-dark-sm"></span>
-								</dt>
-								<dd class="filter-select__header__value">최신순</dd>
-							</dl>
-							<ul class="filter-select__list">
-								<li class="filter-select__list__entry "><a
-									href="/questions?order=popular&amp;page=1">인기순</a></li>
-								<li class="filter-select__list__entry active"><a
-									href="/questions?order=recent&amp;page=1">최신순</a></li>
-							</ul>
-						</div>
-					</div>
+				<div style="display:inline-block;text-align:center;padding:50px;width:1200px;">
 					<div class="questions-filter__actions">
 						<a class="set-reply btn btn-normal btn-sm"
 							href="/questions?page=1&amp;reply=not_yet"> 답변을 기다리는 질문 </a> <a
@@ -222,16 +71,6 @@
 							href="form.do">질문하기</a>
 					</div>
 				</div>
-			</div>
-		</section>
-		<section id="questions-notice-list" class="container">
-    		<ol class="questions-notice-list__list">
-        		<li class="questions-notice-list__list__entry">
-           				<span class="icon icon-etc-announcement-md"></span>
-            			<span class="title text-body-1">[공지] 쇼핑 포인트 5배! 7월 멘토 모집 마감</span>
-               	</li>
-   			</ol>
-  		</section>
 		<c:forEach var="vo" items="${list}">
 			<section id="questions-list" class="container">
 				<a class="questions-item__link"
@@ -260,21 +99,11 @@
 									class="questions-item__footer__date text-gray"> ${vo.reg_date} </time> <span
 								class="questions-item__footer__comments text-gray"> 답글 <span
 									class="questions-item__footer__comments__content active">
-										4 </span>
+										${vo.b_reply_count} </span>
 							</span> <span class="questions-item__footer__views text-gray"> 조회
 									<span class="questions-item__footer__views__content">${vo.board_hits}</span>
 							</span>
 							</span>
-							<ul class="questions-item__footer__tags keyword-list">
-								<li
-									class="keyword-item questions-item__footer__tags__tag
-                  "
-									role="button">단독주택</li>
-								<li
-									class="keyword-item questions-item__footer__tags__tag
-                  "
-									role="button">10평미만</li>
-							</ul>
 						</footer>
 					</article>
 				</a>
@@ -285,22 +114,22 @@
 	<ul  class="pagination">
 		<c:if test="${startPage>1}">
 			<li>
-				<a href="list.do?pageNum=${startPage-1}">◀</a>
+				<a href="list.do?pageNum=${startPage-1}&keyword=${keyword}">◀</a>
 			</li>
 		</c:if>
 		<c:forEach var="pp" begin="${startPage}" end="${endPage}">
 			<li>
 			  <c:if test="${pp==currentPage}">
-				<a href="list.do?pageNum=${pp}" style="color: red;">${pp}</a>
+				<a href="list.do?pageNum=${pp}&keyword=${keyword}" style="color: red;">${pp}</a>
 			  </c:if>
 			  <c:if test="${pp!=currentPage}">
-				<a href="list.do?pageNum=${pp}" style="color: black;">${pp}</a>
+				<a href="list.do?pageNum=${pp}&keyword=${keyword}" style="color: black;">${pp}</a>
 			  </c:if>	
 			</li>
 		</c:forEach>
 		<c:if test="${endPage<totalPage}">	
 			<li>
-				<a href="list.do?pageNum=${endPage+1}">▶</a>
+				<a href="list.do?pageNum=${endPage+1}&keyword=${keyword}">▶</a>
 			</li>
 		</c:if>
 	</ul>

@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link href="/image/common/logo.png" rel="shortcut icon" type="image/x-icon">
+<title>혼자하는 인테리어</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>

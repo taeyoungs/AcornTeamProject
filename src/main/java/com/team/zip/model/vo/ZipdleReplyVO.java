@@ -6,11 +6,25 @@ public class ZipdleReplyVO {
 	
 	private int z_reply_seq_no;
 	private int member_no;
-	private String z_reply_content;
-	private Timestamp reg_date;
 	private int z_reply_no;
 	private int z_reply_good;
+	private String z_reply_content;
+	private String member_image;
+	private String member_nickname;
+	private Timestamp reg_date;
 	
+	public String getMember_image() {
+		return member_image;
+	}
+	public void setMember_image(String member_image) {
+		this.member_image = member_image;
+	}
+	public String getMember_nickname() {
+		return member_nickname;
+	}
+	public void setMember_nickname(String member_nickname) {
+		this.member_nickname = member_nickname;
+	}
 	public int getZ_reply_good() {
 		return z_reply_good;
 	}

@@ -12,6 +12,10 @@
 	display: none !important;
 }
 
+button {
+	outline: 0;
+}
+
 #content #user_action>.contents>.category>.report, 
 #content #user_action>.contents>.category>.modify, 
 #content #user_action>.contents>.category>.delete, 
@@ -499,6 +503,122 @@
     border-color: #35c5f0;
 }
 
+.comment-feed_item_footer_time {
+	font-weight: 400;
+}
+
+.comment-feed_item_footer>:after {
+	display: inline-block;
+    color: #bdbdbd;
+    content: "\00B7";
+    margin: 0 5px;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.comment-feed_item_footer_likes_icon {
+	background: none;
+    border: none;
+    color: inherit;
+    padding: 0;
+    font-size: 13px;
+    font-weight: inherit;
+    font-family: inherit;
+}
+
+.comment-feed_item_footer_likes_icon>.badge {
+	vertical-align: -2px;
+    margin-right: 3px;
+    width: 15px;
+    height: 14px;
+    cursor: pointer;
+}
+
+.comment-feed_item_footer>a, 
+.comment-feed_item_footer>button {
+	background: none;
+    border: none;
+    color: inherit;
+    padding: 0;
+    font-size: 13px;
+    font-weight: inherit;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.list_paginator {
+	text-align: center;
+}
+
+.list-paginator_end, 
+.list-paginator_next, 
+.list-paginator_prev, 
+.list-paginator_start {
+	margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 0;
+    transition: opacity .1s;
+}
+
+.list-paginator_page {
+	display: none;
+    min-width: 26px;
+    margin: 0 2px;
+    padding: 5.5px 5px;
+    box-sizing: border-box;
+    border: none;
+    background-color: transparent;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    color: #424242;
+    transition: background-color .1s,color .1s;
+    cursor: pointer;
+}
+.list-paginator_page:hover {
+	color: #35c5f0;
+}
+
+.list-paginator_page.selected {
+    background-color: #35c5f0;
+    color: #fff;
+    text-decoration: none;
+}
+
+.list-paginator_page.sm {
+	display: block;
+}
+
+.list-paginator_prev>img {
+	margin-right: 15px;
+	width: 22px;
+	height: 22px;
+	cursor: pointer;
+}
+.list-paginator_prev>img:hover {
+	opacity: 0.4;
+}
+
+.list-paginator_next>img {
+	margin-left: 15px;
+	width: 22px;
+	height: 22px;
+	cursor: pointer;
+}
+.list-paginator_next>img:hover {
+	opacity: 0.4;
+}
+
+#comment_panel>.wrap>.comment-feed>.list-paginator>li {
+	display: inline-block;
+    vertical-align: bottom;
+    font-size: 0;
+}
+
 @media (min-width: 768px) {
 	.comment-feed_header {
 		font-size: 18px;
@@ -516,6 +636,18 @@
 	
 	.comment-feed_item_content_author_image {
 		top: 5px;
+	}
+	
+	.list-paginator_page {
+   		display: block;
+	}
+	
+	.list-paginator_prev>img{
+		margin-right: 15px;
+	}
+
+	.list-paginator_next>img{
+		margin-left: 15px;
 	}
 }
 

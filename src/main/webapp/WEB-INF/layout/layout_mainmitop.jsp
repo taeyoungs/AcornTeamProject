@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link href="/image/common/logo.png" rel="shortcut icon" type="image/x-icon">
+<title>혼자하는 인테리어</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 <style type="text/css">

@@ -14,7 +14,8 @@
 <link rel="stylesheet" type="text/css" href="${root}/css/main/main_media.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/main/bucket_ui.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/main/components.css">
-<title>Insert title here</title>
+<link href="/image/common/logo.png" rel="shortcut icon" type="image/x-icon">
+<title>혼자하는 인테리어</title>
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 </head>
 <body>

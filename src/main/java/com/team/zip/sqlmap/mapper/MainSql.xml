@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MainSql">
 	<select id="selectPhotoList" resultType="mainCommunityVO">
-		<![CDATA[
 		SELECT A.PHOTO_SEQ_NO AS photoSeqNo
 		     , A.PHOTO_IMAGE AS photoImage
 		     , A.MEMBER_NICKNAME AS memberNickname
@@ -16,13 +15,10 @@
 			 WHERE P.MEMBER_NO = M.MEMBER_NO 
 			 ORDER BY P.PHOTO_HITS DESC
 		) A
-		WHERE ROWNUM < 9
-		]]>
+		<![CDATA[ WHERE ROWNUM < 9 ]]>
 	</select>
 	
  	<select id="selectZipList" resultType="mainCommunityVO">
-
-		<![CDATA[
 		SELECT A.ZIP_SEQ_NO AS zipSeqNo
 			 , A.TITLE AS zipTitle
 		     , A.COVER_IMAGE AS zipImage
@@ -38,8 +34,27 @@
 			 WHERE Z.MEMBER_NO = M.MEMBER_NO 
 			 ORDER BY Z.ZIP_HITS DESC
 		) A
-		WHERE ROWNUM < 4
-		]]>
+		<![CDATA[ WHERE ROWNUM < 4 ]]>
+	</select>
+	
+	<select id="selectRankList" resultType="productVO">
+		  SELECT * FROM (
+	        SELECT P.PROD_NO AS prodNo
+	             , P.PROD_TITLE AS prodTitle
+	             , P.PROD_PRICE AS prodPrice
+	             , P.PROD_IMG AS prodImage
+	             , P.DISCOUNT_RATE AS discountRate
+	             , P.CATEGORY_NO AS categoryNo
+	             , P.CATEGORY_NM AS categoryNm
+	             , P.PROD_HITS AS prodHits
+	        FROM PRODUCT P
+	        <!-- WHERE CATEGORY_NM = #{categoryNm} -->
+	        ORDER BY P.PROD_HITS DESC
+	        <!-- <if test="categoryNm != ''">
+		    	WHERE CATEGORY_NM = CATEGORY_NM
+		  	</if> -->
+	     )
+	    <![CDATA[ WHERE ROWNUM < 4; ]]>
 	</select>
 </mapper>
 

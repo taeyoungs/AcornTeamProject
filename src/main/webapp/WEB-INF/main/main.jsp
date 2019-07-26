@@ -14,7 +14,7 @@
 			<!-- Main Image -->
 			<div class="col-12 col-md-9 home-header__story">
 				<article class="story-entry">
-					<a href="#" class="story-entry-link">
+					<a href="/zipdle/gotoZipList" class="story-entry-link">
 						<div class="story-entry__image-wrap">
 							<div class="story-entry__image" style="background-image: url('${root}/image/common/main_image.jpg')">
 							</div>
@@ -84,7 +84,7 @@
 <nav class="container shortcut">
 	<ul class="shortcut__list">
 		<li class="shortcut__list__item">
-			<a href="" class="shortcut__list__item__link">
+			<a href="/store/store.do" class="shortcut__list__item__link">
 				<div class="shortcut__list__item__link__image">
 					<img class="shortcut__list__item__link__image__img" src="${root}/image/common/cart.png">
 				</div>
@@ -93,7 +93,7 @@
 		</li>
 		<div class="blank_margin"></div>
 		<li class="shortcut__list__item">
-			<a href="" class="shortcut__list__item__link">
+			<a href="/zipdle/gotoZipList" class="shortcut__list__item__link">
 				<div class="shortcut__list__item__link__image">
 					<img class="shortcut__list__item__link__image__img" src="${root}/image/common/dimensions.png">
 				</div>
@@ -111,7 +111,7 @@
 		</li>
 		<div class="blank_margin"></div>
 		<li class="shortcut__list__item">
-			<a href="" class="shortcut__list__item__link">
+			<a href="/store/category.do?codeVal=가구" class="shortcut__list__item__link">
 				<div class="shortcut__list__item__link__image">
 					<img class="shortcut__list__item__link__image__img" src="${root}/image/common/teacher.png">
 				</div>
@@ -296,40 +296,35 @@
 
 
 
-<!-- 베스트 100 -->
+<!-- 베스트 50 -->
 
 <section class="container home-section home-rank">
 	<header class="row home-section__header">
-		<h2 class="col home-section__header__content">베스트 100</h2>
-		<a class="home-section__header__more" href="">더보기</a>
+		<h2 class="col home-section__header__content">베스트 50</h2>
+		<a class="home-section__header__more" href="/store/ranks.do">더보기</a>
 	</header>
 	<div class="production-rank-feed ">
 		<ul class="production-rank-feed__category">
 			<li class="production-rank-feed__category__item">전체</li>
-			<li class="production-rank-feed__category__item">여름 인테리어</li>
 			<li class="production-rank-feed__category__item">기구</li>
-			<li class="production-rank-feed__category__item">패브릭</li>
-			<li class="production-rank-feed__category__item">홈데코/조명</li>
 			<li class="production-rank-feed__category__item">가전</li>
-			<li class="production-rank-feed__category__item">수납/생활</li>
-			<li class="production-rank-feed__category__item">주방</li>
-<!-- 			<li class="production-rank-feed__category__item">DIY셀프시공</li>
-			<li class="production-rank-feed__category__item">반려동물</li> -->
+			<li class="production-rank-feed__category__item">인테리어</li>
 		</ul>
 		<div class="row production-rank-feed__group">
 			<div class="col production-rank-feed__list-wrap">
 				<ul class="row production-rank-feed__list">
+					<c:forEach items="${rankList}" var="rank">
 					<div class="col-4 production-rank-feed__item">
 						<div class="product-simplified home-production-item">
 							<a class="product-item" href="">
 								<div class="img-wrap square">
-									<img class="lazyload" src="/image/deal02.jpg">
+									<img class="lazyload" src="${root}/image/${rank.prodImage}">
 								</div>
 								<div class="info">
 									<p class="product-name text-caption-1 line-height-normal"></p>
 									<p class="price text-caption-3">
-										<span class="discount-ratio text-blue text-body-1 bold"></span>
-										<strong class="selling-price text-body-1 text-black"></strong>
+										<span class="discount-ratio text-blue text-body-1 bold">${rank.discountRate}%</span>
+										<strong class="selling-price text-body-1 text-black">${rank.prodPrice}</strong>
 									</p>
 								</div>
 								<div class="home-rank-icon">
@@ -337,10 +332,11 @@
 									<span class="mobile icon-page-home__b-2">1</span>
 								</div>
 							</a>
+							
 						</div>
 					</div>
 					
-					<div class="col-4 production-rank-feed__item">
+					<!-- <div class="col-4 production-rank-feed__item">
 						<div class="product-simplified home-production-item">
 							<a class="product-item" href="">
 								<div class="img-wrap square">
@@ -359,9 +355,9 @@
 								</div>
 							</a>
 						</div>
-					</div>
+					</div> -->
 					
-					<div class="col-4 production-rank-feed__item">
+					<!-- <div class="col-4 production-rank-feed__item">
 						<div class="product-simplified home-production-item">
 							<a class="product-item" href="">
 								<div class="img-wrap square">
@@ -380,13 +376,14 @@
 								</div>
 							</a>
 						</div>
-					</div>
+					</div> -->
+					</c:forEach>
 				</ul>
 			</div>
 			<div class="col-12 col-md-3 home-rank__more-wrap">
 				<div class="home-rank__more-container">
-					<a class="home-rank__more" href="">
-						<div class="home-rank__more__text">베스트 100 보기
+					<a class="home-rank__more" href="/store/ranks.do">
+						<div class="home-rank__more__text">베스트 50 보기
 							<div class="home-rank__more__text__icon">
 								<span class="unselected icon-page-home__b-1"></span>
 								<span class="selected icon-page-home__d-1"></span>

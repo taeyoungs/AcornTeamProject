@@ -31,10 +31,10 @@ public class BoardController {
 
 	@Autowired
 	private MemberService mservice;
-	
+
 	@Autowired
 	private BoardReplyService brs;
-	
+
 	@RequestMapping(value="/board/reply.do",method={RequestMethod.GET, RequestMethod.POST})
 	public String read(
 			@ModelAttribute BoardReplyVO brvo, HttpServletRequest request,
@@ -45,7 +45,7 @@ public class BoardController {
 		model.addAttribute("pageNum",pageNum);
 		String login = (String)session.getAttribute("loginok");
 		if(login != null && login.equals("login")) {
-	
+
 			brs.insertBoardReply(brvo);
 			return "redirect:view.do?board_seq_no="+brvo.getB_reply_no()+"&pageNum="+pageNum;
 
@@ -53,7 +53,7 @@ public class BoardController {
 			return "/1/member/signin";
 		}
 	}
-	
+
 	@RequestMapping("/board/list.do") 
 	public ModelAndView list(
 			@RequestParam(value="pageNum",defaultValue="1")
@@ -63,7 +63,7 @@ public class BoardController {
 	{
 		ModelAndView model=new ModelAndView();
 		int totalCount;//총 데이타 갯수
-		
+
 		totalCount=service.getTotalCount();
 
 		//페이징 복사한거
@@ -112,7 +112,7 @@ public class BoardController {
 
 		//2. 리스트 가져오기
 		List<BoardVO> list=service.getList(startNum, endNum, keyword);
-		
+
 		//System.out.println(list.size());
 		//System.out.println(keyword);
 
@@ -135,7 +135,7 @@ public class BoardController {
 		//login으로 저장후 문자타입 비교는 equals를 통해서 진행
 		String login = (String)session.getAttribute("loginok");
 		if(login != null && login.equals("login")) {
-	
+
 			return "/board/boardform";
 
 		} else {
@@ -174,7 +174,7 @@ public class BoardController {
 
 		return "redirect:list.do";
 	}
-	
+
 	@RequestMapping("/board/updateform.do")
 	public ModelAndView updateform(
 			@RequestParam int board_seq_no,
@@ -192,9 +192,31 @@ public class BoardController {
 	@RequestMapping(value="/board/update.do",method=RequestMethod.POST)
 	public String update(
 			@ModelAttribute BoardVO vo,
-			@RequestParam String pageNum
+			@RequestParam String pageNum,
+			HttpServletRequest request
 			)
 	{
+
+		//이미지 업로드 경로 
+		String path=request.getSession().getServletContext().getRealPath("/save");
+		//System.out.println(path);
+
+		//path 경로에 이미지 저장
+		SpringFileWriter fileWriter=new SpringFileWriter();
+
+		String board_image="";
+		//System.out.println(vo.getImagename());
+		for(MultipartFile f:vo.getImagename())
+		{
+			//빈 문자열이 아닐경우에만 저장
+			if(f.getOriginalFilename().length()>0){
+				board_image+=f.getOriginalFilename()+",";
+				fileWriter.writeFile(f, path, f.getOriginalFilename());
+			}
+		}
+
+		//vo 에 이미지 이름들 저장
+		vo.setBoard_image(board_image);
 		//db 수정
 		service.boardUpdate(vo);
 		//목록으로 이동
@@ -209,9 +231,9 @@ public class BoardController {
 		List<BoardReplyVO> bvo=brs.getList(board_seq_no);
 		//System.out.println(bvo.size());
 		int board_hits = 0;
-		
+
 		service.boardHitsUpdate(board_seq_no);
-		
+
 		//System.out.println(bvo.get(0).getB_reply_seq_no());
 		//model 에 저장
 		model.addAttribute("board_hits",board_hits);
@@ -220,7 +242,7 @@ public class BoardController {
 		model.addAttribute("pageNum",pageNum);
 		return "/board/boardview";
 	}
-	
+
 	@RequestMapping("/board/delete.do")
 	public String delete(
 			@RequestParam int board_seq_no,
@@ -246,12 +268,12 @@ public class BoardController {
 					f.delete();
 			}
 		}
-		
+
 		//삭제
 		service.boardDelete(board_seq_no);
 		return "redirect:list.do?pageNum="+pageNum;
 	}
-	
+
 	@RequestMapping("/board/replydelete.do")
 	public String replydelete(
 			@RequestParam int b_reply_seq_no,@RequestParam int board_seq_no,

@@ -138,16 +138,21 @@
 								</div>
 								<aside class="card-item-action-list">
 									<button class="card-item-action-list__action" type="button">
-										<img class="icon icon--stroke" src="${root }/image/common/heart.png" width="24" height="24">
+										<img class="icon icon--stroke_like" src="${root }/image/common/heart.png" width="24" height="24">
 										<span class="count">${pvo.photo_good }</span>
 									</button>
 									<button class="card-item-action-list__action" type="button">
-										<img class="icon icon--stroke" src="${root }/image/common/bookmark.png" width="24" height="24">
+										<img class="icon icon--stroke_bookmark" src="${root }/image/common/bookmark.png" width="24" height="24">
 										<span class="count">1</span>
 									</button>
 									<button class="card-item-action-list__action" type="button">
-										<img class="icon icon--stroke" src="${root }/image/common/comment.png" width="24" height="24">
-										<span class="count"></span>
+										<img class="icon icon--stroke_comment" src="${root }/image/common/comment.png" width="24" height="24">
+										<c:if test="${pvo.seqno ne 0 }">
+										<span class="count">${pvo.count }</span>
+										</c:if>
+										<c:if test="${pvo.seqno eq 0 }">
+										<span class="count">0</span>
+										</c:if>
 									</button>
 								</aside>
 								<div class="expandable-text card-item-description card-item__description">

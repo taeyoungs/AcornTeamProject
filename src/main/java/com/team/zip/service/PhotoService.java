@@ -41,6 +41,14 @@ public class PhotoService {
 		dao.updatePhoto(pvo);
 	}
 	
+	public void likePhoto(int num) {
+		dao.likePhoto(num);
+	}
+	
+	public void undoLike(int num) {
+		dao.undoLike(num);
+	}
+	
 	public List<PhotoVO> photoSortByHits(){
 		return dao.photoSortByHits();
 	}

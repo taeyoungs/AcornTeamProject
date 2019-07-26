@@ -23,6 +23,7 @@ $(function(){
 			function(){$(this).addClass("selected")},
 			function(){$(this).removeClass("selected")
 	});
+	
 	$(".panel-entry-list__item__title").on("click", function(){
 		var value = $(this).text();
 		var idx  = $(this).attr("idx");
@@ -30,4 +31,10 @@ $(function(){
 		console.log(value);
 		location.href='photoSortlist.do?idx='+idx+'&value='+value;
 	});
+	
+	$(".icon.icon--stroke_like").on("click", function(){
+		var src = ($(this).attr('src') === '../image/common/heart.png')
+		? '../image/common/red_heart.png' : '../image/common/heart.png'
+			$(this).attr('src',src);
+	})
 });

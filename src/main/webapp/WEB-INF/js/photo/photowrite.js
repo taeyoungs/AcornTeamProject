@@ -27,6 +27,10 @@ $(function(){
 		});
 	});
 	
+	$("#testbtn").click(function(){
+		changeChar();
+	});
+	
 });
 
 function readURL(input, th){
@@ -69,7 +73,7 @@ function readURL2(input, th){
 						<div class="Photo-Write-Form_photo-item_content">
 							<div class="Photo-Write-Form_photo-item_content_row">
 								<textarea class="form-control text-area-input" id="photo_content"
-								placeholder="사진에 대해서 설명해주세요" style="height:160px;" name="photo_content"></textarea>
+								placeholder="사진에 대해서 설명해주세요" style="height:160px;" name="photo_content_array"></textarea>
 							</div>
 							<div class="Photo-Write-Form_photo-item_content_row">
 								<div class="keyword-input">
@@ -86,5 +90,12 @@ function readURL2(input, th){
 		}
 		reader.readAsDataURL(input.files[0]);
 	}
+}
+
+function changeChar(){
+	console.log("쿨락쿨락");
+	console.log($("#photo_content").text());
+	$("#photo_content").text("123213123123");
+//	$(".text-area-input").text().replace(/,/gi, '|');
 }
 

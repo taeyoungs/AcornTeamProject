@@ -1,0 +1,391 @@
+@charset "utf-8";
+
+body, div, dl, dt, dd, ul, ol, li, 
+h1, h2, h3, h4, h5, h6, 
+pre, code, form, fieldset, legend, 
+input, textarea, p, blockquote, th, td{
+	margin: 0;
+	padding: 0;
+}
+
+html, body{
+    font-size: 15pt;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+fieldset, img {
+    border: 0;
+}
+
+input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+#body {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 auto;
+    -moz-box-flex: 1;
+    -moz-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    min-height: 1px;
+}
+
+#pre_order {
+    font-size: 14px;
+    width: 760px;
+    margin: 30px auto 0;
+}
+
+#pre_order #title {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: -0.3px;
+    color: #424242;
+    position: relative;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+    padding-left: 5px;
+}
+
+#pre_order #title #open_order_productions {
+    position: absolute;
+    bottom: 10px;
+    right: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    color: #757575;
+}
+
+#pre_order > form #order_productions {
+    width: 100%;
+}
+
+#pre_order > form #order_productions td {
+    border-bottom: 1px solid #eee;
+    box-sizing: content-box;
+}
+
+#pre_order > form #order_productions td:first-child {
+    border-right: 1px solid #eee;
+}
+
+#pre_order > form #order_productions div.information {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 10px;
+}
+
+#pre_order > form #order_productions div.information > img {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: 85px;
+    height: 85px;
+    margin-right: 10px;
+}
+
+#pre_order > form #order_productions div.information > div {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 0px;
+    -moz-box-flex: 1;
+    -moz-flex: 1 0 0px;
+    -ms-flex: 1 0 0px;
+    flex: 1 0 0px;
+}
+
+#pre_order > form #order_productions div.information > div > .name {
+    font-size: 15px;
+    color: #424242;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#pre_order > form #order_productions div.information > div > .option, #pre_order > form #order_productions div.information > div > .sub_option {
+    font-size: 15px;
+    color: #757575;
+    margin-bottom: 5px;
+}
+
+#pre_order > form #order_productions div.information > div > .cost_count {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 15px;
+}
+
+#pre_order > form #order_productions div.information > div > .cost_count > .cost {
+    color: #424242;
+    font-weight: bold;
+}
+
+#pre_order > form #order_productions div.information > div > .cost_count > .divider {
+    color: #bdbdbd;
+    padding: 0 10px;
+}
+
+#pre_order > form #order_productions div.information > div > .cost_count > .count {
+    color: #bdbdbd;
+}
+
+#pre_order > form > .panel {
+    margin-top: 50px;
+}
+
+#pre_order > form > .panel > .title {
+    font-size: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    font-weight: bold;
+    line-height: 1;
+    color: #424242;
+    border-bottom: 2px solid #eee;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+#pre_order > form > .panel > .title > .title {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    padding-right: 20px;
+    min-width: 140px;
+    box-sizing: border-box;
+}
+
+#pre_order > form > .panel > .input {
+    padding-right: 10px;
+}
+
+#pre_order > form > .panel > .input > .field {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 20px;
+}
+
+#pre_order > form > .panel > .input > .field > .label {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: 140px;
+    padding-left: 10px;
+    font-size: 15px;
+    color: #424242;
+    line-height: 40px;
+}
+
+#pre_order > form > .panel > .input > .field > .input {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 0px;
+    -moz-box-flex: 1;
+    -moz-flex: 1 0 0px;
+    -ms-flex: 1 0 0px;
+    flex: 1 0 0px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+#pre_order > form input[type="text"].half, #pre_order > form input[type="number"].half {
+    width: 50%;
+}
+
+#pre_order > form input[type="text"], #pre_order > form input[type="number"] {
+    border: 1px solid #dcdcdc;
+    margin: 0;
+    padding: 0 15px;
+    line-height: 38px;
+    height: 40px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+#pre_order > form > .panel > .input > .field .non_edit {
+    background-color: #eeeeee;
+}
+
+#pre_order > form input[type="text"].quarter, #pre_order > form input[type="number"].quarter {
+    width: 25%;
+}
+
+#pre_order > form input[type="text"] + span, #pre_order > form input[type="text"] + a {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    color: white;
+    background: #35c5f0;
+    width: calc(25% - 10px);
+    margin-left: 10px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#pre_order > form > .panel > .input > .field > .input.vertical {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+#pre_order > form > .panel > .input > .field .non_edit {
+    background-color: #eeeeee;
+}
+
+#pre_order > form > .panel > .input > .field > .input.vertical > input:first-child {
+    margin-bottom: 10px;
+}
+
+#pre_order > form input[type="text"].full, #pre_order > form input[type="number"].full {
+    width: 100%;
+}
+
+#pre_order > form > .panel > .input > .field > .input.phone > input {
+    width: 50%;
+}
+
+#pre_order > form > .panel > .input > .field > .label.vertical {
+
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+
+}
+
+#pre_order > form > .panel > .input > .field > .input #delivery_message {
+    margin-bottom: 3px;
+}
+
+#pre_order > form > .panel > .input > .field > .input #delivery_message_presets {
+    display: none;
+    position: absolute;
+    width: 610px;
+    background: white;
+    z-index: 100;
+}
+
+#pre_order > form > .panel > .input > .field > .input #delivery_message_presets > .preset {
+    padding: 10px;
+    font-size: 13px;
+    border-bottom: 1px solid #eee;
+    border-right: 1px solid #eee;
+    border-left: 1px solid #eee;
+}
+
+#pre_order > form > .panel > .cost {
+    font-size: 15px;
+    padding: 10px 10px 0;
+}
+
+#pre_order > form > .panel > .cost > .cost_panel {
+    margin-top: 10px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+#pre_order > form > .panel > .cost > .cost_panel > .title {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 0px;
+    -moz-box-flex: 1;
+    -moz-flex: 1 0 0px;
+    -ms-flex: 1 0 0px;
+    flex: 1 0 0px;
+}
+
+#pre_order > form > .panel > .cost > .cost_panel > .amount {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 0px;
+    -moz-box-flex: 1;
+    -moz-flex: 1 0 0px;
+    -ms-flex: 1 0 0px;
+    flex: 1 0 0px;
+    text-align: right;
+    font-family: Tahoma;
+}
+
+#pre_order > form > .panel > .cost > .cost_panel.total {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#pre_order > form > .panel > .cost > .cost_panel > .title {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 0px;
+    -moz-box-flex: 1;
+    -moz-flex: 1 0 0px;
+    -ms-flex: 1 0 0px;
+    flex: 1 0 0px;
+}
+
+#pre_order > form > .panel > .cost > .cost_panel > .amount {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 0px;
+    -moz-box-flex: 1;
+    -moz-flex: 1 0 0px;
+    -ms-flex: 1 0 0px;
+    flex: 1 0 0px;
+    text-align: right;
+    font-family: Tahoma;
+}
+
+#pre_order > form #do_payment {
+    margin: 40px 10px 40px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 50px;
+    background: #35c5f0;
+    border-radius: 4px;
+    cursor: pointer;
+}

@@ -24,8 +24,15 @@ public class MainCommunityDAO extends SqlSessionDaoSupport {
 		return zipList;
 	}
 	
-	public List<ProductVO> selectRankList() {
+	public List<ProductVO> selectDealList() {
+		List<ProductVO> dealList = new ArrayList<ProductVO>();
+		dealList = getSqlSession().selectList("MainSql.selectDealList");
+		return dealList;
+	}
+	
+	public List<ProductVO> selectRankList(String categoryNm) {
 		List<ProductVO> rankList = new ArrayList<ProductVO>();
+		rankList = getSqlSession().selectList("MainSql.selectRankList", categoryNm);
 		return rankList;
 	}
 

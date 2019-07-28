@@ -102,12 +102,23 @@
 					 , R.REG_DATE AS regDate
 					 , M.MEMBER_NICKNAME AS memberNickname
 					 , M.MEMBER_IMAGE AS memberImage
+					 , (SELECT 'Y' FROM MEMBER WHERE MEMBER_NO = R.MEMBER_NO AND REVIEW_LIKE LIKE '% '||R.REW_NO||',%') AS reviewLike
+					 , (SELECT COUNT(*) FROM MEMBER WHERE REVIEW_LIKE LIKE '% '||R.REW_NO||',%') AS reviewLikeCnt
 				FROM REVIEW R, MEMBER M
 				WHERE R.MEMBER_NO = M.MEMBER_NO
 				AND PROD_NO = #{prodNo}
+				<if test="imageOnly != null || imageOnly = 'Y'">
+				AND R.REW_IMG IS NOT NULL
+				</if>
 			)b
 	  	)a
 	  	<![CDATA[ WHERE a.RNUM>=#{startNo} AND a.RNUM<=#{endNo}]]>
+	  	<if test="sorting == 'best'">
+    	   ORDER BY a.reviewLikeCnt DESC 
+  		</if>
+  		<if test="sorting == 'new'">
+    	   ORDER BY a.regDate DESC 
+  		</if>
 	</select>
 	
 	<select id="getReviewTotalCount" parameterType="int" resultType="int">
@@ -115,4 +126,15 @@
 		FROM REVIEW
 		WHERE PROD_NO = #{prodNo}
 	</select>
+	
+	<select id="selectReviewLike" parameterType="String" resultType="String">
+		SELECT REVIEW_LIKE 
+		FROM MEMBER
+		WHERE MEMBER_NO = ${value}
+	</select>
+	
+	<update id="toggleReviewLike" parameterType="mvo">
+		UPDATE MEMBER SET REVIEW_LIKE = #{review_like}
+		WHERE MEMBER_NO = ${member_no}
+	</update>
 </mapper>

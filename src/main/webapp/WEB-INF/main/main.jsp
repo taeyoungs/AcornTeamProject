@@ -77,7 +77,6 @@
 				</div>
 			</div>
 		</div>
-		</div>
 	</section>
 
 <!-- Category -->
@@ -139,7 +138,7 @@
 	<c:forEach var="zip" items="${zipList}">
 		<li class="col-6 col-md-3 home-stories__content__item">
 			<article class="story-entry story-story-item">
-				<a class="story-entry-link">
+				<a class="story-entry-link" href="/zipdle/${zip.zipSeqNo}/zipdleDetail">
 					<div class="story-entry__image-wrap">
 						<img class="story-entry__image lazyload" src="${zip.zipImage}">
 					</div>
@@ -163,7 +162,7 @@
 		</c:forEach>
 		<div class="col-6 col-md-3 home-stories__content__menu-wrap">
 			<div class="home-stories__content__menu">
-				<a class="home-stories__content__menu__entry">
+				<a class="home-stories__content__menu__entry" href="/zipdle/gotoZipList">
 					<div class="description">예쁜 집 구경하기</div>
 					<div class="title">
 						<span class="text">집들이</span>
@@ -239,32 +238,36 @@
 <section class="container home-section home-recommends home-section--scroll">
 	<header class="row home-section__header">
 		<h2 class="col home-section__header__content">오늘의 딜</h2>
-		<a class="home-section__header__more" href="">더보기</a>
+		<a class="home-section__header__more" href="/store/store.do">더보기</a>
 	</header>
 	<div class="scroller-wrap home-recommends__content-wrap">
 		<div class="scroller scroller--enable">
 			<div class="scroller__content home-scroll-wrap">
 				<ul class="row home-recommends__content home-scroll">
-					<li class="col-5 col-md-3 col-xl-2 home-recommends__content__item scroller__item">
-						<div class="product-simplified home-production-item">
-							<a class="product-item" href="">
-								<div class="img-wrap square">
-									<img class="lazyload" src="/image/deal01.jpg">
-								</div>
-								<div class="info">
-									<p class="product-name text-caption-1 line-height-normal"></p>
-									<p class="price text-caption-3">
-										<span class="discount-ratio text-blue text-body-1 bold"></span>
-										<strong class="selling-price text-body-1 text-black"></strong>
-									</p>
-								</div>
-							</a>
-						</div>
-					</li>
+					<c:forEach items="${dealList}" var="deal">
+						<li class="col-5 col-md-3 col-xl-2 home-recommends__content__item scroller__item">
+							<div class="product-simplified home-production-item">
+								<a class="product-item" href="/store/selling.do?prodNo=${deal.prodNo}">
+									<div class="img-wrap square">
+										<img class="lazyload" src="${deal.prodImage}">
+									</div>
+									<div class="info">
+										<p class="product-name text-caption-1 line-height-normal">${deal.prodTitle}</p>
+										<p class="price text-caption-3">
+											<span class="discount-ratio text-blue text-body-1 bold">${deal.discountRate}%</span>
+											<strong class="selling-price text-body-1 text-black">
+												<fmt:formatNumber value="${deal.prodPrice-(deal.prodPrice*deal.discountRate/100)}" pattern="#,###"/>
+											</strong>
+										</p>
+									</div>
+								</a>
+							</div>
+						</li>
+					</c:forEach>
 				</ul>
 			</div>
 			<div class="scroller__ui">
-				<div class="scroller__ui__left scroller--hide">
+				<div class="scroller__ui__left">
 					<span class="unselected icon-page-home__a-1"></span>
 					<span class="selected icon-page-home__c-1"></span>
 				</div>
@@ -277,173 +280,170 @@
 	</div>
 </section>
 
-
-		
-<%-- 		<!-- Slider -->
-		<div id="main_recommends_slider_wrap">
-			<ul id="main_recommends_product_list">
-				<li class="main_recommends_product_items">
-					<div class="main_recommends_pruduct_wrap">
-						<a class="main_recommends_product_item">
-							<div class="img-wrap-square">
-								<img src="${root}/image/deal01.jpg"></div>
-							<div class="img-wrap-info">not yet
-		<div id="recommends_pagination-wrap">
-		<!--BUTTONS -->
-		<div class="recommends_btns_wrapper">
-			<div class="recommends_btns next" id="recommends_next">
-			<div class="recommends_btns previous" id="recommends_previous"> --%>
-
-
-
-<!-- 베스트 50 -->
-
-<section class="container home-section home-rank">
-	<header class="row home-section__header">
-		<h2 class="col home-section__header__content">베스트 50</h2>
-		<a class="home-section__header__more" href="/store/ranks.do">더보기</a>
-	</header>
-	<div class="production-rank-feed ">
-		<ul class="production-rank-feed__category">
-			<li class="production-rank-feed__category__item">전체</li>
-			<li class="production-rank-feed__category__item">기구</li>
-			<li class="production-rank-feed__category__item">가전</li>
-			<li class="production-rank-feed__category__item">인테리어</li>
-		</ul>
-		<div class="row production-rank-feed__group">
-			<div class="col production-rank-feed__list-wrap">
-				<ul class="row production-rank-feed__list">
-					<c:forEach items="${rankList}" var="rank">
-					<div class="col-4 production-rank-feed__item">
-						<div class="product-simplified home-production-item">
-							<a class="product-item" href="">
-								<div class="img-wrap square">
-									<img class="lazyload" src="${root}/image/${rank.prodImage}">
-								</div>
-								<div class="info">
-									<p class="product-name text-caption-1 line-height-normal"></p>
-									<p class="price text-caption-3">
-										<span class="discount-ratio text-blue text-body-1 bold">${rank.discountRate}%</span>
-										<strong class="selling-price text-body-1 text-black">${rank.prodPrice}</strong>
-									</p>
-								</div>
-								<div class="home-rank-icon">
-									<span class="pc icon-page-home__a-2">1</span>
-									<span class="mobile icon-page-home__b-2">1</span>
-								</div>
-							</a>
-							
+	<!-- 베스트 100 -->
+	<section class="container home-section home-rank">
+		<header class="row home-section__header">
+			<h2 class="col home-section__header__content">베스트 100</h2>
+			<a class="home-section__header__more" href="/store/ranks.do">더보기</a>
+		</header>
+		<div class="production-rank-feed ">
+			<ul class="production-rank-feed__category">
+				<li class="production-rank-feed__category__item" onclick="changeBestCategory('all')">전체</li>
+				<li class="production-rank-feed__category__item" onclick="changeBestCategory('furniture')">가구</li>
+				<li class="production-rank-feed__category__item" onclick="changeBestCategory('electronics')">가전</li>
+				<li class="production-rank-feed__category__item" onclick="changeBestCategory('interior')">인테리어</li>
+			</ul>
+			<!-- 전체 -->
+			<div class="row production-rank-feed__group">
+				<div class="col production-rank-feed__list-wrap" id="all">
+					<ul class="row production-rank-feed__list">
+					<c:forEach items="${rankListAll}" var="rank" varStatus="status">
+						<input type="hidden" id="categoryNm" name="categoryNm" value="${categoryNm}">						
+						<div class="col-4 production-rank-feed__item">
+							<div class="product-simplified home-production-item">
+								<a class="product-item" href="/store/selling.do?prodNo=${rank.prodNo}">
+									<div class="img-wrap square">
+										<img class="lazyload" src="${root}${rank.prodImage}">
+									</div>
+									<div class="info">
+										<p class="product-name text-caption-1 line-height-normal">${rank.prodTitle}</p>
+										<p class="price text-caption-3">
+											<span class="discount-ratio text-blue text-body-1 bold">${rank.discountRate}%</span>
+											<strong class="selling-price text-body-1 text-black">
+												<fmt:formatNumber value="${rank.prodPrice-(rank.prodPrice*rank.discountRate/100)}" pattern="#,###"/>
+											</strong>
+										</p>
+									</div>
+									<c:if test="${status.count < 4}">
+									<div class="home-rank-icon">
+										<span class="pc icon-page-home__a-2">${status.count}</span>
+										<span class="mobile icon-page-home__b-2">${status.count}</span>
+									</div>
+									</c:if>
+								</a>
+							</div>
 						</div>
-					</div>
-					
-					<!-- <div class="col-4 production-rank-feed__item">
-						<div class="product-simplified home-production-item">
-							<a class="product-item" href="">
-								<div class="img-wrap square">
-									<img class="lazyload" src="/image/deal03.jpg">
-								</div>
-								<div class="info">
-									<p class="product-name text-caption-1 line-height-normal"></p>
-									<p class="price text-caption-3">
-										<span class="discount-ratio text-blue text-body-1 bold"></span>
-										<strong class="selling-price text-body-1 text-black"></strong>
-									</p>
-								</div>
-								<div class="home-rank-icon">
-									<span class="pc icon-page-home__a-2">2</span>
-									<span class="mobile icon-page-home__b-2">2</span>
-								</div>
-							</a>
-						</div>
-					</div> -->
-					
-					<!-- <div class="col-4 production-rank-feed__item">
-						<div class="product-simplified home-production-item">
-							<a class="product-item" href="">
-								<div class="img-wrap square">
-									<img class="lazyload" src="/image/deal04.jpg">
-								</div>
-								<div class="info">
-									<p class="product-name text-caption-1 line-height-normal"></p>
-									<p class="price text-caption-3">
-										<span class="discount-ratio text-blue text-body-1 bold"></span>
-										<strong class="selling-price text-body-1 text-black"></strong>
-									</p>
-								</div>
-								<div class="home-rank-icon">
-									<span class="pc icon-page-home__a-2">3</span>
-									<span class="mobile icon-page-home__b-2">3</span>
-								</div>
-							</a>
-						</div>
-					</div> -->
 					</c:forEach>
-				</ul>
-			</div>
-			<div class="col-12 col-md-3 home-rank__more-wrap">
-				<div class="home-rank__more-container">
-					<a class="home-rank__more" href="/store/ranks.do">
-						<div class="home-rank__more__text">베스트 50 보기
-							<div class="home-rank__more__text__icon">
-								<span class="unselected icon-page-home__b-1"></span>
-								<span class="selected icon-page-home__d-1"></span>
+					</ul>
+				</div>
+				<!-- 가구 -->
+				<div class="col production-rank-feed__list-wrap" id="furniture" style="display:none">
+					<ul class="row production-rank-feed__list">
+					<c:forEach items="${rankListFurniture}" var="rank" varStatus="status">
+						<div class="col-4 production-rank-feed__item">
+							<div class="product-simplified home-production-item">
+								<a class="product-item" href="/store/selling.do?prodNo=${rank.prodNo}">
+									<div class="img-wrap square">
+										<img class="lazyload" src="${rank.prodImage}">
+									</div>
+									<div class="info">
+										<p class="product-name text-caption-1 line-height-normal">${rank.prodTitle}</p>
+										<p class="price text-caption-3">
+											<span class="discount-ratio text-blue text-body-1 bold">${rank.discountRate}%</span>
+											<strong class="selling-price text-body-1 text-black">
+												<fmt:formatNumber value="${rank.prodPrice-(rank.prodPrice*rank.discountRate/100)}" pattern="#,###"/>
+											</strong>
+										</p>
+									</div>
+									<c:if test="${status.count < 4}">
+									<div class="home-rank-icon">
+										<span class="pc icon-page-home__a-2">${status.count}</span>
+										<span class="mobile icon-page-home__b-2">${status.count}</span>
+									</div>
+									</c:if>
+								</a>
 							</div>
 						</div>
-					</a>
+					</c:forEach>
+					</ul>
 				</div>
-			</div>
-			<div class="col-12 home-section__more-wrap">
-				<div class="home-section__more">
-					<a class="home-section__more__btn" href="">카테고리 BEST 100 보기</a>
-				</div>
-			</div>
-		</div>
-		<div class="row production-rank-feed__group hide">
-			<div class="col production-rank-feed__list-wrap">
-				<ul class="row production-rank-feed__list">
-					<div class="col-4 production-rank-feed__item">
-						<div class="product-simplified home-production-item">
-							<a class="product-item" href="">
-								<div class="img-wrap square">
-									<img class="lazyload" src="">
-								</div>
-								<div class="info">
-									<p class="product-name text-caption-1 line-height-normal"></p>
-									<p class="price text-caption-3">
-										<span class="discount-ratio text-blue text-body-1 bold"></span>
-										<strong class="selling-price text-body-1 text-black"></strong>
-									</p>
-								</div>
-								<div class="home-rank-icon">
-									<span class="pc icon-page-home__a-2">1</span>
-									<span class="mobile icon-page-home__b-2">1</span>
-								</div>
-							</a>
+				
+				<!-- 가전 -->
+				<div class="col production-rank-feed__list-wrap" id="electronics" style="display:none">
+					<ul class="row production-rank-feed__list">
+						<c:forEach items="${rankListElectronics}" var="rank" varStatus="status">
+						<div class="col-4 production-rank-feed__item">
+							<div class="product-simplified home-production-item">
+								<a class="product-item" href="/store/selling.do?prodNo=${rank.prodNo}">
+									<div class="img-wrap square">
+										<img class="lazyload" src="${rank.prodImage}">
+									</div>
+									<div class="info">
+										<p class="product-name text-caption-1 line-height-normal">${rank.prodTitle}</p>
+										<p class="price text-caption-3">
+											<span class="discount-ratio text-blue text-body-1 bold">${rank.discountRate}%</span>
+											<strong class="selling-price text-body-1 text-black">
+												<fmt:formatNumber value="${rank.prodPrice-(rank.prodPrice*rank.discountRate/100)}" pattern="#,###"/>
+											</strong>
+										</p>
+									</div>
+									<c:if test="${status.count < 4}">
+									<div class="home-rank-icon">
+										<span class="pc icon-page-home__a-2">${status.count}</span>
+										<span class="mobile icon-page-home__b-2">${status.count}</span>
+									</div>
+									</c:if>
+								</a>
+							</div>
 						</div>
+						</c:forEach>
+					</ul>
+				</div>
+				
+				<!-- 인테리어 -->
+				<div class="col production-rank-feed__list-wrap" id="interior" style="display:none">
+					<ul class="row production-rank-feed__list">
+						<c:forEach items="${rankListInterior}" var="rank" varStatus="status">
+						<div class="col-4 production-rank-feed__item">
+							<div class="product-simplified home-production-item">
+								<a class="product-item" href="/store/selling.do?prodNo=${rank.prodNo}">
+									<div class="img-wrap square">
+										<img class="lazyload" src="${rank.prodImage}">
+									</div>
+									<div class="info">
+										<p class="product-name text-caption-1 line-height-normal">${rank.prodTitle}</p>
+										<p class="price text-caption-3">
+											<span class="discount-ratio text-blue text-body-1 bold">${rank.discountRate}%</span>
+											<strong class="selling-price text-body-1 text-black">
+												<fmt:formatNumber value="${rank.prodPrice-(rank.prodPrice*rank.discountRate/100)}" pattern="#,###"/>
+											</strong>
+										</p>
+									</div>
+									<c:if test="${status.count < 4}">
+									<div class="home-rank-icon">
+										<span class="pc icon-page-home__a-2">${status.count}</span>
+										<span class="mobile icon-page-home__b-2">${status.count}</span>
+									</div>
+									</c:if>
+								</a>
+							</div>
+						</div>
+						</c:forEach>
+					</ul>
+				</div>
+				
+				<!-- 더보기 -->
+				<div class="col-12 col-md-3 home-rank__more-wrap">
+					<div class="home-rank__more-container">
+						<a class="home-rank__more" href="/store/ranks.do">
+							<div class="home-rank__more__text">베스트 100 보기
+								<div class="home-rank__more__text__icon">
+									<span class="unselected icon-page-home__b-1"></span>
+									<span class="selected icon-page-home__d-1"></span>
+								</div>
+							</div>
+						</a>
 					</div>
-				</ul>
-			</div>
-			<div class="col-12 col-md-3 home-rank__more-wrap">
-				<div class="home-rank__more-container">
-					<a class="home-rank__more" href="">
-						<div class="home-rank__more__text">베스트 100 보기
-							<div class="home-rank__more__text__icon">
-								<span class="unselected icon-page-home__b-1"></span>
-								<span class="selected icon-page-home__d-1"></span>
-							</div>
-						</div>
-					</a>
+				</div>
+				<div class="col-12 home-section__more-wrap">
+					<div class="home-section__more">
+						<a class="home-section__more__btn" href="/store/ranks.do">카테고리 BEST 100 보기</a>
+					</div>
 				</div>
 			</div>
-			<div class="col-12 home-section__more-wrap">
-				<div class="home-section__more">
-					<a class="home-section__more__btn" href="">카테고리 BEST 100 보기</a>
-				</div>
-			</div>
+			
 		</div>
-		
-	</div>
-</section>
+	</section>
 </div>
 <div id="flash_messages">
     <c:if test="${loginCondition eq 'logout'}">

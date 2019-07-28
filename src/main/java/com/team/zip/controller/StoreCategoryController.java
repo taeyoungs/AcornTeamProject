@@ -2,6 +2,7 @@ package com.team.zip.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +13,6 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team.zip.model.vo.CommonCodeVO;
+import com.team.zip.model.vo.MemberVO;
 import com.team.zip.model.vo.ProductVO;
 import com.team.zip.model.vo.StoreReviewVO;
 import com.team.zip.service.StoreCategoryService;
@@ -173,9 +174,24 @@ public class StoreCategoryController {
 		ProductVO productVO = new ProductVO();
 		productVO = storeProductService.getProductDetail(prodNo);
 		
+		int startNo = 1; //각페이지의시작번호
+		int endNo = 3; //각페이지의끝번호
+		
+		List<StoreReviewVO> reviewList = new ArrayList<StoreReviewVO>();
+		StoreReviewVO storeReviewVO = new StoreReviewVO();
+		storeReviewVO.setProdNo(Integer.parseInt(prodNo));
+		storeReviewVO.setStartNo(startNo);
+		storeReviewVO.setEndNo(endNo);
+		storeReviewVO.setImageOnly("N");
+		storeReviewVO.setSorting("best");
+		reviewList = storeReviewService.getReviewList(storeReviewVO);
+		int reviewTotalCount = storeReviewService.getReviewTotalCount(Integer.parseInt(prodNo));
+		
 		//조회수 증가 
 		storeProductService.updateHits(prodNo);
 		
+		mav.addObject("reviewTotalCount", reviewTotalCount);
+		mav.addObject("reviewList", reviewList);
 		mav.addObject("login", login);
 		mav.addObject("memberNo", memberNo);
 		mav.addObject("product", productVO);
@@ -183,9 +199,10 @@ public class StoreCategoryController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/store/sellingAjax.do", method = RequestMethod.POST)
+	//리뷰 출력 Ajax
+	@RequestMapping(value = "/store/reviewAjax.do", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject getReviewListForAjax(@PathVariable int prodNo,
+	public JSONObject getReviewListForAjax(@RequestParam int prodNo,
 			@ModelAttribute StoreReviewVO storeReviewVO,
 			@RequestParam(value = "pageNo", defaultValue = "1") int currentPage)
 	{
@@ -226,7 +243,11 @@ public class StoreCategoryController {
 		
 		
 		List<StoreReviewVO> reviewList = new ArrayList<StoreReviewVO>();
-		reviewList = storeReviewService.getReviewList(prodNo, startNo, endNo);
+		
+		storeReviewVO.setProdNo(prodNo);
+		storeReviewVO.setStartNo(startNo);
+		storeReviewVO.setEndNo(endNo);
+		reviewList = storeReviewService.getReviewList(storeReviewVO);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonList = "";
@@ -270,4 +291,48 @@ public class StoreCategoryController {
 		
 		return "redirect:/store/selling.do?prodNo="+storeReviewVO.getProdNo();
 	}
+	
+	
+	//리뷰 "도움이돼요"
+	@RequestMapping(value = "/store/reviewToggleAjax.do", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject reviewToggleAjax(@RequestParam String rewNo, HttpSession session) {
+		
+		JSONObject jsonObj = new JSONObject();
+		MemberVO mvo = new MemberVO();
+		
+		//로그인 유무 CHECK
+		String login = (String)session.getAttribute("loginok");
+		String memberNo = String.valueOf(session.getAttribute("member_no"));
+		
+		if(login == null) {
+			jsonObj.put("result", "loginForm");
+			return jsonObj;
+		}
+		
+		String reviewLike = storeReviewService.selectReviewLike(memberNo);
+		System.out.println("reviewLike1 : "+reviewLike);
+		if (reviewLike != null && !"".equals(reviewLike)) {
+			String[] reviewNoArr = reviewLike.split(",");
+			boolean matched = Arrays.stream(reviewNoArr).anyMatch((" "+rewNo)::equals);
+			System.out.println("matched : "+matched);
+			if(matched) {
+				reviewLike = reviewLike.replace((" "+rewNo+","), "");
+				jsonObj.put("result", "N");
+			}else {
+				reviewLike = reviewLike + " "+rewNo + ",";
+				jsonObj.put("result", "Y");
+			}
+		}else {
+			reviewLike = " "+rewNo + ",";
+			jsonObj.put("result", "Y");
+		}
+		mvo.setMember_no(Integer.parseInt(memberNo));
+		mvo.setReview_like(reviewLike);
+		System.out.println("reviewLike2 : "+reviewLike);
+		int result = storeReviewService.toggleReviewLike(mvo);
+		System.out.println("result : "+result);
+		return jsonObj;
+	}
+	
 }

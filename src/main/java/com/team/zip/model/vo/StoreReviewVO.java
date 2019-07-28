@@ -13,10 +13,14 @@ public class StoreReviewVO {
 	private Timestamp regDate;
 	private String memberNickname;
 	private String memberImage;
-	private String startNo;
-	private String endNo;
+	private int startNo;
+	private int endNo;
 	private String currentPage;
 	private String reviewCnt;
+	private String reviewLike;
+	private String reviewLikeCnt;
+	private String sorting;
+	private String imageOnly;
 	
 	public String getRewNo() {
 		return rewNo;
@@ -78,16 +82,16 @@ public class StoreReviewVO {
 	public void setMemberImage(String memberImage) {
 		this.memberImage = memberImage;
 	}
-	public String getStartNo() {
+	public int getStartNo() {
 		return startNo;
 	}
-	public void setStartNo(String startNo) {
+	public void setStartNo(int startNo) {
 		this.startNo = startNo;
 	}
-	public String getEndNo() {
+	public int getEndNo() {
 		return endNo;
 	}
-	public void setEndNo(String endNo) {
+	public void setEndNo(int endNo) {
 		this.endNo = endNo;
 	}
 	public String getCurrentPage() {
@@ -101,5 +105,29 @@ public class StoreReviewVO {
 	}
 	public void setReviewCnt(String reviewCnt) {
 		this.reviewCnt = reviewCnt;
+	}
+	public String getReviewLike() {
+		return reviewLike;
+	}
+	public void setReviewLike(String reviewLike) {
+		this.reviewLike = reviewLike;
+	}
+	public String getReviewLikeCnt() {
+		return reviewLikeCnt;
+	}
+	public void setReviewLikeCnt(String reviewLikeCnt) {
+		this.reviewLikeCnt = reviewLikeCnt;
+	}
+	public String getSorting() {
+		return sorting;
+	}
+	public void setSorting(String sorting) {
+		this.sorting = sorting;
+	}
+	public String getImageOnly() {
+		return imageOnly;
+	}
+	public void setImageOnly(String imageOnly) {
+		this.imageOnly = imageOnly;
 	}
 }

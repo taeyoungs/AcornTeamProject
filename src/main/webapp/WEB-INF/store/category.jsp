@@ -280,7 +280,7 @@
                                         <div class="product-item__info__price">
                                             <span class="discount-rate">${prod.discountRate}%</span>
                                             <strong>
-                                            	<fmt:formatNumber value="${prod.prodPrice}" pattern="#,###"/>
+                                            	<fmt:formatNumber value="${prod.prodPrice-(prod.prodPrice*prod.discountRate/100)}" pattern="#,###"/>
                                             </strong>
                                         </div>
                                     </div>

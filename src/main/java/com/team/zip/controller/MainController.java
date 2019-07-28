@@ -58,17 +58,24 @@ public class MainController {
 		session.removeAttribute("category");
 		session.setAttribute("category", "main");
 		
-		ProductVO productVO = new ProductVO();
-		String categoryNm = productVO.getCategoryNm();
 		
 		List<MainCommunityVO> photoList = mainService.selectPhotoList();
 		List<MainCommunityVO> zipList = mainService.selecZipList();
-		List<ProductVO> rankList = mainService.selectRankLsit();
+		List<ProductVO> dealList = mainService.selectDealList();
+		List<ProductVO> rankListAll = mainService.selectRankLsit(null);
+		List<ProductVO> rankListFurniture = mainService.selectRankLsit("가구");
+		List<ProductVO> rankListElectronics = mainService.selectRankLsit("가전");
+		List<ProductVO> rankListInterior = mainService.selectRankLsit("인테리어");
+		
 		
 		mav.addObject("photoList", photoList);
 		mav.addObject("where", where);
 		mav.addObject("zipList", zipList);
-		mav.addObject("rankList", rankList);
+		mav.addObject("dealList", dealList);
+		mav.addObject("rankListAll", rankListAll);
+		mav.addObject("rankListFurniture", rankListFurniture);
+		mav.addObject("rankListElectronics", rankListElectronics);
+		mav.addObject("rankListInterior", rankListInterior);
 		mav.setViewName("/main/main");
 		return mav;
 	}

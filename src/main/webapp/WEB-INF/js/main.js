@@ -197,24 +197,26 @@ var deal_pos = 0;
 var deal_totalSlides;
 //get the slide width
 var deal_sliderWidth;
-
+$(window).resize(function(){
+	deal_sliderWidth = $('.scroller__content ul li').width()+20; 
+});
 $(document).ready(function(){
-	deal_totalSlides = $('#main_recommends_slider_wrap ul li').length;
-	deal_sliderWidth = $('#main_recommends_slider_wrap ul li').width()+10; 
+	deal_totalSlides = $('.scroller__content ul li').length;
+	deal_sliderWidth = $('.scroller__content ul li').width()+20; 
  
 	/*****************
      BUILD THE SLIDER
     *****************/
     //set width to be 'x' times the number of slides
-    $('#main_recommends_slider_wrap ul#main_recommends_product_list').width(deal_sliderWidth*deal_totalSlides);
+    //$('.scroller__content ul.row.home-recommends__content.home-scroll').width(deal_sliderWidth*deal_totalSlides);
     
     //next slide    
-    $('#recommends_next').click(function(){
+    $('.scroller__ui__right').click(function(){
         deal_slideRight();
     });
     
     //previous slide
-    $('#recommends_previous').click(function(){
+    $('.scroller__ui__left').click(function(){
         deal_slideLeft();
     });
        
@@ -225,11 +227,11 @@ $(document).ready(function(){
     //pagination
     deal_pagination();
     
-    $('#main_recommends_slider_wrap').hover(
-    		function(){ $(this).addClass('active');}, 
-    		function(){ $(this).removeClass('active');}
-    );
-    
+//    $('.scroller__content').hover(
+//    		function(){ $(this).addClass('active');}, 
+//    		function(){ $(this).removeClass('active');}
+//    );
+     
 });//DOCUMENT READY
 
 	
@@ -239,7 +241,8 @@ $(document).ready(function(){
 	function deal_slideLeft(){
 	    deal_pos--;
 	    if(deal_pos==-1){ deal_pos = deal_totalSlides-1; }
-	    $('#main_recommends_slider_wrap ul#main_recommends_product_list').css('left', -(deal_sliderWidth*deal_pos));    
+	    //$('.scroller__content ul.row.home-recommends__content.home-scroll li:first').css('margin-left', -(deal_sliderWidth*deal_pos));
+	    $('div.scroller__content.home-scroll-wrap').scrollLeft((deal_sliderWidth*deal_pos));
 	    
 	    //*> optional
 	    deal_pagination();
@@ -251,7 +254,8 @@ $(document).ready(function(){
 	function deal_slideRight(){
 	    deal_pos++;
 	    if(deal_pos==deal_totalSlides){ deal_pos = 0; }
-	    $('#main_recommends_slider_wrap ul#main_recommends_product_list').css('left', -(deal_sliderWidth*deal_pos)); 
+	    //$('.scroller__content ul.row.home-recommends__content.home-scroll li:first').css('margin-left', -(deal_sliderWidth*deal_pos));
+	    $('div.scroller__content.home-scroll-wrap').scrollLeft((deal_sliderWidth*deal_pos));
 	    
 	    //*> optional 
 	    deal_pagination();
@@ -263,18 +267,30 @@ $(document).ready(function(){
 	************************/
 	
 	function deal_pagination(){
-	    $('#recommends_pagination-wrap ul li').removeClass('active');
-	    $('#recommends_pagination-wrap ul li:eq('+deal_pos+')').addClass('active');
-	    if (deal_pos == 0) {
-	    	$('#recommends_previous').hide();
+	    //$('.scroller__ui').removeClass('active');
+	    /*$('.scroller__ui ul li:eq('+deal_pos+')').addClass('active');*/
+	    /*if (deal_pos == 0) {
+	    	$('.scroller__ui__left').hide();
 	    } else {
-	    	$('#recommends_previous').show();
+	    	$('.scroller__ui__left').show();
 	    }
 		
-	    if (deal_pos == (deal_totalSlides - 6)) {
-	    	$('#recommends_next').hide();
+	    if (deal_pos == (deal_totalSlides - 11)) {
+	    	$('.scroller__ui__right').hide();
 	    } else {
-	    	$('#recommends_next').show();
+	    	$('.scroller__ui__right').show();
+	    }*/
+		var scrollLeft = $('div.scroller__content.home-scroll-wrap').scrollLeft();
+		if (scrollLeft == 0) {
+	    	$('.scroller__ui__left').hide();
+	    } else {
+	    	$('.scroller__ui__left').show();
+	    }
+		var wrapWidth = $('div.scroller__content.home-scroll-wrap').width();
+	    if ((scrollLeft+deal_sliderWidth) >= (wrapWidth - deal_sliderWidth)) {
+	    	$('.scroller__ui__right').hide();
+	    } else {
+	    	$('.scroller__ui__right').show();
 	    }
 	}
    
@@ -282,4 +298,32 @@ $(document).ready(function(){
 /*************************************************************
 					오늘의 인기사진 RANK
 *************************************************************/
+	
+	
+	
+/*************************************************************
+						베스트 100
+*************************************************************/
+function changeBestCategory(category){
+	$('.production-rank-feed__list-wrap').hide();
+	$('#'+category).show();
+}
+function all() {
+	$('div#furniture').removeClass('hide');
+}
+  
+function furniture() {
+	$('div#furniture').removeClass('hide');
+	$('#categoryNm').val('가구');
+}
+ 
+function electronics() {
+	$('div#furniture').removeClass('hide');
+	$('#categoryNm').val('가전');
+}
+   
+function interior() {
+	$('div#furniture').removeClass('hide');
+	$('#categoryNm').val('인테리어');
+}
    

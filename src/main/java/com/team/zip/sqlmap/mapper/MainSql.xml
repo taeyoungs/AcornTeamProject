@@ -37,7 +37,23 @@
 		<![CDATA[ WHERE ROWNUM < 4 ]]>
 	</select>
 	
-	<select id="selectRankList" resultType="productVO">
+	<select id="selectDealList" resultType="productVO">
+		SELECT * FROM (
+	        SELECT P.PROD_NO AS prodNo
+	             , P.PROD_TITLE AS prodTitle
+	             , P.PROD_PRICE AS prodPrice
+	             , P.PROD_IMG AS prodImage
+	             , P.DISCOUNT_RATE AS discountRate
+	             , P.CATEGORY_NO AS categoryNo
+	             , P.CATEGORY_NM AS categoryNm
+	             , P.PROD_HITS AS prodHits
+	        FROM PRODUCT P
+	        ORDER BY P.DISCOUNT_RATE DESC
+	     )
+	    <![CDATA[ WHERE ROWNUM < 11 ]]>
+	</select>
+	
+	<select id="selectRankList" parameterType="String" resultType="productVO">
 		  SELECT * FROM (
 	        SELECT P.PROD_NO AS prodNo
 	             , P.PROD_TITLE AS prodTitle
@@ -48,13 +64,12 @@
 	             , P.CATEGORY_NM AS categoryNm
 	             , P.PROD_HITS AS prodHits
 	        FROM PRODUCT P
-	        <!-- WHERE CATEGORY_NM = #{categoryNm} -->
+	        <if test="value != null and value != ''">
+		    	WHERE CATEGORY_NM = #{value}
+		  	</if>
 	        ORDER BY P.PROD_HITS DESC
-	        <!-- <if test="categoryNm != ''">
-		    	WHERE CATEGORY_NM = CATEGORY_NM
-		  	</if> -->
 	     )
-	    <![CDATA[ WHERE ROWNUM < 4; ]]>
+	    <![CDATA[ WHERE ROWNUM < 4 ]]>
 	</select>
 </mapper>
 

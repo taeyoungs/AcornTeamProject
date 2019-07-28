@@ -23,7 +23,11 @@ public class MainService {
 		return mainCommunityDAO.selectZipList();
 	}
 	
-	public List<ProductVO> selectRankLsit() {
-		return mainCommunityDAO.selectRankList();
+	public List<ProductVO> selectDealList() {
+		return mainCommunityDAO.selectDealList();
+	}
+	
+	public List<ProductVO> selectRankLsit(String categoryNm) {
+		return mainCommunityDAO.selectRankList(categoryNm);
 	}
 }

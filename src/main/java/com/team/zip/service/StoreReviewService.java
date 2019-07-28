@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team.zip.model.dao.StoreReviewDAO;
+import com.team.zip.model.vo.MemberVO;
 import com.team.zip.model.vo.StoreReviewVO;
 
 @Service
@@ -20,15 +21,19 @@ public class StoreReviewService {
 		storeReviewDAO.insertReview(storeReviewVO);
 	}
 
-	public List<StoreReviewVO> getReviewList(int prodNo, int startNo, int endNo) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("startNo", startNo);
-		map.put("endNo", endNo);
-		map.put("prodNo", prodNo);
-		return storeReviewDAO.getReviewList(prodNo, startNo, endNo);
+	public List<StoreReviewVO> getReviewList(StoreReviewVO storeReviewVO) {
+		return storeReviewDAO.getReviewList(storeReviewVO);
 	}
 	
 	public int getReviewTotalCount(int prodNo) {
 		return storeReviewDAO.getReviewTotalCount(prodNo);
+	}
+	
+	public String selectReviewLike(String memberNo) {
+		return storeReviewDAO.selectReviewLike(memberNo);
+	}
+	
+	public int toggleReviewLike(MemberVO mvo) {
+		return storeReviewDAO.toggleReviewLike(mvo);
 	}
 }

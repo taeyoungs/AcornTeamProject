@@ -16,7 +16,7 @@
 <body>
 <div id="body" class="orders pre_order">
     <div id="pre_order" class="bucket">
-        <form id="edit_order" class="edit_order" method="POST">
+        <form action="orderResult.do" id="edit_order" class="edit_order" method="POST" accept-charset="UTF-8">
             <div id="title">  주문/결제
                 <div id="open_order_productions" data-click-state=1>주문 상품 닫기</div>
             </div>
@@ -31,7 +31,7 @@
                                     <div class="cost_count">
                                         <div class="cost"><fmt:formatNumber value="${pvo.prodPrice}" pattern="#,###"/>원</div>
                                         <div class="divider">|</div>
-                                        <div class="count">1</div>
+                                        <div class="count">${counts }개</div>
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                     <div class="field">
                         <div class="label">휴대전화</div>
                         <div class="input phone">
-                            <input type="text" id="order_received_phone_number" name="order_contract">
+                            <input type="text" id="order_received_phone_number" name="order_contact">
                         </div>
                     </div>
                     <div class="field">
@@ -93,11 +93,11 @@
                 <div class="cost">
                     <div class="cost_panel">
                         <div class="title">총 상품 금액</div>
-                        <div id="preview_product_cost" class="amount"><fmt:formatNumber value="${pvo.prodPrice}" pattern="#,###"/>원</div>
+                        <div id="preview_product_cost" class="amount"><fmt:formatNumber value="${pvo.prodPrice*counts}" pattern="#,###"/>원</div>
                     </div>
                     <div class="cost_panel">
                         <div class="title">할인 금액</div>
-                        <div id="preview_delivery_cost" class="amount"><fmt:formatNumber value="${pvo.prodPrice*pvo.discountRate/100}" pattern="#,###"/>원</div>
+                        <div id="preview_delivery_cost" class="amount"><fmt:formatNumber value="${(pvo.prodPrice*counts)*pvo.discountRate/100}" pattern="#,###"/>원</div>
                     </div>
                     <div class="cost_panel">
                         <div class="title">배송비</div>
@@ -105,11 +105,15 @@
                     </div>
                     <div class="total cost_panel">
                         <div class="title">총 결제금액</div>
-                        <div id="preview_selling_cost" class="amount"><fmt:formatNumber value="${pvo.prodPrice-(pvo.prodPrice*pvo.discountRate/100)}" pattern="#,###"/>원</div>
+                        <div id="preview_selling_cost" class="amount"><fmt:formatNumber value="${(pvo.prodPrice*counts)-((pvo.prodPrice*counts)*pvo.discountRate/100)}" pattern="#,###"/>원</div>
                     </div>
+                   <input type="hidden" class="total_amount" name="order_price" value="${(pvo.prodPrice*counts)-((pvo.prodPrice*counts)*pvo.discountRate/100)}">
+                   <input type="hidden" class="prod_no" name="prod_no" value="${prod_No}">
+                   <input type="hidden" class="prod_counts" name="counts" value="${counts }">
+                   <input type="hidden" class="prod_title" name="prodTitle" value="${pvo.prodTitle }">
                 </div>
             </div>
-            <div id="do_payment">결제하기</div>
+            <button type="submit" id="do_payment">결제하기</button>
         </form>
     </div>
 </div>

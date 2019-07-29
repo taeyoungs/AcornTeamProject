@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="cart">
+	<insert id="insertCart" parameterType="HashMap">
+		insert into cart values (#{member_no}, #{prod_no}, #{counts}, sysdate)
+	</insert>
+	<select id="getCartList" parameterType="int" resultType="cavo">
+		select c.cart_no, 
+			   c.prod_no, 
+			   c.counts, 
+			   c.reg_date, 
+			   p.prod_title, 
+			   p.prod_price, 
+			   p.prod_img, 
+			   p.prod_seller, 
+			   p.discount_rate
+		from cart c, product p
+		where c.prod_no = p.prod_no and c.cart_no = #{cart_no}
+	</select>
+	<select id="getProdList" parameterType="HashMap" resultType="cavo">
+		select * from cart where cart_no = #{cart_no} and prod_no = #{prod_no}
+	</select>
+	<update id="updateProdCnt" parameterType="HashMap">
+		update cart set counts = counts + #{counts} where cart_no = #{cart_no} and prod_no = #{prod_no}
+	</update>
+	<select id="getListCnt" resultType="int" parameterType="int">
+		select count(*) as cnt from cart where cart_no = #{cart_no}
+	</select>
+</mapper>

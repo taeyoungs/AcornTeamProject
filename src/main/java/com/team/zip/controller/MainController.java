@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.team.zip.model.vo.MainCommunityVO;
 import com.team.zip.model.vo.MemberVO;
+import com.team.zip.service.CartService;
 import com.team.zip.service.MainService;
 import com.team.zip.service.MemberService;
 
@@ -24,6 +25,8 @@ public class MainController {
 	
 	@Autowired
 	private MainService mainService;
+	@Autowired
+	private CartService caservice;
 	
 	@RequestMapping("/main.do")
 	public ModelAndView mainGo(HttpSession session, @RequestParam(value="where", defaultValue = "home") String where,
@@ -41,7 +44,7 @@ public class MainController {
 				mvo.setMember_birth_2i(temp[1]);
 				mvo.setMember_birth_3i(temp[2]);
 			}
-			
+			session.setAttribute("cartCnt", caservice.getListCnt(memberNo));
             session.setAttribute("mvo", mvo);
             session.setMaxInactiveInterval(21600);
 		}

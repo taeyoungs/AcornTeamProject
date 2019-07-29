@@ -64,9 +64,18 @@
                         <a href="${root}/member/writelist" class="navi-primary_write-btn">
                             	글쓰기
                         </a>
-                        <a href="#" class="navi-primary_cart-btn navi-primary_button">
-                            <img src="${root}/image/common/cart gray.png" width="20">
-                        </a>
+                        <c:if test="${sessionScope.member_no eq null}">
+                        	<a href="member/gotoSignin" class="navi-primary_cart-btn navi-primary_button">
+                           		<img src="${root}/image/common/cart gray.png" width="20">
+                        	</a>
+                        </c:if>
+                        <c:if test="${sessionScope.member_no ne null}">
+                        	<a href="store/cart" class="navi-primary_cart-btn navi-primary_button">
+                            	<img src="${root}/image/common/cart gray.png" width="20">
+                            	<span class="ticker">${sessionScope.cartCnt}</span>
+                        	</a>
+                        </c:if>
+                        
                         <c:if test="${sessionScope.loginok eq 'login'}">
                         	<a href="" class="navi-primary_notification-btn navi-primary_button">
                         		<img src="${root}/image/common/notification gray.png" width="20">

@@ -72,16 +72,62 @@ $(function(){
 	
 	
 	//만약 전체 선택 체크박스가 체크된상태일경우 
-	if($("#allCheck").prop("checked")) { 
-		//해당화면에 전체 checkbox들을 체크해준다 
-		$("input[type=checkbox]").prop("checked",true); 
-		// 전체선택 체크박스가 해제된 경우 
-		} else { 
-			//해당화면에 모든 checkbox들의 체크를해제시킨다. 
-		$("input[type=checkbox]").prop("checked",false); 
+//	if($("#allCheck").prop("checked")) { 
+//		//해당화면에 전체 checkbox들을 체크해준다 
+//		$("input[type=checkbox]").prop("checked",true); 
+//		// 전체선택 체크박스가 해제된 경우 
+//		} else { 
+//			//해당화면에 모든 checkbox들의 체크를해제시킨다. 
+//		$("input[type=checkbox]").prop("checked",false); 
+//	}
+	
+	// 총 상품금액 표시
+	var prodPrices = $(".prod_prices").get();
+	var totalPrice = 0;
+	for (var i = 0; i < prodPrices.length; i++) {
+		var temp = parseInt($(".prod_prices").eq(i).val());
+		totalPrice += temp;
 	}
+	$('span.number').eq(0).text(totalPrice.format());
+	
+	// 총 할인금액 표시
+	var discountPrices = $(".discount_prices").get();
+	var totalDiscount = 0;
+	for (var i = 0; i < discountPrices.length; i++) {
+		var temp = parseInt($(".discount_prices").eq(i).val());
+		totalDiscount += temp;
+	}
+	$('span.number').eq(2).text("-"+totalDiscount.format());
+	
+	$('span.number').eq(3).text((totalPrice-totalDiscount).format());
+	
+	var cartProdCnt = $(".commerce-cart_content_group-item").get();
+	$("span.caption").text("모두선택 ("+cartProdCnt.length+"개)");
+	$(".commerce-cart_side-bar_order_btn").text(cartProdCnt.length+"개 상품 구매하기");
+	
+	
 });
 
 function allCheck() {
 	$(".round-checkbox-input_input").prop("checked", true); 
 }
+
+// js number format 함수 -> 숫자 타입
+Number.prototype.format = function(){
+    if(this==0) return 0;
+ 
+    var reg = /(^[+-]?\d+)(\d{3})/;
+    var n = (this + '');
+ 
+    while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+ 
+    return n;
+};
+
+//문자열 타입에서 쓸 수 있도록 format() 함수 추가
+String.prototype.format = function(){
+    var num = parseFloat(this);
+    if( isNaN(num) ) return "0";
+ 
+    return num.format();
+};

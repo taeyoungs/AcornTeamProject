@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team.zip.model.vo.MemberVO;
+import com.team.zip.service.CartService;
 import com.team.zip.service.KakaoAPI;
 import com.team.zip.service.MemberService;
 
@@ -31,6 +32,9 @@ public class LoginController {
 	
 	@Autowired
 	private MemberService mservice;
+	
+	@Autowired
+	private CartService caservice;
 	
 	
 	// 회원가입 폼으로 이동
@@ -120,6 +124,7 @@ public class LoginController {
 				session.setAttribute("loginok", "login");
 				session.setAttribute("member_no", member_no);
 				session.setAttribute("mvo", mvo);
+				session.setAttribute("cartCnt", caservice.getListCnt(member_no));
 				session.setMaxInactiveInterval(21600);
 				isMatch = true;
 				break;

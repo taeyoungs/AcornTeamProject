@@ -111,8 +111,11 @@ $(function(){
 				<input type="hidden" name="member_no" value="${sessionScope.member_no}">
 				<input type="hidden" name="b_reply_no" value="${vo.board_seq_no}">
 				<input type="hidden" name="pageNum" value="${pageNum}">
-				<textarea class="comment-feed__form__cover" name="b_reply_content" id="replybox"
+				<div class="comment-feed__form__content">
+				<div class="comment-feed__form__input">
+				<textarea class="comment-content-input__text comment-feed__form__content__text" name="b_reply_content" id="replybox"
 				placeholder="의견을 남겨 보세요." style="width:700px;height:35px;"></textarea>
+				</div></div>
 			</c:if>
 			<c:if test="${sessionScope.mvo.member_no==null}">
 				<a href="reply.do" class="comment-feed__form__cover">
@@ -136,9 +139,7 @@ $(function(){
 					<time class="comment-feed__item__footer__time">${bvo.reg_date}</time>
 					<span class="comment-feed__item__footer__likes zero">
 						<a class="comment-feed__item__footer__likes__icon" href="/users/sign_in">${bvo.member_no}</a>
-						<span class="comment-feed__item__footer__likes__count">0</span>
 					</span>
-						<a class="comment-feed__item__footer__like-btn" href="/users/sign_in">좋아요</a>
 						<c:if test="${sessionScope.mvo.member_no eq vo.member_no}">
 							<button class="comment-feed__item__footer__delete-btn" type="button"
 							onclick="location.href='replydelete.do?board_seq_no=${vo.board_seq_no}&b_reply_seq_no=${bvo.b_reply_seq_no}&pageNum=${pageNum}'">삭제</button>

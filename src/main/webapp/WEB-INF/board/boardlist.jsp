@@ -65,16 +65,15 @@ $(document).ready(function() {
 		</section>
 				<div style="display:inline-block;text-align:center;padding:50px;width:1200px;">
 					<div class="questions-filter__actions">
-						<a class="set-reply btn btn-normal btn-sm"
-							href="/questions?page=1&amp;reply=not_yet"> 답변을 기다리는 질문 </a> <a
-							class="questions-filter__actions__new-question btn btn-priority btn-sm"
+						 <a class="questions-filter__actions__new-question btn btn-priority btn-sm"
 							href="form.do">질문하기</a>
 					</div>
 				</div>
+<section id="questions-list" class="container">
 		<c:forEach var="vo" items="${list}">
-			<section id="questions-list" class="container">
 				<a class="questions-item__link"
 					href="view.do?board_seq_no=${vo.board_seq_no}&pageNum=${currentPage}">
+					<article class="questions-item">
 						<div class="questions-item__image">
 							<div class="image-wrap square">
 								<c:if test="${vo.board_image!='board_image'}">
@@ -107,8 +106,8 @@ $(document).ready(function() {
 						</footer>
 					</article>
 				</a>
-			</section>
 		</c:forEach>
+</section>
 <!-- paging -->
 <div style="width: 500px;text-align: center;margin:auto;">
 	<ul  class="pagination">

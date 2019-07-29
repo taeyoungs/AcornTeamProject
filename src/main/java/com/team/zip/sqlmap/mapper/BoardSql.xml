@@ -16,6 +16,7 @@
 		where a.RNUM>=#{start} and a.RNUM<=#{end}
 		 ]]>		
 	</select>
+	
 	<select id="boardTotalCount" resultType="int">
 		select count(*) from board
 	</select>
@@ -23,9 +24,6 @@
 	<update id="boardHitsUpdate" parameterType="int">
 		update board set board_hits=board_hits+1 where board_seq_no=#{board_seq_no}
 	</update>
-	<!-- <select id="boardSelectChu" parameterType="int" resultType="int">
-		select chu from board where num=#{num}
-	</select> -->
 	<delete id="boardDelete" parameterType="int">
 		delete from board where board_seq_no=#{board_seq_no}
 	</delete>
@@ -34,7 +32,7 @@
 		select * from board where board_seq_no=#{board_seq_no}
 	</select>
 	<update id="boardUpdate" parameterType="bvo">
-		update board set board_title=#{board_title},
+		update board set board_title=#{board_title}, board_image=#{board_image},
 		 board_content=#{board_content} where board_seq_no=#{board_seq_no}
 	</update>
 	

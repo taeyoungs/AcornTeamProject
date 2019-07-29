@@ -83,10 +83,6 @@ input, textarea, select {
     box-sizing: content-box;
 }
 
-#pre_order > form #order_productions td:first-child {
-    border-right: 1px solid #eee;
-}
-
 #pre_order > form #order_productions div.information {
     display: -webkit-box;
     display: -webkit-flex;
@@ -120,7 +116,8 @@ input, textarea, select {
 #pre_order > form #order_productions div.information > div > .name {
     font-size: 15px;
     color: #424242;
-    margin-bottom: 5px;
+    margin-top: 15px;
+    margin-bottom: 10px;
     font-weight: bold;
 }
 
@@ -305,7 +302,7 @@ input, textarea, select {
 #pre_order > form > .panel > .input > .field > .input #delivery_message_presets {
     display: none;
     position: absolute;
-    width: 610px;
+    width: 600px;
     background: white;
     z-index: 100;
 }

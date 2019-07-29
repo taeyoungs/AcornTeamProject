@@ -22,6 +22,20 @@ $(function(){
 			$(".ui-popup").css("display", "none");
 		}
 	});
+	
+	$(".btn-add-to-cart").on('click', function(){
+		var prodNo = $("#prodNo").val();
+		var counts = $("#counts").val();
+		
+		location.href='cart?prodNo='+prodNo+"&counts="+counts;
+	});
+	
+	$(".btn-buy-now").on('click', function(e){
+		var prodNo = $("#prodNo").val();
+		var counts = $("#counts").val();
+		
+		$(this).attr('href', 'preorder.do?prodNo='+prodNo+"&counts="+counts);
+	});
 });
 
 //리뷰쓰기 버튼 클릭 시 팝업 
@@ -40,10 +54,13 @@ function minus() {
 	if (count > 1) {
 		count--;
 		$('div.amount input').val(count);
-
+		console.log($('div.amount input').val());
+		console.log($('div.amount input'));
+		
 		var price = $('#salePrice').val() * count;
 		$('.text-heading-2').text(formatNumber(price));
 		$('span.amount').text(formatNumber(price));
+	
 	}
 }
 
@@ -52,10 +69,13 @@ function plus() {
 	if (count < 10) {
 		count++;
 		$('div.amount input').val(count);
+		console.log($('div.amount input').val());
+		console.log($('div.amount input'));
 		
 		var price = $('#salePrice').val() * count;
 		$('.text-heading-2').text(formatNumber(price));
 		$('span.amount').text(formatNumber(price));
+		
 	}
 }
 

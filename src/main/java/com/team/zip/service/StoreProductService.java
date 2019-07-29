@@ -28,7 +28,11 @@ public class StoreProductService {
 	}
 	
 	public void updateHits(String prodNo) { 
-		 storeProductDAO.updateHits(prodNo); 
+		storeProductDAO.updateHits(prodNo); 
+	}
+	
+	public ProductVO getProductOne(String prodNo) {
+		return storeProductDAO.getProductOne(prodNo);
 	}
 	 
 }

@@ -27,5 +27,9 @@ public class StoreProductDAO extends SqlSessionDaoSupport {
 	public void updateHits(String prodNo) { 
 		getSqlSession().update("updateHits", prodNo); 
 	}
+	
+	public ProductVO getProductOne(String prodNo) {
+		return getSqlSession().selectOne("getProductOne", prodNo);
+	}
 
 }

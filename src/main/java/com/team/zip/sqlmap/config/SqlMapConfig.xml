@@ -16,6 +16,7 @@
 		<typeAlias type="com.team.zip.model.vo.StoreReviewVO" alias="storeReviewVO"/>
 		<typeAlias type="com.team.zip.model.vo.ZipdleVO" alias="zvo"/>
 		<typeAlias type="com.team.zip.model.vo.ZipdleReplyVO" alias="zrvo"/>
+		<typeAlias type="com.team.zip.model.vo.OrderVO" alias="ovo"/>
 	</typeAliases>
     
 	<mappers>
@@ -27,5 +28,6 @@
 		<mapper resource="com/team/zip/sqlmap/mapper/StoreProductSql.xml"/>
 		<mapper resource="com/team/zip/sqlmap/mapper/ZipdleSql.xml"/>
 		<mapper resource="com/team/zip/sqlmap/mapper/StoreRank.xml"/>
+		<mapper resource="com/team/zip/sqlmap/mapper/StoreOrder.xml"/>
 	</mappers>
 </configuration>                           

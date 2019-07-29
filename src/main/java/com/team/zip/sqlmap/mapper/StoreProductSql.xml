@@ -104,4 +104,15 @@
 		WHERE R.MEMBER_NO = M.MEMBER_NO
 		AND PROD_NO = #{prodNo}
 	</select>
+	
+	<select id="getProductOne" parameterType="String" resultType="productVO">
+		SELECT PROD_NO AS prodNo
+			 , PROD_TITLE AS prodTitle
+			 , PROD_PRICE AS prodPrice
+			 , PROD_IMG AS prodImage
+			 , PROD_SELLER AS prodSeller
+			 , DISCOUNT_RATE AS discountRate
+		FROM PRODUCT
+		where prod_no = #{prodNo}
+	</select>
 </mapper>

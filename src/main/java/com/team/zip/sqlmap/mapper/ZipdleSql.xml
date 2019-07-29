@@ -22,9 +22,18 @@
 	<select id="getZipData" parameterType="int" resultType="zvo">
 		select * from zip where zip_seq_no = #{zip_seq_no}
 	</select>
+	<delete id="deleteZip" parameterType="int">
+		delete from zip where zip_seq_no = #{zip_seq_no}
+	</delete>
 	
 	<select id="getZipReplyCnt" resultType="int">
 		select count(*) as count from z_reply where z_reply_no = #{zip_seq_no}
+	</select>
+	<delete id="deleteZipReply" parameterType="int">
+		delete from z_reply where z_reply_seq_no = #{z_reply_seq_no}
+	</delete>
+	<select id="getReplyData" parameterType="int" resultType="zrvo">
+		select * from z_reply where z_reply_seq_no = #{z_reply_seq_no}
 	</select>
 	<insert id="insertZipReply" parameterType="zrvo">
 		insert into z_reply values (z_reply_seq_no.nextval, #{member_no}, #{z_reply_content}, sysdate, #{z_reply_no}, 0)
@@ -48,6 +57,12 @@
 		where a.RNUM >= #{start}
 	]]>
 	</select>
+	<update id="upReplyGood" parameterType="int">
+		update z_reply set z_reply_good = z_reply_good+1 where z_reply_seq_no = #{z_reply_seq_no}
+	</update>
+	<update id="downReplyGood" parameterType="int">
+		update z_reply set z_reply_good = z_reply_good-1 where z_reply_seq_no = #{z_reply_seq_no}
+	</update>
 	
 	<select id="getListWithMember" resultType="zvo">
 		select z.zip_seq_no,

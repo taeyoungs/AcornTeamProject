@@ -93,4 +93,8 @@ public class ZipdleService {
 		zdao.updateZipGoodDown(zip_seq_no);
 	}
 	
+	public void deleteZip(int zip_seq_no) {
+		zdao.deleteZip(zip_seq_no);
+	}
+	
 }

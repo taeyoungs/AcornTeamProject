@@ -16,7 +16,7 @@ public class ZipdleVO {
 	
 	private String member_nickname;
 	private String member_image;
-	
+
 	public String getMember_image() {
 		return member_image;
 	}

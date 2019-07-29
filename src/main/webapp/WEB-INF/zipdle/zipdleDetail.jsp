@@ -9,8 +9,6 @@
 <title>Insert title here</title>
 <c:set var="root" value="<%=request.getContextPath()%>"/>
 <script type="text/javascript" src="${root}/js/zipdle/zipdleDetail.js"></script>
-<script src="/js/zipdle/jquery.timeago.js"></script>
-<script src="/js/zipdle/jquery.timeago.ko.js"></script> <!-- 한국어로 표시하기 -->
 <link rel="stylesheet" type="text/css" href="${root}/css/zipdle/zipdleDetail.css">
 </head>
 <body>
@@ -23,15 +21,26 @@
 			<div class="contents">
 				<div class="category">
 					<div class="category">온라인 집들이</div>
-					<a class="report" href="/">신고</a>
+					<c:if test="${mvo.member_no != sessionScope.member_no}">
+						<a class="report" href="/">신고</a>
+					</c:if>
+					<c:if test="${mvo.member_no == sessionScope.member_no}">
+						<a class="delete" href="/">삭제</a>
+						<a class="modify" href="/">수정</a>
+					</c:if>
 				</div>
 				<div class="title"></div>
 				<div class="created_at">
 					<fmt:formatDate value="${zvo.reg_date}" pattern="yyyy년 MM월 dd일 HH:mm"/>
 				</div>
 				<div class="buttons">
-					<a class="">
-						<img class="icon like prject_${zvo.zip_seq_no}" src="/image/common/like-gray.png">
+					<a class="${isZipLike eq 'yes' ? 'active' : ''}">
+						<c:if test="${isZipLike eq 'yes'}">
+							<img class="icon like prject_${zvo.zip_seq_no}" src="/image/common/like-white.png">
+						</c:if>
+						<c:if test="${isZipLike ne 'yes'}">
+							<img class="icon like prject_${zvo.zip_seq_no}" src="/image/common/like-gray.png">
+						</c:if>
 						<div class="label">좋아요 <span class="count">${zvo.zip_good}</span></div>
 					</a>
 					<div class="btn-project-scrap" data-project-id="${zvo.zip_seq_no}"
@@ -53,6 +62,7 @@
 					<a class="">
 						<div class="other">
 							<input type="hidden" class="memberNo" value="${sessionScope.mvo.member_no}">
+							<input type="hidden" class="zipMemberNo" value="${zvo.member_no}">
 							<div class="nickname">${mvo.member_nickname}</div>
 							<div class="introduction">${mvo.member_comment}</div>
 						</div>

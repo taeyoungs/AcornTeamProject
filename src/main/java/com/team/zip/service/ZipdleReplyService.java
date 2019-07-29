@@ -32,4 +32,20 @@ public class ZipdleReplyService {
 	public int getZipReplyCnt(int zip_seq_no) {
 		return zrdao.getZipReplyCnt(zip_seq_no);
 	}
+	
+	public void upReplyGood(int zip_seq_no) {
+		zrdao.upReplyGood(zip_seq_no);
+	}
+	
+	public void downReplyGood(int zip_seq_no) {
+		zrdao.downReplyGood(zip_seq_no);
+	}
+	
+	public ZipdleReplyVO getReplyData(int z_reply_seq_no) {
+		return zrdao.getReplyData(z_reply_seq_no);
+	}
+	
+	public void deleteZipReply(int z_reply_seq_no) {
+		zrdao.deleteZipReply(z_reply_seq_no);
+	}
 }

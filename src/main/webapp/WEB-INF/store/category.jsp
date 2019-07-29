@@ -135,10 +135,10 @@
                     
                   	<!-- 가격 HOVER -->
 					<form action="/store/category.do" id="frm">
-					<div id="select_price">
+					<div id="select_price" style="display:none">
 						<div class="popout popout--prepared popout--axis-1 popout--dir-2 popout--cross-dir-1"
 							data-popout="true" style="position: absolute; z-index: 1000; left: 35px; top: 60px; transform: translateX(-50%);">
-							<div class="animated-popout drop-down__content panel-drop-down__content"><!--  open open-active -->
+							<div class="animated-popout drop-down__content panel-drop-down__content"><!-- open open-active -->
 								<div class="drop-down-panel" data-panel-title="가격" data-panel-parents="">
 									<section class="panel-price-range-control">
 											<div class="panel-price-range-control__header"></div>
@@ -216,7 +216,7 @@
 					<!-- 가격 HOVER -->
 
 					<!-- 정렬 HOVER -->
-					<div id="select_menu">
+					<div id="select_menu" style="display:none">
 						<div class="popout popout--prepared popout--axis-1 popout--dir-2 popout--cross-dir-2"
 							data-popout="true" style="position: absolute; z-index: 1000; top: 100px; right: 0px;">
 							<div class="animated-popout drop-down__content panel-drop-down__content"><!-- open open-active -->

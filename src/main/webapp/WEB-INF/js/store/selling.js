@@ -30,14 +30,17 @@ $(function(){
 			$(this).removeClass('empty').addClass('filled');
 			$(this).prevAll('div.avg_star').removeClass('empty').addClass('filled');
 			$(this).nextAll('div.avg_star').removeClass('filled').addClass('empty');
+			setStarMsg($(this).text());
 		},
 		function(){
 			if (selectedStarIndex != null) {
 				$('.star_image .avg_star').eq(selectedStarIndex).removeClass('empty').addClass('filled');
 				$('.star_image .avg_star').eq(selectedStarIndex).prevAll('div.avg_star').removeClass('empty').addClass('filled');
 				$('.star_image .avg_star').eq(selectedStarIndex).nextAll('div.avg_star').removeClass('filled').addClass('empty');
+				setStarMsg($(this).text());
 			} else {
 				$('.star_image .avg_star').removeClass('filled').addClass('empty');
+				setStarMsg();
 			}
 		}
 	);
@@ -47,7 +50,8 @@ $(function(){
 		$('.star_image .avg_star:gt('+selectedStarIndex+')').removeClass('filled').addClass('empty');
 		var star_score =  $(this).text();
 	    $("#rewGrade").val(star_score);
-	    console.log($("#rewGrade").val());
+	    $('.star_msg').css("color", "rgb(66, 66, 66)");
+	    //console.log($("#rewGrade").val());
 	});
 	
 	//장바구니에 담기 추가 [S] -- JWP
@@ -67,6 +71,24 @@ $(function(){
 	//장바구니에 담기 추가 [E] -- JWP
 
 });
+
+//별점 HOVER 하단 텍스트 출력
+function setStarMsg(starIndex) {
+	if(starIndex == 1){
+		$('.star_msg').text("I don't like it!");
+		$('.star_msg').css("color", "rgb(189, 189, 189)");
+	} else if (starIndex == 2) {
+		$('.star_msg').text("so so");
+	} else if (starIndex == 3) {
+		$('.star_msg').text("Not bad!");
+	} else if (starIndex == 4) {
+		$('.star_msg').text("so good!");
+	} else if (starIndex == 5) {
+		$('.star_msg').text("I love it!!!");
+	} else {
+		$('.star_msg').text("");
+	}
+}
 
 
 //펼치기 버튼 - 상품 상세정보 출력
@@ -178,19 +200,21 @@ $('textarea').on('keyup propertychange paste', function(){
 	countWords();
 });
 
+//리뷰쓰기 - 리뷰 내용 최소 20자 제한
+function frmsubmit() {
+	var countWords = $('#comment_count').text();
+	if(countWords < 20){
+		alert("글자 수 최소 20자 제한");
+		return false;
+	}
+	$('#production_review_form').submit();
+}
+
+
 //리뷰쓰기 - 업로드 파일 이미지 미리보기
 var sel_file;
 
 $(document).ready(function() {
-	/*$('#selling-helper').affix({
-		offset: {
-			top: 132,
-			bottom: function() {
-				return (this.bottom = $('.footer').outerHeight(true))
-			}
-		}
-	})*/
-	
 	$("#card_uploader").on("change", handleImgFileSelect);
 	
 	$("#delete_review_card").click(function() {
@@ -204,13 +228,26 @@ $(document).ready(function() {
 		}
 	});
 	
+	$(window).scroll(function(){
+		var contentsTop = $('#contents').offset().top;
+		var scrollTop = $(document).scrollTop();
+		
+		if (contentsTop < scrollTop) {
+			$('#product-selling-option-wrap').css('position','fixed');
+		} else {
+			$('#product-selling-option-wrap').css('position','absolute');
+		}
+	});
+	
 	$('.production-review__filter__order__list:last').click(function(){
 		if ( $(this).hasClass('production-review__filter__order__list--active')) {
 			$(this).removeClass('production-review__filter__order__list--active');
 			document.getElementById('photoIcon').className.baseVal = 'production-review__filter__order__list__icon';
+			reviewListAjax(1);
 		} else {
 			$(this).addClass('production-review__filter__order__list--active');
 			document.getElementById('photoIcon').className.baseVal = 'production-review__filter__order__list__icon--active';
+			reviewListAjax(1);
 		}
 	})
 	
@@ -278,25 +315,44 @@ function reviewListAjax(pageNo) {
 											<p class="production-review-item__writer__info__name">`+rew.memberNickname+`</p>
 											<button class="production-review-item__writer__info__total-star-wrap" type="button">
 												<span class="production-review-item__writer__info__total-star" aria-label="별점 5.0점">
-													<svg fill="#35C5F0" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
-														<defs>
-															<path id="star-path-1.000" d="M8 13.54l-4.37 1.85c-.5.22-.88-.06-.83-.6l.4-4.73L.1 6.47c-.37-.41-.22-.85.32-.98l4.62-1.07L7.48.36c.29-.48.75-.47 1.04 0l2.44 4.06 4.62 1.07c.54.13.68.57.32.98l-3.1 3.59.4 4.72c.05.55-.33.83-.83.61L8 13.54z"></path>
-															<clipPath id="star-clip-1.000">
-																<rect x="0" y="0" width="16" height="16"></rect>
-															</clipPath>
-														</defs>
-														<use xlink:href="#star-path-1.000" fill="#DBDBDB"></use>
-														<use clip-path="url(#star-clip-1.000)" xlink:href="#star-path-1.000"></use>
-													</svg>
-												</span>
+													`;
+									for(var j=1; j<6; j++){
+										if (j <= rew.rewGrade) {
+								reviewList += `<svg fill="#35C5F0" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
+												<defs>
+													<path id="star-path-1.000" d="M8 13.54l-4.37 1.85c-.5.22-.88-.06-.83-.6l.4-4.73L.1 6.47c-.37-.41-.22-.85.32-.98l4.62-1.07L7.48.36c.29-.48.75-.47 1.04 0l2.44 4.06 4.62 1.07c.54.13.68.57.32.98l-3.1 3.59.4 4.72c.05.55-.33.83-.83.61L8 13.54z"></path>
+													<clipPath id="star-clip-1.000">
+														<rect x="0" y="0" width="16" height="16"></rect>
+													</clipPath>
+												</defs>
+												<use xlink:href="#star-path-1.000" fill="#DBDBDB"></use>
+												<use clip-path="url(#star-clip-1.000)" xlink:href="#star-path-1.000"></use>
+											</svg>`
+										} else {
+								reviewList += `<svg fill="#35C5F0" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
+												<defs>
+													<path id="star-path-111" d="M8 13.54l-4.37 1.85c-.5.22-.88-.06-.83-.6l.4-4.73L.1 6.47c-.37-.41-.22-.85.32-.98l4.62-1.07L7.48.36c.29-.48.75-.47 1.04 0l2.44 4.06 4.62 1.07c.54.13.68.57.32.98l-3.1 3.59.4 4.72c.05.55-.33.83-.83.61L8 13.54z"></path>
+													<clipPath id="star-clip-111">
+														<rect x="0" y="0" width="0" height="16"></rect>
+													</clipPath>
+												</defs>
+												<use xlink:href="#star-path-111" fill="#DBDBDB"></use>
+												<use clip-path="url(#star-clip-111)" xlink:href="#star-path-111"></use>
+											</svg>`
+										}
+									}
+									
+								reviewList += `</span>
 											</button>
 											<span class="production-review-item__writer__info__date">
 												`+formatDate(rew.regDate)+`&nbsp; 구매</span>
 										</div>
 									</div>
+									<a class="production-review-item__edit" data-remote="true" href="">수정</a>
+									<a class="production-review-item__delete" data-remote="true" href="">삭제</a>
 									<p class="production-review-item__name"></p>
 									<button class="production-review-item__img__btn">
-										<img class="production-review-item__img" src="/uploadImage/review/`+rew.rewImg+`"
+										<img class="production-review-item__img" src="/uploadImage/review/`+decodeURI(rew.rewImg)+`"
 										  onerror="this.src='${root}/uploadImage/review/noimage.jpg'; this.onerror='';">
 									</button>
 									<p class="production-review-item__description">`+rew.rewContent+`</p>

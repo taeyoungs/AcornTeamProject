@@ -1,28 +1,52 @@
 $(function(){
 	//정렬 설정 HOVER - 인기순/최신순/가격높은순/가격낮은순
 	$(".filter-bar-order-button").hover(
-		function(){$("#select_menu .animated-popout").addClass("open open-active")},
-		function(){$("#select_menu .animated-popout").removeClass("open open-active")}
+		function(){
+			$('#select_menu').css('display','block');
+			$("#select_menu .animated-popout").addClass("open open-active")
+		},
+		function(){
+			if ( $(".popout:hover").length == 0 ) {
+				$('#select_menu').css('display','none');
+				$("#select_menu .animated-popout").removeClass("open open-active");
+			};
+		}
 	);
 	
 	$("#select_menu .popout").hover(
-			function(){$("#select_menu .animated-popout").addClass("open open-active")},
-			function(){$("#select_menu .animated-popout").removeClass("open open-active")}
+			function(){/*$("#select_menu .animated-popout").addClass("open open-active")*/},
+			function(){
+				if ( $(".filter-bar-order-button:hover").length == 0 ) {
+					$('#select_menu').css('display','none');
+					$("#select_menu .animated-popout").removeClass("open open-active");
+				};
+			}
 	);
 	
 	
 	//가격 설정 HOVER [S]
 	$(".filter-bar-control__button").hover(
-			function(){$("#select_price .animated-popout").addClass("open open-active")},
-			function(){$("#select_price .animated-popout").removeClass("open open-active")}
+			function(){
+				$('#select_price').css('display','block');
+				$("#select_price .animated-popout").addClass("open open-active")
+			},
+			function(){
+				if ( $(".popout:hover").length == 0 ) {
+					$('#select_price').css('display','none');
+					$("#select_price .animated-popout").removeClass("open open-active");
+				}
+			}
 	);
 	
 	var initMinPrice = $("#minPrice").val();
 	var initMaxPrice = $("#maxPrice").val();
 	$("#select_price .popout").hover(
-			function(){$("#select_price .animated-popout").addClass("open open-active")},
+			function(){/*$("#select_price .animated-popout").addClass("open open-active")*/},
 			function(){
-				$("#select_price .animated-popout").removeClass("open open-active");
+				if ( $(".filter-bar-control__button:hover").length == 0 ) {
+					$('#select_price').css('display','none');
+					$("#select_price .animated-popout").removeClass("open open-active");
+				};
 				
 				var currMinPrice = $("#minPrice").val();
 				var currMaxPrice = $("#maxPrice").val();

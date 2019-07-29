@@ -247,6 +247,9 @@ public class StoreCategoryController {
 		storeReviewVO.setProdNo(prodNo);
 		storeReviewVO.setStartNo(startNo);
 		storeReviewVO.setEndNo(endNo);
+		System.out.println("startNo : "+storeReviewVO.getStartNo());
+		System.out.println("endNo : "+storeReviewVO.getEndNo());
+		System.out.println("imageOnly : "+storeReviewVO.getImageOnly());
 		reviewList = storeReviewService.getReviewList(storeReviewVO);
 		
 		ObjectMapper mapper = new ObjectMapper();
@@ -277,7 +280,9 @@ public class StoreCategoryController {
 		
 		//이미지 업로드 경로 1. 집  2. 학원
 		//String projectPath = "C:/Users/PARKSSO/git/AcornTeamProject";
-		String projectPath = "C:/Users/acorn/git/AcornTeamProject";
+		//String projectPath = "C:/Users/acorn/git/AcornTeamProject";
+		
+		String projectPath = "C:/Users/PARKSSO/git/AcornTeamProject";
 		
 		String realPath = projectPath+"/src/main/webapp/WEB-INF/uploadImage/review";
 		

@@ -687,15 +687,13 @@
 .shortcut__list__item {
 	display: inline-block;
 	-webkit-box-flex: 0;
-	-webkit-flex: 0 0 25%;
+	-webkit-flex: 0 0 33%;
 	-moz-box-flex: 0;
-	-moz-flex: 0 0 25%;
-	-ms-flex: 0 0 25%;
-	flex: 0 0 25%
+	-moz-flex: 0 0 33%;
+	-ms-flex: 0 0 33%;
+	flex: 0 0 33%
 }
-.shortcut__list__item:last-child {
-	display: none;
-}
+
 
 @media ( min-width : 768px) {
 	.shortcut__list__item {

@@ -494,7 +494,8 @@
 			<div class="pop_container">
 				<div id="production_review_pop">
 					<div class="title">리뷰쓰기</div>
-					<form id="production_review_form" class="new_production_review" action="/store/insertReview.do" enctype="multipart/form-data" method="post">
+					<form id="production_review_form" class="new_production_review" action="/store/insertReview.do" 
+						enctype="multipart/form-data" method="post" onsubmit="return frmsubmit();">
 						<!-- 상품 정보 -->
 						<div class="select_production field">
 							<div class="product_image" style="background-image: url('${product.prodImage}')"></div>
@@ -557,7 +558,7 @@
 						<div class="actions">
 					        <div class="guide">*감사합니다.</div>
 <!-- 					        <input type="submit" name="commit" value="등록하기" id="submit" class="submit" data-disable-with="등록"> -->
-					        <button type="submit" class="submit" >등록하기</button>
+					        <button type="submit" class="submit">등록하기</button>
 					        <div class="close_popup cancel">취소하기</div>
 					    </div>
 					</form>

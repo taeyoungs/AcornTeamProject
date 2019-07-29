@@ -107,18 +107,18 @@
 				FROM REVIEW R, MEMBER M
 				WHERE R.MEMBER_NO = M.MEMBER_NO
 				AND PROD_NO = #{prodNo}
-				<if test="imageOnly != null || imageOnly = 'Y'">
+				<if test='imageOnly != null and imageOnly == "Y"'>
 				AND R.REW_IMG IS NOT NULL
 				</if>
+				<if test='sorting == "best"'>
+		    	   ORDER BY reviewLikeCnt DESC 
+		  		</if>
+		  		<if test='sorting == "new"'>
+		    	   ORDER BY R.REG_DATE DESC 
+		  		</if>
 			)b
 	  	)a
 	  	<![CDATA[ WHERE a.RNUM>=#{startNo} AND a.RNUM<=#{endNo}]]>
-	  	<if test="sorting == 'best'">
-    	   ORDER BY a.reviewLikeCnt DESC 
-  		</if>
-  		<if test="sorting == 'new'">
-    	   ORDER BY a.regDate DESC 
-  		</if>
 	</select>
 	
 	<select id="getReviewTotalCount" parameterType="int" resultType="int">

@@ -112,18 +112,27 @@
 		<li class="shortcut__list__item">
 			<a href="/store/category.do?codeVal=가구" class="shortcut__list__item__link">
 				<div class="shortcut__list__item__link__image">
-					<img class="shortcut__list__item__link__image__img" src="${root}/image/common/teacher.png">
+					<img class="shortcut__list__item__link__image__img" src="${root}/image/common/applications.png">
 				</div>
-				<div class="shortcut__list__item__link__title">전문가와상담</div>
+				<div class="shortcut__list__item__link__title">카테고리별 상품보기</div>
 			</a>
 		</li>
 		<div class="blank_margin"></div>
 		<li class="shortcut__list__item">
-			<a href="board/list.do?where=board" class="shortcut__list__item__link">
+			<a href="/board/list.do" class="shortcut__list__item__link">
 				<div class="shortcut__list__item__link__image">
 					<img class="shortcut__list__item__link__image__img" src="${root}/image/common/question.png">
 				</div>
 				<div class="shortcut__list__item__link__title">질문과답변</div>
+			</a>
+		</li>
+		<div class="blank_margin"></div>
+		<li class="shortcut__list__item">
+			<a href="/main/story.do" class="shortcut__list__item__link">
+				<div class="shortcut__list__item__link__image">
+					<img class="shortcut__list__item__link__image__img" src="${root}/image/common/puzzle.png">
+				</div>
+				<div class="shortcut__list__item__link__title">About us</div>
 			</a>
 		</li>
 	</ul>

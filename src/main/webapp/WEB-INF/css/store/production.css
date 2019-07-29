@@ -152,7 +152,10 @@
 }
 
 .production-review__filter__order__list__icon--active {
-	color: #35c5f0
+	color: #35c5f0;
+	vertical-align: -4px;
+    margin-right: 5px;
+    margin-top: -4px;
 }
 
 .production-review__filter__order .line {
@@ -526,6 +529,15 @@
 }
 
 .production-review-item__edit {
+	position: absolute;
+	right: 40px;
+	top: 0;
+	font-size: 15px;
+	font-weight: 700;
+	color: #35c5f0
+}
+
+.production-review-item__delete {
 	position: absolute;
 	right: 0;
 	top: 0;

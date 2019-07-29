@@ -57,5 +57,15 @@ public class MemberService {
 	public void updatePw(MemberVO mvo) {
 		dao.updatePw(mvo);
 	}
+	
+	public void updateZipLike(MemberVO mvo) {
+		
+		dao.updateZipLike(mvo);
+	}
+	
+	public void updateZipReplyLike(MemberVO mvo) {
+		
+		dao.updateZipReplyLike(mvo);
+	}
 
 }

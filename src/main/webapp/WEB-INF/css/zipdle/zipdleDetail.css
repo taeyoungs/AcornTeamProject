@@ -613,10 +613,17 @@ button {
 	opacity: 0.4;
 }
 
-#comment_panel>.wrap>.comment-feed>.list-paginator>li {
-	display: inline-block;
-    vertical-align: bottom;
-    font-size: 0;
+.comment-feed__item__footer>a:active, 
+.comment-feed__item__footer>a:focus, 
+.comment-feed__item__footer>a:hover, 
+.comment-feed__item__footer>button:active, 
+.comment-feed__item__footer>button:focus, 
+.comment-feed__item__footer>button:hover {
+	text-decoration: underline;
+}
+.comment-feed_item_footer_like-btn.cancel {
+	color: #bdbdbd;
+	font-weight: normal;
 }
 
 @media (min-width: 768px) {

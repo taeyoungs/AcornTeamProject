@@ -1,6 +1,7 @@
 package com.team.zip.model.vo;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class ZipdleReplyVO {
 	
@@ -12,7 +13,22 @@ public class ZipdleReplyVO {
 	private String member_image;
 	private String member_nickname;
 	private Timestamp reg_date;
+	private String date;
 	
+	private String isReplyLike;
+	
+	public String getIsReplyLike() {
+		return isReplyLike;
+	}
+	public void setIsReplyLike(String isReplyLike) {
+		this.isReplyLike = isReplyLike;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
 	public String getMember_image() {
 		return member_image;
 	}

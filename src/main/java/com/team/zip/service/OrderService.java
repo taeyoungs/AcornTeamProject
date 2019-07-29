@@ -1,5 +1,7 @@
 package com.team.zip.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +20,9 @@ public class OrderService {
 	
 	public void insertOneDetail(OrderVO ovo) {
 		dao.insertOneDetail(ovo);
+	}
+	
+	public List<OrderVO> orderRecent() {
+		return dao.orderRecent();
 	}
 }

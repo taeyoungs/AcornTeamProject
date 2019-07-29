@@ -1,5 +1,7 @@
 package com.team.zip.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +16,9 @@ public class OrderDAO extends SqlSessionDaoSupport {
 	
 	public void insertOneDetail(OrderVO ovo) {
 		getSqlSession().insert("order.orderOneDetail", ovo);
+	}
+	
+	public List<OrderVO> orderRecent() {
+		return getSqlSession().selectList("order.orderRecent");
 	}
 }

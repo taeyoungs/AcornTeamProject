@@ -1,5 +1,7 @@
 //상품 수량 옵션
 $(function(){
+	var idx = 0;
+	 
 	$('div.amount span.down').click(function(){
 		minus();
 	});
@@ -26,7 +28,7 @@ $(function(){
 	$(".btn-add-to-cart").on('click', function(){
 		var prodNo = $("#prodNo").val();
 		var counts = $("#counts").val();
-		
+		 
 		location.href='cart?prodNo='+prodNo+"&counts="+counts;
 	});
 	
@@ -34,7 +36,7 @@ $(function(){
 		var prodNo = $("#prodNo").val();
 		var counts = $("#counts").val();
 		
-		$(this).attr('href', 'preorder.do?prodNo='+prodNo+"&counts="+counts);
+		$(this).attr('href', 'preorder.do?idx='+idx+'&prodNo='+prodNo+"&counts="+counts);
 	});
 });
 

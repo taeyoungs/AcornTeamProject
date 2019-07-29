@@ -14,7 +14,7 @@ public class OrderVO {
 	private String order_comment;
 	private String prod_no;
 	private int counts;
-	
+	private int order_price;
 	
 	public int getOrder_no() {
 		return order_no;
@@ -76,7 +76,10 @@ public class OrderVO {
 	public void setCounts(int counts) {
 		this.counts = counts;
 	}
-	
-	
-
+	public int getOrder_price() {
+		return order_price;
+	}
+	public void setOrder_price(int order_price) {
+		this.order_price = order_price;
+	}
 }

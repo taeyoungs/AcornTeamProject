@@ -16,19 +16,23 @@
   	  <div class="list">
           <div class="list_panel">
               <div class="title">고객명</div>
-              <div class="content">테스트</div>
+              <div class="content">${ovo.order_customer }</div>
           </div>
           <div class="list_panel">
               <div class="title">주소</div>
-              <div class="content">테스트</div>
+              <div class="content">${ovo.order_address }</div>
           </div>
           <div class="list_panel">
               <div class="title">연락처</div>
-              <div class="content">테스트</div>
+              <div class="content">${ovo.order_contact }</div>
+          </div>
+          <div class="list_panel">
+              <div class="title">주문물품</div>
+              <div class="content">${prodTitle} x ${counts }개</div>
           </div>
           <div class="list_panel">
               <div class="title">배송메모</div>
-              <div class="content">테스트</div>
+              <div class="content">${ovo.order_comment }</div>
           </div>
      </div>
     <div id="end">주문해주셔서 감사합니다</div>

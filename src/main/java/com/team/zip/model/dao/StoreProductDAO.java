@@ -32,4 +32,9 @@ public class StoreProductDAO extends SqlSessionDaoSupport {
 		return getSqlSession().selectOne("getReviewTotalCount", prodNo);
 	}
 	
+	public ProductVO getProductOne(String prodNo) {
+		return getSqlSession().selectOne("getProductOne", prodNo);
+	}
+
+
 }

@@ -40,7 +40,7 @@
 					</a>
 				</section>
 				<section class="upload-types_item_wrap">
-					<a href="" class="upload-types_item upload-types_item_review">
+					<a href="/store/cart" class="upload-types_item upload-types_item_review">
 						<div class="upload-types_item_pictogram">
 							<div class="upload-types_item_pictogram_contents">
 								<img src="${root}/image/common/engineer.png" style="width: 70px;">

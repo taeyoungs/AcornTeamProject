@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="order">
+	<insert id="orderOne" parameterType="ovo">
+		insert into orders 
+		values(order_seq_no.nextval, #{member_no}, sysdate, 11, 
+		#{order_address}, #{order_customer}, #{order_contact}, #{order_comment})
+	</insert>
+	<insert id="orderOneDetail" parameterType="ovo">
+		insert into orders_detail
+		values(#{order_no}, #{prod_no}, #{count})
+	</insert>
+</mapper>

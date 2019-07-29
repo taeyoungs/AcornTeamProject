@@ -22,7 +22,7 @@
 				<c:forEach items="${list }" var="list" varStatus="status" begin="0" end="99">
 					<div class="ranking-product-item-wrap">
 						<div class="ranking-product-item__wrap">
-							<a class="ranking-product-item__link" href="#"></a>
+							<a class="ranking-product-item__link" href="/store/selling.do?prodNo=${list.prodNo }"></a>
 							<div class="ranking-product-item__number">${status.count}</div>
 							<div class="ranking-product-item__img-wrap">
 								<div class="production-item-image">

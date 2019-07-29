@@ -3,8 +3,17 @@
 <mapper namespace="photo">
 
 	<!-- photoList 게시판 -->
+	
 	<select id="photoDataList" resultType="pvo">
-		select * from photo order by photo_seq_no
+		select
+		p.photo_seq_no, p.member_no, p.photo_image, p.photo_content, p.photo_hometype, 
+		p.photo_pyeong, p.photo_hits, p.photo_good, p.reg_date, p.hashtag, nvl(r.p_reply_no, 0) as seqno,
+		count(*) as count
+		from photo p, p_reply r
+		where p.photo_seq_no = r.p_reply_no(+)
+		group by p.photo_seq_no, p.member_no, p.photo_image, p.photo_content, p.photo_hometype, 
+		p.photo_pyeong, p.photo_hits, p.photo_good, p.reg_date, p.hashtag,  nvl(r.p_reply_no, 0)
+		order by photo_hits desc
 	</select>
 	<select id="photoDetail" resultType="pvo" parameterType="int">
 		select * from photo where photo_seq_no=#{num}
@@ -32,10 +41,10 @@
 		select * from photo where photo_pyeong=#{photo_pyeong}
 	</select>
 	
-	
 	<!-- photoWrite -->
 	<insert id="insertPhoto" parameterType="pvo">
-		insert into photo values(photo_seq_no.nextval, #{member_no}, #{photo_image}, #{photo_content}, #{photo_hometype}, #{photo_pyeong}, 0, 0, sysdate, #{hashtag})
+		insert into photo 
+		values(photo_seq_no.nextval, #{member_no}, #{photo_image}, #{photo_content}, #{photo_hometype}, #{photo_pyeong}, 0, 0, sysdate, #{hashtag})
 	</insert>
 	
 	<!-- photoDelete -->
@@ -54,6 +63,15 @@
 		where photo_seq_no=#{photo_seq_no}
 	</update>
 	
+	<!-- 좋아요 -->
+	<update id="likePhoto" parameterType="int">
+		update photo set photo_hits = photo_hits+1 where photo_seq_no=#{num}
+	</update>
+	
+	<!-- 좋아요 취소 -->
+	<update id="undoLike" parameterType="int">
+		update photo set photo_hits = photo_hits-1 where photo_seq_no=#{num}
+	</update>
 	
 	<select id="getMemberData" resultType="mvo" parameterType="int">
 		select * from member where member_no in (select member_no from photo where photo_seq_no=#{num})

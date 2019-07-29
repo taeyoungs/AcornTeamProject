@@ -17,7 +17,8 @@
 		<div class="PhotoWriteForm-logo-wrap">
 			<img class="icon" src="../image/common/logo.png" onclick="location.href='${root}/main.do'">
 		</div>
-		<form id="writeForm" class="Photo-Write-Form container" action="write.do" accept-charset="UTF-8" method="post" enctype="multipart/form-data">
+		<form id="writeForm" class="Photo-Write-Form container" action="write.do" accept-charset="UTF-8" 
+				method="post" enctype="multipart/form-data">
 			<h1 class="Photo-Write-Form_Title">사진 올리기</h1>
 			<div class="Photo-Write-Form_Metadata">
 				<div class="select-input Photo-Write-Form_Metadata_entry" >
@@ -59,7 +60,7 @@
 								<div class="Photo-Write-Form_photo-item_content">
 									<div class="Photo-Write-Form_photo-item_content_row">
 										<textarea class="form-control text-area-input" id="photo_content"
-										placeholder="사진에 대해서 설명해주세요" style="height:160px;" name="photo_content"></textarea>
+										placeholder="사진에 대해서 설명해주세요" style="height:160px;" name="photo_content_array"></textarea>
 									</div>
 									<div class="Photo-Write-Form_photo-item_content_row">
 										<div class="keyword-input">

@@ -9,6 +9,7 @@ public class PhotoVO {
 	public int member_no;
 	public String photo_image;
 	public String photo_content;
+	public String[] photo_content_array;
 	public String photo_hometype;
 	public String photo_pyeong;
 	public int photo_hits;
@@ -16,7 +17,8 @@ public class PhotoVO {
 	public Timestamp reg_date;
 	public String hashtag;
 	public MultipartFile photo;
-	
+	public int count;
+	public int seqno;
 	
 	public int getPhoto_seq_no() {
 		return photo_seq_no;
@@ -41,6 +43,12 @@ public class PhotoVO {
 	}
 	public void setPhoto_content(String photo_content) {
 		this.photo_content = photo_content;
+	}
+	public String[] getPhoto_content_array() {
+		return photo_content_array;
+	}
+	public void setPhoto_content_array(String[] photo_content_array) {
+		this.photo_content_array = photo_content_array;
 	}
 	public String getPhoto_hometype() {
 		return photo_hometype;
@@ -84,6 +92,17 @@ public class PhotoVO {
 	public void setPhoto(MultipartFile photo) {
 		this.photo = photo;
 	}
-	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public int getSeqno() {
+		return seqno;
+	}
+	public void setSeqno(int seqno) {
+		this.seqno = seqno;
+	}
 	
 }

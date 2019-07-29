@@ -137,4 +137,15 @@
 		UPDATE MEMBER SET REVIEW_LIKE = #{review_like}
 		WHERE MEMBER_NO = ${member_no}
 	</update>
+
+	<select id="getProductOne" parameterType="String" resultType="productVO">
+		SELECT PROD_NO AS prodNo
+			 , PROD_TITLE AS prodTitle
+			 , PROD_PRICE AS prodPrice
+			 , PROD_IMG AS prodImage
+			 , PROD_SELLER AS prodSeller
+			 , DISCOUNT_RATE AS discountRate
+		FROM PRODUCT
+		WHERE PROD_NO = #{prodNo}
+	</select>
 </mapper>

@@ -361,6 +361,7 @@ input, textarea, select, button{
 	stroke: #424242;
 	stroke-width: 1.1px;
 	transition: fill .1s,stroke .1s;
+	pointer: cursor;
 }
 
 .card-item-action-list__action > .icon{

@@ -31,33 +31,35 @@ public class BoardController {
 
 	@Autowired
 	private MemberService mservice;
-	
+
 	@Autowired
 	private BoardReplyService brs;
-	
+
 	@RequestMapping(value="/board/reply.do",method={RequestMethod.GET, RequestMethod.POST})
 	public String read(
-			@ModelAttribute BoardReplyVO brvo,
-			HttpServletRequest request, HttpSession session
+			@ModelAttribute BoardReplyVO brvo, HttpServletRequest request,
+			HttpSession session,@RequestParam(defaultValue="0") int pageNum,
+			Model model
 			)
 	{
-		System.out.println(brvo.getB_reply_content());
-		
+		model.addAttribute("pageNum",pageNum);
 		String login = (String)session.getAttribute("loginok");
 		if(login != null && login.equals("login")) {
-	
+
 			brs.insertBoardReply(brvo);
-			return "/board/boardview";
+			return "redirect:view.do?board_seq_no="+brvo.getB_reply_no()+"&pageNum="+pageNum;
 
 		} else {
 			return "/1/member/signin";
 		}
 	}
-	
+
 	@RequestMapping("/board/list.do") 
 	public ModelAndView list(
 			@RequestParam(value="pageNum",defaultValue="1")
-			int currentPage, @RequestParam String where )
+			int currentPage,
+			@RequestParam(value="keyword",defaultValue="")
+			String keyword)
 	{
 		ModelAndView model=new ModelAndView();
 		int totalCount;//총 데이타 갯수
@@ -74,6 +76,7 @@ public class BoardController {
 		int no;//출력할 시작번호
 		int perPage=5;//한페이지당 보여질 글의갯수
 		int perBlock=5;//한블럭당 보여질 페이지의 갯수
+		int b_reply_count = 0;// 댓글 갯수
 
 		//총 페이지수를 구한다
 		totalPage=totalCount/perPage+(totalCount%perPage>0?1:0);
@@ -108,9 +111,13 @@ public class BoardController {
 		no=totalCount-(currentPage-1)*perPage;      
 
 		//2. 리스트 가져오기
-		List<BoardVO> list=service.getList(startNum, endNum);
+		List<BoardVO> list=service.getList(startNum, endNum, keyword);
 
-		model.addObject("where", where);
+		//System.out.println(list.size());
+		//System.out.println(keyword);
+
+		model.addObject("keyword",keyword);
+		model.addObject("b_reply_count", b_reply_count);
 		model.addObject("list", list);
 		model.addObject("currentPage", currentPage);
 		model.addObject("startPage", startPage);
@@ -128,7 +135,7 @@ public class BoardController {
 		//login으로 저장후 문자타입 비교는 equals를 통해서 진행
 		String login = (String)session.getAttribute("loginok");
 		if(login != null && login.equals("login")) {
-	
+
 			return "/board/boardform";
 
 		} else {
@@ -144,13 +151,13 @@ public class BoardController {
 	{
 		//이미지 업로드 경로 
 		String path=request.getSession().getServletContext().getRealPath("/save");
-		System.out.println(path);
+		//System.out.println(path);
 
 		//path 경로에 이미지 저장
 		SpringFileWriter fileWriter=new SpringFileWriter();
 
 		String board_image="";
-		System.out.println(vo.getImagename());
+		//System.out.println(vo.getImagename());
 		for(MultipartFile f:vo.getImagename())
 		{
 			//빈 문자열이 아닐경우에만 저장
@@ -167,7 +174,7 @@ public class BoardController {
 
 		return "redirect:list.do";
 	}
-	
+
 	@RequestMapping("/board/updateform.do")
 	public ModelAndView updateform(
 			@RequestParam int board_seq_no,
@@ -177,19 +184,41 @@ public class BoardController {
 		BoardVO vo=service.getData(board_seq_no);
 		ModelAndView model=new ModelAndView();
 		model.addObject("vo",vo);
+		model.addObject("pageNum",pageNum);
 		model.setViewName("/board/updateform");
 		return model;
 	}
 
 	@RequestMapping(value="/board/update.do",method=RequestMethod.POST)
 	public String update(
-			@RequestParam int board_seq_no,
+			@ModelAttribute BoardVO vo,
 			@RequestParam String pageNum,
-			@RequestParam String board_content
+			HttpServletRequest request
 			)
 	{
+
+		//이미지 업로드 경로 
+		String path=request.getSession().getServletContext().getRealPath("/save");
+		//System.out.println(path);
+
+		//path 경로에 이미지 저장
+		SpringFileWriter fileWriter=new SpringFileWriter();
+
+		String board_image="";
+		//System.out.println(vo.getImagename());
+		for(MultipartFile f:vo.getImagename())
+		{
+			//빈 문자열이 아닐경우에만 저장
+			if(f.getOriginalFilename().length()>0){
+				board_image+=f.getOriginalFilename()+",";
+				fileWriter.writeFile(f, path, f.getOriginalFilename());
+			}
+		}
+
+		//vo 에 이미지 이름들 저장
+		vo.setBoard_image(board_image);
 		//db 수정
-		service.boardUpdate(board_seq_no, board_content);
+		service.boardUpdate(vo);
 		//목록으로 이동
 		return "redirect:list.do?pageNum="+pageNum;
 	}
@@ -199,12 +228,21 @@ public class BoardController {
 			@RequestParam int pageNum){
 		//데이터 가져오기
 		BoardVO vo=service.getData(board_seq_no);
+		List<BoardReplyVO> bvo=brs.getList(board_seq_no);
+		//System.out.println(bvo.size());
+		int board_hits = 0;
+
+		service.boardHitsUpdate(board_seq_no);
+
+		//System.out.println(bvo.get(0).getB_reply_seq_no());
 		//model 에 저장
+		model.addAttribute("board_hits",board_hits);
 		model.addAttribute("vo",vo);
+		model.addAttribute("replylist",bvo);
 		model.addAttribute("pageNum",pageNum);
 		return "/board/boardview";
 	}
-	
+
 	@RequestMapping("/board/delete.do")
 	public String delete(
 			@RequestParam int board_seq_no,
@@ -214,7 +252,7 @@ public class BoardController {
 	{
 		//이미지 업로드 경로
 		String path=request.getSession().getServletContext().getRealPath("/save");
-		System.out.println(path);
+		//System.out.println(path);
 		//db 에서 삭제하기 전에 이미지부터 지우자
 		String board_image=service.getData(board_seq_no).getBoard_image();
 		if(!board_image.equals("noimage"))
@@ -230,9 +268,23 @@ public class BoardController {
 					f.delete();
 			}
 		}
-		
+
 		//삭제
 		service.boardDelete(board_seq_no);
 		return "redirect:list.do?pageNum="+pageNum;
+	}
+
+	@RequestMapping("/board/replydelete.do")
+	public String replydelete(
+			@RequestParam int b_reply_seq_no,@RequestParam int board_seq_no,
+			HttpServletRequest request,@RequestParam int pageNum
+			)
+	{
+		//System.out.println(b_reply_seq_no);
+		//System.out.println(board_seq_no);
+		//System.out.println(pageNum);
+		//삭제
+		brs.deleteBoardReply(b_reply_seq_no);
+		return "redirect:view.do?board_seq_no="+board_seq_no+"&pageNum="+pageNum;
 	}
 }

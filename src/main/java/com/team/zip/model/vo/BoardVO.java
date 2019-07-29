@@ -14,7 +14,15 @@ public class BoardVO {
 	private int board_hits;
 	private ArrayList<MultipartFile> imagename;
 	private String board_image;
+	private int b_reply_count;
 	
+	
+	public int getb_reply_count() {
+		return b_reply_count;
+	}
+	public void setb_reply_count(int b_reply_count) {
+		this.b_reply_count = b_reply_count;
+	}
 	public int getBoard_seq_no() {
 		return board_seq_no;
 	}

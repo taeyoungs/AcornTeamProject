@@ -96,7 +96,7 @@
 						<span>%</span>
 					</div>
 					<div class="cover__info__price__price">
-						<small>${product.discountRate}</small>
+						<small>${product.discountRate}%</small>
 						<del>
 							<fmt:formatNumber value="${product.prodPrice}" pattern="#,###"></fmt:formatNumber>
 						</del>
@@ -131,6 +131,8 @@
 						          <div class="amount">
 						            <span class="icon icon-etc-button-minus btn-change-amount down" role="button"></span>
 						            	<input type="number" value="1">
+						            	<!-- JWP -->
+						            <input type="number" value="1" id="counts" name="counts">
 						            <span class="icon icon-etc-button-plus btn-change-amount up" role="button"></span>
 						          </div>
 						          <p class="price bold">
@@ -152,7 +154,7 @@
 					    
 					  <div class="buttons">
 			            <button class="btn btn-light bold signed btn-add-to-cart">장바구니 담기</button>
-			            <a class="btn btn-priority bold btn-buy-now" data-remote="true" href="#">구매하기</a>
+			            <a class="btn btn-priority bold btn-buy-now" data-remote="true" href="">구매하기</a>
 			            <button class="btn btn-priority bold signed btn-buy-now hide">구매하기</button>
 					  </div>
 					  
@@ -248,12 +250,10 @@
 					
 					<!-- 상품 상세페이지 -->
 					<section id="product-detail" class="contents">
-						<button id="btn-show-product-detail"
-							class="bold hide-md btn btn-priority">
-							펼치기<span class="icon icon-pointer-angle-down-sm icon-caret"
-								aria-hidden="true"></span>
+						<button id="btn-show-product-detail" class="bold hide-md btn btn-priority" onclick="showDetail()">펼치기
+							<span class="icon icon-pointer-angle-down-sm icon-caret" aria-hidden="true"></span>
 						</button>
-						<div class="product-detail__gradient-show"></div>
+						<div id="product-detail__gradient" class="product-detail__gradient-show"></div>
 						<div id="product-detail-contents" class="product-detail-hidden">
 							<p>
 								<img src="${product.prodImage}"/>
@@ -296,7 +296,7 @@
 									</c:if>
 									<!-- 리뷰 O -->
 									<c:if test="${product.reviewCnt > 0}">
-									<div class="production-review__info__star__avg">별점</div>
+									<div class="production-review__info__star__avg">${product.starGrade/product.reviewCnt}</div>
 									<c:forEach begin="1" end="5" varStatus="status">
 									<span class="production-review__info__star__rating">
 										<c:choose>
@@ -488,7 +488,7 @@
 </main>
 <input type="hidden" id="root" value="${root}">	
 <!-- 리뷰쓰기 팝업 [S] -->
-<div class="popup new ui-popup ui-editing-popup"><!-- style="display: block;" -->
+<div class="popup new ui-popup ui-editing-popup">
 	<div class="close_popup">
 		<div class="pop_extra">
 			<div class="pop_container">

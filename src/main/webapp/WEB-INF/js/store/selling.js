@@ -23,6 +23,7 @@ $(function(){
 		}
 	});
 	
+	
 	//별점 평가
 	$('.star_image .avg_star').hover(
 		function(){
@@ -48,7 +49,37 @@ $(function(){
 	    $("#rewGrade").val(star_score);
 	    console.log($("#rewGrade").val());
 	});
+	
+	//장바구니에 담기 추가 [S] -- JWP
+	$(".btn-add-to-cart").on('click', function(){
+		var prodNo = $("#prodNo").val();
+		var counts = $("#counts").val();
+		
+		location.href='cart?prodNo='+prodNo+"&counts="+counts;
+	});
+	
+	$(".btn-buy-now").on('click', function(e){
+		var prodNo = $("#prodNo").val();
+		var counts = $("#counts").val();
+		
+		$(this).attr('href', 'preorder.do?prodNo='+prodNo+"&counts="+counts);
+	});
+	//장바구니에 담기 추가 [E] -- JWP
+
 });
+
+
+//펼치기 버튼 - 상품 상세정보 출력
+function showDetail() {
+	$('#btn-show-product-detail').addClass('hide');
+	$('#btn-show-product-detail').addClass('hide');
+	
+	$('#product-detail__gradient').removeClass('product-detail__gradient-show');
+	$('#product-detail__gradient').addClass('product-detail__gradient-hidden');
+	
+	$('#product-detail-contents').removeClass('product-detail-hidden');
+	$('#product-detail-contents').addClass('product-detail-show');
+}
 
 //리뷰 출력 - 베스트순/최신순
 function changeSort(sort, thiz) {
@@ -80,15 +111,31 @@ function formatNumber(price) {
 	  return price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 }
 
+//Date Format
+function formatDate(date) {
+	var d = new Date(date),
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
+
+	if (month.length < 2) month = '0' + month;
+	if (day.length < 2) day = '0' + day;
+	
+	return [year, month, day].join('-');
+}
+
 function minus() {
 	var count = Number($('div.amount input').val());
 	if (count > 1) {
 		count--;
 		$('div.amount input').val(count);
-
+		console.log($('div.amount input').val());
+		console.log($('div.amount input'));
+		
 		var price = $('#salePrice').val() * count;
 		$('.text-heading-2').text(formatNumber(price));
 		$('span.amount').text(formatNumber(price));
+	
 	}
 }
 
@@ -97,10 +144,13 @@ function plus() {
 	if (count < 10) {
 		count++;
 		$('div.amount input').val(count);
+		console.log($('div.amount input').val());
+		console.log($('div.amount input'));
 		
 		var price = $('#salePrice').val() * count;
 		$('.text-heading-2').text(formatNumber(price));
 		$('span.amount').text(formatNumber(price));
+		
 	}
 }
 
@@ -132,6 +182,15 @@ $('textarea').on('keyup propertychange paste', function(){
 var sel_file;
 
 $(document).ready(function() {
+	/*$('#selling-helper').affix({
+		offset: {
+			top: 132,
+			bottom: function() {
+				return (this.bottom = $('.footer').outerHeight(true))
+			}
+		}
+	})*/
+	
 	$("#card_uploader").on("change", handleImgFileSelect);
 	
 	$("#delete_review_card").click(function() {
@@ -232,7 +291,7 @@ function reviewListAjax(pageNo) {
 												</span>
 											</button>
 											<span class="production-review-item__writer__info__date">
-												`+rew.regDate+`구매</span>
+												`+formatDate(rew.regDate)+`&nbsp; 구매</span>
 										</div>
 									</div>
 									<p class="production-review-item__name"></p>
@@ -257,6 +316,9 @@ function reviewListAjax(pageNo) {
 						reviewList += `<button type="button" class="production-review-item__help__btn" onClick="reviewToggleAjax(`+rew.rewNo+`, this)">도움이 돼요</button>`;
 					}
 					reviewList += `
+										<div class="production-review-item__help__text">
+											<span class="production-review-item__help__text__number">`+rew.reviewLikeCnt+`</span>명에게 도움이 되었습니다.
+										</div>
 									</div>
 								</article>
 							</div>
@@ -358,7 +420,6 @@ function reviewToggleAjax(rewNo, thiz) {
 				console.log(error);
 				doAjax = true;
 			}
-			
-		})
+		});
 	}
 }

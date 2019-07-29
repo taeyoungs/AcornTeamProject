@@ -24,4 +24,10 @@
 	<update id="pwUpdate" parameterType="mvo">
 		update member set member_pw = #{member_pw} where member_no = #{member_no}
 	</update>
+	<update id="updateZipLike" parameterType="mvo">
+		update member set zip_like = #{zip_like} where member_no = #{member_no}
+	</update>
+	<update id="updateZipReplyLike" parameterType="mvo">
+		update member set zip_reply_like = #{zip_reply_like} where member_no = #{member_no}
+	</update>
 </mapper>

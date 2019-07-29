@@ -82,14 +82,6 @@ $(function(){
             <p>${vo.board_content}</p>
     </section>
     <footer class="question__content__footer">
-      <ul class="question__content__footer__tags keyword-list">
-          <li>
-            <a class="keyword-item" href="/questions?query=%EC%86%8C%ED%8C%8C">소파</a>
-          </li>
-          <li>
-            <a class="keyword-item" href="/questions?query=20%ED%8F%89%EB%8C%80">20평대</a>
-          </li>
-      </ul>
       <div class="question__content__footer__actions question__actions">
 
 </div>
@@ -118,8 +110,12 @@ $(function(){
 			<c:if test="${sessionScope.mvo.member_no!=null}">
 				<input type="hidden" name="member_no" value="${sessionScope.member_no}">
 				<input type="hidden" name="b_reply_no" value="${vo.board_seq_no}">
-				<textarea class="comment-feed__form__cover" name="b_reply_content" id="replybox"
+				<input type="hidden" name="pageNum" value="${pageNum}">
+				<div class="comment-feed__form__content">
+				<div class="comment-feed__form__input">
+				<textarea class="comment-content-input__text comment-feed__form__content__text" name="b_reply_content" id="replybox"
 				placeholder="의견을 남겨 보세요." style="width:700px;height:35px;"></textarea>
+				</div></div>
 			</c:if>
 			<c:if test="${sessionScope.mvo.member_no==null}">
 				<a href="reply.do" class="comment-feed__form__cover">
@@ -129,52 +125,32 @@ $(function(){
 				</a>
 			</c:if>
 			</form>
+			<c:forEach var="bvo" items="${replylist}">
 			<li class="comment-feed__list__item">
 				<article class="comment-feed__item">
 					<p class="comment-feed__item__content">
 					<a href="/users/2593483" class="comment-feed__item__content__author">
 						<img class="comment-feed__item__content__author__image" src="">
-						<span class="comment-feed__item__content__author__name">푸른달v</span>
+						<span class="comment-feed__item__content__author__name">${bvo.member_no}</span>
 					</a>
-						<span class="comment-feed__item__content__content">${brvo.b_reply_content}</span>
+						<span class="comment-feed__item__content__content" >${bvo.b_reply_content}</span>
 					</p>
 					<footer class="comment-feed__item__footer">
-					<time class="comment-feed__item__footer__time">${rvo.reg_date}</time>
+					<time class="comment-feed__item__footer__time">${bvo.reg_date}</time>
 					<span class="comment-feed__item__footer__likes zero">
-						<a class="comment-feed__item__footer__likes__icon" href="/users/sign_in"></a>
-						<span class="comment-feed__item__footer__likes__count">0</span>
+						<a class="comment-feed__item__footer__likes__icon" href="/users/sign_in">${bvo.member_no}</a>
 					</span>
-						<a class="comment-feed__item__footer__like-btn" href="/users/sign_in">좋아요</a>
-						<a class="comment-feed__item__footer__reply-btn" href="/users/sign_in">답글 달기</a>
-						<a class="comment-feed__item__footer__report-btn" href="/users/sign_in">신고</a>
+						<c:if test="${sessionScope.mvo.member_no eq vo.member_no}">
+							<button class="comment-feed__item__footer__delete-btn" type="button"
+							onclick="location.href='replydelete.do?board_seq_no=${vo.board_seq_no}&b_reply_seq_no=${bvo.b_reply_seq_no}&pageNum=${pageNum}'">삭제</button>
+						</c:if>
 					</footer>
 				</article>
 			</li>
+			</c:forEach>
 		</section>	
       </div>
     </section>
-    <aside class="question__content__aside question__aside">
-  <div class="question__aside__section question__aside__popular">
-    <h2 class="text-heading-5">질문과답변 인기 키워드</h2>
-    <ul class="keyword-list">
-        <li>
-          <a class="keyword-item" href="/questions?query=%EB%A6%AC%EB%AA%A8%EB%8D%B8%EB%A7%81%2F%EC%98%AC%EC%88%98%EB%A6%AC">리모델링/올수리</a>
-        </li>
-        <li>
-          <a class="keyword-item" href="/questions?query=20%ED%8F%89%EB%8C%80">20평대</a>
-        </li>
-        <li>
-          <a class="keyword-item" href="/questions?query=%EC%95%84%ED%8C%8C%ED%8A%B8">아파트</a>
-        </li>
-    </ul>
-  </div>
-  <div class="question__aside__section">
-    <h2 class="text-heading-5">인테리어 궁금한 것 직접 질문해보세요!</h2>
-    <p>
-      <a class="btn btn-md btn-priority question__aside__section__new-question" href="form.do">질문하러 가기</a>
-    </p>
-  </div>
-</aside>
   </section>
   <nav id="question__sidebar" class="page-2col__sidebar sticky-top">
     <div class="page-2col__sidebar__content sticky-content">
@@ -204,7 +180,7 @@ $(function(){
       <div class="question__sidebar__actions question__actions">
 <c:if test="${sessionScope.mvo.member_no eq vo.member_no}">
 	<button type="button" class="btn btn-md btn-priority question__aside__section__new-question"
-	 style="width:200px;margin-right:2px;">수정</button>
+	 style="width:200px;margin-right:2px;" onclick="location.href='updateform.do?board_seq_no=${vo.board_seq_no}&pageNum=${pageNum}'">수정</button>
 	<button type="button" class="btn btn-md btn-priority question__aside__section__new-question"
 	 style="width:200px;margin-left:2px;" onclick="location.href='delete.do?board_seq_no=${vo.board_seq_no}&pageNum=${pageNum}'">삭제</button>
 </c:if>
@@ -214,13 +190,13 @@ $(function(){
     <h2 class="text-heading-5">질문과답변 인기 키워드</h2>
     <ul class="keyword-list">
         <li>
-          <a class="keyword-item" href="/questions?query=%EB%A6%AC%EB%AA%A8%EB%8D%B8%EB%A7%81%2F%EC%98%AC%EC%88%98%EB%A6%AC">리모델링/올수리</a>
+          <a class="keyword-item">리모델링/올수리</a>
         </li>
         <li>
-          <a class="keyword-item" href="/questions?query=20%ED%8F%89%EB%8C%80">20평대</a>
+          <a class="keyword-item">20평대</a>
         </li>
         <li>
-          <a class="keyword-item" href="/questions?query=%EC%95%84%ED%8C%8C%ED%8A%B8">아파트</a>
+          <a class="keyword-item">아파트</a>
         </li>
     </ul>
   </div>
@@ -234,34 +210,6 @@ $(function(){
     </div>
   </nav>
 </article>
-
-<section id="question__floating" class="floating-bar sticky-bottom">
-  <div class="floating-bar__content sticky-content question__floating">
-    <div class="question__floating__actions question__actions">
-
-  <div class="question__actions__action__wrap">
-    <div class="question__actions__action question-share-btn" role="button" data-target="11761"
-         data-path="/questions/11761/increase_share">
-        <span class="icon-common-action__j-8" aria-hidden="true"></span>
-      <span class="question__actions__action__caption">공유</span>
-      <span class="question__actions__action__count">0</span>
-    </div>
-    <div id="" class="tooltip-share-sns hidden" style="right: ">
-     <!--data-title="" data-username=""-->
-    <a class="btn-share-sns facebook" href="#" target="_blank"><span class="icon icon-sns-square-facebook"></span></a>
-    <div class="btn-share-sns kakaostory" href="#" target="_blank"><span class="icon icon-sns-square-kakao-story"></span></div>
-    <div class="btn-share-sns kakaotalk" href="#" target="_blank"><span class="icon icon-sns-square-kakao-talk"></span></div>
-    <a class="btn-share-sns naver" href="#" target="_blank"><span class="icon icon-sns-square-naver"></span></a>
-</div>
-  </div>
-</div>
-    <div class="question__floating__buttons">
-      <button class="question__floating__buttons__reply btn btn-priority">답변 달기
-      </button>
-    </div>
-  </div>
-</section>
-
 </main>
 </body>
 </html>

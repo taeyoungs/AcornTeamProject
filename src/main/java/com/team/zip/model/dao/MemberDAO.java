@@ -60,7 +60,18 @@ public class MemberDAO extends SqlSessionDaoSupport {
 	}
 	public void updatePw(MemberVO mvo) {
 		
-		getSqlSession().update("pwUpdate", mvo);
+		getSqlSession().update("member.pwUpdate", mvo);
 	}
+	
+	public void updateZipLike(MemberVO mvo) {
+		
+		getSqlSession().update("member.updateZipLike", mvo);
+	}
+	
+	public void updateZipReplyLike(MemberVO mvo) {
+		
+		getSqlSession().update("member.updateZipReplyLike", mvo);
+	}
+
 
 }

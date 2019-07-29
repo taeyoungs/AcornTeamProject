@@ -120,7 +120,7 @@
 						        <div class="detail">
 						          <div class="amount">
 						            <span class="icon icon-etc-button-minus btn-change-amount down" role="button"></span>
-						            <input type="number" value="1">
+						            <input type="number" value="1" id="counts" name="counts">
 						            <span class="icon icon-etc-button-plus btn-change-amount up" role="button"></span>
 						          </div>
 						          <p class="price bold"><span class="amount">
@@ -141,7 +141,7 @@
 					    
 					  <div class="buttons">
 			            <button class="btn btn-light bold signed btn-add-to-cart">장바구니 담기</button>
-			            <a class="btn btn-priority bold btn-buy-now" data-remote="true" href="#">구매하기</a>
+			            <a class="btn btn-priority bold btn-buy-now" data-remote="true" href="">구매하기</a>
 			            <button class="btn btn-priority bold signed btn-buy-now hide">구매하기</button>
 					  </div>
 					  

@@ -16,17 +16,17 @@
 	<div class="RankingFeed">
 		<section class="ranking-feed">
 			<div class="ranking-feed-group">
-				<p class="ranking-feed-group__title container">전체상품 BEST 50</p>
+				<p class="ranking-feed-group__title container">전체상품 BEST 10</p>
 				<div class="ranking-feed-group__card-wrap">
 					<div class="ranking-feed-card">
 						<div class="container">
 							<p class="ranking-feed-card__title"></p>
 							<div class="ranking-feed-card__product-wrap">
-								<c:forEach items="${list }" var="plist" varStatus="status" begin="0" end="49">
+								<c:forEach items="${list }" var="plist" varStatus="status" begin="0" end="9">
 								<div class="ranking-product-item-wrap">
 									<div class="product-item">
 										<div class="product-item__image">
-											<a href="#">
+											<a href="/store/selling.do?prodNo=${plist.prodNo }">
 												<img class="image" src="${root }${plist.prodImage }">
 												<div class="product-item__image__number">${status.count }</div>
 											</a>

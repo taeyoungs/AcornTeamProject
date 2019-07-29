@@ -3,9 +3,7 @@
 <mapper namespace="photo">
 
 	<!-- photoList 게시판 -->
-	<!-- <select id="photoDataList" resultType="pvo">
-		select * from photo order by photo_seq_no
-	</select> -->
+	
 	<select id="photoDataList" resultType="pvo">
 		select
 		p.photo_seq_no, p.member_no, p.photo_image, p.photo_content, p.photo_hometype, 

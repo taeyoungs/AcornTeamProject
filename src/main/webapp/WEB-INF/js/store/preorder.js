@@ -31,11 +31,11 @@ $(function(){
 		$("#delivery_message_presets").css('display','none');
 	});
 	
-	var price = 
+	var temp = $(".total_amount").val();
+	$(".total_amount").val(parseInt(temp));
 	
-	$("#preview_product_cost").text();
 	
-	
+
 });
 
 function DaumPostcode(){

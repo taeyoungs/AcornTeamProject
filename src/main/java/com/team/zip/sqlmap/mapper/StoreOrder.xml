@@ -4,10 +4,15 @@
 	<insert id="orderOne" parameterType="ovo">
 		insert into orders 
 		values(order_seq_no.nextval, #{member_no}, sysdate, 11, 
-		#{order_address}, #{order_customer}, #{order_contact}, #{order_comment})
+		#{order_address}, #{order_customer}, #{order_contact}, #{order_comment}, #{order_price})
 	</insert>
+	
 	<insert id="orderOneDetail" parameterType="ovo">
 		insert into orders_detail
-		values(#{order_no}, #{prod_no}, #{count})
+		values(#{order_no}, #{prod_no}, #{counts})
 	</insert>
+	
+	<select id="orderRecent" resultType="ovo">
+		select * from orders order by reg_date desc
+	</select>
 </mapper>

@@ -165,9 +165,6 @@ public class ZipdleController {
 		List<ZipdleVO> zlist = new ArrayList<ZipdleVO>();
 		
 		String[] conditionArray = request.getParameterValues("conditionArray");
-//		System.out.println("conditionArray[0] : "+conditionArray[0]);
-//		System.out.println("conditionArray[1] : "+conditionArray[1]);
-//		System.out.println("conditionArray[2] : "+conditionArray[2]);
 		
 		if(!conditionArray[0].equals("nl") && conditionArray[1].equals("nl") && conditionArray[2].equals("nl")) {
 			if(conditionArray[0].equals("최신순")) {

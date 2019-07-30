@@ -634,14 +634,14 @@ figure{
 .sidebar__update_button{
 	width: 25px;
 	height: 25px;
-	margin-left: 15px;
+	margin-left: 20%;
 	border: none;
 }
 
 .sidebar__delete_button{
-	width: 25px;
+	width: 25%;
 	height: 25px;
-	margin-left: 10px;
+	margin-left: 25%;
 	border: none;
 }
 

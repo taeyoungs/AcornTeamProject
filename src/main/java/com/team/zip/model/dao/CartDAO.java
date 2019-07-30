@@ -67,5 +67,14 @@ public class CartDAO extends SqlSessionDaoSupport {
 		
 		getSqlSession().delete("cart.deleteCartProd", map);
 	}
+	
+	public CartVO getProd(int cart_no, int prod_no) {
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("cart_no", cart_no);
+		map.put("prod_no", prod_no);
+		
+		return getSqlSession().selectOne("cart.getProd", map);
+	}
 
 }

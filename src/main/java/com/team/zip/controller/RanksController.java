@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,12 +23,15 @@ public class RanksController {
 	
 	
 	@RequestMapping("/store/ranks.do")
-	public ModelAndView ranksGo(@RequestParam(value="where", defaultValue="ranking") String where) {
+	public ModelAndView ranksGo(@RequestParam(value="where", defaultValue="ranking") String where, HttpSession session) {
 		ModelAndView model = new ModelAndView();
 		List<ProductVO> list = service.Top10List();
 		List<ProductVO> flist = service.FurnitureTop10List();
 		List<ProductVO> alist = service.ApplianceTop10List();
 		List<ProductVO> ilist = service.InteriorTop10List();
+		
+		session.removeAttribute("category");
+		session.setAttribute("category", "store");
 		
 		model.addObject("where", where);
 		model.addObject("list", list);

@@ -204,7 +204,11 @@ $(function(){
 		
 		setProdList();
 		
-		$(".button-submit").click();
+		if($(".preorderList").val() == "") {
+			alert("선택한 상품이 없습니다.");
+		} else {
+			$(".button-submit").click();
+		}
 	})
 });
 

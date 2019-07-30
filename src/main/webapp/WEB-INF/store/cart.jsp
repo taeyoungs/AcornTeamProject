@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,12 @@
 </head>
 <body>
 <main role="main" id="root">
+<c:if test="${fn:length(calist) == 0}">
+	<div class="commerce-cart-empty">
+		<div class=""></div>
+	</div>
+</c:if>
+<c:if test="${fn:length(calist) != 0}">
 	<div class="page">
 		<div class="commerce-cart-wrap">
 			<div class="container">
@@ -166,7 +173,7 @@
 								<div class="commerce-cart_side-bar-order">
 									<form action="preorderList.do" method="post">
 										<input type="hidden" name="prodList" value="" class="preorderList">
-										<button class="button button-color-blue button-size-50 button-shape-4 commerce-cart_side-bar_order_btn">
+										<button class="button button-color-blue button-size-50 button-shape-4 commerce-cart_side-bar_order_btn" type="button">
 										</button>
 										<button class="button-submit" type="submit" style="display: none;"></button>		
 									</form>
@@ -178,6 +185,7 @@
 			</div>
 		</div>
 	</div>
+</c:if>
 </main>
 </body>
 </html>

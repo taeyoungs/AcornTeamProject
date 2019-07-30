@@ -17,6 +17,19 @@
 		from cart c, product p
 		where c.prod_no = p.prod_no and c.cart_no = #{cart_no}
 	</select>
+	<select id="getProd" parameterType="HashMap" resultType="cavo">
+		select c.cart_no, 
+			   c.prod_no, 
+			   c.counts, 
+			   c.reg_date, 
+			   p.prod_title, 
+			   p.prod_price, 
+			   p.prod_img, 
+			   p.prod_seller, 
+			   p.discount_rate
+		from cart c, product p
+		where c.prod_no = p.prod_no and c.cart_no = #{cart_no} and p.prod_no = #{prod_no}
+	</select>
 	<select id="getProdList" parameterType="HashMap" resultType="cavo">
 		select * from cart where cart_no = #{cart_no} and prod_no = #{prod_no}
 	</select>

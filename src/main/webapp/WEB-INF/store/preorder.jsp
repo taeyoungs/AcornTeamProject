@@ -24,6 +24,7 @@
                 <tbody>
                     <tr class="production">
                         <td>
+                        	<c:if test="${pvo ne null }">
                             <div class="information">
                                 <img src="${pvo.prodImage }">
                                 <div>
@@ -35,6 +36,22 @@
                                     </div>
                                 </div>
                             </div>
+                            </c:if>
+                           	<c:if test="${calist ne null }">
+                           	<c:forEach items="${calist }" var="ca">
+                            <div class="information">
+                                <img src="${ca.prod_image }">
+                                <div>
+                                    <div class="name">${ca.prod_title }</div>
+                                    <div class="cost_count">
+                                        <div class="cost"><fmt:formatNumber value="${ca.prod_price}" pattern="#,###"/>원</div>
+                                        <div class="divider">|</div>
+                                        <div class="count">${ca.counts }개</div>
+                                    </div>
+                                </div>
+                            </div>
+                            </c:forEach>
+                            </c:if>
                         </td>
                     </tr>
                 </tbody>

@@ -23,7 +23,7 @@
 							<div class="story-entry__content">
 								<div class="story-entry__content__title">내가 선택한 오늘의 행복.</div>
 								<div class="story-entry__content__profile">
-									<span class="story-entry__content__profile__image" style="background-image: url('${root}/image/common/girl.png')">
+									<span class="story-entry__content__profile__image" style="background-image: url('${root}/uploadImage/dragon.png')">
 									</span>
 									<span class="story-entry__content__profile__name">sowon7912</span>
 								</div>
@@ -219,7 +219,7 @@
 									<span class="story-entry__content__profile__image" style="background-image: url('/image/common/user.png')"></span>
 								</c:if>
 								<c:if test="${!empty photo.memberImage}">
-									<span class="story-entry__content__profile__image" style="background-image: url('${photo.memberImage}')"></span>
+									<span class="story-entry__content__profile__image" style="background-image: url('/uploadImage/${photo.memberImage}')"></span>
 								</c:if>
 								<span class="story-entry__content__profile__name">${photo.memberNickname}</span>
 							</div>

@@ -1,8 +1,6 @@
 package com.team.zip.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,5 +33,17 @@ public class StoreReviewService {
 	
 	public int toggleReviewLike(MemberVO mvo) {
 		return storeReviewDAO.toggleReviewLike(mvo);
+	}
+	
+	public StoreReviewVO selectReviewListByRewNo(int rewNo) {
+		return storeReviewDAO.selectReviewListByRewNo(rewNo);
+	}
+	
+//	public void updateReview(StoreReviewVO storeReviewVO) {
+//		storeReviewDAO.updateReview(storeReviewVO);
+//	}
+	
+	public void deleteReview(int rewNo) {
+		storeReviewDAO.deleteReview(rewNo);
 	}
 }

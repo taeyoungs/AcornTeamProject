@@ -1,5 +1,6 @@
 package com.team.zip.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,6 +26,7 @@ import com.team.zip.model.vo.CommonCodeVO;
 import com.team.zip.model.vo.MemberVO;
 import com.team.zip.model.vo.ProductVO;
 import com.team.zip.model.vo.StoreReviewVO;
+import com.team.zip.service.MemberService;
 import com.team.zip.service.StoreCategoryService;
 import com.team.zip.service.StoreProductService;
 import com.team.zip.service.StoreReviewService;
@@ -40,6 +42,8 @@ public class StoreCategoryController {
 	
 	@Autowired
 	private StoreProductService storeProductService;
+	
+	private MemberService mservice;
 	
 	@RequestMapping("/store/category.do")
 	public ModelAndView categoryGo(@ModelAttribute CommonCodeVO commonCodeVo,
@@ -179,11 +183,13 @@ public class StoreCategoryController {
 		
 		List<StoreReviewVO> reviewList = new ArrayList<StoreReviewVO>();
 		StoreReviewVO storeReviewVO = new StoreReviewVO();
+		
 		storeReviewVO.setProdNo(Integer.parseInt(prodNo));
 		storeReviewVO.setStartNo(startNo);
 		storeReviewVO.setEndNo(endNo);
 		storeReviewVO.setImageOnly("N");
 		storeReviewVO.setSorting("best");
+		
 		reviewList = storeReviewService.getReviewList(storeReviewVO);
 		int reviewTotalCount = storeReviewService.getReviewTotalCount(Integer.parseInt(prodNo));
 		
@@ -199,6 +205,64 @@ public class StoreCategoryController {
 		return mav;
 	}
 	
+//	@RequestMapping(value = "/store/updateReviewForm.do", method = RequestMethod.POST)
+//	@ResponseBody
+//	public JSONObject updateReviewFormAjax(@RequestParam int rewNo, @RequestParam int pageNo) {
+//		
+//		
+//		JSONObject jsonObj = new JSONObject();
+//		StoreReviewVO storeReviewVO = storeReviewService.selectReviewListByRewNo(rewNo);
+//		
+//		
+//		
+//		return jsonObj;
+//	}
+	
+//	@RequestMapping(value = "/store/updateReview.do", method = RequestMethod.POST)
+//	public String updateReview(@ModelAttribute StoreReviewVO storeReviewVO) {
+//		
+//		//리뷰 수정
+//		storeReviewService.updateReview(storeReviewVO);
+//		
+//		return "redirect:/store/selling.do";
+//	}
+	
+	@RequestMapping(value = "/store/deleteReview.do")
+	public String deleteReview(@RequestParam int rewNo, @RequestParam String prodNo,
+			HttpServletRequest request, @RequestParam int pageNo) {
+		
+		//이미지 업로드 경로 1. 집  2. 학원
+		//String projectPath = "C:/Users/PARKSSO/git/AcornTeamProject";
+		//String projectPath = "C:/Users/acorn/git/AcornTeamProject";
+				
+		String projectPath = "C:/Users/acorn/git/AcornTeamProject";
+		String realPath = projectPath+"/src/main/webapp/WEB-INF/uploadImage/review";
+		
+		//DB에서 삭제 전 이미지 지우기
+		String rewImgName = storeReviewService.selectReviewListByRewNo(rewNo).getRewImg();
+		System.out.println("rewNo : "+rewNo);
+		System.out.println("rewImg : "+rewImgName);
+		if(rewImgName != null)
+		{
+			String[] imageName = rewImgName.split(",");
+			for(String s:imageName)
+			{
+				//파일 객체로 생성
+				File file = new File(realPath+"\\"+s);
+				//존재할 경우 해당 파일 삭제
+				if(file.exists()) {
+					file.delete();
+				}
+			}
+		}
+		
+		//리뷰 삭제
+		storeReviewService.deleteReview(rewNo);
+				
+		
+		return "redirect:/store/selling.do?prodNo="+prodNo+"&pageNo="+pageNo;
+	}
+	
 	//리뷰 출력 Ajax
 	@RequestMapping(value = "/store/reviewAjax.do", method = RequestMethod.POST)
 	@ResponseBody
@@ -208,7 +272,6 @@ public class StoreCategoryController {
 	{
 		
 		//페이징처리에 필요한 변수들 선언
-		
 		int no;//출력 시작번호
 		int perPage = 3; //한페이지당 출력 리뷰 개수
 		int perBlock = 10; //한블럭당 보여질 페이지의 개수
@@ -247,9 +310,9 @@ public class StoreCategoryController {
 		storeReviewVO.setProdNo(prodNo);
 		storeReviewVO.setStartNo(startNo);
 		storeReviewVO.setEndNo(endNo);
-		System.out.println("startNo : "+storeReviewVO.getStartNo());
-		System.out.println("endNo : "+storeReviewVO.getEndNo());
-		System.out.println("imageOnly : "+storeReviewVO.getImageOnly());
+		//System.out.println("startNo : "+storeReviewVO.getStartNo());
+		//System.out.println("endNo : "+storeReviewVO.getEndNo());
+		//System.out.println("imageOnly : "+storeReviewVO.getImageOnly());
 		reviewList = storeReviewService.getReviewList(storeReviewVO);
 		
 		ObjectMapper mapper = new ObjectMapper();
@@ -282,7 +345,7 @@ public class StoreCategoryController {
 		//String projectPath = "C:/Users/PARKSSO/git/AcornTeamProject";
 		//String projectPath = "C:/Users/acorn/git/AcornTeamProject";
 		
-		String projectPath = "C:/Users/PARKSSO/git/AcornTeamProject";
+		String projectPath = "C:/Users/acorn/git/AcornTeamProject";
 		
 		String realPath = projectPath+"/src/main/webapp/WEB-INF/uploadImage/review";
 		

@@ -128,6 +128,12 @@ function openReviewPopUp(e) {
 	$('textarea').val("");
 }
 
+//리뷰 수정하기 클릭 시 팝업
+//function openUpdatePopUp(e) {
+//	e.preventDefault();
+//	$(".ui-popup-update").css("display", "block");
+//}
+
 //Number Format
 function formatNumber(price) {
 	  return price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
@@ -146,6 +152,7 @@ function formatDate(date) {
 	return [year, month, day].join('-');
 }
 
+//상품 수량 --
 function minus() {
 	var count = Number($('div.amount input').val());
 	if (count > 1) {
@@ -160,7 +167,7 @@ function minus() {
 	
 	}
 }
-
+//상품 수량 ++
 function plus() {
 	var count = Number($('div.amount input').val());
 	if (count < 10) {
@@ -348,9 +355,8 @@ function reviewListAjax(pageNo) {
 												`+formatDate(rew.regDate)+`&nbsp; 구매</span>
 										</div>
 									</div>
-									<a class="production-review-item__edit" data-remote="true" href="">수정</a>
-									<a class="production-review-item__delete" data-remote="true" href="">삭제</a>
-									<p class="production-review-item__name"></p>
+									<a class="production-review-item__edit" data-remote="true" href="#" onclick="openUpdatePopUp(event)">수정</a>
+									<a class="production-review-item__delete" data-remote="true" href="#"  onclick="location.href='deleteReview.do?rewNo=`+rew.rewNo+`&prodNo=`+rew.prodNo+`&pageNo=`+pageNo+`'">삭제</a>
 									<button class="production-review-item__img__btn">
 										<img class="production-review-item__img" src="/uploadImage/review/`+decodeURI(rew.rewImg)+`"
 										  onerror="this.src='${root}/uploadImage/review/noimage.jpg'; this.onerror='';">

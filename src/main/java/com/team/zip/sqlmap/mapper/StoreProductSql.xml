@@ -137,6 +137,33 @@
 		UPDATE MEMBER SET REVIEW_LIKE = #{review_like}
 		WHERE MEMBER_NO = ${member_no}
 	</update>
+	
+	<select id="selectReviewListByRewNo" parameterType="int" resultType="storeReviewVO">
+		SELECT R.REW_NO AS rewNo
+			 , R.MEMBER_NO AS memberNo
+			 , R.PROD_NO AS prodNo
+			 , R.REW_IMG AS rewImg
+			 , R.REW_CONTENT AS rewContent
+			 , R.REW_GRADE AS rewGrade
+			 , R.REG_DATE AS regDate
+		FROM REVIEW R
+		WHERE REW_NO = #{rewNo}
+	</select>
+	
+	<update id="updateReview" parameterType="storeReviewVO">
+		UPDATE REVIEW SET 
+			REW_IMG = #{rewImg},
+			REW_CONTENT = #{rewContent}, 
+			REW_GRADE = #{rewGrade},
+			REG_DATE = SYSDATE
+		WHERE REW_NO = #{rewNo}
+	</update>
+	
+	<delete id="deleteReview" parameterType="int">
+		DELETE 
+		FROM REVIEW
+		WHERE REW_NO = #{rewNo}
+	</delete>
 
 	<select id="getProductOne" parameterType="String" resultType="productVO">
 		SELECT PROD_NO AS prodNo

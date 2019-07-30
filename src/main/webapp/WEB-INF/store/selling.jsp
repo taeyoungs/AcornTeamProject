@@ -130,9 +130,7 @@
 						        <div class="detail">
 						          <div class="amount">
 						            <span class="icon icon-etc-button-minus btn-change-amount down" role="button"></span>
-						            	<input type="number" value="1">
-						            	<!-- JWP -->
-						            <input type="number" value="1" id="counts" name="counts">
+						            	<input type="number" value="1" id="counts" name="counts">
 						            <span class="icon icon-etc-button-plus btn-change-amount up" role="button"></span>
 						          </div>
 						          <p class="price bold">
@@ -296,7 +294,9 @@
 									</c:if>
 									<!-- 리뷰 O -->
 									<c:if test="${product.reviewCnt > 0}">
-									<div class="production-review__info__star__avg">${product.starGrade/product.reviewCnt}</div>
+									<div class="production-review__info__star__avg">
+										<fmt:formatNumber value="${product.starGrade/product.reviewCnt}" pattern="#.00"/>
+									</div>
 									<c:forEach begin="1" end="5" varStatus="status">
 									<span class="production-review__info__star__rating">
 										<c:choose>
@@ -568,6 +568,7 @@
 	</div>
 </div>
 <!-- 리뷰쓰기 팝업 [E] -->
+
 <script src="${root}/js/store/selling.js"></script>
 </body>
 </html>

@@ -1,9 +1,7 @@
 package com.team.zip.model.dao;
 
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -31,5 +29,17 @@ public class StoreReviewDAO extends SqlSessionDaoSupport{
 	
 	public int toggleReviewLike(MemberVO mvo) {
 		return getSqlSession().update("toggleReviewLike", mvo);
+	}
+	
+	public StoreReviewVO selectReviewListByRewNo(int rewNo) {
+		return getSqlSession().selectOne("selectReviewListByRewNo", rewNo);
+	}
+	
+//	public void updateReview(StoreReviewVO storeReviewVO) {
+//		getSqlSession().update("updateReview", storeReviewVO);
+//	}
+	
+	public void deleteReview(int rewNo) {
+		getSqlSession().delete("deleteReview", rewNo);
 	}
 }

@@ -1,5 +1,6 @@
 package com.team.zip.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.team.zip.model.vo.CartVO;
 import com.team.zip.model.vo.OrderVO;
 import com.team.zip.model.vo.ProductVO;
+import com.team.zip.service.CartService;
 import com.team.zip.service.OrderService;
 import com.team.zip.service.StoreProductService;
 
@@ -24,6 +27,8 @@ public class OrderController {
 	private StoreProductService service;
 	@Autowired
 	private OrderService oservice;
+	@Autowired
+	private CartService caservice;
 	
 	@RequestMapping("store/preorder.do")
 	public String preorder
@@ -45,6 +50,38 @@ public class OrderController {
 				 
 				return "/store/preorder";
 			}
+
+		}else {
+
+			return "/1/member/signin";
+		
+		}
+	}
+	
+	@RequestMapping("store/preorderList.do")
+	public String preorderList
+	(@RequestParam String prodList, Model model, HttpSession session) {
+		
+		int memeber_no = (Integer)session.getAttribute("member_no");
+		String login = (String) session.getAttribute("loginok");
+		if (login != null && login.equals("login")) {
+			
+			List<CartVO> calist = new ArrayList<CartVO>();
+			String prod[] = prodList.split(",");
+			
+			for (int i = 0; i < prod.length; i++) {
+				int prod_no = Integer.parseInt(prod[i]);
+				calist.add(caservice.getProdList(memeber_no, prod_no));
+			}
+			
+			
+			// 장바구니 선택한 물품 목록 ( ','로 저장되어 있는 문자열 )
+			model.addAttribute("prodList", prodList);
+			
+			// 선택한 물품들 정보 리스트
+			model.addAttribute("calist", calist);
+			
+			return "/store/preorder";
 
 		}else {
 

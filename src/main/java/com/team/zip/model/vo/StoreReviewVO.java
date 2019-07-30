@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class StoreReviewVO {
 	private String rewNo;
-	private String memberNo;
+	private int memberNo;
 	private int prodNo;
 	private String rewImg;
 	private String rewTitle;
@@ -21,17 +21,24 @@ public class StoreReviewVO {
 	private String reviewLikeCnt;
 	private String sorting;
 	private String imageOnly;
+	private String isLogin;
 	
+	public String getIsLogin() {
+		return isLogin;
+	}
+	public void setIsLogin(String isLogin) {
+		this.isLogin = isLogin;
+	}
 	public String getRewNo() {
 		return rewNo;
 	}
 	public void setRewNo(String rewNo) {
 		this.rewNo = rewNo;
 	}
-	public String getMemberNo() {
+	public int getMemberNo() {
 		return memberNo;
 	}
-	public void setMemberNo(String memberNo) {
+	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
 	public int getProdNo() {

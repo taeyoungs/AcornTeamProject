@@ -30,6 +30,7 @@ $(function(){
 			$(this).removeClass('empty').addClass('filled');
 			$(this).prevAll('div.avg_star').removeClass('empty').addClass('filled');
 			$(this).nextAll('div.avg_star').removeClass('filled').addClass('empty');
+			$('.star_msg').css("color", "rgb(189, 189, 189)");
 			setStarMsg($(this).text());
 		},
 		function(){
@@ -37,9 +38,12 @@ $(function(){
 				$('.star_image .avg_star').eq(selectedStarIndex).removeClass('empty').addClass('filled');
 				$('.star_image .avg_star').eq(selectedStarIndex).prevAll('div.avg_star').removeClass('empty').addClass('filled');
 				$('.star_image .avg_star').eq(selectedStarIndex).nextAll('div.avg_star').removeClass('filled').addClass('empty');
-				setStarMsg($(this).text());
+				$('.star_msg').css("color", "rgb(66, 66, 66)");
+				setStarMsg(selectedStarIndex+1);
+				
 			} else {
 				$('.star_image .avg_star').removeClass('filled').addClass('empty');
+				$('.star_msg').css("color", "rgb(189, 189, 189)");
 				setStarMsg();
 			}
 		}
@@ -48,10 +52,8 @@ $(function(){
 	$('.star_image .avg_star').click(function(e){
 		selectedStarIndex = $('.star_image .avg_star').index(this);
 		$('.star_image .avg_star:gt('+selectedStarIndex+')').removeClass('filled').addClass('empty');
-		var star_score =  $(this).text();
-	    $("#rewGrade").val(star_score);
+	    $("#rewGrade").val($(this).text());
 	    $('.star_msg').css("color", "rgb(66, 66, 66)");
-	    //console.log($("#rewGrade").val());
 	});
 	
 	//장바구니에 담기 추가 [S] -- JWP
@@ -97,14 +99,12 @@ $(function(){
 		$(this).attr('href', 'preorder.do?prodNo='+prodNo+"&counts="+counts);
 	});
 	//장바구니에 담기 추가 [E] -- JWP
-
 });
 
 //별점 HOVER 하단 텍스트 출력
 function setStarMsg(starIndex) {
 	if(starIndex == 1){
 		$('.star_msg').text("I don't like it!");
-		$('.star_msg').css("color", "rgb(189, 189, 189)");
 	} else if (starIndex == 2) {
 		$('.star_msg').text("so so");
 	} else if (starIndex == 3) {
@@ -117,7 +117,6 @@ function setStarMsg(starIndex) {
 		$('.star_msg').text("");
 	}
 }
-
 
 //펼치기 버튼 - 상품 상세정보 출력
 function showDetail() {
@@ -157,10 +156,36 @@ function openReviewPopUp(e) {
 }
 
 //리뷰 수정하기 클릭 시 팝업
-//function openUpdatePopUp(e) {
-//	e.preventDefault();
-//	$(".ui-popup-update").css("display", "block");
-//}
+function openUpdatePopUp(idx, e) {
+	e.preventDefault();
+	var rew = reviewArr[idx];
+	
+	 //별 평점 & 하단 문구 셋팅
+	selectedStarIndex = rew.rewGrade-1;
+	for(var i=0; i<5; i++) {
+		if (rew.rewGrade >= (i+1)) {
+			$('.star_image .avg_star:eq('+i+')').removeClass('empty').addClass('filled');
+		} else {
+			$('.star_image .avg_star:eq('+i+')').removeClass('filled').addClass('empty');
+		}
+	}
+	setStarMsg(selectedStarIndex);
+	$("#rewGrade").val(rew.rewGrade);
+	
+	//이미지 셋팅
+	$("#upload_panel img").attr('src', '/uploadImage/review/'+decodeURI(rew.rewImg));
+	$("#upload_panel").css("display", "inline-block");
+	
+	//텍스트 영역 셋팅
+	$('textarea').val(rew.rewContent);
+	countWords();
+	
+	//리뷰 시퀀스 셋팅
+	$('#rewNo').val(rew.rewNo);
+	
+	//리뷰쓰기 팝업창 open
+	$(".ui-popup").css("display", "block");
+}
 
 //Number Format
 function formatNumber(price) {
@@ -211,14 +236,6 @@ function plus() {
 	}
 }
 
-
-//리뷰쓰기 - 별점평가
-$('.select_star>.star>.star_image>.star.empty').mouseenter(function() {
-	//alert("선택");
-	$('.star_image>.star.empty').removeClass('empty')
-	$('.star_image>.star').addClass('filled')
-});
-
 //리뷰쓰기 - Counting words
 function countWords(){
 	  var txtVal = $('textarea').val();
@@ -242,7 +259,7 @@ function frmsubmit() {
 		alert("글자 수 최소 20자 제한");
 		return false;
 	}
-	$('#production_review_form').submit();
+	return true;
 }
 
 
@@ -319,6 +336,7 @@ function handleImgFileSelect (e) {
 //한번만 동작할 수 있도록 작동 후 true -> false
 var doAjax = true;
 var root = $('#root').val();
+var reviewArr = [];
 function reviewListAjax(pageNo) {
 	if(doAjax) {
 		doAjax = false;
@@ -335,9 +353,11 @@ function reviewListAjax(pageNo) {
 				doAjax = true;
 				var rewList = JSON.parse(data.jsonList);
 				
+				reviewArr = [];
 				var reviewList = '';
 				for(var i=0; i<rewList.length; i++){
 					var rew = rewList[i];
+					reviewArr[i] = rew;
 					reviewList += `
 						<div class="production-review-item__list">
 							<div class="production-review-item__container">
@@ -382,10 +402,12 @@ function reviewListAjax(pageNo) {
 											<span class="production-review-item__writer__info__date">
 												`+formatDate(rew.regDate)+`&nbsp; 구매</span>
 										</div>
-									</div>
-									<a class="production-review-item__edit" data-remote="true" href="#" onclick="openUpdatePopUp(event)">수정</a>
-									<a class="production-review-item__delete" data-remote="true" href="#"  onclick="location.href='deleteReview.do?rewNo=`+rew.rewNo+`&prodNo=`+rew.prodNo+`&pageNo=`+pageNo+`'">삭제</a>
-									<button class="production-review-item__img__btn">
+									</div>`
+								if (rew.isLogin == "true") {
+									reviewList += `<a class="production-review-item__edit" data-remote="true" href="javascript:void(0);" onclick="openUpdatePopUp('`+i+`',event)">수정</a>
+										<a class="production-review-item__delete" data-remote="true" href="javascript:void(0);" onclick="location.href='deleteReview.do?rewNo=`+rew.rewNo+`&prodNo=`+rew.prodNo+`&pageNo=`+pageNo+`'">삭제</a>`	
+								}
+								reviewList += `<button class="production-review-item__img__btn">
 										<img class="production-review-item__img" src="/uploadImage/review/`+decodeURI(rew.rewImg)+`"
 										  onerror="this.src='${root}/uploadImage/review/noimage.jpg'; this.onerror='';">
 									</button>
@@ -500,10 +522,14 @@ function reviewToggleAjax(rewNo, thiz) {
 								도움됨
 							</button>
 						`;
-					$(thiz).parent().html(button);
+					$(thiz).parent().prepend(button);
+					$(thiz).next().find('span').text(Number($(thiz).next().find('span').text())+1);
+					$(thiz).remove();
 				} else if(data.result == 'N' ){
 					var button = '<button type="button" class="production-review-item__help__btn" onClick="reviewToggleAjax('+rewNo+', this)">도움이 돼요</button>';
-					$(thiz).parent().html(button);
+					$(thiz).parent().prepend(button);
+					$(thiz).next().find('span').text(Number($(thiz).next().find('span').text())-1);
+					$(thiz).remove();
 				}
 			},
 			fail: function(error) {

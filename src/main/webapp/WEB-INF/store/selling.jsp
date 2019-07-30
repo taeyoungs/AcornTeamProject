@@ -169,7 +169,7 @@
 	<section id="contents" class="container">
 		<div id="selling-helper-wrap" class="sticky-top">
 			<div id="selling-helper" class="sticky-content row absolute open"
-				data-sticky-enabled="false" style="position: absolute; bottom: auto; top: 50px;" data-offset="132">
+				data-sticky-enabled="false" style="position: absolute; bottom: auto; top: 80px;" data-offset="132">
 				<section class="col-12">
 					<nav id="product-contents-tab" style="font-size: 15px;">
 						<ul class="row align-flex-end">
@@ -538,7 +538,7 @@
 					            <input type="file" name="image" id="card_uploader" accept="image/*">
 					        </div>
 					
-					        <input type="hidden" name="" id="production_review_card_id">
+					        <input type="hidden" name="rewNo" id="rewNo">
     					</div>
 						<!-- 리뷰 내용 -->
 						<div class="select_comment field">

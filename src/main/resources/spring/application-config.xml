@@ -25,9 +25,8 @@
 	<!-- sqlSessionFactory에 dataSource가 setter로 주입된다. -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
-		<property name="configLocation">
-			<value>classpath:com/team/zip/sqlmap/config/SqlMapConfig.xml</value>
-		</property>
+		<property name="configLocation" value="classpath:com/team/zip/sqlmap/config/SqlMapConfig.xml"/>
+		<property name="mapperLocations" value="classpath:com/team/zip/sqlmap/mapper/*"/> 
 	</bean>
 	
 	<!-- sqlSessionTemplate에 생성자로 sqlSessionFactory를 주입 -->

@@ -205,27 +205,6 @@ public class StoreCategoryController {
 		return mav;
 	}
 	
-//	@RequestMapping(value = "/store/updateReviewForm.do", method = RequestMethod.POST)
-//	@ResponseBody
-//	public JSONObject updateReviewFormAjax(@RequestParam int rewNo, @RequestParam int pageNo) {
-//		
-//		
-//		JSONObject jsonObj = new JSONObject();
-//		StoreReviewVO storeReviewVO = storeReviewService.selectReviewListByRewNo(rewNo);
-//		
-//		
-//		
-//		return jsonObj;
-//	}
-	
-//	@RequestMapping(value = "/store/updateReview.do", method = RequestMethod.POST)
-//	public String updateReview(@ModelAttribute StoreReviewVO storeReviewVO) {
-//		
-//		//리뷰 수정
-//		storeReviewService.updateReview(storeReviewVO);
-//		
-//		return "redirect:/store/selling.do";
-//	}
 	
 	@RequestMapping(value = "/store/deleteReview.do")
 	public String deleteReview(@RequestParam int rewNo, @RequestParam String prodNo,
@@ -260,7 +239,7 @@ public class StoreCategoryController {
 		storeReviewService.deleteReview(rewNo);
 				
 		
-		return "redirect:/store/selling.do?prodNo="+prodNo+"&pageNo="+pageNo;
+		return "redirect:/store/selling.do?prodNo="+prodNo;
 	}
 	
 	//리뷰 출력 Ajax
@@ -268,9 +247,12 @@ public class StoreCategoryController {
 	@ResponseBody
 	public JSONObject getReviewListForAjax(@RequestParam int prodNo,
 			@ModelAttribute StoreReviewVO storeReviewVO,
-			@RequestParam(value = "pageNo", defaultValue = "1") int currentPage)
+			@RequestParam(value = "pageNo", defaultValue = "1") int currentPage,
+			HttpSession session)
 	{
 		
+		String memberNo = String.valueOf(session.getAttribute("member_no"));
+
 		//페이징처리에 필요한 변수들 선언
 		int no;//출력 시작번호
 		int perPage = 3; //한페이지당 출력 리뷰 개수
@@ -304,16 +286,13 @@ public class StoreCategoryController {
 		// 예) 현재페이지 11일 경우 시작페이지:11 끝페이지:15
 		no = reviewTotalCnt - (currentPage - 1) * perPage;
 		
-		
-		List<StoreReviewVO> reviewList = new ArrayList<StoreReviewVO>();
-		
 		storeReviewVO.setProdNo(prodNo);
 		storeReviewVO.setStartNo(startNo);
 		storeReviewVO.setEndNo(endNo);
-		//System.out.println("startNo : "+storeReviewVO.getStartNo());
-		//System.out.println("endNo : "+storeReviewVO.getEndNo());
-		//System.out.println("imageOnly : "+storeReviewVO.getImageOnly());
-		reviewList = storeReviewService.getReviewList(storeReviewVO);
+		if (memberNo != null && !"null".equals(memberNo)) {
+			storeReviewVO.setMemberNo(Integer.parseInt(memberNo));			
+		}		
+		List<StoreReviewVO> reviewList = storeReviewService.getReviewList(storeReviewVO);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonList = "";
@@ -342,19 +321,18 @@ public class StoreCategoryController {
 			HttpServletRequest request) throws Exception{
 		
 		//이미지 업로드 경로 1. 집  2. 학원
-		//String projectPath = "C:/Users/PARKSSO/git/AcornTeamProject";
-		//String projectPath = "C:/Users/acorn/git/AcornTeamProject";
-		
-		String projectPath = "C:/Users/acorn/git/AcornTeamProject";
+		String projectPath = "C:/Users/PARKSSO/git/AcornTeamProject";
+//		String projectPath = "C:/Users/acorn/git/AcornTeamProject";
 		
 		String realPath = projectPath+"/src/main/webapp/WEB-INF/uploadImage/review";
 		
-		String fileName = image.getOriginalFilename();
-		SpringFileWriter fileWriter = new SpringFileWriter();
+		if (image != null) {
+			String fileName = image.getOriginalFilename();
+			SpringFileWriter fileWriter = new SpringFileWriter();
+			fileWriter.writeFile(image, realPath, fileName);
+			storeReviewVO.setRewImg(fileName);
+		}
 		
-		fileWriter.writeFile(image, realPath, fileName);
-		
-		storeReviewVO.setRewImg(fileName);
 		storeReviewService.insertReview(storeReviewVO);
 		
 		return "redirect:/store/selling.do?prodNo="+storeReviewVO.getProdNo();
@@ -395,11 +373,11 @@ public class StoreCategoryController {
 			reviewLike = " "+rewNo + ",";
 			jsonObj.put("result", "Y");
 		}
+		
 		mvo.setMember_no(Integer.parseInt(memberNo));
 		mvo.setReview_like(reviewLike);
-		System.out.println("reviewLike2 : "+reviewLike);
 		int result = storeReviewService.toggleReviewLike(mvo);
-		System.out.println("result : "+result);
+		
 		return jsonObj;
 	}
 	

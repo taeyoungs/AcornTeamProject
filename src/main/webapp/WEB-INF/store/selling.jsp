@@ -169,7 +169,7 @@
 	<section id="contents" class="container">
 		<div id="selling-helper-wrap" class="sticky-top">
 			<div id="selling-helper" class="sticky-content row absolute open"
-				data-sticky-enabled="false" style="position: absolute;" data-offset="132">
+				data-sticky-enabled="false" style="position: absolute; bottom: auto; top: 50px;" data-offset="132">
 				<section class="col-12">
 					<nav id="product-contents-tab" style="font-size: 15px;">
 						<ul class="row align-flex-end">

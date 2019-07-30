@@ -268,9 +268,9 @@ $(document).ready(function() {
 		var scrollTop = $(document).scrollTop();
 		
 		if (contentsTop < scrollTop) {
-			$('#product-selling-option-wrap').css('position','fixed');
+			$('#selling-helper').css('position','fixed');
 		} else {
-			$('#product-selling-option-wrap').css('position','absolute');
+			$('#selling-helper').css('position','absolute');
 		}
 	});
 	

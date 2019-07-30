@@ -45,8 +45,27 @@ public class CartDAO extends SqlSessionDaoSupport {
 		getSqlSession().update("cart.updateProdCnt", map);
 	}
 	
+	public void updateCounts(int cart_no, int prod_no, int counts) {
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("cart_no", cart_no);
+		map.put("prod_no", prod_no);
+		map.put("counts", counts);
+	
+		getSqlSession().update("cart.updateCounts", map);
+	}
+	
 	public int getListCnt(int cart_no) {
 		return getSqlSession().selectOne("cart.getListCnt", cart_no);
+	}
+	
+	public void deleteCartProd(int cart_no ,int prod_no) {
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("cart_no", cart_no);
+		map.put("prod_no", prod_no);
+		
+		getSqlSession().delete("cart.deleteCartProd", map);
 	}
 
 }

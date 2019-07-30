@@ -68,14 +68,14 @@
 																		<p class="product-small-item_caption">무료배송 | 일반택배</p>
 																	</div>
 																</a>
-																<button type="button" class="carted-product_delete" aria-label="삭제">
+																<button type="button" class="carted-product_delete" aria-label="삭제" data-p-id="${cavo.prod_no}">
 																	<img src="/image/common/cart-delete-4242.png">
 																</button>
 																<ul class="carted-product_option-list">
 																	<li class="carted-product_option-list_item">
 																		<article class="selling-option-item">
 																			<h1 class="selling-option-item_name">${cavo.prod_title}</h1>
-																			<button type="button" class="selling-option-item_delete" aria-label="삭제">
+																			<button type="button" class="selling-option-item_delete" aria-label="삭제" data-p-id="${cavo.prod_no}">
 																				<img src="/image/common/cart-delete-7575.png">
 																			</button>
 																			<div class="selling-option-item_controls">
@@ -115,7 +115,7 @@
 																		<span class="carted-product_subtotal_number">
 																		<fmt:formatNumber value="${(cavo.prod_price-(cavo.prod_price*(cavo.discount_rate/100)))*cavo.counts}" pattern="#,###"/>
 																		</span>원
-																		<input type="hidden" value="${(cavo.prod_price-(cavo.prod_price*(cavo.discount_rate/100)))*cavo.counts}" class="prod_prices">
+																		<input type="hidden" value="${cavo.prod_price}" class="prod_prices">
 																		<input type="hidden" value="${cavo.prod_price*(cavo.discount_rate/100)}" class="discount_prices">
 																	</span>
 																</div>
@@ -159,13 +159,17 @@
 									<div class="commerce-cart_summary_row commerce-cart_summary_row-total">
 										<dt>결제금액</dt>
 										<dd>
-											<span class="number">9,900</span>원
+											<span class="number"></span>원
 										</dd>
 									</div>
 								</dl>
 								<div class="commerce-cart_side-bar-order">
-									<button class="button button-color-blue button-size-50 button-shape-4 commerce-cart_side-bar_order_btn">
-									</button>
+									<form action="preorderList.do" method="post">
+										<input type="hidden" name="prodList" value="" class="preorderList">
+										<button class="button button-color-blue button-size-50 button-shape-4 commerce-cart_side-bar_order_btn">
+										</button>
+										<button class="button-submit" type="submit" style="display: none;"></button>		
+									</form>
 								</div>
 							</div>
 						</div>

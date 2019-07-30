@@ -160,6 +160,7 @@ public class LoginController {
 		session.removeAttribute("loginok");
 		session.removeAttribute("member_no");
 		session.removeAttribute("mvo");
+		session.removeAttribute("cartCnt");
 		
 		model.addAttribute("loginCondition", "2");
 		

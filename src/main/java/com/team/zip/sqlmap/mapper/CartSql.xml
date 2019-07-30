@@ -23,7 +23,13 @@
 	<update id="updateProdCnt" parameterType="HashMap">
 		update cart set counts = counts + #{counts} where cart_no = #{cart_no} and prod_no = #{prod_no}
 	</update>
+	<update id="updateCounts" parameterType="HashMap">
+		update cart set counts = #{counts} where cart_no = #{cart_no} and prod_no = #{prod_no}
+	</update>
 	<select id="getListCnt" resultType="int" parameterType="int">
 		select count(*) as cnt from cart where cart_no = #{cart_no}
 	</select>
+	<delete id="deleteCartProd" parameterType="HashMap">
+		delete from cart where cart_no = #{cart_no} and prod_no = #{prod_no}
+	</delete>
 </mapper>

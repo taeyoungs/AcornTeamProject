@@ -90,7 +90,55 @@
 		)
 	</insert>
 	
-	<select id="getReviewList" parameterType="String" resultType="storeReviewVO">
+	<select id="getReviewList" parameterType="storeReviewVO" resultType="storeReviewVO">
+		SELECT * FROM (
+			SELECT ROWNUM AS RNUM, b.* from (
+				SELECT R.REW_NO AS rewNo
+					 , R.MEMBER_NO AS memberNo
+					 , R.PROD_NO AS prodNo
+					 , R.REW_IMG AS rewImg
+					 , R.REW_CONTENT AS rewContent
+					 , R.REW_GRADE AS rewGrade
+					 , R.REG_DATE AS regDate
+					 , M.MEMBER_NICKNAME AS memberNickname
+					 , M.MEMBER_IMAGE AS memberImage
+					 , (SELECT 'Y' FROM MEMBER WHERE MEMBER_NO = R.MEMBER_NO AND REVIEW_LIKE LIKE '% '||R.REW_NO||',%') AS reviewLike
+					 , (SELECT COUNT(*) FROM MEMBER WHERE REVIEW_LIKE LIKE '% '||R.REW_NO||',%') AS reviewLikeCnt
+				FROM REVIEW R, MEMBER M
+				WHERE R.MEMBER_NO = M.MEMBER_NO
+				AND PROD_NO = #{prodNo}
+				<if test='imageOnly != null and imageOnly == "Y"'>
+				AND R.REW_IMG IS NOT NULL
+				</if>
+				<if test='sorting == "best"'>
+		    	   ORDER BY reviewLikeCnt DESC 
+		  		</if>
+		  		<if test='sorting == "new"'>
+		    	   ORDER BY R.REG_DATE DESC 
+		  		</if>
+			)b
+	  	)a
+	  	<![CDATA[ WHERE a.RNUM>=#{startNo} AND a.RNUM<=#{endNo}]]>
+	</select>
+	
+	<select id="getReviewTotalCount" parameterType="int" resultType="int">
+		SELECT COUNT(*)
+		FROM REVIEW
+		WHERE PROD_NO = #{prodNo}
+	</select>
+	
+	<select id="selectReviewLike" parameterType="String" resultType="String">
+		SELECT REVIEW_LIKE 
+		FROM MEMBER
+		WHERE MEMBER_NO = ${value}
+	</select>
+	
+	<update id="toggleReviewLike" parameterType="mvo">
+		UPDATE MEMBER SET REVIEW_LIKE = #{review_like}
+		WHERE MEMBER_NO = ${member_no}
+	</update>
+	
+	<select id="selectReviewListByRewNo" parameterType="int" resultType="storeReviewVO">
 		SELECT R.REW_NO AS rewNo
 			 , R.MEMBER_NO AS memberNo
 			 , R.PROD_NO AS prodNo
@@ -98,13 +146,25 @@
 			 , R.REW_CONTENT AS rewContent
 			 , R.REW_GRADE AS rewGrade
 			 , R.REG_DATE AS regDate
-			 , M.MEMBER_NICKNAME AS memberNickname
-			 , M.MEMBER_IMAGE AS memberImage
-		FROM REVIEW R, MEMBER M
-		WHERE R.MEMBER_NO = M.MEMBER_NO
-		AND PROD_NO = #{prodNo}
+		FROM REVIEW R
+		WHERE REW_NO = #{rewNo}
 	</select>
 	
+	<update id="updateReview" parameterType="storeReviewVO">
+		UPDATE REVIEW SET 
+			REW_IMG = #{rewImg},
+			REW_CONTENT = #{rewContent}, 
+			REW_GRADE = #{rewGrade},
+			REG_DATE = SYSDATE
+		WHERE REW_NO = #{rewNo}
+	</update>
+	
+	<delete id="deleteReview" parameterType="int">
+		DELETE 
+		FROM REVIEW
+		WHERE REW_NO = #{rewNo}
+	</delete>
+
 	<select id="getProductOne" parameterType="String" resultType="productVO">
 		SELECT PROD_NO AS prodNo
 			 , PROD_TITLE AS prodTitle
@@ -113,6 +173,6 @@
 			 , PROD_SELLER AS prodSeller
 			 , DISCOUNT_RATE AS discountRate
 		FROM PRODUCT
-		where prod_no = #{prodNo}
+		WHERE PROD_NO = #{prodNo}
 	</select>
 </mapper>

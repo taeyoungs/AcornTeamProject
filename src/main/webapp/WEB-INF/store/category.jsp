@@ -135,10 +135,10 @@
                     
                   	<!-- 가격 HOVER -->
 					<form action="/store/category.do" id="frm">
-					<div id="select_price">
+					<div id="select_price" style="display:none">
 						<div class="popout popout--prepared popout--axis-1 popout--dir-2 popout--cross-dir-1"
 							data-popout="true" style="position: absolute; z-index: 1000; left: 35px; top: 60px; transform: translateX(-50%);">
-							<div class="animated-popout drop-down__content panel-drop-down__content"><!--  open open-active -->
+							<div class="animated-popout drop-down__content panel-drop-down__content"><!-- open open-active -->
 								<div class="drop-down-panel" data-panel-title="가격" data-panel-parents="">
 									<section class="panel-price-range-control">
 											<div class="panel-price-range-control__header"></div>
@@ -216,7 +216,7 @@
 					<!-- 가격 HOVER -->
 
 					<!-- 정렬 HOVER -->
-					<div id="select_menu">
+					<div id="select_menu" style="display:none">
 						<div class="popout popout--prepared popout--axis-1 popout--dir-2 popout--cross-dir-2"
 							data-popout="true" style="position: absolute; z-index: 1000; top: 100px; right: 0px;">
 							<div class="animated-popout drop-down__content panel-drop-down__content"><!-- open open-active -->
@@ -280,7 +280,7 @@
                                         <div class="product-item__info__price">
                                             <span class="discount-rate">${prod.discountRate}%</span>
                                             <strong>
-                                            	<fmt:formatNumber value="${prod.prodPrice}" pattern="#,###"/>
+                                            	<fmt:formatNumber value="${prod.prodPrice-(prod.prodPrice*prod.discountRate/100)}" pattern="#,###"/>
                                             </strong>
                                         </div>
                                     </div>
@@ -295,7 +295,7 @@
 	                                        	<svg width:"24" height="24" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" style="color: rgb(53, 197, 240); width: 12px; height: 12px;">
 	                                        		<path fill="currentColor" fill-rule="evenodd" d="M12 19.72l-5.677 2.405c-.76.322-1.318-.094-1.247-.906l.533-6.142-4.042-4.656c-.54-.624-.317-1.283.477-1.467l6.006-1.39L11.23 2.28c.426-.707 1.122-.699 1.542 0l3.179 5.282 6.006 1.391c.805.187 1.011.851.477 1.467l-4.042 4.656.533 6.142c.072.822-.497 1.224-1.247.906L12 19.72z"></path>
 	                                        	</svg>
-                                        		<strong>${prod.starGrade/prod.reviewCnt}</strong>
+                                        		<strong><fmt:formatNumber value="${prod.starGrade/prod.reviewCnt}" pattern="#.00"/></strong>
                                         		리뷰 ${prod.reviewCnt} 조회 ${prod.prodHits}
                                         	</c:if>
                                         </div>

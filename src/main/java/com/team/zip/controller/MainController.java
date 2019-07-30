@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.team.zip.model.vo.MainCommunityVO;
 import com.team.zip.model.vo.MemberVO;
+import com.team.zip.model.vo.ProductVO;
 import com.team.zip.service.CartService;
 import com.team.zip.service.MainService;
 import com.team.zip.service.MemberService;
@@ -60,13 +61,24 @@ public class MainController {
 		session.removeAttribute("category");
 		session.setAttribute("category", "main");
 		
+		
 		List<MainCommunityVO> photoList = mainService.selectPhotoList();
 		List<MainCommunityVO> zipList = mainService.selecZipList();
+		List<ProductVO> dealList = mainService.selectDealList();
+		List<ProductVO> rankListAll = mainService.selectRankLsit(null);
+		List<ProductVO> rankListFurniture = mainService.selectRankLsit("가구");
+		List<ProductVO> rankListElectronics = mainService.selectRankLsit("가전");
+		List<ProductVO> rankListInterior = mainService.selectRankLsit("인테리어");
+		
 		
 		mav.addObject("photoList", photoList);
 		mav.addObject("where", where);
 		mav.addObject("zipList", zipList);
-		
+		mav.addObject("dealList", dealList);
+		mav.addObject("rankListAll", rankListAll);
+		mav.addObject("rankListFurniture", rankListFurniture);
+		mav.addObject("rankListElectronics", rankListElectronics);
+		mav.addObject("rankListInterior", rankListInterior);
 		mav.setViewName("/main/main");
 		return mav;
 	}

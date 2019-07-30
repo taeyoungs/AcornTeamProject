@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.team.zip.model.dao.MainCommunityDAO;
 import com.team.zip.model.vo.MainCommunityVO;
+import com.team.zip.model.vo.ProductVO;
 
 @Service
 public class MainService {
@@ -20,5 +21,13 @@ public class MainService {
   
 	public List<MainCommunityVO> selecZipList() {
 		return mainCommunityDAO.selectZipList();
+	}
+	
+	public List<ProductVO> selectDealList() {
+		return mainCommunityDAO.selectDealList();
+	}
+	
+	public List<ProductVO> selectRankLsit(String categoryNm) {
+		return mainCommunityDAO.selectRankList(categoryNm);
 	}
 }

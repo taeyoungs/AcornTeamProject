@@ -28,8 +28,13 @@ public class StoreProductDAO extends SqlSessionDaoSupport {
 		getSqlSession().update("updateHits", prodNo); 
 	}
 	
+	public String getReviewTotalCount(String prodNo) {
+		return getSqlSession().selectOne("getReviewTotalCount", prodNo);
+	}
+	
 	public ProductVO getProductOne(String prodNo) {
 		return getSqlSession().selectOne("getProductOne", prodNo);
 	}
+
 
 }

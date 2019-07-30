@@ -17,6 +17,7 @@
 <link rel="stylesheet" type="text/css" href="${root}/css/main/main_media.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/main/bucket_ui.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/main/components.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 </head>
 <body>
 <main role="main" id="root">
@@ -67,14 +68,23 @@
 				<div class="cover__info__review cover__info__review--present">
 					<a href="#product-review">
 						<div class="cover__info__review__stars">
-						<c:forEach begin="0" end="4" varStatus="loop">
-						    <c:if test="${loop.index+1 <= product.starGrade/product.reviewCnt}">
-						    	<span class="icon icon-etc-star-fill-sm"></span>
-						    </c:if>
-						    <c:if test="${loop.index+1 > product.starGrade/product.reviewCnt}">
-						    	<span class="icon icon-etc-star-empty-sm"></span>
-						    </c:if>
-							<!-- <span class="icon icon icon-etc-star-half-sm"></span> -->
+						<c:forEach begin="1" end="5" varStatus="status">
+							<c:if test="${product.reviewCnt > 0}">
+								<c:choose>
+									<c:when test="${((product.starGrade/product.reviewCnt)-status.index) >= 0}">
+								    	<span class="icon icon-etc-star-fill-sm"></span>
+								    </c:when>
+								    <c:when test="${(status.index-(product.starGrade/product.reviewCnt)) <= 0.5}">
+								    	<span class="icon icon icon-etc-star-half-sm"></span>
+								    </c:when>
+								    <c:when test="${(status.index-(product.starGrade/product.reviewCnt)) > 0.5}">
+										<span class="icon icon-etc-star-empty-sm"></span>
+									</c:when>
+								</c:choose>
+							</c:if>
+							<c:if test="${product.reviewCnt == 0}">
+								<span class="icon icon-etc-star-empty-sm"></span>
+							</c:if>
 						</c:forEach>
 						</div>
 						<div>${product.reviewCnt} 개 리뷰</div>
@@ -86,7 +96,7 @@
 						<span>%</span>
 					</div>
 					<div class="cover__info__price__price">
-						<small>${product.discountRate}</small>
+						<small>${product.discountRate}%</small>
 						<del>
 							<fmt:formatNumber value="${product.prodPrice}" pattern="#,###"></fmt:formatNumber>
 						</del>
@@ -120,12 +130,13 @@
 						        <div class="detail">
 						          <div class="amount">
 						            <span class="icon icon-etc-button-minus btn-change-amount down" role="button"></span>
-						            <input type="number" value="1" id="counts" name="counts">
+						            	<input type="number" value="1" id="counts" name="counts">
 						            <span class="icon icon-etc-button-plus btn-change-amount up" role="button"></span>
 						          </div>
-						          <p class="price bold"><span class="amount">
-						          	<fmt:formatNumber value="${product.prodPrice-(product.prodPrice*product.discountRate/100)}" pattern="#,###"/>
-						          </span>원</p>
+						          <p class="price bold">
+						          	<span class="amount">
+						          		<fmt:formatNumber value="${product.prodPrice-(product.prodPrice*product.discountRate/100)}" pattern="#,###"/>
+						          	</span>원</p>
 						        </div>
 					        <span class="icon icon-pointer-x-dark btn-remove hide" role="button" aria-hidden="false"></span>
 					      	</div>
@@ -237,12 +248,10 @@
 					
 					<!-- 상품 상세페이지 -->
 					<section id="product-detail" class="contents">
-						<button id="btn-show-product-detail"
-							class="bold hide-md btn btn-priority">
-							펼치기<span class="icon icon-pointer-angle-down-sm icon-caret"
-								aria-hidden="true"></span>
+						<button id="btn-show-product-detail" class="bold hide-md btn btn-priority" onclick="showDetail()">펼치기
+							<span class="icon icon-pointer-angle-down-sm icon-caret" aria-hidden="true"></span>
 						</button>
-						<div class="product-detail__gradient-show"></div>
+						<div id="product-detail__gradient" class="product-detail__gradient-show"></div>
 						<div id="product-detail-contents" class="product-detail-hidden">
 							<p>
 								<img src="${product.prodImage}"/>
@@ -265,7 +274,7 @@
 						<section class="production-review">
 							<div class="production-review__info">
 								<h1 class="production-review__info__title">리뷰
-									<span class="production-review__info__title__number">리뷰개수</span>
+									<span class="production-review__info__title__number">${product.reviewCnt}</span>
 								</h1>
 								<c:if test="${login == 'login'}">
 								<a class="production-review__info__write" onclick="openReviewPopUp(event)">리뷰쓰기</a>
@@ -285,19 +294,51 @@
 									</c:if>
 									<!-- 리뷰 O -->
 									<c:if test="${product.reviewCnt > 0}">
-									<div class="production-review__info__star__avg">별점</div>
-									<span class="production-review__info__star__rating"> 
-										<svg fill="#35C5F0" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
-											<defs>
-												<path id="star-path-1.000" d="M8 13.54l-4.37 1.85c-.5.22-.88-.06-.83-.6l.4-4.73L.1 6.47c-.37-.41-.22-.85.32-.98l4.62-1.07L7.48.36c.29-.48.75-.47 1.04 0l2.44 4.06 4.62 1.07c.54.13.68.57.32.98l-3.1 3.59.4 4.72c.05.55-.33.83-.83.61L8 13.54z"></path>
-												<clipPath id="star-clip-1.000">
-													<rect x="0" y="0" width="16" height="16"></rect>
-												</clipPath>
-											</defs>
-											<use xlink:href="#star-path-1.000" fill="#DBDBDB"></use>
-											<use clip-path="url(#star-clip-1.000)" xlink:href="#star-path-1.000"></use>
-										</svg>
+									<div class="production-review__info__star__avg">
+										<fmt:formatNumber value="${product.starGrade/product.reviewCnt}" pattern="#.00"/>
+									</div>
+									<c:forEach begin="1" end="5" varStatus="status">
+									<span class="production-review__info__star__rating">
+										<c:choose>
+											<c:when test="${((product.starGrade/product.reviewCnt)-status.index) >= 0}">
+												<svg fill="#35C5F0" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
+													<defs>
+														<path id="star-path-1.000" d="M8 13.54l-4.37 1.85c-.5.22-.88-.06-.83-.6l.4-4.73L.1 6.47c-.37-.41-.22-.85.32-.98l4.62-1.07L7.48.36c.29-.48.75-.47 1.04 0l2.44 4.06 4.62 1.07c.54.13.68.57.32.98l-3.1 3.59.4 4.72c.05.55-.33.83-.83.61L8 13.54z"></path>
+														<clipPath id="star-clip-1.000">
+															<rect x="0" y="0" width="16" height="16"></rect>
+														</clipPath>
+													</defs>
+													<use xlink:href="#star-path-1.000" fill="#DBDBDB"></use>
+													<use clip-path="url(#star-clip-1.000)" xlink:href="#star-path-1.000"></use>
+												</svg>
+											</c:when>
+											<c:when test="${(status.index-(product.starGrade/product.reviewCnt)) <= 0.5}">
+												<svg fill="#35C5F0" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
+													<defs>
+														<path id="star-path-0.490" d="M8 13.54l-4.37 1.85c-.5.22-.88-.06-.83-.6l.4-4.73L.1 6.47c-.37-.41-.22-.85.32-.98l4.62-1.07L7.48.36c.29-.48.75-.47 1.04 0l2.44 4.06 4.62 1.07c.54.13.68.57.32.98l-3.1 3.59.4 4.72c.05.55-.33.83-.83.61L8 13.54z"></path>
+														<clipPath id="star-clip-0.490">
+															<rect x="0" y="0" width="7.840000000000003" height="16"></rect>
+														</clipPath>
+													</defs>
+													<use xlink:href="#star-path-0.490" fill="#DBDBDB"></use>
+													<use clip-path="url(#star-clip-0.490)" xlink:href="#star-path-0.490"></use>
+												</svg>
+											</c:when>
+											<c:when test="${(status.index-(product.starGrade/product.reviewCnt)) > 0.5}">
+												<svg fill="#35C5F0" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
+													<defs>
+														<path id="star-path-0.000" d="M8 13.54l-4.37 1.85c-.5.22-.88-.06-.83-.6l.4-4.73L.1 6.47c-.37-.41-.22-.85.32-.98l4.62-1.07L7.48.36c.29-.48.75-.47 1.04 0l2.44 4.06 4.62 1.07c.54.13.68.57.32.98l-3.1 3.59.4 4.72c.05.55-.33.83-.83.61L8 13.54z"></path>
+														<clipPath id="star-clip-0.000">
+															<rect x="0" y="0" width="0" height="16"></rect>
+														</clipPath>
+													</defs>
+													<use xlink:href="#star-path-0.000" fill="#DBDBDB"></use>
+													<use clip-path="url(#star-clip-0.000)" xlink:href="#star-path-0.000"></use>
+												</svg>
+											</c:when>
+										</c:choose>
 									</span>
+									</c:forEach>
 									</c:if>
 								</div>
 								<!-- 별 -->
@@ -308,62 +349,24 @@
 									<div class="production-review__filter">
 										<div class="production-review__filter-wrap">
 											<ul class="production-review__filter__order">
-												<li class="production-review__filter__order__list production-review__filter__order__list--active">베스트순</li>
-												<li class="production-review__filter__order__list">
+												<li class="production-review__filter__order__list production-review__filter__order__list--active"
+													onclick="changeSort('best', this)">베스트순
+												</li>
+												<li class="production-review__filter__order__list" onclick="changeSort('new', this)">
 													최신순<span class="line"></span>
 												</li>
-												<li class="production-review__filter__order__list">사진리뷰
-													<svg class="production-review__filter__order__list__icon" width="18" height="18" viewBox="0 0 18 18" preserveAspectRatio="xMidYMid meet">
+												<li class="production-review__filter__order__list">
+													<svg id="photoIcon" class="production-review__filter__order__list__icon" width="18" height="18" viewBox="0 0 18 18" preserveAspectRatio="xMidYMid meet">
 														<path fill="currentColor" d="M15.821 3a.67.67 0 0 1 .679.672v10.656a.67.67 0 0 1-.679.672H2.18a.67.67 0 0 1-.679-.672V3.672c0-.375.3-.672.679-.672H15.82zm-.679 1.344H2.858v8.14L7.01 7.781c.094-.125.284-.125.394 0l2.321 2.657c.048.046.063.109.048.156l-.3 1.375c-.016.11.11.172.173.094l2.369-2.579a.202.202 0 0 1 .284 0l2.842 3.094V4.344zm-2.526 3.61a1.1 1.1 0 0 1-1.105-1.095 1.1 1.1 0 0 1 1.105-1.093 1.1 1.1 0 0 1 1.105 1.093 1.1 1.1 0 0 1-1.105 1.094z"></path>
-													</svg>
+													</svg>사진리뷰
 												</li>
 											</ul>
 										</div>
 									</div>
 								</div>
-								<c:forEach items="${reviewList}" var="reviewList">
-									<div class="production-review-item__list">
-										<!-- 리뷰 내용 -->
-										<div class="production-review-item__container">
-											<article class="production-review-item">
-												<div class="production-review-item__writer">
-													<a href="">
-														<img class="production-review-item__writer__img" src="${root}/uploadImage/${reviewList.memberImage}">
-													</a>
-													<div class="production-review-item__writer__info">
-														<p class="production-review-item__writer__info__name">${reviewList.memberNickname}</p>
-														<button class="production-review-item__writer__info__total-star-wrap" type="button">
-															<span class="production-review-item__writer__info__total-star" aria-label="별점 5.0점">
-																<svg fill="#35C5F0" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
-																	<defs>
-																		<path id="star-path-1.000" d="M8 13.54l-4.37 1.85c-.5.22-.88-.06-.83-.6l.4-4.73L.1 6.47c-.37-.41-.22-.85.32-.98l4.62-1.07L7.48.36c.29-.48.75-.47 1.04 0l2.44 4.06 4.62 1.07c.54.13.68.57.32.98l-3.1 3.59.4 4.72c.05.55-.33.83-.83.61L8 13.54z"></path>
-																		<clipPath id="star-clip-1.000">
-																			<rect x="0" y="0" width="16" height="16"></rect>
-																		</clipPath>
-																	</defs>
-																	<use xlink:href="#star-path-1.000" fill="#DBDBDB"></use>
-																	<use clip-path="url(#star-clip-1.000)" xlink:href="#star-path-1.000"></use>
-																</svg>
-															</span>
-														</button>
-														<span class="production-review-item__writer__info__date">
-															<fmt:formatDate value="${reviewList.regDate}"/> 구매</span>
-													</div>
-												</div>
-												<p class="production-review-item__name"></p>
-												<button class="production-review-item__img__btn">
-													<img class="production-review-item__img" src="${root}/uploadImage/review/${reviewList.rewImg}"
-													  onerror="this.onerror='';this.src='${root}/uploadImage/review/noimage.jpg'">
-												</button>
-												<p class="production-review-item__description">${reviewList.rewContent}</p>
-												<div class="production-review-item__help">
-													<button type="button" class="production-review-item__help__btn">도움이 돼요</button>
-												</div>
-											</article>
-										</div>
-										<!-- 리뷰 내용 -->
-									</div>
-								</c:forEach>
+								<!-- Review List -->
+								<div class="production-review-item__list"></div>
+								<!-- PAGING -->
 								<ul class="list-paginator production-review__paginator"></ul>
 							</c:if>
 						</section>
@@ -483,15 +486,16 @@
     </nav>
 	<!-- 모바일 구매하기 버튼-->
 </main>
-<script src="${root}/js/store/selling.js"></script>	
+<input type="hidden" id="root" value="${root}">	
 <!-- 리뷰쓰기 팝업 [S] -->
-<div class="popup new ui-popup ui-editing-popup"><!-- style="display: block;" -->
+<div class="popup new ui-popup ui-editing-popup">
 	<div class="close_popup">
 		<div class="pop_extra">
 			<div class="pop_container">
 				<div id="production_review_pop">
 					<div class="title">리뷰쓰기</div>
-					<form id="production_review_form" class="new_production_review" action="/store/insertReview.do" enctype="multipart/form-data" method="post">
+					<form id="production_review_form" class="new_production_review" action="/store/insertReview.do" 
+						enctype="multipart/form-data" method="post" onsubmit="return frmsubmit();">
 						<!-- 상품 정보 -->
 						<div class="select_production field">
 							<div class="product_image" style="background-image: url('${product.prodImage}')"></div>
@@ -508,15 +512,15 @@
 							<div class="star">
 								<div class="star_title">만족도</div>
 								<div class="star_image">
-				                    <div class="star avg_star empty"></div>
-				                    <div class="star avg_star empty"></div>
-				                    <div class="star avg_star empty"></div>
-				                    <div class="star avg_star empty"></div>
-				                    <div class="star empty avg_star"></div>
+				                    <div class="star avg_star empty">1</div>
+				                    <div class="star avg_star empty">2</div>
+				                    <div class="star avg_star empty">3</div>
+				                    <div class="star avg_star empty">4</div>
+				                    <div class="star avg_star empty">5</div>
 				                    <div class="star_msg" style="color: rgb(66, 66, 66);"></div>
 			               		</div>
 							</div>
-							<input type="hidden" name="rewGrade" id="rewGrade" value="5">
+							<input type="hidden" name="rewGrade" id="rewGrade" value="${rewGrade}">
 						</div>
 						<!-- 사진 등록 -->
 						<div class="select_card field">
@@ -554,7 +558,7 @@
 						<div class="actions">
 					        <div class="guide">*감사합니다.</div>
 <!-- 					        <input type="submit" name="commit" value="등록하기" id="submit" class="submit" data-disable-with="등록"> -->
-					        <button type="submit" class="submit" >등록하기</button>
+					        <button type="submit" class="submit">등록하기</button>
 					        <div class="close_popup cancel">취소하기</div>
 					    </div>
 					</form>
@@ -564,5 +568,7 @@
 	</div>
 </div>
 <!-- 리뷰쓰기 팝업 [E] -->
+
+<script src="${root}/js/store/selling.js"></script>
 </body>
 </html>

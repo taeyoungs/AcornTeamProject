@@ -9,10 +9,11 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <link rel="stylesheet" type="text/css" href="${root}/css/common.css">
+<link rel="stylesheet" type="text/css" href="${root}/css/store/application.css">
 </head>
 <body>
-<footer class="footer">
-	<div class="footer_content_wrapper">
+<footer id="footer" class="footer">
+	<div class="footer__contents-wrap">
 		<div class="footer_cs_wrapper">
 			<p class="footer_cs">
 				<b><a class="footer_customer_center">고객센터 ></a></b>

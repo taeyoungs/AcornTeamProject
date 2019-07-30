@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class StoreReviewVO {
 	private String rewNo;
 	private String memberNo;
-	private String prodNo;
+	private int prodNo;
 	private String rewImg;
 	private String rewTitle;
 	private String rewContent;
@@ -13,6 +13,14 @@ public class StoreReviewVO {
 	private Timestamp regDate;
 	private String memberNickname;
 	private String memberImage;
+	private int startNo;
+	private int endNo;
+	private String currentPage;
+	private String reviewCnt;
+	private String reviewLike;
+	private String reviewLikeCnt;
+	private String sorting;
+	private String imageOnly;
 	
 	public String getRewNo() {
 		return rewNo;
@@ -26,10 +34,10 @@ public class StoreReviewVO {
 	public void setMemberNo(String memberNo) {
 		this.memberNo = memberNo;
 	}
-	public String getProdNo() {
+	public int getProdNo() {
 		return prodNo;
 	}
-	public void setProdNo(String prodNo) {
+	public void setProdNo(int prodNo) {
 		this.prodNo = prodNo;
 	}
 	public String getRewImg() {
@@ -74,5 +82,52 @@ public class StoreReviewVO {
 	public void setMemberImage(String memberImage) {
 		this.memberImage = memberImage;
 	}
-	
+	public int getStartNo() {
+		return startNo;
+	}
+	public void setStartNo(int startNo) {
+		this.startNo = startNo;
+	}
+	public int getEndNo() {
+		return endNo;
+	}
+	public void setEndNo(int endNo) {
+		this.endNo = endNo;
+	}
+	public String getCurrentPage() {
+		return currentPage;
+	}
+	public void setCurrentPage(String currentPage) {
+		this.currentPage = currentPage;
+	}
+	public String getReviewCnt() {
+		return reviewCnt;
+	}
+	public void setReviewCnt(String reviewCnt) {
+		this.reviewCnt = reviewCnt;
+	}
+	public String getReviewLike() {
+		return reviewLike;
+	}
+	public void setReviewLike(String reviewLike) {
+		this.reviewLike = reviewLike;
+	}
+	public String getReviewLikeCnt() {
+		return reviewLikeCnt;
+	}
+	public void setReviewLikeCnt(String reviewLikeCnt) {
+		this.reviewLikeCnt = reviewLikeCnt;
+	}
+	public String getSorting() {
+		return sorting;
+	}
+	public void setSorting(String sorting) {
+		this.sorting = sorting;
+	}
+	public String getImageOnly() {
+		return imageOnly;
+	}
+	public void setImageOnly(String imageOnly) {
+		this.imageOnly = imageOnly;
+	}
 }

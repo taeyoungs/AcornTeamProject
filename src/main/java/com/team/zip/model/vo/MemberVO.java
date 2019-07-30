@@ -16,9 +16,16 @@ public class MemberVO {
 	private String member_birth_1i;
 	private String member_birth_2i;
 	private String member_birth_3i;
+	private String review_like;
 	private String zip_like;
 	private String zip_reply_like;
 	
+	public String getReview_like() {
+		return review_like;
+	}
+	public void setReview_like(String review_like) {
+		this.review_like = review_like;
+	}
 	public String getZip_reply_like() {
 		return zip_reply_like;
 	}

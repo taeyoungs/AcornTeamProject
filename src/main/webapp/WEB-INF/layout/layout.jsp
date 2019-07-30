@@ -24,8 +24,8 @@
 		font-family: 'Nanum Gothic';
 	}
 	#bottom {
-		width: 100%;
-		top: 2700px;
+		/* width: 100%;
+		top: 2700px; */
 		font-family: 'Nanum Gothic';
 	}
 	a {

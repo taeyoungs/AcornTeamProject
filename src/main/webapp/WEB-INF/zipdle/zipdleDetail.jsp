@@ -106,7 +106,7 @@
 				<dt>좋아요</dt>
 				<dd>${zvo.zip_good}</dd>
 				<dt>댓글</dt>
-				<dd>5</dd>
+				<dd>0</dd>
 				<dt>조회수</dt>
 				<dd>${zvo.zip_hits}</dd>
 			</dl>

@@ -523,6 +523,8 @@ function getReplyList2() {
 			
 			$(".comment-feed_header_count").text(redata.totalCount);
 			
+			$(".metadata_wrap dl dd:eq(1)").text(redata.totalCount);
+			
 			var jsonType = JSON.parse(redata.jsonList);
 			
 			for(var i=0; i<jsonType.length; i++) {
@@ -644,6 +646,8 @@ function getReplyList(member_no) {
 			$(".comment-feed_header_count").text(redata.totalCount);
 			
 			var jsonType = JSON.parse(redata.jsonList);
+			
+			$(".metadata_wrap dl dd:eq(1)").text(redata.totalCount);
 			
 			for(var i=0; i<jsonType.length; i++) {
 				

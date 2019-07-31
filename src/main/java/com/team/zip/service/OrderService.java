@@ -25,4 +25,8 @@ public class OrderService {
 	public List<OrderVO> orderRecent() {
 		return dao.orderRecent();
 	}
+	
+	public void blankCart(int num) {
+		dao.blankCart(num);
+	}
 }

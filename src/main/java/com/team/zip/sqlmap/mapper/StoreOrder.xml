@@ -15,4 +15,8 @@
 	<select id="orderRecent" resultType="ovo">
 		select * from orders order by reg_date desc
 	</select>
+	
+	<delete id="blankCart" parameterType="int">
+		delete from cart where cart_no=#{member_no}
+	</delete>
 </mapper>

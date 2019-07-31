@@ -21,4 +21,10 @@ public class OrderDAO extends SqlSessionDaoSupport {
 	public List<OrderVO> orderRecent() {
 		return getSqlSession().selectList("order.orderRecent");
 	}
+	
+	public void blankCart(int num) {
+		getSqlSession().delete("order.blankCart", num);
+	}
+
+	
 }

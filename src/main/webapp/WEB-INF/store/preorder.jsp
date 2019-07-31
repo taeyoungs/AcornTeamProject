@@ -40,7 +40,7 @@
                            	<c:if test="${calist ne null }">
                            	<c:forEach items="${calist }" var="ca">
                             <div class="information">
-                                <img src="${ca.prod_image }">
+                                <img src="${ca.prod_img }">
                                 <div>
                                     <div class="name">${ca.prod_title }</div>
                                     <div class="cost_count">
@@ -51,6 +51,7 @@
                                 </div>
                             </div>
                             </c:forEach>
+                            <input type="hidden" class="prod_list" name="prodList" value="${prodList}">
                             </c:if>
                         </td>
                     </tr>
@@ -105,6 +106,7 @@
                     </div>
                 </div>
             </div>
+            <c:if test="${pvo ne null }">
             <div class="panel">
                 <div class="title">최종 결제 금액</div>
                 <div class="cost">
@@ -130,6 +132,30 @@
                    <input type="hidden" class="prod_title" name="prodTitle" value="${pvo.prodTitle }">
                 </div>
             </div>
+            </c:if>
+            <c:if test="${calist ne null }">
+            <div class="panel">
+                <div class="title">최종 결제 금액</div>
+                <div class="cost">
+                    <div class="cost_panel">
+                        <div class="title">총 상품 금액</div>
+                        <div id="preview_product_cost" class="amount"><fmt:formatNumber value="${totalPrice}" pattern="#,###"/>원</div>
+                    </div>
+                    <div class="cost_panel">
+                        <div class="title">할인 금액</div>
+                        <div id="preview_delivery_cost" class="amount"><fmt:formatNumber value="${totalDiscountPrice}" pattern="#,###"/>원</div>
+                    </div>
+                    <div class="cost_panel">
+                        <div class="title">배송비</div>
+                        <div id="preview_delivery_cost" class="amount">무료</div>
+                    </div>
+                    <div class="total cost_panel">
+                        <div class="title">총 결제금액</div>
+                        <div id="preview_selling_cost" class="amount"><fmt:formatNumber value="${totalPriceAfterDiscount}" pattern="#,###"/>원</div>
+                    </div>
+                </div>
+            </div>
+            </c:if>
             <button type="submit" id="do_payment">결제하기</button>
         </form>
     </div>

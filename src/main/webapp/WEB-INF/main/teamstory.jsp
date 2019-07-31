@@ -51,7 +51,12 @@
 						<span class="member_info_text">
 							조 장<br>
 							<h2>장 태 영</h2> 
-							가나다라<br>
+							수행역할<br><br>
+							1. 상단메뉴<br>
+							2. 회원가입/로그인<br>
+							3. 집들이 페이지<br>
+							4. 장바구니<br>
+							5. 관리자 페이지
 						</span>
 					</div>
 				</div>
@@ -66,7 +71,8 @@
 						<span class="member_info_text">
 							조 원<br>
 							<h2>김 한 결</h2> 
-							가나다라<br>
+							수행역할<br><br>
+							1. 질문과 답변 게시판
 						</span>
 					</div>
 				</div>
@@ -81,7 +87,11 @@
 						<span class="member_info_text">
 							조 원<br>
 							<h2>박 소 원</h2> 
-							가나다라<br>
+							수행역할<br><br>
+							1. 메인 홈<br>
+							2. 스토어 카테고리 페이지<br>
+							3. 상품 페이지/리뷰<br>
+							4. Footer
 						</span>
 					</div>
 				</div>
@@ -96,7 +106,12 @@
 						<span class="member_info_text">
 							조 원<br>
 							<h2>박 준 우</h2> 
-							가나다라<br>
+							수행역할<br><br>
+							1. 사진 페이지<br>
+							2. 스토어 홈 페이지<br>
+							3. 스토어 랭킹 페이지<br>
+							4. 주문 페이지<br>
+							5. 결제완료 페이지
 						</span>
 					</div>
 				</div>

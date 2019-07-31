@@ -29,7 +29,7 @@
           </div>
           <div class="list_panel">
               <div class="title">주문물품</div>
-              <div class="content">개</div>
+              <div class="content">${prodTitle} x ${counts }개</div>
           </div>
           <div class="list_panel">
               <div class="title">배송메모</div>

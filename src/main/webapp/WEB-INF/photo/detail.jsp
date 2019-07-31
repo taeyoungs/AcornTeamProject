@@ -75,7 +75,7 @@
 							<input type="hidden" name="photo_seq_no" value="${pvo.photo_seq_no }"/>
 							<div class="comment-feed__form__user">
 								<c:if test="${sessionScope.mvo.member_image ne null}">
-									<img src="${root }/image/common/${sessionScope.mvo.member_image }">
+									<img src="${root }/uploadImage/${sessionScope.mvo.member_image }">
 								</c:if>
 								<c:if test="${sessionScope.mvo.member_image eq null}">
 	                    			<img src="${root}/image/common/user.png">
@@ -161,7 +161,7 @@
 														<img class="card-item-writer_image" src="${root }/image/common/user.png">
 														</c:when>
 														<c:otherwise>
-														<img src="${root }/image/common/${mvo.member_image}">
+														<img src="${root }/uploadImage/${mvo.member_image}">
 														</c:otherwise>
 														</c:choose>
 													</a>

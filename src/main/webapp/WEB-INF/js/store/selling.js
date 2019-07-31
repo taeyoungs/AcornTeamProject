@@ -96,7 +96,7 @@ $(function(){
 		var prodNo = $("#prodNo").val();
 		var counts = $("#counts").val();
 		
-		$(this).attr('href', 'preorder.do?prodNo='+prodNo+"&counts="+counts);
+		$(this).attr('href', 'preorder.do?idx=0&prodNo='+prodNo+"&counts="+counts);
 	});
 	//장바구니에 담기 추가 [E] -- JWP
 });

@@ -74,7 +74,7 @@ function insertComment(comment, session_member_no, photo_seq_no) {
 									if(data[i].member_image == null){
 										str += "<img class='comment-feed__item__content__author__image' src='/image/common/user.png'>";
 									} else if(data[i].member_image != null){
-										str += "<img class='comment-feed__item__content__author__image' src='/image/common/"+data[i].member_image+"'>";
+										str += "<img class='comment-feed__item__content__author__image' src='/uploadImage/"+data[i].member_image+"'>";
 									}
 										str += "<span class='comment-feed__item__content__author__name'>"+data[i].member_nickname+"</span>";
 							str+= "</a>";
@@ -117,7 +117,7 @@ function commentList(session_member_no, photo_seq_no) {
 								if(data[i].member_image == null){
 									str += "<img class='comment-feed__item__content__author__image' src='/image/common/user.png'>";
 								} else if(data[i].member_image != null){
-									str += "<img class='comment-feed__item__content__author__image' src='/image/common/"+data[i].member_image+"'>";
+									str += "<img class='comment-feed__item__content__author__image' src='/uploadImage/"+data[i].member_image+"'>";
 								}
 								str += "<span class='comment-feed__item__content__author__name'>"+data[i].member_nickname+"</span>";
 						str+= "</a>";

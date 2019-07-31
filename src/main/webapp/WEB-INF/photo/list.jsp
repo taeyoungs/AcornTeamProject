@@ -161,7 +161,7 @@
 									</div>
 								</div>
 							</div>
-							<c:forEach var="cvo" items="${clist }" end="0">
+							<c:forEach var="cvo" items="${clist }" begin="0">
 							<c:if test="${pvo.photo_seq_no == cvo.p_reply_no }">
 							<div class="card-item-comment-wrap">
 								<article class="card-item-comment">

@@ -2245,7 +2245,7 @@ body {
 
 @media ( min-width : 768px) {
 	#contents {
-		margin-top: 80px
+		margin-top: 20px
 	}
 }
 
@@ -2297,7 +2297,7 @@ body {
 }
 
 #product-contents-wrap.lg {
-	padding-top: 50px
+	padding-top: 80px
 }
 
 #product-selling-option-wrap {

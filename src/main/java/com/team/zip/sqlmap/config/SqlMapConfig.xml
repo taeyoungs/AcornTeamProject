@@ -20,7 +20,7 @@
 		<typeAlias type="com.team.zip.model.vo.CartVO" alias="cavo"/>
 	</typeAliases>
     
-	<mappers>
+	<!-- <mappers>
 		<mapper resource="com/team/zip/sqlmap/mapper/PhotoSql.xml"/>
 		<mapper resource="com/team/zip/sqlmap/mapper/MemberSql.xml"/>
 		<mapper resource="com/team/zip/sqlmap/mapper/MainSql.xml"/>
@@ -31,5 +31,5 @@
 		<mapper resource="com/team/zip/sqlmap/mapper/StoreRank.xml"/>
 		<mapper resource="com/team/zip/sqlmap/mapper/StoreOrder.xml"/>
 		<mapper resource="com/team/zip/sqlmap/mapper/CartSql.xml"/>
-	</mappers>
+	</mappers> -->
 </configuration>                           

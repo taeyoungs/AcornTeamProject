@@ -71,7 +71,22 @@
 	</update>
 	
 	<insert id="insertReview" parameterType="storeReviewVO">
-		INSERT INTO REVIEW (
+		MERGE INTO REVIEW R
+		USING
+		(
+			SELECT REW_NO FROM REVIEW WHERE REW_NO = #{rewNo,jdbcType=NUMERIC}
+		) A
+		ON (R.REW_NO = A.REW_NO)
+		WHEN MATCHED THEN
+		UPDATE
+		SET REW_CONTENT = #{rewContent}
+		  , REW_GRADE = #{rewGrade}
+		<if test='rewImg != null and rewImg != ""'>
+		  , REW_IMG = #{rewImg}
+		</if>
+		  , REG_DATE = SYSDATE
+		WHEN NOT MATCHED THEN
+		INSERT (
 			REW_NO,
 			MEMBER_NO,
 			PROD_NO,
@@ -102,8 +117,9 @@
 					 , R.REG_DATE AS regDate
 					 , M.MEMBER_NICKNAME AS memberNickname
 					 , M.MEMBER_IMAGE AS memberImage
-					 , (SELECT 'Y' FROM MEMBER WHERE MEMBER_NO = R.MEMBER_NO AND REVIEW_LIKE LIKE '% '||R.REW_NO||',%') AS reviewLike
+					 , (SELECT 'Y' FROM MEMBER WHERE MEMBER_NO = #{memberNo,jdbcType=NUMERIC} AND REVIEW_LIKE LIKE '% '||R.REW_NO||',%') AS reviewLike
 					 , (SELECT COUNT(*) FROM MEMBER WHERE REVIEW_LIKE LIKE '% '||R.REW_NO||',%') AS reviewLikeCnt
+					 , DECODE(R.MEMBER_NO,#{memberNo,jdbcType=NUMERIC},'true','false') AS isLogin
 				FROM REVIEW R, MEMBER M
 				WHERE R.MEMBER_NO = M.MEMBER_NO
 				AND PROD_NO = #{prodNo}

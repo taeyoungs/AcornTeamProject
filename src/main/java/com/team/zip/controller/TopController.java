@@ -29,7 +29,7 @@ public class TopController {
 		
 		model.addAttribute("secondaryTop", "-51");
 		
-		return "/2/member/writelist";
+		return "/4/member/writelist";
 	}
 	
 	@RequestMapping("/users/{path}")

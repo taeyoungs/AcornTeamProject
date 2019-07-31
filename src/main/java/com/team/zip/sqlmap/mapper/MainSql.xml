@@ -40,6 +40,7 @@
 	<select id="selectDealList" resultType="productVO">
 		SELECT * FROM (
 	        SELECT P.PROD_NO AS prodNo
+	        	 , P.PROD_SELLER AS prodSeller
 	             , P.PROD_TITLE AS prodTitle
 	             , P.PROD_PRICE AS prodPrice
 	             , P.PROD_IMG AS prodImage

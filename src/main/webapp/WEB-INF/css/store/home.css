@@ -38,7 +38,6 @@ header, footer, main {
 
 html, body {
     line-height: 1;
-    font-family: "Noto Sans KR", "Apple SD Gothic Neo", "맑은 고딕", "Malgun Gothic", sans-serif;
     letter-spacing: -0.4px;
     font-size: 13px;
 }
@@ -458,7 +457,7 @@ h1,h2,h3,h4,h5,h6{
     color: #757575;
     word-break: break-all;
     font-size: 11px;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 13px;
 }
 
@@ -468,7 +467,7 @@ h1,h2,h3,h4,h5,h6{
     margin-top: 5px;
     word-break: break-all;
     font-size: 13px;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 17px;
     color: #000;
     transition: opacity .1s;
@@ -647,7 +646,7 @@ h1,h2,h3,h4,h5,h6{
     .store-index-today-deal-item__header__name {
         margin-top: 5px;
         font-size: 13px;
-        font-weight: 400;
+        font-weight: 700;
         line-height: 17px;
         max-height: 34px;
         -webkit-line-clamp: 2;

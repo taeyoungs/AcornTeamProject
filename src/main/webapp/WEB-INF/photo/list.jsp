@@ -118,7 +118,7 @@
 											<img class="card-item-writer_image" src="${root }/image/common/user.png">
 											</c:when>
 											<c:otherwise>
-											<img class="card-item-writer_image" src="${root }/image/common/${mvo.member_image}">
+											<img class="card-item-writer_image" src="${root }/uploadImage/${mvo.member_image}">
 											</c:otherwise>
 											</c:choose>
 											<span class="card-item-writer_name">${mvo.member_nickname }</span>
@@ -171,7 +171,7 @@
 											<img class="card-item-comment__writer__image" src="${root }/image/common/user.png">
 											</c:if>
 											<c:if test="${cvo.member_image ne null }">
-											<img class="card-item-comment__writer__image" src="${root }/image/common/${cvo.member_image}">
+											<img class="card-item-comment__writer__image" src="${root }/uploadImage/${cvo.member_image}">
 											</c:if>
 											<span class="card-item-comment__writer__name">${cvo.member_nickname}</span>
 										</a>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.zip.model.vo.ProductVO;
+import com.team.zip.service.MainService;
 import com.team.zip.service.StoreRankService;
 
 @Controller
@@ -21,6 +22,9 @@ public class StoreHomeController {
 	
 	@Autowired
 	StoreRankService service;
+	
+	@Autowired
+	MainService mainService;
 	
 	@RequestMapping("/store/store.do")
 	   public ModelAndView storeGo(HttpSession session,
@@ -32,10 +36,12 @@ public class StoreHomeController {
 		
 		List<ProductVO> list = service.Top10List();
 		List<ProductVO> todaydeal = service.Top10List();
+		List<ProductVO> dealList = mainService.selectDealList();
 	
 	    model.addObject("where", where);
 	    model.addObject("list", list);
 	    model.addObject("todaydeal", todaydeal);
+	    model.addObject("dealList", dealList);
 	    
 	    session.removeAttribute("category");
 	    session.setAttribute("category", "store");

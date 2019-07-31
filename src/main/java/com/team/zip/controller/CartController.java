@@ -63,6 +63,7 @@ public class CartController {
 			caservice.insertCart(member_no, prod_no, counts);
 			
 		}
+		session.setAttribute("cartCnt", caservice.getListCnt(member_no));
 		
 		JSONObject jsonObj = new JSONObject();
 		

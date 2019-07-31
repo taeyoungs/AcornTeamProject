@@ -8,6 +8,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.team.zip.model.vo.BoardVO;
+import com.team.zip.model.vo.ZipdleVO;
 
 @Repository
 public class BoardDAO extends SqlSessionDaoSupport{
@@ -60,5 +61,14 @@ public class BoardDAO extends SqlSessionDaoSupport{
 	public void boardHitsUpdate(int num)
 	{
 		getSqlSession().update("boardHitsUpdate", num);
+	}
+	
+	public List<BoardVO> getPagingBoardList(int start, int end) {
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("end", end);
+		
+		return getSqlSession().selectList("board.getPagingBoardList", map);
 	}
 }

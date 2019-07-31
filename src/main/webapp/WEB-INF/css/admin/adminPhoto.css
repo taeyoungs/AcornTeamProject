@@ -1,0 +1,133 @@
+.community-table-wrap {
+		margin-right: auto;
+    	margin-left: auto;
+    	padding-top: 60px;
+    	width: calc(100% - 200px);
+	}
+
+	.community-table {
+		width: 100%;
+		padding-top: 30px;
+	}
+	
+	.search-right {
+		float: right;
+	}
+	table th, td{
+		font-weight: normal;
+	}
+	
+	table {
+		width: 100%;
+	}
+	
+	table thead td {
+		background-color: #35C5F0;
+		color: white;
+		border-bottom: 1px solid white;
+		border-right: 1px solid white;
+		border-top: 1px solid white;
+		text-align: center;
+		height: 45px;
+	}
+	table tbody td {
+		text-align: center;
+		padding: 8px;
+		border: 1px solid #424242;
+	}
+	
+	
+	.condition-status {
+		float: left;
+	}
+	
+	.search-community {
+		outline: 0;
+		height: 23px;
+		border: 1px solid #757575;
+		border-radius: 3px;
+	}
+	.photo-delete-btn {
+		border: 1px solid white;
+		border-radius: 3px;
+		background-color: #757575;
+		color: white;
+		width: 50px;
+		height: 35px;
+		font-family: inherit;
+		cursor: pointer;
+	}
+	.photo-delete-btn:hover {
+		opacity: 0.5;
+	}
+	
+	.photo-detail-link:hover {
+		opacity: 0.5;
+	}
+	#page {
+		margin-top: 20px;
+		text-align: center;
+	}
+	
+.list-paginator_end, 
+.list-paginator_next, 
+.list-paginator_prev, 
+.list-paginator_start {
+	margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 0;
+    transition: opacity .1s;
+}
+
+.list-paginator_page {
+	display: none;
+    min-width: 26px;
+    margin: 0 2px;
+    padding: 5.5px 5px;
+    box-sizing: border-box;
+    border: none;
+    background-color: transparent;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    color: #424242;
+    transition: background-color .1s,color .1s;
+    cursor: pointer;
+}
+.list-paginator_page:hover {
+	color: #35c5f0;
+}
+
+.list-paginator_page.selected {
+    background-color: #35c5f0;
+    color: #fff;
+    text-decoration: none;
+}
+
+.list-paginator_page.sm {
+	display: block;
+}
+
+.list-paginator_prev>img {
+	margin-right: 15px;
+	width: 22px;
+	height: 22px;
+	cursor: pointer;
+}
+.list-paginator_prev>img:hover {
+	opacity: 0.4;
+}
+
+.list-paginator_next>img {
+	margin-left: 15px;
+	width: 22px;
+	height: 22px;
+	cursor: pointer;
+}
+.list-paginator_next>img:hover {
+	opacity: 0.4;
+}

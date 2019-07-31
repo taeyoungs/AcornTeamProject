@@ -209,7 +209,16 @@ $(function(){
 		} else {
 			$(".button-submit").click();
 		}
-	})
+	});
+	
+	$(window).scroll(function(){
+        var height = $(this).scrollTop();
+        if(height != 0) {
+            $(".commerce-cart_side-bar-container").css("top", "80px");
+        } else {
+        	$(".commerce-cart_side-bar-container").css("top", "0px");
+        }
+    });
 });
 
 // 선택한 장바구니 물품 hidden에 저장하기

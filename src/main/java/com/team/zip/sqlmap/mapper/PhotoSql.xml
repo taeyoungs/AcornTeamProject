@@ -88,4 +88,24 @@
 	<select id="getReplyCount" resultType="int" parameterType="int">
 		select count(*) from p_reply where member_no in (select member_no from photo where photo_seq_no=#{num})
 	</select>
+	
+	<select id="getPagingPhotoList" resultType="pvo" parameterType="HashMap">
+ 	<![CDATA[
+		select a.* from (select ROWNUM as RNUM, b.* from 
+		(
+	    select  p.photo_seq_no,
+	            m.member_no,
+	            p.photo_content,
+	            p.reg_date,
+	            m.member_nickname
+	    from photo p, member m
+	    where p.member_no = m.member_no
+	    order by p.reg_date desc
+	    ) b where ROWNUM <= #{end} ) a 
+		where a.RNUM >= #{start}
+	]]>
+	</select>
+	<select id="getTotalCount" resultType="int">
+		select count(*) from photo
+	</select>
 </mapper>

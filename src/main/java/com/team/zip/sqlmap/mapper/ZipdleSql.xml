@@ -233,4 +233,42 @@
 		]]>
 	</select>
 	
+	<!-- 페이징 처리한 집들이 목록 -->
+	<select id="getPagingZipList" parameterType="HashMap" resultType="zvo">
+	<![CDATA[
+		select a.* from (select ROWNUM as RNUM, b.* from 
+		(
+	    select z.zip_seq_no,
+			   z.json, 
+			   z.zip_hits,
+			   z.zip_good,
+			   z.reg_date,
+			   m.member_no,
+			   m.member_nickname
+		from zip z, member m
+		where z.member_no = m.member_no
+		order by z.reg_date desc
+	    ) b where ROWNUM <= #{end} ) a 
+		where a.RNUM >= #{start}
+	]]>
+	</select>
+	<!-- like 조건으로 원하는 검색 결과를 가져온 집들이 목록 -->
+	<select id="getFilterZipList" parameterType="HashMap" resultType="zvo">
+	<![CDATA[
+		select a.* from (select ROWNUM as RNUM, b.* from 
+		(
+	    select z.zip_seq_no,
+			   z.json, 
+			   z.zip_hits,
+			   z.zip_good,
+			   z.reg_date,
+			   m.member_no,
+			   m.member_nickname
+		from zip z, member m
+		where z.member_no = m.member_no and z.json.data.title like '%'||#{keyword}||'%'
+		order by z.reg_date desc
+	    ) b where ROWNUM <= #{end} ) a 
+		where a.RNUM >= #{start}
+	]]>
+	</select>
 </mapper>

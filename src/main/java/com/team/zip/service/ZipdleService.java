@@ -1,6 +1,8 @@
 package com.team.zip.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -95,6 +97,20 @@ public class ZipdleService {
 	
 	public void deleteZip(int zip_seq_no) {
 		zdao.deleteZip(zip_seq_no);
+	}
+	
+	public int getTotalCount() {
+		return zdao.getTotalCount();
+	}
+	
+	public List<ZipdleVO> getPagingZipList(int start, int end) {
+		
+		return zdao.getPagingZipList(start, end);
+	}
+	
+	public List<ZipdleVO> getFilterZipList(int start, int end, String keyword) {
+		
+		return zdao.getFilterZipList(start, end, keyword);
 	}
 	
 }

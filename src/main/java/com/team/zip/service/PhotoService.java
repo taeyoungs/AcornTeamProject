@@ -1,6 +1,8 @@
 package com.team.zip.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,6 +66,15 @@ public class PhotoService {
 	public List<PhotoVO> photoSortByPyeong(String Pyeong){
 		return dao.photoSortByPyeong(Pyeong);
 
+	}
+	
+	public List<PhotoVO> getPagingPhotoList(int start, int end) {
+		
+		return dao.getPagingPhotoList(start, end);
+	}
+	
+	public int getTotalCount() {
+		return dao.getTotalCount();
 	}
 	
 }

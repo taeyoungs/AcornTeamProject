@@ -15,8 +15,16 @@
 <body>
 <main role="main" id="root">
 <c:if test="${fn:length(calist) == 0}">
-	<div class="commerce-cart-empty">
-		<div class=""></div>
+	<div class="page">
+		<div class="commerce-cart-empty">
+			<div class="commerce-cart-empty_content">
+				<img src="/image/common/go-Shopping.png" class="commerce-cart-empty_content_image">
+				<a class="button button-color-blue button-size-50 button-shape-4 commerce-cart-empty_content_button"
+					href="${root}/store/store.do">
+				상품 담으러 가기
+				</a>
+			</div>
+		</div>
 	</div>
 </c:if>
 <c:if test="${fn:length(calist) != 0}">

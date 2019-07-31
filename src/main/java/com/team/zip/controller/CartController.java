@@ -28,10 +28,14 @@ public class CartController {
 	public String goCart(HttpSession session, Model model) {
 		
 		int member_no = (Integer)session.getAttribute("member_no");
+		
+		session.setAttribute("cartCnt", caservice.getListCnt(member_no));
+		
 		int cartCnt = (Integer)session.getAttribute("cartCnt");
 		System.out.println(cartCnt);
 		
 		List<CartVO> calist = new ArrayList<CartVO>();
+		
 		calist = caservice.getCartList(member_no);
 		
 		model.addAttribute("calist", calist);

@@ -7,6 +7,7 @@ import java.util.Map;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import com.team.zip.model.vo.PhotoVO;
 import com.team.zip.model.vo.ZipdleVO;
 
 @Repository
@@ -121,6 +122,31 @@ public class ZipdleDAO extends SqlSessionDaoSupport {
 	
 	public void deleteZip(int zip_seq_no) {
 		getSqlSession().delete("zipdle.deleteZip", zip_seq_no);
+	}
+	
+	public int getTotalCount() {
+		return getSqlSession().selectOne("zipdle.getTotalCount");
+	}
+	
+	public List<ZipdleVO> getPagingZipList(int start, int end) {
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("end", end);
+		
+		return getSqlSession().selectList("zipdle.getPagingZipList", map);
+	}
+	
+	public List<ZipdleVO> getFilterZipList(int start, int end, String keyword) {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		String startNum = Integer.toString(start);
+		String endNum = Integer.toString(end);
+		map.put("start", startNum);
+		map.put("end", endNum);
+		map.put("keyword", keyword);
+		
+		return getSqlSession().selectList("zipdle.getFilterZipList", map);
 	}
 
 }

@@ -16,6 +16,8 @@ public class ZipdleVO {
 	
 	private String member_nickname;
 	private String member_image;
+	
+	private String date;
 
 	public String getMember_image() {
 		return member_image;
@@ -65,5 +67,10 @@ public class ZipdleVO {
 	public void setReg_date(Timestamp reg_date) {
 		this.reg_date = reg_date;
 	}
-	
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
 }

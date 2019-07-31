@@ -51,4 +51,14 @@
 		delete from b_reply where b_reply_seq_no=#{b_reply_seq_no}
 	</delete>
 	
+	<select id="getPagingBoardList" parameterType="HashMap" resultType="bvo">
+	<![CDATA[
+		select a.* from (select ROWNUM as RNUM, b.* from 
+		(
+	    select * from zip order by reg_date desc
+	    ) b where ROWNUM <= #{end} ) a 
+		where a.RNUM >= #{start}
+	]]>
+	</select>
+	
 </mapper>

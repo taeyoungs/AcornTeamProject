@@ -33,6 +33,7 @@ public class MainController {
 	public ModelAndView mainGo(HttpSession session, @RequestParam(value="where", defaultValue = "home") String where,
 			@RequestParam(value="loginCondition" ,defaultValue = "0") String loginCondition)
 	{
+		System.out.println("loginCondition : "+loginCondition);
 		ModelAndView mav = new ModelAndView();
 		
 		if(session.getAttribute("member_no") != null) {
@@ -50,14 +51,18 @@ public class MainController {
             session.setMaxInactiveInterval(21600);
 		}
 		
-		if(loginCondition.equals("1")) {
-			mav.addObject("loginCondition", "login");
-		} else if(loginCondition.equals("2")) {
-			mav.addObject("loginCondition", "logout");
-		} else if(loginCondition.equals("3")) {
-			mav.addObject("loginCondition", "signup");
+		String loginCondition2 = (String)session.getAttribute("loginCondition");
+		if(loginCondition2 != null) {
+			if(loginCondition2.equals("1")) {
+				mav.addObject("loginCondition", "login");
+			} else if(loginCondition2.equals("2")) {
+				mav.addObject("loginCondition", "logout");
+			} else if(loginCondition2.equals("3")) {
+				mav.addObject("loginCondition", "signup");
+			}
 		}
 		
+		session.removeAttribute("loginCondition");
 		session.removeAttribute("category");
 		session.setAttribute("category", "main");
 		

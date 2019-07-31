@@ -26,20 +26,6 @@ header, footer, main {
     min-height: 1px;
 }
 
-.page {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-direction: normal;
-    -webkit-box-orient: vertical;
-    -webkit-flex-direction: column;
-    -moz-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-}
-
 .commerce-cart-wrap, .page {
     -webkit-box-flex: 1;
     -webkit-flex: 1 0 auto;
@@ -610,6 +596,31 @@ button:hover {
 	background-color: #35c5f0;
     border-color: #35c5f0;
     color: #fff;
+}
+
+.commerce-cart-empty_content {
+	-webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 300px;
+    margin: 80px auto;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.commerce-cart-empty_content_image {
+	display: block;
+    max-width: 250px;
+    margin: 0 auto;
+}
+
+.commerce-cart-empty_content_button {
+	display: block;
+    margin-top: 30px;
 }
 
 @media (min-width: 375px) {

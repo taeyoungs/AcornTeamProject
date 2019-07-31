@@ -67,5 +67,21 @@ public class MemberService {
 		
 		dao.updateZipReplyLike(mvo);
 	}
+	
+	public int getTotalCount() {
+		return dao.getTotalCount();
+	}
+	
+	public List<MemberVO> getPagingList(int start, int end) {
+		return dao.getPagingList(start, end);
+	}
+	
+	public void deleteMember(int member_no) {
+		dao.deleteMember(member_no);
+	}
+	
+	public List<MemberVO> getFilterMemberList(int start, int end, String keyword) {
+		return dao.getFilterMemberList(start, end, keyword);
+	}
 
 }

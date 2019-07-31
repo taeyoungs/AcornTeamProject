@@ -30,4 +30,35 @@
 	<update id="updateZipReplyLike" parameterType="mvo">
 		update member set zip_reply_like = #{zip_reply_like} where member_no = #{member_no}
 	</update>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from member
+	</select>
+	<delete id="deleteMember" parameterType="int">
+		delete from member where member_no = #{member_no}
+	</delete>
+	
+	<select id="getPagingList" parameterType="HashMap" resultType="mvo">
+	<![CDATA[
+		select a.* from (select ROWNUM as RNUM, b.* from 
+		(
+	   	select  *
+	    from member
+	    order by member_no desc
+	    ) b where ROWNUM <= #{end} ) a 
+		where a.RNUM >= #{start}
+	]]>
+	</select>
+	<select id="getFilterMemberList" parameterType="HashMap" resultType="mvo">
+	<![CDATA[
+		select a.* from (select ROWNUM as RNUM, b.* from 
+		(
+	    select  *
+	    from member
+		where member_id like '%'||#{keyword}||'%' or member_nickname like '%'||#{keyword}||'%'
+		order by member_no desc
+	    ) b where ROWNUM <= #{end} ) a 
+		where a.RNUM >= #{start}
+	]]>
+	</select>
 </mapper>

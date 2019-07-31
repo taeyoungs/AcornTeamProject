@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.team.zip.model.vo.MemberVO;
 import com.team.zip.service.CartService;
@@ -77,10 +78,10 @@ public class LoginController {
 	
 	// 회원가입시 데이터 저장 후 메인으로 이동
 	@RequestMapping(value="/member/signup", method=RequestMethod.POST)
-	public String signup(@ModelAttribute MemberVO mvo, Model model) {
+	public String signup(@ModelAttribute MemberVO mvo, Model model, HttpSession session) {
 
 		mservice.insertMember(mvo);
-		model.addAttribute("loginCondition", "3");
+		session.setAttribute("loginCondition", "3");
 		
 		return "redirect:/main.do";
 	}
@@ -137,13 +138,14 @@ public class LoginController {
 			//세션에서 사용 완료된 referer 지우기 [S] - 2019.07.24 SWPARK
 			String referer = (String)session.getAttribute("referer");
 			if (referer != null) {
+
+				session.setAttribute("loginCondition", "1");
 				session.removeAttribute("referer");
 				return "redirect:"+referer;
+			} else {
+				return "redirect:../main.do";
 			}
 			//세션에서 사용 완료된 referer 지우기 [E]
-			
-			model.addAttribute("loginCondition", "1");
-			return "redirect:../main.do";
 			
 		} else {
 			// isMatch false인 경우 이메일과 비밀번호가 불일치 다시 signin으로 맵핑
@@ -155,16 +157,19 @@ public class LoginController {
 	
 	// 로그아웃
 	@RequestMapping(value="/member/logout")
-	public String logout(HttpSession session, Model model) {
+	public ModelAndView logout(HttpSession session) {
 		
 		session.removeAttribute("loginok");
 		session.removeAttribute("member_no");
 		session.removeAttribute("mvo");
 		session.removeAttribute("cartCnt");
 		
-		model.addAttribute("loginCondition", "2");
+		ModelAndView model = new ModelAndView();
+		session.setAttribute("loginCondition", "2");
 		
-		return "redirect:../main.do";
+		model.setViewName("redirect:../main.do");
+		
+		return model;
 	}
 	
 	// 비밀번호 재설정 폼으로 이동

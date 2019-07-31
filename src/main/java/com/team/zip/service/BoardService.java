@@ -1,6 +1,8 @@
 package com.team.zip.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,5 +54,10 @@ public class BoardService {
 	public void boardUpdate(BoardVO vo)
 	{
 		dao.boardUpdate(vo);
+	}
+	
+	public List<BoardVO> getPagingBoardList(int start, int end) {
+		
+		return dao.getPagingBoardList(start, end);
 	}
 }

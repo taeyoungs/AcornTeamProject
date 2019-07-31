@@ -20,6 +20,8 @@ public class PhotoVO {
 	public int count;
 	public int seqno;
 	
+	private String member_nickname;
+	
 	public int getPhoto_seq_no() {
 		return photo_seq_no;
 	}
@@ -103,6 +105,12 @@ public class PhotoVO {
 	}
 	public void setSeqno(int seqno) {
 		this.seqno = seqno;
+	}
+	public String getMember_nickname() {
+		return member_nickname;
+	}
+	public void setMember_nickname(String member_nickname) {
+		this.member_nickname = member_nickname;
 	}
 	
 }

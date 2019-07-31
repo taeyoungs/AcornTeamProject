@@ -98,6 +98,9 @@
 	                    	<div class="navi-primary_user_list">
 	                    		<ul class="navi-user-menu">
 	                    			<li><a href="${root}/users/userPhoto">마이홈</a></li>
+	                    			<c:if test="${sessionScope.member_no == 1}">
+	                    				<li><a href="${root}/admin/adminList">관리자 페이지</a></li>
+	                    			</c:if>
 	                    			<li><a href="${root}/member/logout">로그아웃</a></li>
 	                    		</ul>
 	                    	</div>

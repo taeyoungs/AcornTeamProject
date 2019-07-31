@@ -150,7 +150,7 @@ public class BoardController {
 			)
 	{
 		//이미지 업로드 경로 
-		String path=request.getSession().getServletContext().getRealPath("/save");
+		String path=request.getSession().getServletContext().getRealPath("/board");
 		//System.out.println(path);
 
 		//path 경로에 이미지 저장

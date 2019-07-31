@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 <link rel="stylesheet" type="text/css" href="${root}/css/common.css">
 <link rel="stylesheet" media="all" href="https://d1nyaccf3kuclt.cloudfront.net/assets/v3/bucket_ui/bucket_ui-a69ea26903ba7b7b1e58db706ee621d7fa1695945755178ff07fe330df44fff6.css" />
@@ -17,8 +16,10 @@
 <link rel="stylesheet" media="screen" href="https://d1nyaccf3kuclt.cloudfront.net/assets/v3/questions/show-10f80a072f9392a5b0bb049a10197bacd8005cc0ea40775b3536b50d1b45a09c.css" />
 <link rel="stylesheet" media="screen" href="https://d1nyaccf3kuclt.cloudfront.net/dist/css/3-4402b1c8.chunk.css" />
 <link rel="stylesheet" media="screen" href="https://d1nyaccf3kuclt.cloudfront.net/dist/css/CommentFeed-556f37ea.css" />
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 $(function(){
+	 
 	$("#replybox").keyup(function(e) {
 		console.log("111");
 		e.preventDefault();
@@ -40,7 +41,6 @@ $(function(){
 });
 </script>
 </head>
-
 <body>
 <main role="main" id="root">
 <article id="page" class="page-2col container" data-question-id="11761">
@@ -86,7 +86,7 @@ $(function(){
 
 </div>
       <div class="question__content__footer__meta text-caption-1">
-        <time datetime="2019-07-08T00:12:48+09:00" class="question__content__footer__date text-gray">
+        <time class="question__content__footer__date text-gray">
           ${vo.reg_date}
         </time>
         <span class="question__content__footer__views text-gray">
@@ -137,9 +137,6 @@ $(function(){
 					</p>
 					<footer class="comment-feed__item__footer">
 					<time class="comment-feed__item__footer__time">${bvo.reg_date}</time>
-					<span class="comment-feed__item__footer__likes zero">
-						<a class="comment-feed__item__footer__likes__icon" href="/users/sign_in">${bvo.member_no}</a>
-					</span>
 						<c:if test="${sessionScope.mvo.member_no eq vo.member_no}">
 							<button class="comment-feed__item__footer__delete-btn" type="button"
 							onclick="location.href='replydelete.do?board_seq_no=${vo.board_seq_no}&b_reply_seq_no=${bvo.b_reply_seq_no}&pageNum=${pageNum}'">삭제</button>

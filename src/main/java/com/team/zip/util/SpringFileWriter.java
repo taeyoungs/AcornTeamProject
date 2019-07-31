@@ -67,7 +67,7 @@ public class SpringFileWriter {
 	   // crop된 이미지로 썸네일을 생성합니다. 
 	   BufferedImage destImg = Scalr.resize(cropImg, dw, dh); 
 	   
-	   String path = "D:/acornproject/TeamProject/src/main/webapp/WEB-INF/uploadImage/";
+	   String path = "C:/Users/acorn/Documents/fianl/src/main/webapp/WEB-INF/uploadImage/board";
 	   
 	   // 썸네일을 저장합니다. 이미지 이름 앞에 "THUMB_" 를 붙여 표시했습니다. 
 	   String thumbName = path + "THUMB_" + fileName+"."+fileExt; 

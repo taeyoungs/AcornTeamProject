@@ -31,6 +31,7 @@ $(document).ready(function() {
         }
     });
 });
+
 </script>
 <style>
 	li{
@@ -63,12 +64,11 @@ $(document).ready(function() {
 					</div>
 			</div>
 		</section>
-				<div style="display:inline-block;text-align:center;padding:50px;width:1200px;">
-					<div class="questions-filter__actions">
-						 <a class="questions-filter__actions__new-question btn btn-priority btn-sm"
-							href="form.do">질문하기</a>
-					</div>
-				</div>
+      
+        <div class="questions-filter__actions" style="margin:30px;text-align:center;">
+	        <a class="questions-filter__actions__new-question btn btn-priority btn-sm" href="form.do">질문하기</a>
+        </div>
+
 <section id="questions-list" class="container">
 		<c:forEach var="vo" items="${list}">
 				<a class="questions-item__link"

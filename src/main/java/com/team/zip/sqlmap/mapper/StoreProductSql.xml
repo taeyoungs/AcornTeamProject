@@ -72,11 +72,8 @@
 	
 	<insert id="insertReview" parameterType="storeReviewVO">
 		MERGE INTO REVIEW R
-		USING
-		(
-			SELECT REW_NO FROM REVIEW WHERE REW_NO = #{rewNo,jdbcType=NUMERIC}
-		) A
-		ON (R.REW_NO = A.REW_NO)
+		USING DUAL
+		ON (R.REW_NO = #{rewNo,jdbcType=NUMERIC})
 		WHEN MATCHED THEN
 		UPDATE
 		SET REW_CONTENT = #{rewContent}

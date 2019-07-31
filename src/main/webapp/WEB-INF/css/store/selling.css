@@ -279,7 +279,7 @@
 }
 
 #production_review_pop>form>.select_card #upload_panel {
-	display: none;
+	/* display: none; */
 	position: relative;
 	margin-bottom: 20px;
 	width: 100%;

@@ -54,7 +54,9 @@
 											<c:if test="${plist.reviewCnt!=0}">
 											<div class="product-item__info__col">
 												<img src="/image/common/star.png" style="width:12px;height:12px;">
-												<strong>${plist.starGrade }</strong>&nbsp;
+												<strong>
+												<fmt:formatNumber value="${plist.starGrade/plist.reviewCnt}" pattern="#.##"/>
+												</strong>&nbsp;
 												 리뷰 ${plist.reviewCnt }
 											</div>
 											</c:if>
@@ -107,8 +109,10 @@
 											<c:if test="${flist.reviewCnt!=0}">
 											<div class="product-item__info__col">
 												<img src="/image/common/star.png" style="width:12px;height:12px;">
-												<strong>3.2</strong>&nbsp;
-												리뷰 4
+												<strong>
+												<fmt:formatNumber value="${flist.starGrade/flist.reviewCnt}" pattern="#.##"/>
+												</strong>&nbsp;
+												 리뷰 ${flist.reviewCnt }
 											</div>
 											</c:if>
 										</div>
@@ -158,11 +162,11 @@
 												</div>
 											</div>
 											<c:if test="${alist.reviewCnt!=0}">
-											<div class="product-item__info__col">
 												<img src="/image/common/star.png" style="width:12px;height:12px;">
-												<strong>3.2</strong>&nbsp;
-												리뷰 20
-											</div>
+												<strong>
+												<fmt:formatNumber value="${alist.starGrade/alist.reviewCnt}" pattern="#.##"/>
+												</strong>&nbsp;
+												 리뷰 ${alist.reviewCnt }
 											</c:if>
 										</div>
 									</a>
@@ -213,8 +217,10 @@
 											<c:if test="${ilist.reviewCnt!=0}">
 											<div class="product-item__info__col">
 												<img src="/image/common/star.png" style="width:12px;height:12px;">
-												<strong>4.2</strong>&nbsp;
-												리뷰 14
+												<strong>
+												<fmt:formatNumber value="${ilist.starGrade/ilist.reviewCnt}" pattern="#.##"/>
+												</strong>&nbsp;
+												 리뷰 ${ilist.reviewCnt }
 											</div>
 											</c:if>
 										</div>

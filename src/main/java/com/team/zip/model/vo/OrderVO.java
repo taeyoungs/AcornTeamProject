@@ -12,7 +12,7 @@ public class OrderVO {
 	private String order_customer;
 	private String order_contact;
 	private String order_comment;
-	private String prod_no;
+	private int prod_no;
 	private int counts;
 	private int order_price;
 	
@@ -64,10 +64,10 @@ public class OrderVO {
 	public void setOrder_comment(String order_comment) {
 		this.order_comment = order_comment;
 	}
-	public String getProd_no() {
+	public int getProd_no() {
 		return prod_no;
 	}
-	public void setProd_no(String prod_no) {
+	public void setProd_no(int prod_no) {
 		this.prod_no = prod_no;
 	}
 	public int getCounts() {

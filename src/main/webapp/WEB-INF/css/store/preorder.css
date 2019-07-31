@@ -79,7 +79,6 @@ input, textarea, select {
 }
 
 #pre_order > form #order_productions td {
-    border-bottom: 1px solid #eee;
     box-sizing: content-box;
 }
 
@@ -90,6 +89,7 @@ input, textarea, select {
     display: -ms-flexbox;
     display: flex;
     padding: 10px;
+    border-bottom: 1px solid #ddd;
 }
 
 #pre_order > form #order_productions div.information > img {

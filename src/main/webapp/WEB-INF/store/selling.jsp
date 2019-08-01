@@ -535,7 +535,7 @@
 					            <div id="delete_review_card">사진 삭제하기</div>
 					        </div>
 					        <div id="add_review_card">새로운 사진 업로드
-					            <input type="file" name="image" id="card_uploader" accept="image/*">
+					            <input type="file" name="image" id="card_uploader" accept="image/*" onchange="fileChange()">
 					        </div>
 					
 					        <input type="hidden" name="rewNo" id="rewNo">

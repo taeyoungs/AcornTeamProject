@@ -306,6 +306,10 @@ $(document).ready(function() {
 	reviewListAjax(1);
 });
 
+function fileChange() {
+	$("#upload_panel").css("display", "block");
+}
+
 function handleImgFileSelect (e) {
 	var files = e.target.files;
 	var filesArr = Array.prototype.slice.call(files);

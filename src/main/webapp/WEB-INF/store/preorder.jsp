@@ -97,7 +97,7 @@
                             <input type="text" id="delivery_message" class="delivery_memo donot_check_before_payment full view_delivery_preset"
                             autocomplete="off" name="order_comment" value="">
                             <div id="delivery_messages" style="display:none;"></div>
-                            <div id="delivery_message_presets" style="top: 754px; display: none;">
+                            <div id="delivery_message_presets" style="display: none;">
                                 <div class="preset">배송 전에 미리 연락주세요</div>
                                 <div class="preset">집에 아무도 없으면 문앞에 놔주세요</div>
                                 <div class="preset">경비실에 맡겨주세요</div>

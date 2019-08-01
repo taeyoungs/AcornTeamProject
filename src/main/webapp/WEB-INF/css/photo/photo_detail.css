@@ -634,7 +634,6 @@ figure{
 .sidebar__update_button{
 	width: 25px;
 	height: 25px;
-	margin-left: 20%;
 	border: none;
 }
 
@@ -764,6 +763,10 @@ figure{
 	box-sizing: border-box;
 	min-height: 1px;
 	}
+	
+	.sidebar__update_delete {
+    margin-left: 45px;
+}
 }
 
 

@@ -99,7 +99,7 @@ public class PhotoController {
 	public String write(@ModelAttribute PhotoVO pvo, HttpServletRequest request, MultipartFile photo,
 			HttpSession session) {
 
-		String path = "D://Project/AcornProject/src/main/webapp/WEB-INF/uploadimage/photo";
+		String path = "D://Project/AcornProject/src/main/webapp/WEB-INF/uploadImage/photo";
 		int memberNo = (Integer) session.getAttribute("member_no");
 
 		String imagename = "";
@@ -122,7 +122,7 @@ public class PhotoController {
 		}
 		pvo.photo_content = pvo.photo_content.substring(0, pvo.photo_content.length()-1);
 		
-		pvo.setPhoto_image("/uploadimage/photo/" + imagename);
+		pvo.setPhoto_image("/uploadImage/photo/" + imagename);
 		pvo.setMember_no(memberNo);
 		service.photoInsert(pvo);
 		return "redirect:photolist.do?where=photo";

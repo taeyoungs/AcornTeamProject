@@ -208,12 +208,23 @@ Photo-Write-Form_photo-item_content_row .text-area-input{
 }
 
 .Photo-Write-Form_footer{
-	display: flex;
-	-webkit-box-pack: end;
-	justify-content: end;
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
 	padding: 10px 20px;
-	border-top: 1px solid #dbdbdb;
-	width: 100%;
+	
 }
 
 .button{

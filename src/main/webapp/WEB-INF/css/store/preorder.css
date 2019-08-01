@@ -301,7 +301,7 @@ input, textarea, select {
 
 #pre_order > form > .panel > .input > .field > .input #delivery_message_presets {
     display: none;
-    position: absolute;
+    position: relative;
     width: 600px;
     background: white;
     z-index: 100;
